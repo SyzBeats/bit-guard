@@ -1,0 +1,33 @@
+/*=========== IMPORTS =============*/
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap");
+/*=========== BASE STYLES =============*/
+:root {
+  --color-green: #2cda00;
+  --color-bg: #021a21;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+/*=========== FONT STYLES =============*/
+body {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+/*=========== IMAGE STYLES =============*/
+/*=========== COMPONENT STYLES =============*/
+/*# sourceMappingURL=App.css.map */

@@ -1,0 +1,91 @@
+type Query {
+  # message
+  messagesByUser: [Message!]!
+  messageById(data: MessageWhereUniqueInput!): Message
+  # user
+  loginUser(data: UserLoginInput!): AuthPayload!
+  currentUser: User!
+  #Link
+  linkByMessage: [Link!]!
+}
+
+type Mutation {
+  signupUser(data: UserCreateInput!): User!
+  deleteUser(data: UserWhereUniqueInput!): User
+  createMessage(data: MessageCreateInput): Message!
+  deleteMessage(data: MessageWhereUniqueInput!): Message
+  createLink(data: LinkCreateInput!): Link!
+  deleteLink(data: LinkWhereUniqueInput!): Link
+}
+
+# custom types
+
+type Link {
+  content: String!
+  expiry: String
+}
+
+type Message {
+  id: ID!
+  content: String!
+  # create resolver
+  links: [Link!]
+}
+
+type User {
+  id: ID!
+  email: String!
+  name: String
+  # create resolver
+  messages: [Message!]
+}
+
+type Key {
+  id: ID!
+  key: String!
+  messageId: String!
+}
+
+type AuthPayload {
+  token: String!
+}
+
+# input types
+
+input UserCreateInput {
+  email: String!
+  password: String!
+  name: String!
+}
+
+input UserLoginInput {
+  email: String!
+  password: String!
+}
+
+input KeyCreateInput {
+  key: String!
+  messageId: String!
+}
+
+input MessageCreateInput {
+  content: String!
+  owner: String
+}
+
+input LinkCreateInput {
+  messageId: String!
+  expiry: String
+}
+
+input MessageWhereUniqueInput {
+  id: ID!
+}
+
+input LinkWhereUniqueInput {
+  id: ID!
+}
+
+input UserWhereUniqueInput {
+  id: ID!
+}

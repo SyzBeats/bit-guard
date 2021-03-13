@@ -1,0 +1,10 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "jsx": "react",
+    "lib": ["ES2015", "ESNext", "DOM"],
+    "strictNullChecks": true,
+    "esModuleInterop": true
+  },
+  "include": ["./react-ui/src/**/*", "./server/**/*"]
+}

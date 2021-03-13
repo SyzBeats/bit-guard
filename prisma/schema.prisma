@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @default(uuid()) @id
+  email     String   @unique
+  password  String
+  name      String
+}
+
+// message contains hashed content
+model Message {
+  id        String @default(uuid()) @id
+  userId    String
+  owner     User   @relation(fields: [userId], references: [id])      
+  content   String 
+  links     Link[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Message 1 <----> N Link
+model Link {
+  id          String @default(uuid()) @id
+  message     Message @relation(fields: [messageId], references: [id])
+  messageId   String
+  content     String
+  createdAt   DateTime @default(now())
+  expiry      DateTime?
+}
