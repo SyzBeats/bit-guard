@@ -12,7 +12,8 @@ const Button = styled.div`
   &:hover {
     cursor: pointer;
     transform: scale3d(1.1, 1.1, 1.1);
-    filter: grayscale(0) drop-shadow(1px 2px 15px var(--color-green));
+    filter: ${({ theme }) =>
+      `grayscale(0) drop-shadow(1px 2px 9px ${theme.colors.highlight_50})`};
   }
 `;
 export default NavigationButton;

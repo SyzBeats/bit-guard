@@ -3,7 +3,7 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
   "parserOptions": {
-    "project": "tsconfig.json"
+    "project": "./src/**/*"
   },
   "rules": {
     "linebreak-style": 0,
