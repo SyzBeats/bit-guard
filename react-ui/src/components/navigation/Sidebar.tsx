@@ -29,8 +29,8 @@ const Wrapper = styled.header`
   position: sticky;
   top: 0;
 
-  background: var(--color-bg);
-  color: var(--color-green);
+  background: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.highlight};
 
   box-shadow: 3px 0px 9px #1115;
 

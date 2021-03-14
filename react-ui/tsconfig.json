@@ -1,9 +1,10 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "lib": ["ESNext"],
+    "jsx": "react",
+    "lib": ["ES2015", "ESNext", "DOM"],
     "strictNullChecks": true,
     "esModuleInterop": true
   },
-  "include": ["./server/**/*"]
+  "include": ["./src/**/*"]
 }

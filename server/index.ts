@@ -1,6 +1,6 @@
 import { ApolloServer, gql } from 'apollo-server-express';
+import express from 'express';
 import * as fs from 'fs';
-import * as express from 'express';
 import { createContext } from './context';
 import { Query, Mutation, Message, Link, User } from './resolvers';
 // routes

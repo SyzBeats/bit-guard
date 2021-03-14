@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './style/App.css';
+import { ThemeProvider } from 'styled-components';
 import Layout from './components/layout/Layout';
+import { theme } from './themes/theme-brand';
 
 function App() {
   return (
-    <Layout>
-      <p>test</p>
-    </Layout>
+    <ThemeProvider theme={theme}>
+      <Layout>
+        <p>test</p>
+      </Layout>
+    </ThemeProvider>
   );
 }
 
