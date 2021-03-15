@@ -4,7 +4,8 @@
     "jsx": "react",
     "lib": ["ES2015", "ESNext", "DOM"],
     "strictNullChecks": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "noEmitOnError": true
   },
   "include": ["./src/**/*"]
 }

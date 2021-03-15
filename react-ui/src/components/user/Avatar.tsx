@@ -23,6 +23,9 @@ const Image = styled.img`
   height: 100%;
   width: 100%;
   border-radius: 50%;
+
+  object-fit: cover;
+
   box-shadow: ${({ theme }) => theme.shadows.depth_1};
 `;
 

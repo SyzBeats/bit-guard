@@ -11,7 +11,7 @@ module.exports = {
       url: '/dist',
     },
   },
-  plugins: ['@snowpack/plugin-typescript', '@snowpack/plugin-react-refresh'],
+  plugins: [['@snowpack/plugin-typescript'], '@snowpack/plugin-react-refresh'],
   routes: [
     /* Enable an SPA Fallback in development: */
     // {"match": "routes", "src": ".*", "dest": "/index.html"},
