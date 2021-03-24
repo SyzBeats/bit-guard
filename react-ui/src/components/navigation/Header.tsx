@@ -14,7 +14,7 @@ const Header = () => {
 
 const Wrapper = styled.header`
   padding: 1rem 2rem;
-  height: 9rem;
+  height: 7rem;
   background: #eee;
   display: flex;
   justify-content: flex-end;

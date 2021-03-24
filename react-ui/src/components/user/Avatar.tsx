@@ -11,8 +11,8 @@ const Avatar = ({ src, alt }: AvatarType) => {
 };
 
 const Wrapper = styled.div`
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
 
   display: flex;
   justify-content: center;
