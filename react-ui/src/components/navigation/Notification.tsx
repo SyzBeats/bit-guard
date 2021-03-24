@@ -13,7 +13,10 @@ const Notification = () => {
 
 const Wrapper = styled.div`
   position: relative;
-  margin: 0 2rem;
+  margin: 0 2.5rem;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 const BellMarker = styled.div`
   width: 1rem;
