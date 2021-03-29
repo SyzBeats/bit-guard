@@ -1,6 +1,7 @@
 import { ApolloServer, gql } from 'apollo-server-express';
 import express from 'express';
 import * as fs from 'fs';
+import cors from 'cors';
 import { createContext } from './context';
 import { Query, Mutation, Message, Link, User } from './resolvers';
 // routes
@@ -8,6 +9,11 @@ import __public from './rest_routes/public';
 
 // @ts-ignore
 const app = express();
+const corsOptions = {
+  origin: 'http://localhost:8080',
+  credentials: true,
+};
+app.use(cors(corsOptions));
 
 const resolvers = {
   Query,
@@ -28,7 +34,6 @@ const server = new ApolloServer({
 server.applyMiddleware({ app, path: '/graphql' });
 
 app.use('/public', __public);
-
 app.listen({ port: 4000 }, () =>
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`),
 );

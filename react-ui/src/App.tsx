@@ -1,17 +1,17 @@
 import React from 'react';
 import { ApolloProvider, ApolloClient, createHttpLink } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
 import { ThemeProvider } from 'styled-components';
-import './style/App.css';
-import Layout from './components/layout/Layout';
-import { theme } from './themes/theme-brand';
-import Header from './components/navigation/Header';
-import AppState from './context/app/AppState';
-import Main from './components/layout/Main';
+import { setContext } from '@apollo/client/link/context';
 import { cache } from './config/cache';
+import { theme } from './themes/theme-brand';
+import AppState from './context/app/AppState';
+import Layout from './components/layout/Layout';
+import Header from './components/navigation/Header';
+import Main from './components/layout/Main';
+import './style/App.css';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000',
+  uri: 'http://localhost:4000/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {

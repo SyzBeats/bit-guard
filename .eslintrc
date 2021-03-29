@@ -9,6 +9,7 @@
     "linebreak-style": 0,
     "object-curly-newline": 0,
     "object-property-newline": 0,
+    "object-curly-spacing": "off",
     "no-console": 0,
     "implicit-arrow-linebreak": 0,
     "function-paren-newline": 0,
@@ -18,6 +19,7 @@
     "arrow-body-style": "off",
     "@typescript-eslint/indent": "off",
     "@typescript-eslint/no-use-before-define": 0,
+    "@typescript-eslint/object-curly-spacing": ["error"],
     "import/extensions": [
       "warn",
       "never",
