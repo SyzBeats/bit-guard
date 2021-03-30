@@ -11,18 +11,19 @@ generator client {
 }
 
 model User {
-  id        String   @default(uuid()) @id
-  email     String   @unique
-  password  String
-  name      String
+  id       String    @id @default(uuid())
+  email    String    @unique
+  password String
+  name     String
+  Message  Message[]
 }
 
 // message contains hashed content
 model Message {
-  id        String @default(uuid()) @id
+  id        String   @id @default(uuid())
   userId    String
-  owner     User   @relation(fields: [userId], references: [id])      
-  content   String 
+  owner     User     @relation(fields: [userId], references: [id])
+  content   String
   links     Link[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -30,10 +31,10 @@ model Message {
 
 // Message 1 <----> N Link
 model Link {
-  id          String @default(uuid()) @id
-  message     Message @relation(fields: [messageId], references: [id])
-  messageId   String
-  content     String
-  createdAt   DateTime @default(now())
-  expiry      DateTime?
+  id        String    @id @default(uuid())
+  message   Message   @relation(fields: [messageId], references: [id])
+  messageId String
+  content   String
+  createdAt DateTime  @default(now())
+  expiry    DateTime?
 }

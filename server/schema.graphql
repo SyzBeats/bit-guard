@@ -43,7 +43,7 @@ type User {
 type Key {
   id: ID!
   key: String!
-  messageId: String!
+  messageId: ID!
 }
 
 type AuthPayload {
@@ -65,7 +65,7 @@ input UserLoginInput {
 
 input KeyCreateInput {
   key: String!
-  messageId: String!
+  messageId: ID!
 }
 
 input MessageCreateInput {
@@ -74,7 +74,7 @@ input MessageCreateInput {
 }
 
 input LinkCreateInput {
-  messageId: String!
+  messageId: ID!
   expiry: String
 }
 
