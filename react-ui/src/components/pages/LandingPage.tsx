@@ -8,7 +8,6 @@ const LandingPage = () => {
   return (
     <LayoutLanding>
       <HeroLanding />
-      <Queue />
       <Footer />
     </LayoutLanding>
   );
