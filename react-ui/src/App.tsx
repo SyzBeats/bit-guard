@@ -6,13 +6,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { cache } from './config/cache';
 import { theme } from './themes/theme-brand';
 import AppState from './context/app/AppState';
-import Layout from './components/layout/Layout';
-import Header from './components/navigation/Header';
-import Main from './components/layout/Main';
-import './style/App.css';
-import Signup from './components/authentication/Signup';
-import Login from './components/authentication/Login';
 import Dashboard from './components/dashboard/Dashboard';
+import { LandingPage } from './components/pages/LandingPage';
+import './style/App.css';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:4000/graphql',
@@ -42,15 +38,7 @@ function App() {
         <AppState>
           <Router>
             <Switch>
-              <Route exact path="/">
-                <Login />
-              </Route>
-              <Route exact path="/login">
-                <Login />
-              </Route>
-              <Route exact path="/signup">
-                <Signup />
-              </Route>
+              <Route exact path="/" component={LandingPage} />
               <Route exact path="/dashboard" component={Dashboard} />
             </Switch>
           </Router>

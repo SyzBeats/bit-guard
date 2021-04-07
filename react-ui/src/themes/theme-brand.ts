@@ -2,7 +2,7 @@ const theme = {
   colors: {
     highlight: '#2cda00',
     highlight_50: '#2cda00',
-    background: '#021a21',
+    background: '#01141f',
   },
   fonts: {},
   shadows: {

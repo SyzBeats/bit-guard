@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Sidebar } from '../navigation/Sidebar';
 
-const Layout = ({ children }) => (
+const LayoutDashboard = ({ children }) => (
   <Container>
     <Sidebar />
     <Content>{children}</Content>
@@ -20,4 +20,4 @@ const Content = styled.div`
   background: #f9f9f9;
 `;
 
-export default Layout;
+export { LayoutDashboard };
