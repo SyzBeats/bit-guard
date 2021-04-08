@@ -69,7 +69,8 @@ const Wrapper = styled.div<WrapperType>`
   justify-content: center;
   align-items: center;
 
-  background-image: linear-gradient(110deg, #13abe1 20%, white 20%);
+  background-image: ${({ theme }) =>
+    `linear-gradient(110deg, ${theme.colors.highlight} 21.5%, white 21.5%) `};
   padding: 0 20px;
   border-radius: 4px;
   box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
