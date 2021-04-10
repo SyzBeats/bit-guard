@@ -9,11 +9,9 @@ const HeroLanding = () => {
     <Hero>
       <Container>
         <FlexBox>
-          <MainTitle>Password Guard</MainTitle>
-          <SecondaryTitle>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-          </SecondaryTitle>
-          <Button content="Content" />
+          <MainTitle>Password Shield</MainTitle>
+          <SecondaryTitle>The safe way to share your secrets</SecondaryTitle>
+          <Button content="Watch more" />
         </FlexBox>
         <FlexBox>
           <Queue />
@@ -38,6 +36,7 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   max-width: ${({ theme }) => theme.breakpoints.lg};
+  gap: 10rem;
 `;
 
 const FlexBox = styled.div`
