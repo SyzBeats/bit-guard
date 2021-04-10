@@ -1,7 +1,9 @@
 const theme = {
   colors: {
     highlight: '#4e0480',
-    highlight_50: '#4e0480',
+    highlight_50: '#4e048099',
+    highlight_blue: '#006eb5',
+    highlight_blue_50: '#006eb599',
     background: '#01141f',
     background_dark: '#000406',
   },

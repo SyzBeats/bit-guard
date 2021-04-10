@@ -5,7 +5,8 @@
     "lib": ["ES2015", "ESNext", "DOM"],
     "strictNullChecks": true,
     "esModuleInterop": true,
-    "noEmitOnError": true
+    "noEmitOnError": true,
+    "typeRoots": ["./src/typings", "./node_modules/@types"]
   },
   "include": ["./src/**/*"]
 }
