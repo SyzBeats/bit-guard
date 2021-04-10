@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Sidebar } from '../navigation/Sidebar';
+import { Sidebar } from '../../navigation/Sidebar';
 
 const LayoutDashboard = ({ children }) => (
   <Container>
