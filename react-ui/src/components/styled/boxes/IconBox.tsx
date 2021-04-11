@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Icon } from '../image/Icon';
+import { ExternalSvg } from '../image/ExternalSvg';
 import { IconName } from '../../../typings/enums';
 
 // icons
@@ -19,19 +19,19 @@ type IconBoxType = {
 const getIcon = (type: IconName) => {
   switch (type) {
     case IconName.FINGERPRINT:
-      return <Icon src={IconFingerprint} />;
+      return <ExternalSvg src={IconFingerprint} />;
     case IconName.LOCK:
-      return <Icon src={IconLock} />;
+      return <ExternalSvg src={IconLock} />;
     case IconName.PINCODE:
-      return <Icon src={IconPincode} />;
+      return <ExternalSvg src={IconPincode} />;
     case IconName.DATABASE:
-      return <Icon src={IconDatabase} />;
+      return <ExternalSvg src={IconDatabase} />;
     case IconName.MESSAGE:
-      return <Icon src={IconMessage} />;
+      return <ExternalSvg src={IconMessage} />;
     case IconName.WALL:
-      return <Icon src={IconWall} />;
+      return <ExternalSvg src={IconWall} />;
     case IconName.WORLD:
-      return <Icon src={IconWorld} />;
+      return <ExternalSvg src={IconWorld} />;
   }
 };
 
