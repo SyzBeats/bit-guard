@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Queue } from '../effects/Queue/Queue';
-import Button from '../styled/buttons/Button';
+import Button from '../styled/buttons';
 import Logo from '../styled/image/Logo';
-import { MainTitle, SecondaryTitle } from '../styled/typography/Titles';
+import { MainTitle, SecondaryTitle } from '../styled/typography';
 
 const HeroLanding = () => {
   return (

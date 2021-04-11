@@ -7,7 +7,7 @@ import { cache } from './config/cache';
 import { theme } from './themes/theme-brand';
 import AppState from './context/app/AppState';
 import Dashboard from './components/dashboard/Dashboard';
-import { LandingPage } from './components/pages/LandingPage';
+import { LandingPage } from './components/pages/landing/LandingPage';
 import './style/App.css';
 
 const httpLink = createHttpLink({
