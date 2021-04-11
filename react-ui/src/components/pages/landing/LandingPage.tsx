@@ -6,8 +6,8 @@ import { LayoutLanding } from '../../layout/landing/LayoutLanding';
 import { BaseContainer } from '../../styled/containers';
 import { SectionBackground, SectionBase } from '../../styled/sections';
 // icons
-import { IconBox } from '../../styled/boxes/IconBox';
-import { IconName } from '../../../typings/enums';
+import { LandingPageIconGrid } from './IconGrid';
+import { SecondaryTitle } from '../../styled/typography';
 
 const LandingPage = () => {
   return (
@@ -15,98 +15,15 @@ const LandingPage = () => {
       <HeroLanding />
       <SectionBase>
         <BaseContainer>
-          {/* grid component */}
-          <Grid columns={3} rows={2}>
-            <IconBox
-              title="Fingerprint"
-              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
-              type={IconName.FINGERPRINT}
-              textColor="dark"
-            />
-
-            <IconBox
-              title="Fingerprint"
-              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
-              type={IconName.DATABASE}
-              textColor="dark"
-            />
-
-            <IconBox
-              title="Fingerprint"
-              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
-              type={IconName.LOCK}
-              textColor="dark"
-            />
-
-            <IconBox
-              title="Fingerprint"
-              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
-              type={IconName.WALL}
-              textColor="dark"
-            />
-
-            <IconBox
-              title="Fingerprint"
-              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
-              type={IconName.WORLD}
-              textColor="dark"
-            />
-
-            <IconBox
-              title="Fingerprint"
-              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
-              type={IconName.PINCODE}
-              textColor="dark"
-            />
-          </Grid>
+          <SecondaryTitle color="dark" textAlign="center">
+            What Crypt Shield does for you
+          </SecondaryTitle>
+          <LandingPageIconGrid />
         </BaseContainer>
       </SectionBase>
       <SectionBackground>
         <BaseContainer>
-          {/* grid component */}
-          <Grid columns={3} rows={2}>
-            <IconBox
-              title="Fingerprint"
-              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
-              type={IconName.FINGERPRINT}
-              textColor="light"
-            />
-
-            <IconBox
-              title="Fingerprint"
-              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
-              type={IconName.DATABASE}
-              textColor="light"
-            />
-
-            <IconBox
-              title="Fingerprint"
-              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
-              type={IconName.LOCK}
-              textColor="light"
-            />
-
-            <IconBox
-              title="Fingerprint"
-              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
-              type={IconName.WALL}
-              textColor="light"
-            />
-
-            <IconBox
-              title="Fingerprint"
-              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
-              type={IconName.WORLD}
-              textColor="light"
-            />
-
-            <IconBox
-              title="Fingerprint"
-              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
-              type={IconName.PINCODE}
-              textColor="light"
-            />
-          </Grid>
+          <Grid columns={3} rows={2}></Grid>
         </BaseContainer>
       </SectionBackground>
       <Footer />

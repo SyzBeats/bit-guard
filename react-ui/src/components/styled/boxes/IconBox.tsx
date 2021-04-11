@@ -43,7 +43,9 @@ const IconBox = ({ type, title, content, textColor }: IconBoxType) => {
   return (
     <Wrapper>
       {getIcon(type)}
-      <SecondaryTitle color={textColor}>{title}</SecondaryTitle>
+      <SecondaryTitle color={textColor} textAlign="center">
+        {title}
+      </SecondaryTitle>
       <p>{content}</p>
     </Wrapper>
   );
