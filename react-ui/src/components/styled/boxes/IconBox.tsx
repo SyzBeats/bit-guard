@@ -11,9 +11,13 @@ import IconDatabase from '../../../images/security/fi__secure-database.svg';
 import IconMessage from '../../../images/security/fi__secure-message.svg';
 import IconWorld from '../../../images/security/fi__world-secure.svg';
 import IconWall from '../../../images/security/fi__wall.svg';
+import { SecondaryTitle } from '../typography';
 
 type IconBoxType = {
   type: IconName;
+  title: string;
+  content: string;
+  textColor: 'light' | 'dark';
 };
 
 const getIcon = (type: IconName) => {
@@ -35,13 +39,21 @@ const getIcon = (type: IconName) => {
   }
 };
 
-const IconBox = ({ type }: IconBoxType) => {
-  return <Wrapper>{getIcon(type)}</Wrapper>;
+const IconBox = ({ type, title, content, textColor }: IconBoxType) => {
+  return (
+    <Wrapper>
+      {getIcon(type)}
+      <SecondaryTitle color={textColor}>{title}</SecondaryTitle>
+      <p>{content}</p>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  flex-direction: column;
 `;
 export { IconBox };

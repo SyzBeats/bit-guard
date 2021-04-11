@@ -13,7 +13,7 @@ const Grid = ({
   columns,
   rows,
   gap = '3rem',
-  rowHeight = '10rem',
+  rowHeight = '25rem',
   children,
 }: GridType) => {
   return (

@@ -8,7 +8,7 @@ const MainTitle = styled.h1`
 `;
 
 const SecondaryTitle = styled.h2`
-  color: white;
+  color: ${(props) => (props.color === 'light' ? '#fff' : '#222')};
   font-size: 2.25rem;
   letter-spacing: 1px;
   margin: 1.85rem 0;

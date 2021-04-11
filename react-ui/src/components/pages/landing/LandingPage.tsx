@@ -17,17 +17,47 @@ const LandingPage = () => {
         <BaseContainer>
           {/* grid component */}
           <Grid columns={3} rows={2}>
-            <IconBox type={IconName.FINGERPRINT} />
+            <IconBox
+              title="Fingerprint"
+              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
+              type={IconName.FINGERPRINT}
+              textColor="dark"
+            />
 
-            <IconBox type={IconName.DATABASE} />
+            <IconBox
+              title="Fingerprint"
+              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
+              type={IconName.DATABASE}
+              textColor="dark"
+            />
 
-            <IconBox type={IconName.LOCK} />
+            <IconBox
+              title="Fingerprint"
+              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
+              type={IconName.LOCK}
+              textColor="dark"
+            />
 
-            <IconBox type={IconName.WALL} />
+            <IconBox
+              title="Fingerprint"
+              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
+              type={IconName.WALL}
+              textColor="dark"
+            />
 
-            <IconBox type={IconName.WORLD} />
+            <IconBox
+              title="Fingerprint"
+              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
+              type={IconName.WORLD}
+              textColor="dark"
+            />
 
-            <IconBox type={IconName.PINCODE} />
+            <IconBox
+              title="Fingerprint"
+              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
+              type={IconName.PINCODE}
+              textColor="dark"
+            />
           </Grid>
         </BaseContainer>
       </SectionBase>
@@ -35,17 +65,47 @@ const LandingPage = () => {
         <BaseContainer>
           {/* grid component */}
           <Grid columns={3} rows={2}>
-            <IconBox type={IconName.FINGERPRINT} />
+            <IconBox
+              title="Fingerprint"
+              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
+              type={IconName.FINGERPRINT}
+              textColor="light"
+            />
 
-            <IconBox type={IconName.DATABASE} />
+            <IconBox
+              title="Fingerprint"
+              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
+              type={IconName.DATABASE}
+              textColor="light"
+            />
 
-            <IconBox type={IconName.LOCK} />
+            <IconBox
+              title="Fingerprint"
+              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
+              type={IconName.LOCK}
+              textColor="light"
+            />
 
-            <IconBox type={IconName.WALL} />
+            <IconBox
+              title="Fingerprint"
+              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
+              type={IconName.WALL}
+              textColor="light"
+            />
 
-            <IconBox type={IconName.WORLD} />
+            <IconBox
+              title="Fingerprint"
+              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
+              type={IconName.WORLD}
+              textColor="light"
+            />
 
-            <IconBox type={IconName.PINCODE} />
+            <IconBox
+              title="Fingerprint"
+              content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, nobis."
+              type={IconName.PINCODE}
+              textColor="light"
+            />
           </Grid>
         </BaseContainer>
       </SectionBackground>
