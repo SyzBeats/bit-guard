@@ -5,7 +5,7 @@ import cors from 'cors';
 import { createContext } from './context';
 import { Query, Mutation, Message, Link, User } from './resolvers';
 // routes
-import __public from './rest_routes/public';
+import __public from './rest-routes/public';
 
 // @ts-ignore
 const app = express();

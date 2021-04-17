@@ -16,7 +16,7 @@ const LandingPage = () => {
       <SectionBase>
         <BaseContainer>
           <SecondaryTitle color="dark" textAlign="center">
-            What Crypt Shield does for you
+            What Bit Guard does for you
           </SecondaryTitle>
           <LandingPageIconGrid />
         </BaseContainer>

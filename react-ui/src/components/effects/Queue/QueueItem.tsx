@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Code, Layers, Figma, Database, Layout } from 'react-feather';
+import { Code, Layers, Clock, Shield, Database, Share2 } from 'react-feather';
 
 const QueueItem = ({ content, index }) => {
   const getIcon = (text) => {
@@ -10,13 +10,13 @@ const QueueItem = ({ content, index }) => {
       case 'Simple User interface':
         return <Code color="white" />;
       case 'Protected Secrets':
-        return <Figma color="white" />;
+        return <Shield color="white" />;
       case 'Simplified Sharing function':
-        return <Layout color="white" />;
+        return <Share2 color="white" />;
       case 'Smart deletion':
         return <Layers color="white" />;
       case 'Expiry Management':
-        return <Layers color="white" />;
+        return <Clock color="white" />;
       default:
         return null;
     }

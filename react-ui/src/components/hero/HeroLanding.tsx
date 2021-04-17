@@ -15,7 +15,7 @@ const HeroLanding = () => {
               <Logo />
             </GridLeft>
             <GridRight>
-              <MainTitle>Crypt Shield</MainTitle>
+              <MainTitle>Bit Guard</MainTitle>
               <SecondaryTitle color="light" textAlign="left">
                 The safe way to share your secrets
               </SecondaryTitle>
