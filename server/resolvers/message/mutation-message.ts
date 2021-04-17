@@ -15,6 +15,7 @@ const MessageMutation = {
   async createMessage(parent, args, ctx: Context): Promise<Message> {
     try {
       const { data } = args;
+
       const { prisma, req } = ctx;
 
       const token = authenticate(req);
@@ -37,14 +38,10 @@ const MessageMutation = {
 
   async deleteMessage(parent, args, ctx: Context): Promise<Message> {
     try {
-      /**
-       * get message by ID
-       * delete message from database
-       * delete all links related to the database
-       * return the deleted message
-       */
       const { data } = args;
+
       const { prisma, req } = ctx;
+
       authenticate(req);
 
       /**

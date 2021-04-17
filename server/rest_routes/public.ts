@@ -32,6 +32,7 @@ router.get('/link/:cipher', async (req, res) => {
     }
 
     const { messageId } = data;
+
     const message = await client.message.findUnique({
       where: {
         id: messageId,

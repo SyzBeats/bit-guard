@@ -9,13 +9,16 @@ const LinkMutation = {
     try {
       // parent can be used in case called by Message query
       const payLoad = args.data;
+
       const { prisma } = ctx;
+
       let timeUntilExpiry: null | number = null;
 
       // set the expiry in hour format, calculated
       if (payLoad?.expiry) {
         timeUntilExpiry = getHoursUntil(payLoad.expiry);
       }
+
       // if not given, set default value, 3 hours
       const expiryInformation = {
         expiresIn: payLoad?.expiry ? `${timeUntilExpiry}h` : '3h',
@@ -28,9 +31,6 @@ const LinkMutation = {
        */
       const token = jwt.sign(payLoad, JWT_TOKEN_SIGNATURE, expiryInformation);
 
-      /**
-       *
-       */
       const encryptedToken = encryptAes256ccm(token);
 
       // store link in DB
@@ -63,10 +63,12 @@ const LinkMutation = {
     try {
       // get link ID
       const { data } = args;
-      const { prisma } = ctx;
-      // delete link from DB
 
+      const { prisma } = ctx;
+
+      // delete link from DB
       const link = await prisma.link.delete({ where: { id: data.id } });
+
       return { data: link.id, expiry: link?.expiry ?? null };
     } catch (error) {
       return error;

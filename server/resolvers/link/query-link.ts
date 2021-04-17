@@ -12,6 +12,7 @@ const LinkQuery = {
   async linkByMessage(parent, args, ctx: Context) {
     try {
       const { prisma, req } = ctx;
+
       authenticate(req);
 
       return await prisma.link.findMany({

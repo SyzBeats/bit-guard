@@ -15,7 +15,9 @@ const authenticate = (req, requireAuth = true) => {
    */
   if (authHeader) {
     const token = authHeader.replace('Bearer ', '');
+
     const decoded = jwt.verify(token, JWT_TOKEN_SIGNATURE);
+
     return decoded;
   }
 
@@ -26,6 +28,7 @@ const authenticate = (req, requireAuth = true) => {
   if (requireAuth) {
     throw new Error('Login in to access resource');
   }
+
   return null;
 };
 export { authenticate };

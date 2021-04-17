@@ -14,6 +14,7 @@ const MessageQuery = {
   async messageById(parent, args, ctx: Context) {
     try {
       const { prisma } = ctx;
+
       const { data } = args;
 
       // gain encrypted message from database
@@ -24,6 +25,7 @@ const MessageQuery = {
       if (!encryptedMessage) {
         throw new Error('Could not encrypt this message');
       }
+
       // decrypt the message and get the result
       const decryptedMessage = decryptAes256cbc(encryptedMessage.content);
 
