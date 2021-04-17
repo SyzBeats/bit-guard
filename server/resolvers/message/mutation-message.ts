@@ -1,7 +1,7 @@
 import { Message } from '@prisma/client';
 import { authenticate } from '../../auth/authenticate';
 import { Context } from '../../context';
-import { encryptAes256ccm } from '../../util/encryption/encrypt-aes-256-cbc';
+import { encryptAes256ccm } from '../../services/encryption/encrypt-aes-256-cbc';
 
 const MessageMutation = {
   /**
