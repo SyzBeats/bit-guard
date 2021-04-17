@@ -44,7 +44,7 @@ const LinkMutation = {
 
       // link contains message ID, expiry
       return {
-        content: `http://localhost:4000?token=${encryptedToken}`,
+        content: `http://localhost:4000/public/link/${encryptedToken}`,
         expiry: payLoad?.expiry ?? null,
       };
     } catch (error) {

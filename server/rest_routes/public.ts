@@ -43,9 +43,12 @@ router.get('/link/:cipher', async (req, res) => {
       },
     });
 
-    // get the Message content
+    if (!message) throw new Error('The message does not exist');
 
-    return res.status(200).json({ message });
+    // get the Message content
+    const decryptedMessage = decryptAes256cbc(message.content);
+
+    return res.status(200).json({ message: decryptedMessage });
   } catch (error) {
     return res
       .status(500)
