@@ -18,6 +18,7 @@ const Container = styled.section`
 
 const Content = styled.div`
   background: #f9f9f9;
+  padding: 1.5rem;
 `;
 
 export { LayoutDashboard };
