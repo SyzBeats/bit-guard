@@ -2,21 +2,30 @@ import React from 'react';
 import styled from 'styled-components';
 import { Activity, Home, Lock, Sliders } from 'react-feather';
 import NavigationButton from '../buttons/NavigationButton';
+import Avatar from '../user/Avatar';
+import Notification from './Notification';
 
 const Sidebar = () => (
   <Wrapper>
-    <NavigationButton>
-      <Home />
-    </NavigationButton>
-    <NavigationButton>
-      <Activity />
-    </NavigationButton>
-    <NavigationButton>
-      <Lock />
-    </NavigationButton>
-    <NavigationButton>
-      <Sliders />
-    </NavigationButton>
+    <UpperSection>
+      <NavigationButton>
+        <Home />
+      </NavigationButton>
+      <NavigationButton>
+        <Activity />
+      </NavigationButton>
+      <NavigationButton>
+        <Lock />
+      </NavigationButton>
+      <NavigationButton>
+        <Sliders />
+      </NavigationButton>
+    </UpperSection>
+
+    <LowerSection>
+      <Avatar src="https://source.unsplash.com/random" alt="avatar" />
+      <Notification />
+    </LowerSection>
   </Wrapper>
 );
 
@@ -30,7 +39,7 @@ const Wrapper = styled.header`
   top: 0;
 
   background: ${({ theme }) => theme.colors.background};
-  color: ${({ theme }) => theme.colors.highlight};
+  color: ${({ theme }) => theme.colors.highlight_iceblue};
 
   box-shadow: 3px 0px 9px #1115;
 
@@ -39,8 +48,20 @@ const Wrapper = styled.header`
 
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 `;
 
+const UpperSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const LowerSection = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+`;
 export { Sidebar };

@@ -7,13 +7,13 @@ const NavigationButton = ({ children }) => {
 
 const Button = styled.div`
   margin: 1.75rem 0;
-  filter: grayscale(1);
+  filter: grayscale(0.2);
   transition: 0.25s;
   &:hover {
     cursor: pointer;
     transform: scale3d(1.1, 1.1, 1.1);
     filter: ${({ theme }) =>
-      `grayscale(0) drop-shadow(1px 2px 9px ${theme.colors.highlight_50})`};
+      `grayscale(0) drop-shadow(1px 2px 9px ${theme.colors.highlight_iceblue_50})`};
   }
 `;
 export default NavigationButton;
