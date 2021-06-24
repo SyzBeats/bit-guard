@@ -1,6 +1,6 @@
 import React from 'react';
 import HeroLanding from '../../hero/HeroLanding';
-import Footer from '../../layout/generic/Footer';
+import Footer from '../../layout/generic/footer/Footer';
 import { Grid } from '../../layout/grids/Grid';
 import { LayoutLanding } from '../../layout/landing/LayoutLanding';
 import { BaseContainer } from '../../styled/containers';

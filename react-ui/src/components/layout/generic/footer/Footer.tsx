@@ -1,8 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import FooterGrid from './FooterGrid';
+import FooterTop from './FooterTop';
 
 const Footer = () => {
-  return <Wrapper>Footer</Wrapper>;
+  return (
+    <Wrapper>
+      <FooterTop />
+      <FooterGrid />
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.footer`
