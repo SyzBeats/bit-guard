@@ -8,6 +8,7 @@ import { MainTitle, SecondaryTitle } from '../styled/typography';
 const HeroLanding = () => {
   return (
     <Hero>
+      Login
       <Container>
         <FlexBox>
           <Grid>

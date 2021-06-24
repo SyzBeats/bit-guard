@@ -8,10 +8,12 @@ import { SectionBackground, SectionBase } from '../../styled/sections';
 // icons
 import { LandingPageIconGrid } from './IconGrid';
 import { SecondaryTitle } from '../../styled/typography';
+import Navigation from './Navigation';
 
 const LandingPage = () => {
   return (
     <LayoutLanding>
+      <Navigation />
       <HeroLanding />
       <SectionBase>
         <BaseContainer>
