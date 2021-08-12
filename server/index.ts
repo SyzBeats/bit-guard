@@ -1,3 +1,4 @@
+/* eslint-disable wrap-iife */
 import { ApolloServer, gql } from 'apollo-server-express';
 import express from 'express';
 import * as fs from 'fs';
@@ -31,9 +32,16 @@ const server = new ApolloServer({
   context: ({ req }) => createContext(req),
 });
 
-server.applyMiddleware({ app, path: '/graphql' });
+(async function start() {
+  await server.start();
 
-app.use('/public', __public);
-app.listen({ port: 4000 }, () =>
-  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`),
-);
+  server.applyMiddleware({ app, path: '/graphql' });
+
+  app.use('/public', __public);
+
+  app.listen({ port: 4000 }, () =>
+    console.log(
+      `🚀 Server ready at http://localhost:4000${server.graphqlPath}`,
+    ),
+  );
+})();
