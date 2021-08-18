@@ -8,6 +8,7 @@ const theme = {
     highlight_iceblue_50: '##399ede99',
     background: '#01141f',
     background_dark: '#000406',
+    white: '#f8f8f8',
   },
   fonts: {},
   shadows: {

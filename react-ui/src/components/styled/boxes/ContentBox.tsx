@@ -28,14 +28,14 @@ const Wrapper = styled.div`
   justify-content: flex-start;
   flex-direction: column;
 
-  border-radius: 0.25rem;
+  border-radius: 0.55rem;
   box-shadow: ${({ theme }) => theme.shadows.depth_1};
 
   margin: 2rem 1rem;
   padding: 1.5rem;
   height: 20rem;
-  background: ${({ theme }) => theme.colors.background};
-  color: white;
+  background: ${({ theme }) => theme.colors.white};
+  color: #494949;
 `;
 
 const ActionBar = styled.nav`
