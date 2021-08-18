@@ -2,6 +2,8 @@ import React, { useLayoutEffect, useState } from 'react';
 import styled from 'styled-components';
 import { QueueItem } from './QueueItem';
 
+const TIMEOUT = 2000;
+
 const Queue = () => {
   const staticItems = [
     'Military Grade Encryption',
@@ -11,7 +13,9 @@ const Queue = () => {
     'Simplified Sharing function',
     'Smart deletion',
   ];
+
   const [items, setItems] = useState(staticItems.slice(0, 6));
+
   useLayoutEffect(() => {
     const interval = setInterval(() => {
       setItems((prev) => {
@@ -19,7 +23,7 @@ const Queue = () => {
         const newShown = prev.slice(0, prev.length - 1);
         return [nextTop, ...newShown];
       });
-    }, 2000);
+    }, TIMEOUT);
     return () => clearInterval(interval);
   }, []);
 
