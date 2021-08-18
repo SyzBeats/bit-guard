@@ -12,4 +12,8 @@ const SectionBackground = styled(SectionBase)`
   background-color: ${({ theme }) => theme.colors.background};
 `;
 
-export { SectionBackground, SectionBase };
+const SectionGradientBase = styled(SectionBase)`
+  background-image: ${({ theme }) => theme.gradients.grey};
+`;
+
+export { SectionBackground, SectionBase, SectionGradientBase };

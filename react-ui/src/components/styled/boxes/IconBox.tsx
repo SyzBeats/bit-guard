@@ -41,21 +41,28 @@ const getIcon = (type: IconName) => {
 
 const IconBox = ({ type, title, content, textColor }: IconBoxType) => {
   return (
-    <Wrapper>
+    <Box>
       {getIcon(type)}
       <SecondaryTitle color={textColor} textAlign="center">
         {title}
       </SecondaryTitle>
       <p>{content}</p>
-    </Wrapper>
+    </Box>
   );
 };
 
-const Wrapper = styled.div`
+const Box = styled.div`
+  background: white;
   display: flex;
   justify-content: center;
   align-items: center;
 
   flex-direction: column;
+
+  box-shadow: ${({ theme }) => theme.shadows.card_1};
+  border-radius: 1rem;
+  padding: 0.75rem;
+  transition: transform 0.4s ease-in-out;
 `;
+
 export { IconBox };

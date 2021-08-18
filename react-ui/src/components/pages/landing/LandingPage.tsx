@@ -4,7 +4,7 @@ import Footer from '../../layout/generic/footer/Footer';
 import { Grid } from '../../layout/grids/Grid';
 import { LayoutLanding } from '../../layout/landing/LayoutLanding';
 import { BaseContainer } from '../../styled/containers';
-import { SectionBackground, SectionBase } from '../../styled/sections';
+import { SectionBackground, SectionGradientBase } from '../../styled/sections';
 // icons
 import { LandingPageIconGrid } from './IconGrid';
 import { SecondaryTitle } from '../../styled/typography';
@@ -15,14 +15,14 @@ const LandingPage = () => {
     <LayoutLanding>
       <Navigation />
       <HeroLanding />
-      <SectionBase>
+      <SectionGradientBase>
         <BaseContainer>
           <SecondaryTitle color="dark" textAlign="center">
             What Bit Guard does for you
           </SecondaryTitle>
           <LandingPageIconGrid />
         </BaseContainer>
-      </SectionBase>
+      </SectionGradientBase>
       <SectionBackground>
         <BaseContainer>
           <Grid columns={3} rows={2}></Grid>

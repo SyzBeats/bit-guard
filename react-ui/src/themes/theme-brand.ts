@@ -11,7 +11,12 @@ const theme = {
     white: '#f8f8f8',
   },
   fonts: {},
+  gradients: {
+    grey: 'linear-gradient(73deg, white 0%, white 50%, #efefef 50%, #FFFFFF)',
+  },
   shadows: {
+    card_1: '1px 8px 16px -13px #1119',
+    card_2: '1px 6px 21px -13px #1117, 3px 24px 18px #5551',
     depth_1:
       '0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%)',
   },

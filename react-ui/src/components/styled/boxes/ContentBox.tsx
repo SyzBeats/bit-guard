@@ -29,7 +29,7 @@ const Wrapper = styled.div`
   flex-direction: column;
 
   border-radius: 0.55rem;
-  box-shadow: ${({ theme }) => theme.shadows.depth_1};
+  box-shadow: ${({ theme }) => theme.shadows.card_2};
 
   margin: 2rem 1rem;
   padding: 1.5rem;
