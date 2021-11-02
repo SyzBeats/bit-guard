@@ -47,7 +47,7 @@ const Queue = () => {
 
 const SkewContainer = styled.div`
   position: relative;
-  perspective: 500;
+  perspective: 30rem;
 `;
 
 const Wrapper = styled.div`
