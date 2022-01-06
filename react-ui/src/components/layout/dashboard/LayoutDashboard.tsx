@@ -17,8 +17,8 @@ const Container = styled.section`
 `;
 
 const Content = styled.div`
-  background: #f9f9f9;
   padding: 1.5rem;
+  background: #e9e9e9;
 `;
 
 export { LayoutDashboard };

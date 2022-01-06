@@ -7,6 +7,7 @@ import Notification from './Notification';
 
 const Sidebar = () => (
   <Wrapper>
+    <Avatar src="https://source.unsplash.com/random" alt="avatar" />
     <UpperSection>
       <NavigationButton>
         <Home />
@@ -23,7 +24,6 @@ const Sidebar = () => (
     </UpperSection>
 
     <LowerSection>
-      <Avatar src="https://source.unsplash.com/random" alt="avatar" />
       <Notification />
     </LowerSection>
   </Wrapper>
@@ -40,7 +40,6 @@ const Wrapper = styled.header`
 
   background: ${({ theme }) => theme.colors.background};
   color: ${({ theme }) => theme.colors.highlight_iceblue};
-
   box-shadow: 3px 0px 9px #1115;
 
   font-weight: 300;
@@ -56,7 +55,9 @@ const UpperSection = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 3rem;
 `;
+
 const LowerSection = styled.div`
   display: flex;
   justify-content: flex-end;

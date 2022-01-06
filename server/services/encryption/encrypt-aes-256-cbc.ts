@@ -6,7 +6,7 @@ import { ENCRYPTION_KEY_256BIT } from '../../config/keys';
  * @param {string} plainText token that needs to be encrypted
  * @returns {string} encrypted data
  */
-function encryptAes256ccm(plainText: string): string {
+function encryptAes256cbc(plainText: string): string {
   // create a random Initialization vector
   const IV = crypto.randomBytes(16);
 
@@ -33,4 +33,4 @@ function encryptAes256ccm(plainText: string): string {
   return result;
 }
 
-export { encryptAes256ccm };
+export { encryptAes256cbc };

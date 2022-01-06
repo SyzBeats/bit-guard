@@ -1,7 +1,7 @@
 import { Message } from '@prisma/client';
 import { authenticate } from '../../auth/authenticate';
 import { Context } from '../../context';
-import { encryptAes256ccm } from '../../services/encryption/encrypt-aes-256-cbc';
+import { encryptAes256cbc } from '../../services/encryption/encrypt-aes-256-cbc';
 
 const MessageMutation = {
   /**
@@ -21,7 +21,7 @@ const MessageMutation = {
       const token = authenticate(req);
 
       // encrypt the message
-      const encryptedContent = encryptAes256ccm(data.content);
+      const encryptedContent = encryptAes256cbc(data.content);
 
       // create message with connection to owner in database
       const message = await prisma.message.create({
