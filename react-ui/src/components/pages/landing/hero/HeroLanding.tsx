@@ -1,29 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Queue } from '../effects/Queue/Queue';
-import Button from '../styled/buttons';
-import Logo from '../styled/image/Logo';
-import { MainTitle, SecondaryTitle } from '../styled/typography';
+import { Queue } from '../../../effects/Queue/Queue';
+import Button from '../../../styled/buttons';
+import Logo from '../../../styled/image/Logo';
+import { MainTitle, SecondaryTitle } from '../../../styled/typography';
 
 const HeroLanding = () => {
   return (
     <Hero>
-      Login
       <Container>
         <FlexBox>
           <Grid>
             <GridLeft>
               <Logo />
             </GridLeft>
+
             <GridRight>
               <MainTitle>Bit Guard</MainTitle>
+
               <SecondaryTitle color="light" textAlign="left">
                 The safe way to share your secrets
               </SecondaryTitle>
+
               <Button content="How it works" />
             </GridRight>
           </Grid>
         </FlexBox>
+
         <FlexBox>
           <Queue />
         </FlexBox>

@@ -19,6 +19,7 @@ const MessageMutation = {
       const { prisma, req } = ctx;
 
       const token = authenticate(req);
+
       // encrypt the message
       const encryptedContent = encryptAes256ccm(data.content);
 

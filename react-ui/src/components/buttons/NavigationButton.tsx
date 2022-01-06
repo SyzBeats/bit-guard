@@ -9,6 +9,7 @@ const Button = styled.div`
   margin: 1.75rem 0;
   filter: grayscale(0.2);
   transition: 0.25s;
+
   &:hover {
     cursor: pointer;
     transform: scale3d(1.1, 1.1, 1.1);

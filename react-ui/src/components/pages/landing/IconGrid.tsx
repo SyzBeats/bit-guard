@@ -5,7 +5,7 @@ import { IconBox } from '../../styled/boxes/IconBox';
 
 const LandingPageIconGrid = () => {
   return (
-    <Grid columns={3} rows={2}>
+    <Grid rows={2}>
       <IconBox
         title="Leave no traces"
         content="We make sure that none of your messages trace back to you or your identity. Your email address, and your personal information will not be linked or stored anywhere with your created content."

@@ -63,6 +63,10 @@ const Box = styled.div`
   border-radius: 1rem;
   padding: 0.75rem;
   transition: transform 0.4s ease-in-out;
+
+  p {
+    text-align: center;
+  }
 `;
 
 export { IconBox };

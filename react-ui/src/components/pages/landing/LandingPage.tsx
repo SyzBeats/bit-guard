@@ -1,5 +1,5 @@
 import React from 'react';
-import HeroLanding from '../../hero/HeroLanding';
+import HeroLanding from './hero/HeroLanding';
 import Footer from '../../layout/generic/footer/Footer';
 import { Grid } from '../../layout/grids/Grid';
 import { LayoutLanding } from '../../layout/landing/LayoutLanding';
@@ -25,7 +25,7 @@ const LandingPage = () => {
       </SectionGradientBase>
       <SectionBackground>
         <BaseContainer>
-          <Grid columns={3} rows={2}></Grid>
+          <Grid rows={2}></Grid>
         </BaseContainer>
       </SectionBackground>
       <Footer />
