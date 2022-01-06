@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid } from '../../grids/Grid';
 
 const FooterGrid = () => {
   return (

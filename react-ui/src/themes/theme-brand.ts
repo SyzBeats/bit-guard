@@ -13,6 +13,7 @@ const theme = {
   fonts: {},
   gradients: {
     grey: 'linear-gradient(73deg, white 0%, white 50%, #efefef 50%, #FFFFFF)',
+    login: 'linear-gradient(58deg,#092d42,#000406)',
   },
   shadows: {
     card_1: '1px 8px 16px -13px #1119',

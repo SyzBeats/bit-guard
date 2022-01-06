@@ -2,13 +2,14 @@ import React from 'react';
 import { ApolloProvider, ApolloClient, createHttpLink } from '@apollo/client';
 import { ThemeProvider } from 'styled-components';
 import { setContext } from '@apollo/client/link/context';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { cache } from './config/cache';
 import { theme } from './themes/theme-brand';
 import AppState from './context/app/AppState';
 import Dashboard from './components/dashboard/Dashboard';
 import { LandingPage } from './components/pages/landing/LandingPage';
 import './style/App.css';
+import Login from './components/authentication/Login';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:4000/graphql',
@@ -36,12 +37,13 @@ function App() {
     <ThemeProvider theme={theme}>
       <ApolloProvider client={client}>
         <AppState>
-          <Router>
-            <Switch>
-              <Route exact path="/" component={LandingPage} />
-              <Route exact path="/dashboard" component={Dashboard} />
-            </Switch>
-          </Router>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Routes>
+          </BrowserRouter>
         </AppState>
       </ApolloProvider>
     </ThemeProvider>
