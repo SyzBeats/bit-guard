@@ -1,3 +1,4 @@
+import { Link } from '@prisma/client';
 import { authenticate } from '../../auth/authenticate';
 import { Context } from '../../context';
 
@@ -9,7 +10,7 @@ const LinkQuery = {
    * @param ctx
    * @param info
    */
-  async linkByMessage(parent, args, ctx: Context) {
+  async linkByMessage(parent, args, ctx: Context): Promise<Link[]> {
     try {
       const { prisma, req } = ctx;
 

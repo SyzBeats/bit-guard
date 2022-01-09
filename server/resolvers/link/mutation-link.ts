@@ -3,10 +3,10 @@ import { Context } from '../../context';
 import { JWT_TOKEN_SIGNATURE } from '../../config/keys';
 import { encryptAes256cbc } from '../../services/encryption';
 import { getHoursUntil } from '../../util/dateAndTime/time-until-date';
-import { Link } from '@prisma/client';
+import { ICreateLinkOutput, IDeleteLinkOutput } from '../../util/typings';
 
 const LinkMutation = {
-  async createLink(parent, args, ctx: Context): Promise<any> {
+  async createLink(parent, args, ctx: Context): Promise<ICreateLinkOutput> {
     try {
       // parent can be used in case called by Message query
       const payLoad = args.data;
@@ -59,7 +59,7 @@ const LinkMutation = {
    * @param ctx
    * @param info
    */
-  async deleteLink(parent, args, ctx: Context) {
+  async deleteLink(parent, args, ctx: Context): Promise<IDeleteLinkOutput> {
     try {
       // get link ID
       const { data } = args;

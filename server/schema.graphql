@@ -13,6 +13,7 @@ type Mutation {
   signupUser(data: UserCreateInput!): User!
   deleteUser(data: UserWhereUniqueInput!): User
   createMessage(data: MessageCreateInput): Message!
+  createOneTimeMessage(data: MessageCreateInput): OneTimeMessage!
   deleteMessage(data: MessageWhereUniqueInput!): Message
   createLink(data: LinkCreateInput!): Link!
   deleteLink(data: LinkWhereUniqueInput!): Link
@@ -30,6 +31,13 @@ type Message {
   content: String!
   # create resolver
   links: [Link!]
+}
+
+type OneTimeMessage {
+  id: ID!
+  content: String!
+  # create resolver
+  link: Link!
 }
 
 type User {

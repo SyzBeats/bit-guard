@@ -1,7 +1,8 @@
-import { Link, Message } from '@prisma/client';
+import { Message } from '@prisma/client';
 import { authenticate } from '../../auth/authenticate';
 import { Context } from '../../context';
 import { encryptAes256cbc } from '../../services/encryption';
+import { IOnteTimeMessage } from '../../util/typings';
 import { LinkMutation } from '../link';
 
 const MessageMutation = {
@@ -38,7 +39,11 @@ const MessageMutation = {
     }
   },
 
-  async createOneTimeMessage(parent, args, ctx: Context): Promise<any> {
+  async createOneTimeMessage(
+    parent,
+    args,
+    ctx: Context,
+  ): Promise<IOnteTimeMessage> {
     try {
       const { data } = args;
 
