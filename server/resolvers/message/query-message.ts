@@ -1,6 +1,6 @@
 import { authenticate } from '../../auth/authenticate';
 import { Context } from '../../context';
-import { decryptAes256cbc } from '../../services/encryption/decrypt-aes-256-cbc';
+import { decryptAes256cbc } from '../../services/encryption';
 
 const MessageQuery = {
   /**

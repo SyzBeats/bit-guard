@@ -2,7 +2,7 @@ import * as express from 'express';
 import * as jwt from 'jsonwebtoken';
 import { PrismaClient } from '@prisma/client';
 import { JWT_TOKEN_SIGNATURE } from '../config/keys';
-import { decryptAes256cbc } from '../services/encryption/decrypt-aes-256-cbc';
+import { decryptAes256cbc } from '../services/encryption';
 import { MessageToken } from '../util/typings';
 import { isMessageToken } from '../util/typings/typeguards';
 

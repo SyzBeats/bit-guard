@@ -1,7 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 import { Context } from '../../context';
 import { JWT_TOKEN_SIGNATURE } from '../../config/keys';
-import { encryptAes256cbc } from '../../services/encryption/encrypt-aes-256-cbc';
+import { encryptAes256cbc } from '../../services/encryption';
 import { getHoursUntil } from '../../util/dateAndTime/time-until-date';
 
 const LinkMutation = {
@@ -33,7 +33,6 @@ const LinkMutation = {
 
       const encryptedToken = encryptAes256cbc(token);
 
-      // store link in DB
       await prisma.link.create({
         data: {
           message: { connect: { id: payLoad.messageId } },
