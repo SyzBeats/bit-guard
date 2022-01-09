@@ -7,19 +7,20 @@ function generateEncryptrionKey(): string {
 
 /**
  * @description uses the AES-256-CCM Algorithm to encrypt plaintext data
- * @param {string} plainText token that needs to be encrypted
- * @returns {string} encrypted data
+ * @param plainText token that needs to be encrypted
+ * @param random in case of one time use
+ * @returns encrypted data
  */
-function encryptAes256cbc(plainText: string): string {
+function encryptAes256cbc(plainText: string, random: boolean = false): string {
   // create a random Initialization vector
   const IV = crypto.randomBytes(16);
 
+  const encryptionKey = random
+    ? generateEncryptrionKey()
+    : ENCRYPTION_KEY_256BIT;
+
   // create a cipher
-  const cipher = crypto.createCipheriv(
-    'aes-256-cbc',
-    ENCRYPTION_KEY_256BIT,
-    IV,
-  );
+  const cipher = crypto.createCipheriv('aes-256-cbc', encryptionKey, IV);
 
   // encrypt data
   let encrypted = cipher.update(plainText, 'utf8', 'hex');
@@ -39,22 +40,21 @@ function encryptAes256cbc(plainText: string): string {
 
 /**
  * @description uses the AES-256-CCM Algorithm to decrypt plaintext data
- * @param {string} plainText
+ * @param plainText token that needs to be decrypted
+ * @param key in case of one time use, the key is transferred
  * @returns {string} decrypted data
  */
-function decryptAes256cbc(cipher: string): string {
+function decryptAes256cbc(cipher: string, key: string | undefined): string {
   // split the two hex encoded strings
   const [data, ivHex] = cipher.split('_IV_');
+
+  const encryptionKey = key || ENCRYPTION_KEY_256BIT;
 
   // create a buffer as the current IV is encoded
   const IV = Buffer.from(ivHex, 'hex');
 
   // decipher the data
-  const decipher = crypto.createDecipheriv(
-    'aes-256-cbc',
-    ENCRYPTION_KEY_256BIT,
-    IV,
-  );
+  const decipher = crypto.createDecipheriv('aes-256-cbc', encryptionKey, IV);
 
   /**
    * Updates the cipher with data. If the inputEncoding argument is given,
