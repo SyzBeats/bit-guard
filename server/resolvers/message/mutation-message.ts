@@ -1,7 +1,8 @@
-import { Message } from '@prisma/client';
+import { Link, Message } from '@prisma/client';
 import { authenticate } from '../../auth/authenticate';
 import { Context } from '../../context';
 import { encryptAes256cbc } from '../../services/encryption';
+import { LinkMutation } from '../link';
 
 const MessageMutation = {
   /**
@@ -37,7 +38,7 @@ const MessageMutation = {
     }
   },
 
-  async createOneTimeMessage(parent, args, ctx: Context): Promise<Message> {
+  async createOneTimeMessage(parent, args, ctx: Context): Promise<any> {
     try {
       const { data } = args;
 
@@ -45,8 +46,8 @@ const MessageMutation = {
 
       const token = authenticate(req);
 
-      // encrypt the message
-      const encryptedContent = encryptAes256cbc(data.content);
+      // encrypt the message with a random key
+      const encryptedContent = encryptAes256cbc(data.content, true);
 
       // create message with connection to owner in database
       const message = await prisma.message.create({
@@ -56,7 +57,15 @@ const MessageMutation = {
         },
       });
 
-      return message;
+      // create a new link with the message
+
+      const link = await LinkMutation.createLink(
+        null,
+        { data: { messageId: message.id } },
+        ctx,
+      );
+
+      return { message, link };
     } catch (error) {
       return error;
     }

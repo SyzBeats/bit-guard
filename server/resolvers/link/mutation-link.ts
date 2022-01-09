@@ -3,9 +3,10 @@ import { Context } from '../../context';
 import { JWT_TOKEN_SIGNATURE } from '../../config/keys';
 import { encryptAes256cbc } from '../../services/encryption';
 import { getHoursUntil } from '../../util/dateAndTime/time-until-date';
+import { Link } from '@prisma/client';
 
 const LinkMutation = {
-  async createLink(parent, args, ctx: Context) {
+  async createLink(parent, args, ctx: Context): Promise<any> {
     try {
       // parent can be used in case called by Message query
       const payLoad = args.data;

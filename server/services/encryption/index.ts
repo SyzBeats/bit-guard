@@ -44,7 +44,10 @@ function encryptAes256cbc(plainText: string, random: boolean = false): string {
  * @param key in case of one time use, the key is transferred
  * @returns {string} decrypted data
  */
-function decryptAes256cbc(cipher: string, key: string | undefined): string {
+function decryptAes256cbc(
+  cipher: string,
+  key: string | undefined = undefined,
+): string {
   // split the two hex encoded strings
   const [data, ivHex] = cipher.split('_IV_');
 
