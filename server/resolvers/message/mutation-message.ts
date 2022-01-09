@@ -37,6 +37,31 @@ const MessageMutation = {
     }
   },
 
+  async createOneTimeMessage(parent, args, ctx: Context): Promise<Message> {
+    try {
+      const { data } = args;
+
+      const { prisma, req } = ctx;
+
+      const token = authenticate(req);
+
+      // encrypt the message
+      const encryptedContent = encryptAes256cbc(data.content);
+
+      // create message with connection to owner in database
+      const message = await prisma.message.create({
+        data: {
+          content: encryptedContent,
+          owner: { connect: { id: (token as any).id } },
+        },
+      });
+
+      return message;
+    } catch (error) {
+      return error;
+    }
+  },
+
   async deleteMessage(parent, args, ctx: Context): Promise<Message> {
     try {
       const { data } = args;
