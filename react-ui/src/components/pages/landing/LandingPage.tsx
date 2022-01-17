@@ -14,6 +14,7 @@ import { SecondaryTitle } from '../../styled/typography';
 import Navigation from './Navigation';
 import { HomepageStory } from './Story';
 import { HomepageControl } from './HomepageControl';
+import CallToAction from './CallToAction';
 
 const LandingPage = () => {
   return (
@@ -36,6 +37,11 @@ const LandingPage = () => {
       <SectionBase>
         <BaseContainer>
           <HomepageControl />
+        </BaseContainer>
+      </SectionBase>
+      <SectionBase>
+        <BaseContainer>
+          <CallToAction />
         </BaseContainer>
       </SectionBase>
       <Footer />

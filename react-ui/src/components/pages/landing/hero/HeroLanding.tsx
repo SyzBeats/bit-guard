@@ -27,9 +27,11 @@ const HeroLanding = () => {
           </Grid>
         </FlexBox>
 
-        <FlexBox>
-          <Queue />
-        </FlexBox>
+        <HideMobile>
+          <FlexBox>
+            <Queue />
+          </FlexBox>
+        </HideMobile>
       </Container>
     </Hero>
   );
@@ -81,6 +83,15 @@ const FlexBox = styled.div`
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
+  @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
+    flex: 1;
+  }
+`;
+
+const HideMobile = styled.div`
+  @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
+    display: none;
+  }
 `;
 
 export default HeroLanding;
