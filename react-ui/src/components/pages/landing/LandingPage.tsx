@@ -1,15 +1,19 @@
 import React from 'react';
 import HeroLanding from './hero/HeroLanding';
 import Footer from '../../layout/generic/footer/Footer';
-import { Grid } from '../../layout/grids/Grid';
 import { LayoutLanding } from '../../layout/landing/LayoutLanding';
 import { BaseContainer } from '../../styled/containers';
-import { SectionBackground, SectionGradientBase } from '../../styled/sections';
+import {
+  SectionBackground,
+  SectionBase,
+  SectionGradientBase,
+} from '../../styled/sections';
 // icons
 import { LandingPageIconGrid } from './IconGrid';
 import { SecondaryTitle } from '../../styled/typography';
 import Navigation from './Navigation';
-import Story from './Story';
+import { HomepageStory } from './Story';
+import { HomepageControl } from './HomepageControl';
 
 const LandingPage = () => {
   return (
@@ -26,9 +30,14 @@ const LandingPage = () => {
       </SectionGradientBase>
       <SectionBackground>
         <BaseContainer>
-          <Story />
+          <HomepageStory />
         </BaseContainer>
       </SectionBackground>
+      <SectionBase>
+        <BaseContainer>
+          <HomepageControl />
+        </BaseContainer>
+      </SectionBase>
       <Footer />
     </LayoutLanding>
   );

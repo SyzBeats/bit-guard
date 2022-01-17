@@ -1,44 +1,44 @@
 import React from 'react';
 import styled from 'styled-components';
-import Sharing from '../../../images/undraw_share.svg';
+import Sharing from '../../../images/undraw_control.svg';
 import { MainTitle, SecondaryTitle } from '../../styled/typography';
-const HomepageStory = () => {
+const HomepageControl = () => {
   return (
     <Wrapper>
-      <MainTitle color="light">Simply share your content</MainTitle>
+      <MainTitle color="dark">Advanced Control Panel</MainTitle>
       <Grid>
+        <Image src={Sharing} alt="Illustration of sharing people" />
         <Content className="test">
           <ContentBlock margin={false}>
-            <SecondaryTitle color="light" textAlign="left">
-              Creating a Message
+            <SecondaryTitle color="dark" textAlign="left">
+              Administer your secrets
             </SecondaryTitle>
             <p>
-              In your dashboard, simply create a new message. The content of
-              this message will be encrypted and stored in our database.
+              You have full control over your secrets at any time. You can view
+              recent activity or change the settings of your generated messages
+              and links as many times as you want.
             </p>
           </ContentBlock>
           <ContentBlock margin={true}>
-            <SecondaryTitle color="light" textAlign="left">
-              Generate a Link
+            <SecondaryTitle color="dark" textAlign="left">
+              Secure secrets with Passwords
             </SecondaryTitle>
             <p>
-              To give people access to your secrets, you will have to generate a
-              Link for your Message. This link will point to the encrypted
-              content of your Message.
+              You want an extra layer of security? Protect your secrets with a
+              password. That way even if an unauthorized person obtains the
+              link, they will not be able to access it without the password.
             </p>
           </ContentBlock>
           <ContentBlock margin={true}>
-            <SecondaryTitle color="light" textAlign="left">
-              Share the Link with anyone
+            <SecondaryTitle color="dark" textAlign="left">
+              Delete at any time
             </SecondaryTitle>
             <p>
-              You choose who can access your Message. You can share the link
-              with anyone you want. Friends, family, coworkers or business
-              partners.
+              You can delete your messages and links at any time. This will
+              completely remove the content from our database - no traces left
             </p>
           </ContentBlock>
         </Content>
-        <Image src={Sharing} alt="Illustration of sharing people" />
       </Grid>
     </Wrapper>
   );
@@ -78,4 +78,4 @@ const ContentBlock = styled.div<ContentBlockProps>`
   margin-top: ${(props) => (props.margin ? '2rem' : '0')};
 `;
 
-export { HomepageStory };
+export { HomepageControl };

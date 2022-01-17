@@ -2,14 +2,15 @@ import styled from 'styled-components';
 
 type TitleType = {
   color: string;
-  textAlign: string;
+  textAlign?: string;
 };
 
-const MainTitle = styled.h1`
-  color: white;
+const MainTitle = styled.h1<TitleType>`
+  color: ${(props) => (props.color === 'light' ? '#fff' : '#222')};
   font-size: 4rem;
   letter-spacing: 1px;
   margin: 0 0 1.85rem 0;
+  text-align: ${(props) => props.textAlign || 'left'};
 `;
 
 const SecondaryTitle = styled.h2<TitleType>`
@@ -17,7 +18,7 @@ const SecondaryTitle = styled.h2<TitleType>`
   font-size: 2.45rem;
   letter-spacing: 1px;
   margin: 2rem 0;
-  text-align: ${(props) => props.textAlign};
+  text-align: ${(props) => props.textAlign || 'left'};
 `;
 
 const TertiaryTitle = styled.h3`
