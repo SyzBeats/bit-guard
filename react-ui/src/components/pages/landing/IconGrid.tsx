@@ -21,7 +21,7 @@ const LandingPageIconGrid = () => {
       />
 
       <IconBox
-        title="Additional layer of security"
+        title="Password protection"
         content="In addition to our systems, you can also secure your messages and links with a password of your choice. This way, your message remains safe even if someone gains unauthorized access to the link"
         type={IconName.LOCK}
         textColor="dark"
