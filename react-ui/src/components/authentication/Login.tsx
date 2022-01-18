@@ -1,12 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
 import Logo from '../styled/image/Logo';
+import { SecondaryTitle } from '../styled/typography';
+import { Input } from './forms/Input';
+import { SubmitCircle } from './forms/SubmitCircle';
 
 const Login = () => {
   return (
     <Wrapper>
       <LoginBox>
         <Logo />
+        <form>
+          <SecondaryTitle color="dark">Enter your credentials</SecondaryTitle>
+          <label>
+            {' '}
+            Email
+            <Input name="Some name" value="Some value" />
+          </label>
+          <label>
+            {' '}
+            Password
+            <Input name="Some name" value="Some value" />
+          </label>
+          <SubmitCircle />
+        </form>
       </LoginBox>
     </Wrapper>
   );
@@ -33,9 +50,18 @@ const LoginBox = styled.div`
   padding: 2rem;
 
   display: flex;
-  flex-direction: center;
-  align-items: flex-start;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  gap: 2rem;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 3rem;
+  }
 `;
 
 export default Login;

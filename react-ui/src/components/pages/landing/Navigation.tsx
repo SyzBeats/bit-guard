@@ -1,10 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { LogIn } from 'react-feather';
+
 const Navigation = () => {
   return (
     <HeaderNavigation>
-      <LoginLink to="/login">login</LoginLink>
+      <LoginLink to="/login">
+        login <LogIn />
+      </LoginLink>
     </HeaderNavigation>
   );
 };
@@ -23,5 +27,11 @@ const LoginLink = styled(Link)`
   background: ${({ theme }) => theme.colors.background_dark};
   color: white;
   text-decoration: none;
+  border-radius: 0.3rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 `;
 export default Navigation;
