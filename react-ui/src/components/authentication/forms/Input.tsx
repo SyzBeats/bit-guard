@@ -5,9 +5,10 @@ interface IInputField {
   type: string;
   value: string;
   name: string;
+  autocomplete: string;
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
-const Input = ({ name, value, changeHandler, type }) => {
+const Input = ({ name, value, changeHandler, type, autocomplete = '' }) => {
   return (
     <InputWrapper>
       <InputField
@@ -15,6 +16,7 @@ const Input = ({ name, value, changeHandler, type }) => {
         name={name}
         value={value}
         onChange={(e) => changeHandler(e)}
+        autoComplete={autocomplete}
       />
     </InputWrapper>
   );

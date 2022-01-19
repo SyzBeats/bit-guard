@@ -17,11 +17,22 @@ const Login = () => {
     setData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log(data);
+
+    setData({
+      email: '',
+      password: '',
+    });
+  };
+
   return (
     <Wrapper>
       <LoginBox>
         <Logo />
-        <form>
+        <form method="POST" onSubmit={(e) => handleSubmit(e)}>
           <SecondaryTitle color="dark">Enter your credentials</SecondaryTitle>
           <label>
             Email
@@ -39,6 +50,7 @@ const Login = () => {
               changeHandler={(e) => handleChange(e)}
               value={data.password}
               type="password"
+              autocomplete="current-password"
             />
           </label>
           <SubmitCircle />

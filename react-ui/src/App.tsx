@@ -10,6 +10,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import { LandingPage } from './components/pages/landing/LandingPage';
 import './style/App.css';
 import Login from './components/authentication/Login';
+import SignUp from './components/authentication/Signup';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:4000/graphql',
@@ -41,6 +42,7 @@ function App() {
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<SignUp />} />
               <Route path="/dashboard" element={<Dashboard />} />
             </Routes>
           </BrowserRouter>

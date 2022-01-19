@@ -3,9 +3,11 @@ import styled from 'styled-components';
 
 type ButtonProps = {
   content: string;
+  onClick?: () => void;
 };
-const Button = ({ content }: ButtonProps) => {
-  return <Wrapper>{content}</Wrapper>;
+
+const Button = ({ content, onClick = () => null }: ButtonProps) => {
+  return <Wrapper onClick={onClick}>{content}</Wrapper>;
 };
 
 const Wrapper = styled.button`

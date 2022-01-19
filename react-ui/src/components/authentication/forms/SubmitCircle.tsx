@@ -4,13 +4,13 @@ import { Send } from 'react-feather';
 
 const SubmitCircle = () => {
   return (
-    <ButtonWrapper>
+    <ButtonWrapper type="submit">
       <Send />
     </ButtonWrapper>
   );
 };
 
-const ButtonWrapper = styled.div`
+const ButtonWrapper = styled.button`
   display: flex;
 
   flex-direction: column;
@@ -18,6 +18,7 @@ const ButtonWrapper = styled.div`
   justify-content: center;
   align-self: center;
 
+  border: none;
   border-radius: 100%;
   width: 5rem;
   height: 5rem;

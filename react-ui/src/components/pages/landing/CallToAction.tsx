@@ -10,7 +10,7 @@ const CallToAction = () => {
   return (
     <Wrapper>
       <SecondaryTitle color="light">Create your account!</SecondaryTitle>
-      <Link to="/login">
+      <Link to="/signup">
         <Button content="Start for free!" />
       </Link>
     </Wrapper>

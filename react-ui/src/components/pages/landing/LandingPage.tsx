@@ -22,7 +22,7 @@ const LandingPage = () => {
       <Navigation />
       <HeroLanding />
       <SectionGradientBase>
-        <BaseContainer>
+        <BaseContainer data-anker="how-it-works">
           <SecondaryTitle color="dark" textAlign="center">
             What Bit Guard does for you
           </SecondaryTitle>
