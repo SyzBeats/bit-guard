@@ -27,7 +27,7 @@ const HeroLanding = () => {
             </GridLeft>
 
             <GridRight>
-              <MainTitle color="light">Bit Guard</MainTitle>
+              <MainTitle color="light">.envite</MainTitle>
 
               <SecondaryTitle color="light" textAlign="left">
                 The safe way to share your secrets

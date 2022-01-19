@@ -24,7 +24,7 @@ const LandingPage = () => {
       <SectionGradientBase>
         <BaseContainer data-anker="how-it-works">
           <SecondaryTitle color="dark" textAlign="center">
-            What Bit Guard does for you
+            What .envite does for you
           </SecondaryTitle>
           <LandingPageIconGrid />
         </BaseContainer>
