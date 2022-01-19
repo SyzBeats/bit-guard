@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Logo from '../styled/image/Logo';
 import { SecondaryTitle } from '../styled/typography';
@@ -6,6 +6,17 @@ import { Input } from './forms/Input';
 import { SubmitCircle } from './forms/SubmitCircle';
 
 const Login = () => {
+  const [data, setData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setData((prev) => ({ ...prev, [name]: value }));
+  };
+
   return (
     <Wrapper>
       <LoginBox>
@@ -13,14 +24,22 @@ const Login = () => {
         <form>
           <SecondaryTitle color="dark">Enter your credentials</SecondaryTitle>
           <label>
-            {' '}
             Email
-            <Input name="Some name" value="Some value" />
+            <Input
+              name="email"
+              type="text"
+              changeHandler={(e) => handleChange(e)}
+              value={data.email}
+            />
           </label>
           <label>
-            {' '}
             Password
-            <Input name="Some name" value="Some value" />
+            <Input
+              name="password"
+              changeHandler={(e) => handleChange(e)}
+              value={data.password}
+              type="password"
+            />
           </label>
           <SubmitCircle />
         </form>

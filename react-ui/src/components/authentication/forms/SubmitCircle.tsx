@@ -25,11 +25,12 @@ const ButtonWrapper = styled.div`
   background: ${({ theme }) => theme.gradients.login};
   color: white;
   box-shadow: ${({ theme }) => theme.shadows.card_1};
-  transition: all 0.3s ease-in-out;
+  transition: all 0.1s ease-in-out;
 
   &:hover {
     box-shadow: ${({ theme }) => theme.shadows.card_2};
     cursor: pointer;
+    transform: scale3d(1.2, 1.2, 1.2);
   }
 `;
 

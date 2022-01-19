@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import waves from '../../../images/waves.svg';
@@ -9,7 +10,9 @@ const CallToAction = () => {
   return (
     <Wrapper>
       <SecondaryTitle color="light">Create your account!</SecondaryTitle>
-      <Button content="Start for free!" />
+      <Link to="/login">
+        <Button content="Start for free!" />
+      </Link>
     </Wrapper>
   );
 };

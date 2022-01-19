@@ -1,10 +1,21 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const Input = ({ name, value }) => {
+interface IInputField {
+  type: string;
+  value: string;
+  name: string;
+  changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+const Input = ({ name, value, changeHandler, type }) => {
   return (
     <InputWrapper>
-      <InputField type="text" name={name} value={value} />
+      <InputField
+        type={type || 'text'}
+        name={name}
+        value={value}
+        onChange={(e) => changeHandler(e)}
+      />
     </InputWrapper>
   );
 };
