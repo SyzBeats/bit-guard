@@ -59,8 +59,9 @@ const GridRight = styled.div`
 
 const Hero = styled.header`
   min-height: 55vh;
-  background: ${({ theme }) =>
-    `linear-gradient(to right, ${theme.colors.background}, ${theme.colors.background_dark})`};
+  background-image: ${({ theme }) =>
+    `radial-gradient(ellipse at 46% 30%, #EE82EE00 51%, #00BCD400 81%, #14BFCA1A 90%), radial-gradient(ellipse at 0% 0%, #00BCD400 32%, #14beca11 42%, #EE82EE00 49%), linear-gradient(to right, ${theme.colors.background}, ${theme.colors.background_dark})`};
+
   display: flex;
   align-items: center;
   justify-content: center;
