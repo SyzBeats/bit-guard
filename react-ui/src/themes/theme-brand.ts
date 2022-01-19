@@ -25,7 +25,7 @@ const theme = {
     xs: '576px',
     s: '776px',
     md: '997px',
-    lg: '1280px',
+    lg: '1440px',
     xl: '1920px',
   },
 };

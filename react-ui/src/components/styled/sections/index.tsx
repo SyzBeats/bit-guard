@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const SectionBase = styled.section`
-  padding: 5rem 2rem;
+  padding: 0rem 2rem;
   display: flex;
   justify-content: center;
   flex-direction: center;
