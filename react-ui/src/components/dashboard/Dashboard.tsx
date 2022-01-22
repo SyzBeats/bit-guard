@@ -1,23 +1,19 @@
 import React from 'react';
+import Section from '../layout/container/Section';
 import { LayoutDashboard } from '../layout/dashboard/LayoutDashboard';
-import { FlexGridEqual } from '../layout/grids/FlexGrid';
-import { ContentBox } from '../styled/boxes/ContentBox';
-import Counter from '../styled/boxes/Counter';
+import { BaseContainer } from '../styled/containers';
+import { DashboardMetrics } from './DashboardMetrics';
 
 const Dashboard = () => {
   return (
     <LayoutDashboard>
-      <FlexGridEqual>
-        <ContentBox title="Total Secrets">
-          <Counter />
-        </ContentBox>
-        <ContentBox title="Open Secrets">
-          <Counter />
-        </ContentBox>
-        <ContentBox title="Views">
-          <Counter />
-        </ContentBox>
-      </FlexGridEqual>
+      <DashboardMetrics />
+      <Section>
+        <h2>Your Secrets</h2>
+      </Section>
+      <Section>
+        <h2>One time Messages</h2>
+      </Section>
     </LayoutDashboard>
   );
 };
