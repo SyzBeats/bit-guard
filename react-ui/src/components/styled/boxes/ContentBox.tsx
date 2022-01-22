@@ -3,23 +3,16 @@ import styled from 'styled-components';
 
 interface ContextBoxInterface {
   title: string;
+  children: React.ReactNode;
 }
 
-const ContentBox = ({ title }: ContextBoxInterface) => {
+const ContentBox = ({ title, children }: ContextBoxInterface) => {
   return (
     <Wrapper>
-      <ActionBar>
-        <ActionIcon background="red" />
-        <ActionIcon background="gold" />
-        <ActionIcon background="green" />
-      </ActionBar>
       <Title>{title}</Title>
+      {children}
     </Wrapper>
   );
-};
-
-type ActionIconType = {
-  background: string;
 };
 
 const Wrapper = styled.div`
@@ -33,28 +26,9 @@ const Wrapper = styled.div`
 
   margin: 2rem 1rem;
   padding: 1.5rem;
-  height: 20rem;
+  height: 15rem;
   background: ${({ theme }) => theme.colors.white};
   color: #494949;
-`;
-
-const ActionBar = styled.nav`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin: 0 0 0.5rem 0;
-`;
-
-const ActionIcon = styled.div<ActionIconType>`
-  background: ${(props) => props.background};
-  height: 1.25rem;
-  width: 1.25rem;
-  border-radius: 50%;
-  margin: 0 0.5rem;
-
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 const Title = styled.h2`

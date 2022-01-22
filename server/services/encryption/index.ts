@@ -8,14 +8,17 @@ function generateEncryptrionKey(): string {
 /**
  * @description uses the AES-256-CCM Algorithm to encrypt plaintext data
  * @param plainText token that needs to be encrypted
- * @param random in case of one time use
+ * @param randomKey in case of one time use
  * @returns encrypted data
  */
-function encryptAes256cbc(plainText: string, random: boolean = false): string {
+function encryptAes256cbc(
+  plainText: string,
+  randomKey: boolean = false,
+): string {
   // create a random Initialization vector
   const IV = crypto.randomBytes(16);
 
-  const encryptionKey = random
+  const encryptionKey = randomKey
     ? generateEncryptrionKey()
     : ENCRYPTION_KEY_256BIT;
 
