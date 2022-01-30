@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Alert } from '../alert/Alert';
 import Logo from '../styled/image/Logo';
 import { SecondaryTitle } from '../styled/typography';
 import { Input } from './forms/Input';
@@ -12,6 +13,11 @@ const SignUp = () => {
     confirmPassword: '',
   });
 
+  const [alert, setAlert] = useState({
+    type: '',
+    message: '',
+  });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -22,7 +28,11 @@ const SignUp = () => {
     e.preventDefault();
 
     if (data.password !== data.confirmPassword) {
-      // @todo: show error
+      setAlert({
+        type: 'error',
+        message: 'Passwords do not match',
+      });
+
       return;
     }
 
@@ -70,6 +80,7 @@ const SignUp = () => {
           </label>
           <SubmitCircle />
         </form>
+        {alert.message && <Alert message={alert.message} type={alert.type} />}
       </SignUpBox>
     </Wrapper>
   );
