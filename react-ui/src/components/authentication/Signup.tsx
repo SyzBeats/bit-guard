@@ -34,6 +34,13 @@ const SignUp = () => {
       });
 
       return;
+    } else if (data.password.length < 8) {
+      setAlert({
+        type: 'error',
+        message: 'Password must be at least 8 characters',
+      });
+
+      return;
     }
 
     setData({
@@ -53,9 +60,11 @@ const SignUp = () => {
             Email
             <Input
               name="email"
-              type="text"
+              type="email"
               changeHandler={(e) => handleChange(e)}
               value={data.email}
+              required={true}
+              autocomplete="email"
             />
           </label>
           <label>
@@ -65,6 +74,7 @@ const SignUp = () => {
               changeHandler={(e) => handleChange(e)}
               value={data.password}
               type="password"
+              required={true}
               autocomplete="new-password"
             />
           </label>
@@ -75,6 +85,7 @@ const SignUp = () => {
               changeHandler={(e) => handleChange(e)}
               value={data.confirmPassword}
               type="password"
+              required={true}
               autocomplete="new-password"
             />
           </label>

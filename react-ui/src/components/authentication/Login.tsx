@@ -38,6 +38,8 @@ const Login = () => {
             Email
             <Input
               name="email"
+              autocomplete="email"
+              required={true}
               type="text"
               changeHandler={(e) => handleChange(e)}
               value={data.email}
@@ -47,6 +49,7 @@ const Login = () => {
             Password
             <Input
               name="password"
+              required={true}
               changeHandler={(e) => handleChange(e)}
               value={data.password}
               type="password"

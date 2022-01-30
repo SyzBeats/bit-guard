@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 interface IInputField {
@@ -6,9 +6,17 @@ interface IInputField {
   value: string;
   name: string;
   autocomplete: string;
+  required?: boolean;
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
-const Input = ({ name, value, changeHandler, type, autocomplete = '' }) => {
+const Input = ({
+  name,
+  value,
+  changeHandler,
+  type,
+  autocomplete = '',
+  required = false,
+}: IInputField) => {
   return (
     <InputWrapper>
       <InputField
@@ -17,6 +25,7 @@ const Input = ({ name, value, changeHandler, type, autocomplete = '' }) => {
         value={value}
         onChange={(e) => changeHandler(e)}
         autoComplete={autocomplete}
+        required={required}
       />
     </InputWrapper>
   );
