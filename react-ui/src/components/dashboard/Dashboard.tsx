@@ -10,7 +10,7 @@ const Dashboard = () => {
     <LayoutDashboard>
       <DashboardMetrics />
       <Section>
-        <h2>Your Secrets</h2>
+        <h2>Secrets</h2>
         <ContentBox bordered={true} title="Overview">
           <p>test</p>
           <p>test</p>
