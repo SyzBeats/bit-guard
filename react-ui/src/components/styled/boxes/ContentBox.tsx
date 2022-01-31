@@ -4,18 +4,27 @@ import styled from 'styled-components';
 interface ContextBoxInterface {
   title: string;
   children: React.ReactNode;
+  bordered?: boolean;
 }
 
-const ContentBox = ({ title, children }: ContextBoxInterface) => {
+const ContentBox = ({
+  title,
+  children,
+  bordered = false,
+}: ContextBoxInterface) => {
   return (
-    <Wrapper>
+    <Wrapper bordered={bordered}>
       <Title>{title}</Title>
       {children}
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
+interface WrapperProps {
+  bordered?: boolean;
+}
+
+const Wrapper = styled.div<WrapperProps>`
   display: flex;
   justify-items: center;
   justify-content: flex-start;
@@ -24,11 +33,14 @@ const Wrapper = styled.div`
   border-radius: 0.55rem;
   box-shadow: ${({ theme }) => theme.shadows.card_2};
 
-  margin: 2rem 1rem;
+  margin: 2rem 0;
   padding: 1.5rem;
-  height: 15rem;
+  min-height: 15rem;
   background: ${({ theme }) => theme.colors.white};
   color: #494949;
+
+  border-top: ${({ theme, bordered }) =>
+    bordered ? `.6rem solid ${theme.colors.highlight_iceblue}` : 'none'};
 `;
 
 const Title = styled.h2`

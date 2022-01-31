@@ -6,7 +6,7 @@ const Section = ({ children }) => {
 };
 
 const Wrapper = styled.section`
-  padding: 1rem;
+  padding: 2rem;
 
   h2 {
     margin: 2rem 0;
