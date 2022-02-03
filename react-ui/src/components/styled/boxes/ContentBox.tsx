@@ -5,15 +5,17 @@ interface ContextBoxInterface {
   title: string;
   children: React.ReactNode;
   bordered?: boolean;
+  borderColor?: string;
 }
 
 const ContentBox = ({
   title,
   children,
   bordered = false,
+  borderColor = 'light',
 }: ContextBoxInterface) => {
   return (
-    <Wrapper bordered={bordered}>
+    <Wrapper borderColor={borderColor} bordered={bordered}>
       <Title>{title}</Title>
       {children}
     </Wrapper>
@@ -22,6 +24,7 @@ const ContentBox = ({
 
 interface WrapperProps {
   bordered?: boolean;
+  borderColor: string;
 }
 
 const Wrapper = styled.div<WrapperProps>`
@@ -39,8 +42,11 @@ const Wrapper = styled.div<WrapperProps>`
   background: ${({ theme }) => theme.colors.white};
   color: #494949;
 
-  border-top: ${({ theme, bordered }) =>
-    bordered ? `.6rem solid ${theme.colors.highlight_iceblue}` : 'none'};
+  border-top: ${({ theme, bordered }) => (bordered ? `.6rem solid` : 'none')};
+  border-color: ${({ theme, borderColor }) =>
+    borderColor === 'light'
+      ? `${theme.colors.highlight_iceblue}`
+      : `${theme.colors.highlight_blue}`};
 `;
 
 const Title = styled.h2`
