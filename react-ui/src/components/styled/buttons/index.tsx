@@ -4,41 +4,24 @@ import styled from 'styled-components';
 type ButtonProps = {
   content: string;
   onClick?: () => void;
-  variant?: 'outlined' | 'contained';
 };
 
-const Button = ({
-  content,
-  onClick = () => null,
-  variant = 'contained',
-}: ButtonProps) => {
-  return (
-    <Wrapper variant={variant} onClick={onClick}>
-      {content}
-    </Wrapper>
-  );
+const Button = ({ content, onClick = () => null }: ButtonProps) => {
+  return <Wrapper onClick={onClick}>{content}</Wrapper>;
 };
 
-interface WrapperProps {
-  variant: 'outlined' | 'contained';
-}
-
-const Wrapper = styled.button<WrapperProps>`
+const Wrapper = styled.button`
   // generics
   padding: 1.25rem 3rem;
-  border: ${({ theme, variant }) =>
-    variant === 'outlined' && `2px solid ${theme.colors.highlight_blue}`};
+  border: none;
 
   border-radius: 0.4rem;
-  box-shadow: ${({ theme, variant }) =>
-    variant === 'contained' && theme.shadows.depth_1};
+  box-shadow: ${({ theme }) => theme.shadows.depth_1};
 
   // colors
-  background: ${({ variant, theme }) =>
-    variant === 'outlined' ? 'transparent' : theme.colors.highlight_blue};
+  background: ${({ theme }) => theme.colors.highlight_blue};
 
-  color: ${({ variant, theme }) =>
-    variant === 'outlined' ? theme.colors.highlight_blue : theme.colors.white};
+  color: white;
 
   // font
   font-size: 1.5rem;
@@ -52,10 +35,6 @@ const Wrapper = styled.button<WrapperProps>`
 
   &:hover {
     cursor: pointer;
-    background: ${({ variant, theme }) =>
-      variant === 'outlined' && theme.colors.highlight_blue};
-    color: ${({ variant, theme }) =>
-      variant === 'outlined' && theme.colors.white};
   }
 `;
 export default Button;
