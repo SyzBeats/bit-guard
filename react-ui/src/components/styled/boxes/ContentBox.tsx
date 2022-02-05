@@ -39,14 +39,18 @@ const Wrapper = styled.div<WrapperProps>`
   margin: 2rem 0;
   padding: 1.5rem;
   min-height: 15rem;
+  max-height: 50vh;
   background: ${({ theme }) => theme.colors.white};
   color: #494949;
 
-  border-top: ${({ theme, bordered }) => (bordered ? `.6rem solid` : 'none')};
+  border-top: ${({ bordered }) => (bordered ? `.6rem solid` : 'none')};
   border-color: ${({ theme, borderColor }) =>
     borderColor === 'light'
       ? `${theme.colors.highlight_iceblue}`
       : `${theme.colors.highlight_blue}`};
+
+  // make box scrollable
+  overflow-y: auto;
 `;
 
 const Title = styled.h2`

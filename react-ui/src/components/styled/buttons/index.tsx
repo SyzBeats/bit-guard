@@ -19,7 +19,7 @@ const Wrapper = styled.button`
   box-shadow: ${({ theme }) => theme.shadows.depth_1};
 
   // colors
-  background: ${({ theme }) => theme.colors.highlight_blue};
+  background: ${({ theme }) => theme.gradients.bluepurp};
 
   color: white;
 

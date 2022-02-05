@@ -1,9 +1,9 @@
 import React from 'react';
 import Section from '../layout/container/Section';
 import { LayoutDashboard } from '../layout/dashboard/LayoutDashboard';
+import { MessageGrid } from '../layout/grids/MessageGrid';
 import { Message } from '../message/Message';
 import { ContentBox } from '../styled/boxes/ContentBox';
-import Button from '../styled/buttons';
 import { DashboardMetrics } from './DashboardMetrics';
 
 const Dashboard = () => {
@@ -13,11 +13,16 @@ const Dashboard = () => {
       <Section>
         <h2>One time Messages</h2>
         <ContentBox borderColor="dark" bordered={true} title="Overview">
-          <Message />
-          <Message />
-          <Message />
-          <Message />
-          <Message />
+          <MessageGrid>
+            <Message />
+            <Message />
+            <Message />
+            <Message />
+            <Message />
+            <Message />
+            <Message />
+            <Message />
+          </MessageGrid>
         </ContentBox>
       </Section>
 
