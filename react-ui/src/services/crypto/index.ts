@@ -21,12 +21,13 @@ async function encryptAES128GCM(content: string) {
       ['encrypt', 'decrypt'],
     );
 
+    const iv = crypto.getRandomValues(new Uint8Array(12));
     // return the encrypted content
     const encrypted = await crypto.subtle.encrypt(
       {
         name: 'AES-GCM',
-        iv: crypto.getRandomValues(new Uint8Array(12)),
-        tagLength: 256,
+        iv,
+        tagLength: 128,
       },
       key,
       new TextEncoder().encode(content),
@@ -35,20 +36,53 @@ async function encryptAES128GCM(content: string) {
     return {
       key: await crypto.subtle.exportKey('raw', key),
       encrypted: new Uint8Array(encrypted),
+      iv,
     };
   } catch (e) {
+    console.log(e);
     return null;
   }
 }
 
-function decryptAES128GCM(key: Uint8Array, encrypted: Uint8Array) {
-  return crypto.subtle.decrypt(
-    {
-      name: 'AES-GCM',
-      iv: encrypted.slice(0, 12),
-      tag: encrypted.slice(12, 28),
-    },
-    crypto.getRandomValues(key),
-    encrypted.slice(28),
-  );
+/**
+ *
+ * @param key : the key that should be used to decrypt the content
+ * @param encrypted the encrypted content
+ * @param iv the initialization vector
+ * @returns  the decrypted content
+ */
+async function decryptAES128GCM(
+  key: ArrayBuffer,
+  encrypted: Uint8Array,
+  iv: Uint8Array,
+) {
+  try {
+    const keyObject = await crypto.subtle.importKey(
+      'raw',
+      key,
+      {
+        name: 'AES-GCM',
+        length: 256,
+      },
+      true,
+      ['decrypt'],
+    );
+
+    const decrypted = await crypto.subtle.decrypt(
+      {
+        name: 'AES-GCM',
+        iv,
+        tagLength: 128,
+      },
+      keyObject,
+      encrypted,
+    );
+
+    return new TextDecoder().decode(decrypted);
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
 }
+
+export default { encryptAES128GCM, decryptAES128GCM };

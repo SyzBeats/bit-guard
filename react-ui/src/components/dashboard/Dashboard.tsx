@@ -1,5 +1,6 @@
 import React from 'react';
 import { FilePlus } from 'react-feather';
+import cryptoService from '../../services/crypto';
 import Section from '../layout/container/Section';
 import { LayoutDashboard } from '../layout/dashboard/LayoutDashboard';
 import { FlexGridEqual } from '../layout/grids/FlexGrid';
