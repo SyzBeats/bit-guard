@@ -9,14 +9,12 @@ import { createContext } from './context';
 import { Query, Mutation, Message, Link, User } from './resolvers';
 // routes
 import __public from './rest-routes/public';
+import options from './config/options';
 
 // @ts-ignore
 const app = express();
-const corsOptions = {
-  origin: 'http://localhost:8080',
-  credentials: true,
-};
-app.use(cors(corsOptions));
+
+app.use(cors(options.cors));
 
 const resolvers = {
   Query,
@@ -38,9 +36,9 @@ const server = new ApolloServer({
 (async function start() {
   await server.start();
 
-  server.applyMiddleware({ app, path: '/graphql' });
-
   app.use('/public', __public);
+
+  server.applyMiddleware({ app, path: '/graphql' });
 
   app.listen({ port: 4000 }, () =>
     console.log(

@@ -62,10 +62,8 @@ function decryptAes256cbc(
   // decipher the data
   const decipher = crypto.createDecipheriv('aes-256-cbc', encryptionKey, IV);
 
-  /**
-   * Updates the cipher with data. If the inputEncoding argument is given,
-   * the data argument is a string using the specified encoding.
-   */
+  // Updates the cipher with data. If the inputEncoding argument is given,
+  // the data argument is a string using the specified encoding.
   const decrypt = decipher.update(data, 'hex', 'utf8');
 
   // Once the decipher.final() method has been called,
