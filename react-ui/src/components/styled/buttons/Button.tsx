@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 type ButtonProps = {
-  content: string;
+  content: React.ReactNode | string;
   onClick?: () => void;
 };
 

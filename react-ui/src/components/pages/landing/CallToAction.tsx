@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import waves from '../../../images/waves.svg';
-import Button from '../../styled/buttons';
+import Button from '../../styled/buttons/Button';
 import { SecondaryTitle } from '../../styled/typography';
 
 const CallToAction = () => {

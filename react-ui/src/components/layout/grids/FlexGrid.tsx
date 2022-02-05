@@ -1,12 +1,24 @@
 import styled from 'styled-components';
 
-const FlexGridEqual = styled.div`
+interface Props {
+  justifyContent?: string;
+  alignItems?: string;
+  flexDirection?: string;
+  padded?: boolean;
+  equal?: boolean;
+}
+
+const FlexGridEqual = styled.div<Props>`
   display: flex;
   gap: 4rem;
-  padding: 0rem 2rem;
+  padding: ${({ padded }) => (padded ? '0 2rem' : '0')};
+
+  justify-content: ${({ justifyContent }) => justifyContent || 'initial'};
+  align-items: ${({ alignItems }) => alignItems || 'initial'};
+  flex-direction: ${({ flexDirection }) => flexDirection || 'initial'};
 
   & > * {
-    flex: 1;
+    flex: ${({ equal }) => (equal ? '1' : 'initial')};
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.s}) {

@@ -6,7 +6,8 @@ type TitleType = {
 };
 
 const MainTitle = styled.h1<TitleType>`
-  color: ${(props) => (props.color === 'light' ? '#fff' : '#222')};
+  color: ${(props) =>
+    props.color === 'light' ? '#fff' : props.theme.colors.highlight_blue};
   font-size: 4rem;
   letter-spacing: 1px;
   margin: 0 0 1.85rem 0;
@@ -14,7 +15,8 @@ const MainTitle = styled.h1<TitleType>`
 `;
 
 const SecondaryTitle = styled.h2<TitleType>`
-  color: ${(props) => (props.color === 'light' ? '#fff' : '#222')};
+  color: ${(props) =>
+    props.color === 'light' ? '#fff' : props.theme.colors.highlight};
   font-size: 2.45rem;
   letter-spacing: 1px;
   margin: 2rem 0;
@@ -28,4 +30,12 @@ const TertiaryTitle = styled.h3`
   margin: 1.85rem 0;
 `;
 
-export { MainTitle, SecondaryTitle, TertiaryTitle };
+const DashboardSectionTitle = styled.h4`
+  color: ${(props) =>
+    props.color === 'light' ? '#fff' : props.theme.colors.blue_dark};
+  font-size: 2.45rem;
+  letter-spacing: 1px;
+  margin: 2rem 0;
+`;
+
+export { MainTitle, SecondaryTitle, TertiaryTitle, DashboardSectionTitle };

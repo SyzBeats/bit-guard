@@ -24,7 +24,7 @@ const HeaderNavigation = styled.nav`
 
 const LoginLink = styled(Link)`
   padding: 0.75rem;
-  background: ${({ theme }) => theme.colors.background_dark};
+  background: ${({ theme }) => theme.colors.blue_dark};
   color: white;
   text-decoration: none;
   border-radius: 0.3rem;

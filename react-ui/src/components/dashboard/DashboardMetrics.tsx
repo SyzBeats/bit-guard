@@ -5,7 +5,7 @@ import Counter from '../styled/boxes/Counter';
 
 const DashboardMetrics = () => {
   return (
-    <FlexGridEqual>
+    <FlexGridEqual padded equal>
       <ContentBox title="Shared Secrets">
         <Counter />
       </ContentBox>

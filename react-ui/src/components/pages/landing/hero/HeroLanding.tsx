@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Queue } from '../../../effects/Queue/Queue';
-import Button from '../../../styled/buttons';
+import Button from '../../../styled/buttons/Button';
 import Logo from '../../../styled/image/Logo';
 import { MainTitle, SecondaryTitle } from '../../../styled/typography';
 
@@ -74,7 +74,7 @@ const GridRight = styled.div`
 const Hero = styled.header`
   min-height: 65vh;
   background-image: ${({ theme }) =>
-    `radial-gradient(ellipse at 46% 30%, #EE82EE00 51%, #00BCD400 81%, #14BFCA1A 90%), radial-gradient(ellipse at 0% 0%, #00BCD400 32%, #14beca11 42%, #EE82EE00 49%), linear-gradient(to right, ${theme.colors.background}, ${theme.colors.background_dark})`};
+    `radial-gradient(ellipse at 46% 30%, #EE82EE00 51%, #00BCD400 81%, #14BFCA1A 90%), radial-gradient(ellipse at 0% 0%, #00BCD400 32%, #14beca11 42%, #EE82EE00 49%), linear-gradient(to right, ${theme.colors.background}, ${theme.colors.blue_dark})`};
 
   display: flex;
   align-items: center;
