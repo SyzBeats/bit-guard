@@ -1,11 +1,11 @@
 /**
- * @file contains all crypto functions for the frontend
+ * @file contains all crypto functions for the frontend.
  *
- * @author Simeon Zimmermann
+ * part of those functions will be used for demonstration of how
+ * the encryption works.
  */
 
 /**
- *
  * @param content : the content that should be encrypted;
  * @returns an object containing the encrypted content and the key
  */
@@ -45,7 +45,6 @@ async function encryptAES128GCM(content: string) {
 }
 
 /**
- *
  * @param key : the key that should be used to decrypt the content
  * @param encrypted the encrypted content
  * @param iv the initialization vector

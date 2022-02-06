@@ -59,4 +59,35 @@ router.get('/link/:cipher', async (req, res) => {
   }
 });
 
+/**
+ * @GET /public/signal/:id
+ * @description one time signals will be decrypted and destroyed
+ */
+router.get('/signal/:id', async (req, res) => {
+  // get the query string from the url
+  // get the cipher key
+
+  const { id } = req.params;
+  const { key, IV } = req.query;
+
+  try {
+    // get the secret from the database
+    const signal = await client.signal.findUnique({
+      where: {
+        id,
+      },
+      select: {
+        content: true,
+        id: true,
+        createdAt: true,
+      },
+    });
+
+    if (!signal) throw new Error('The signal does not exist');
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+});
+
 export default router;

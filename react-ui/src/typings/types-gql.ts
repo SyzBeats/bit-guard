@@ -4,10 +4,12 @@ export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K];
 };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
-  { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
-  { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
 const defaultOptions = {};
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -41,7 +43,7 @@ export type Mutation = {
   deleteUser?: Maybe<User>;
   createMessage: Message;
   deleteMessage?: Maybe<Message>;
-  createLink: Link;
+  createMessageLink: Link;
   deleteLink?: Maybe<Link>;
 };
 
@@ -61,7 +63,7 @@ export type MutationDeleteMessageArgs = {
   data: MessageWhereUniqueInput;
 };
 
-export type MutationCreateLinkArgs = {
+export type MutationcreateMessageLinkArgs = {
   data: LinkCreateInput;
 };
 
@@ -140,12 +142,12 @@ export type UserWhereUniqueInput = {
   id: Scalars['ID'];
 };
 
-export type CreateLinkMutationVariables = Exact<{
+export type createMessageLinkMutationVariables = Exact<{
   messageId: Scalars['ID'];
 }>;
 
-export type CreateLinkMutation = { __typename?: 'Mutation' } & {
-  createLink: { __typename?: 'Link' } & Pick<Link, 'content'>;
+export type createMessageLinkMutation = { __typename?: 'Mutation' } & {
+  createMessageLink: { __typename?: 'Link' } & Pick<Link, 'content'>;
 };
 
 export type DeleteLinkMutationVariables = Exact<{
@@ -216,54 +218,55 @@ export type CurrentUserQuery = { __typename?: 'Query' } & {
     };
 };
 
-export const CreateLinkDocument = gql`
-  mutation CreateLink($messageId: ID!) {
-    createLink(data: { messageId: $messageId }) {
+export const createMessageLinkDocument = gql`
+  mutation createMessageLink($messageId: ID!) {
+    createMessageLink(data: { messageId: $messageId }) {
       content
     }
   }
 `;
-export type CreateLinkMutationFn = Apollo.MutationFunction<
-  CreateLinkMutation,
-  CreateLinkMutationVariables
+export type createMessageLinkMutationFn = Apollo.MutationFunction<
+  createMessageLinkMutation,
+  createMessageLinkMutationVariables
 >;
 
 /**
- * __useCreateLinkMutation__
+ * __usecreateMessageLinkMutation__
  *
- * To run a mutation, you first call `useCreateLinkMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateLinkMutation` returns a tuple that includes:
+ * To run a mutation, you first call `usecreateMessageLinkMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `usecreateMessageLinkMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [createLinkMutation, { data, loading, error }] = useCreateLinkMutation({
+ * const [createMessageLinkMutation, { data, loading, error }] = usecreateMessageLinkMutation({
  *   variables: {
  *      messageId: // value for 'messageId'
  *   },
  * });
  */
-export function useCreateLinkMutation(
+export function usecreateMessageLinkMutation(
   baseOptions?: Apollo.MutationHookOptions<
-    CreateLinkMutation,
-    CreateLinkMutationVariables
+    createMessageLinkMutation,
+    createMessageLinkMutationVariables
   >,
 ) {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<CreateLinkMutation, CreateLinkMutationVariables>(
-    CreateLinkDocument,
-    options,
-  );
+  return Apollo.useMutation<
+    createMessageLinkMutation,
+    createMessageLinkMutationVariables
+  >(createMessageLinkDocument, options);
 }
-export type CreateLinkMutationHookResult = ReturnType<
-  typeof useCreateLinkMutation
+export type createMessageLinkMutationHookResult = ReturnType<
+  typeof usecreateMessageLinkMutation
 >;
-export type CreateLinkMutationResult = Apollo.MutationResult<CreateLinkMutation>;
-export type CreateLinkMutationOptions = Apollo.BaseMutationOptions<
-  CreateLinkMutation,
-  CreateLinkMutationVariables
+export type createMessageLinkMutationResult =
+  Apollo.MutationResult<createMessageLinkMutation>;
+export type createMessageLinkMutationOptions = Apollo.BaseMutationOptions<
+  createMessageLinkMutation,
+  createMessageLinkMutationVariables
 >;
 export const DeleteLinkDocument = gql`
   mutation DeleteLink($id: ID!) {
@@ -309,7 +312,8 @@ export function useDeleteLinkMutation(
 export type DeleteLinkMutationHookResult = ReturnType<
   typeof useDeleteLinkMutation
 >;
-export type DeleteLinkMutationResult = Apollo.MutationResult<DeleteLinkMutation>;
+export type DeleteLinkMutationResult =
+  Apollo.MutationResult<DeleteLinkMutation>;
 export type DeleteLinkMutationOptions = Apollo.BaseMutationOptions<
   DeleteLinkMutation,
   DeleteLinkMutationVariables
@@ -359,7 +363,8 @@ export function useCreateMessageMutation(
 export type CreateMessageMutationHookResult = ReturnType<
   typeof useCreateMessageMutation
 >;
-export type CreateMessageMutationResult = Apollo.MutationResult<CreateMessageMutation>;
+export type CreateMessageMutationResult =
+  Apollo.MutationResult<CreateMessageMutation>;
 export type CreateMessageMutationOptions = Apollo.BaseMutationOptions<
   CreateMessageMutation,
   CreateMessageMutationVariables
@@ -408,7 +413,8 @@ export function useDeleteMessageMutation(
 export type DeleteMessageMutationHookResult = ReturnType<
   typeof useDeleteMessageMutation
 >;
-export type DeleteMessageMutationResult = Apollo.MutationResult<DeleteMessageMutation>;
+export type DeleteMessageMutationResult =
+  Apollo.MutationResult<DeleteMessageMutation>;
 export type DeleteMessageMutationOptions = Apollo.BaseMutationOptions<
   DeleteMessageMutation,
   DeleteMessageMutationVariables
@@ -459,7 +465,8 @@ export function useSignupUserMutation(
 export type SignupUserMutationHookResult = ReturnType<
   typeof useSignupUserMutation
 >;
-export type SignupUserMutationResult = Apollo.MutationResult<SignupUserMutation>;
+export type SignupUserMutationResult =
+  Apollo.MutationResult<SignupUserMutation>;
 export type SignupUserMutationOptions = Apollo.BaseMutationOptions<
   SignupUserMutation,
   SignupUserMutationVariables

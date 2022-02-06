@@ -1,5 +1,6 @@
 import * as crypto from 'crypto';
 import { ENCRYPTION_KEY_256BIT } from '../../config/keys';
+import { IencryptAes256cbcOutput } from '../../util/typings';
 
 function generateEncryptrionKey(): string {
   return crypto.randomBytes(32).toString('hex');
@@ -14,16 +15,14 @@ function generateEncryptrionKey(): string {
 function encryptAes256cbc(
   plainText: string,
   randomKey: boolean = false,
-): string {
+): IencryptAes256cbcOutput {
   // create a random Initialization vector
   const IV = crypto.randomBytes(16);
 
-  const encryptionKey = randomKey
-    ? generateEncryptrionKey()
-    : ENCRYPTION_KEY_256BIT;
+  const key = randomKey ? generateEncryptrionKey() : ENCRYPTION_KEY_256BIT;
 
   // create a cipher
-  const cipher = crypto.createCipheriv('aes-256-cbc', encryptionKey, IV);
+  const cipher = crypto.createCipheriv('aes-256-cbc', key, IV);
 
   // encrypt data
   let encrypted = cipher.update(plainText, 'utf8', 'hex');
@@ -35,8 +34,11 @@ function encryptAes256cbc(
   // set the buffer to hex for easy transfer
   const buffer = IV.toString('hex');
 
-  // concat the IV to transfer string
-  const result = `${encrypted}_IV_${buffer}`;
+  const result = {
+    encrypted,
+    IV: buffer,
+    key,
+  };
 
   return result;
 }

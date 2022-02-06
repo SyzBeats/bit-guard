@@ -3,10 +3,18 @@ import { Context } from '../../context';
 import { JWT_TOKEN_SIGNATURE } from '../../config/keys';
 import { encryptAes256cbc } from '../../services/encryption';
 import { getHoursUntil } from '../../util/dateAndTime/time-until-date';
-import { ICreateLinkOutput, IDeleteLinkOutput } from '../../util/typings';
+import {
+  IcreateMessageLinkOutput,
+  IcreateSignalLinkOutput,
+  IDeleteLinkOutput,
+} from '../../util/typings';
 
 const LinkMutation = {
-  async createLink(parent, args, ctx: Context): Promise<ICreateLinkOutput> {
+  async createMessageLink(
+    parent,
+    args,
+    ctx: Context,
+  ): Promise<IcreateMessageLinkOutput> {
     try {
       // parent can be used in case called by Message query
       const payLoad = args.data;
@@ -32,24 +40,39 @@ const LinkMutation = {
        */
       const token = jwt.sign(payLoad, JWT_TOKEN_SIGNATURE, expiryInformation);
 
-      const encryptedToken = encryptAes256cbc(token);
+      const { IV, encrypted } = encryptAes256cbc(token);
 
       await prisma.link.create({
         data: {
           message: { connect: { id: payLoad.messageId } },
           expiry: new Date(payLoad?.expiry) ?? null,
-          content: encryptedToken,
+          content: `${encrypted}_IV_${IV}`,
         },
       });
 
       // link contains message ID, expiry
       return {
-        content: `http://localhost:4000/public/link/${encryptedToken}`,
+        content: `http://localhost:4000/public/link/${encrypted}_IV_${IV}`,
         expiry: payLoad?.expiry ?? null,
       };
     } catch (error) {
       return error;
     }
+  },
+
+  // this will be used to create a one time signal link
+  async createSignalLink(
+    parent,
+    args,
+    ctx: Context,
+  ): Promise<IcreateSignalLinkOutput> {
+    const { req, prisma } = ctx;
+
+    const { key, IV, signalId } = args.data;
+
+    return {
+      content: `http://localhost:4000/public/signal/${signalId}?key=${key}&IV=${IV}`,
+    };
   },
 
   /**

@@ -2,7 +2,7 @@ import { Message } from '@prisma/client';
 import { authenticate } from '../../auth/authenticate';
 import { Context } from '../../context';
 import { encryptAes256cbc } from '../../services/encryption';
-import { IOnteTimeMessage } from '../../util/typings';
+import { ICreateSignalOutput } from '../../util/typings';
 import { LinkMutation } from '../link';
 
 const MessageMutation = {
@@ -23,12 +23,12 @@ const MessageMutation = {
       const token = authenticate(req);
 
       // encrypt the message
-      const encryptedContent = encryptAes256cbc(data.content);
+      const { encrypted, IV } = encryptAes256cbc(data.content);
 
       // create message with connection to owner in database
       const message = await prisma.message.create({
         data: {
-          content: encryptedContent,
+          content: `${encrypted}_IV_${IV}`,
           owner: { connect: { id: (token as any).id } },
         },
       });
@@ -39,11 +39,7 @@ const MessageMutation = {
     }
   },
 
-  async createOneTimeMessage(
-    parent,
-    args,
-    ctx: Context,
-  ): Promise<IOnteTimeMessage> {
+  async createSignal(parent, args, ctx: Context): Promise<ICreateSignalOutput> {
     try {
       const { data } = args;
 
@@ -51,26 +47,37 @@ const MessageMutation = {
 
       const token = authenticate(req);
 
-      // encrypt the message with a random key
-      const encryptedContent = encryptAes256cbc(data.content, true);
+      // encrypt the signal with a random key that is not known by anyone
+      const { encrypted, IV, key } = encryptAes256cbc(data.content, true);
 
-      // create message with connection to owner in database
-      const message = await prisma.message.create({
+      // create signal with connection to owner in database
+      const signal = await prisma.signal.create({
         data: {
-          content: encryptedContent,
+          content: `${encrypted}_IV_${IV}`,
           owner: { connect: { id: (token as any).id } },
         },
       });
 
-      // create a new link with the message
+      if (!signal) {
+        throw new Error('Signal could not be created');
+      }
 
-      const link = await LinkMutation.createLink(
-        null,
-        { data: { messageId: message.id } },
+      const linkPayload = {
+        data: {
+          signalId: signal.id,
+          key,
+          IV,
+        },
+      };
+
+      // create a new link with the message
+      const link = await LinkMutation.createSignalLink(
+        parent,
+        linkPayload,
         ctx,
       );
 
-      return { message, link };
+      return link;
     } catch (error) {
       return error;
     }

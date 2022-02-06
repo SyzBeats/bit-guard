@@ -1,4 +1,4 @@
-import { Message } from '@prisma/client';
+import { Message, Signal } from '@prisma/client';
 
 interface MessageToken {
   messageId: string;
@@ -6,7 +6,7 @@ interface MessageToken {
   exp: number;
 }
 
-interface ICreateLinkOutput {
+interface IcreateMessageLinkOutput {
   content: string;
   expiry: Date | null;
 }
@@ -16,9 +16,25 @@ interface IDeleteLinkOutput {
   expiry: Date | null;
 }
 
-interface IOnteTimeMessage {
-  message: Message;
-  link: ICreateLinkOutput;
+interface IcreateSignalLinkOutput {
+  content: string;
 }
 
-export { MessageToken, IOnteTimeMessage, ICreateLinkOutput, IDeleteLinkOutput };
+interface ICreateSignalOutput {
+  content: string;
+}
+
+interface IencryptAes256cbcOutput {
+  encrypted: string;
+  IV: string;
+  key: string;
+}
+
+export {
+  MessageToken,
+  IcreateMessageLinkOutput,
+  IcreateSignalLinkOutput,
+  ICreateSignalOutput,
+  IDeleteLinkOutput,
+  IencryptAes256cbcOutput,
+};

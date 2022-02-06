@@ -1,20 +1,22 @@
 /* eslint-disable wrap-iife */
+import * as fs from 'fs';
 import { ApolloServer, gql } from 'apollo-server-express';
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
-
 import express from 'express';
-import * as fs from 'fs';
 import cors from 'cors';
+
 import { createContext } from './context';
 import { Query, Mutation, Message, Link, User } from './resolvers';
-// routes
-import __public from './rest-routes/public';
 import options from './config/options';
 
-// @ts-ignore
+// routes
+import __public from './rest-routes/public';
+
+const PORT = process.env.PORT || options.port;
 const app = express();
 
 app.use(cors(options.cors));
+app.use('/public', __public);
 
 const resolvers = {
   Query,
@@ -36,11 +38,9 @@ const server = new ApolloServer({
 (async function start() {
   await server.start();
 
-  app.use('/public', __public);
-
   server.applyMiddleware({ app, path: '/graphql' });
 
-  app.listen({ port: 4000 }, () =>
+  app.listen({ port: PORT }, () =>
     console.log(
       `🚀 Server ready at http://localhost:4000${server.graphqlPath}`,
     ),

@@ -13,9 +13,10 @@ type Mutation {
   signupUser(data: UserCreateInput!): User!
   deleteUser(data: UserWhereUniqueInput!): User
   createMessage(data: MessageCreateInput): Message!
-  createOneTimeMessage(data: MessageCreateInput): OneTimeMessage!
+  createSignal(data: MessageCreateInput): Signal!
   deleteMessage(data: MessageWhereUniqueInput!): Message
-  createLink(data: LinkCreateInput!): Link!
+  createMessageLink(data: LinkCreateInput!): Link!
+  createSignalLink(data: SignalLinkCreateInput!): Link!
   deleteLink(data: LinkWhereUniqueInput!): Link
 }
 
@@ -33,7 +34,7 @@ type Message {
   links: [Link!]
 }
 
-type OneTimeMessage {
+type Signal {
   id: ID!
   content: String!
   # create resolver
@@ -84,6 +85,12 @@ input MessageCreateInput {
 input LinkCreateInput {
   messageId: ID!
   expiry: String
+}
+
+input SignalLinkCreateInput {
+  signalId: ID!
+  key: String!
+  IV: String!
 }
 
 input MessageWhereUniqueInput {

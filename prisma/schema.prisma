@@ -16,6 +16,7 @@ model User {
   password String
   name     String
   Message  Message[]
+  Signal   Signal[]
 }
 
 // message contains hashed content
@@ -25,6 +26,15 @@ model Message {
   owner     User     @relation(fields: [userId], references: [id])
   content   String
   links     Link[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Signal {
+  id        String   @id @default(uuid())
+  userId    String
+  owner     User     @relation(fields: [userId], references: [id])
+  content   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

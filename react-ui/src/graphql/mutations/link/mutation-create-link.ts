@@ -7,8 +7,8 @@ import { gql } from '@apollo/client';
  * @todo return the URL instead of the content
  */
 const CREATE_LINK = gql`
-  mutation CreateLink($messageId: ID!) {
-    createLink(data: { messageId: $messageId }) {
+  mutation createMessageLink($messageId: ID!) {
+    createMessageLink(data: { messageId: $messageId }) {
       content
     }
   }
