@@ -1,6 +1,5 @@
 import React from 'react';
 import { FilePlus } from 'react-feather';
-import cryptoService from '../../services/crypto';
 import Section from '../layout/container/Section';
 import { LayoutDashboard } from '../layout/dashboard/LayoutDashboard';
 import { FlexGridEqual } from '../layout/grids/FlexGrid';
@@ -16,12 +15,8 @@ const Dashboard = () => {
     <LayoutDashboard>
       <DashboardMetrics />
       <Section>
-        <FlexGridEqual
-          justifyContent="space-between"
-          alignItems="center"
-          padded={false}
-        >
-          <DashboardSectionTitle>One time Messages</DashboardSectionTitle>
+        <FlexGridEqual gap="0rem" flexDirection="column" justifyContent="space-between" alignItems="flex-start" padded={false}>
+          <DashboardSectionTitle>Signals</DashboardSectionTitle>
           <ButtonRound>
             <FilePlus />
           </ButtonRound>
@@ -42,11 +37,7 @@ const Dashboard = () => {
       </Section>
 
       <Section>
-        <FlexGridEqual
-          justifyContent="space-between"
-          alignItems="center"
-          padded={false}
-        >
+        <FlexGridEqual gap="0rem" flexDirection="column" justifyContent="space-between" alignItems="flex-start" padded={false}>
           <DashboardSectionTitle>Secrets</DashboardSectionTitle>
           <ButtonRound>
             <FilePlus />

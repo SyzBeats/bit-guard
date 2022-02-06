@@ -1,5 +1,5 @@
 import React from 'react';
-import { Copy, Trash } from 'react-feather';
+import { Trash } from 'react-feather';
 import styled from 'styled-components';
 
 const Message = () => {
@@ -17,7 +17,6 @@ const Message = () => {
       </MessageContent>
       <MessageActions>
         <Trash size={20} color="#01141F" />
-        <Copy size={20} color="#01141F" />
       </MessageActions>
     </Wrapper>
   );
@@ -37,9 +36,9 @@ const Wrapper = styled.div`
   flex-direction: row;
   justify-content: center;
 
-  transition: all 0.2s ease-in-out;
-
   position: relative;
+
+  transition: all 0.2s ease-in-out;
 
   &::after {
     content: '';

@@ -6,11 +6,12 @@ interface Props {
   flexDirection?: string;
   padded?: boolean;
   equal?: boolean;
+  gap?: string;
 }
 
 const FlexGridEqual = styled.div<Props>`
   display: flex;
-  gap: 4rem;
+  gap: ${({ gap }) => gap || '4rem'};
   padding: ${({ padded }) => (padded ? '0 2rem' : '0')};
 
   justify-content: ${({ justifyContent }) => justifyContent || 'initial'};

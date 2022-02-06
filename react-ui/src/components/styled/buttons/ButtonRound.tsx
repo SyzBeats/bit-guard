@@ -15,9 +15,11 @@ const Wrapper = styled.button`
   padding: 1rem;
   border: none;
 
-  width: 5rem;
-  min-width: 5rem;
-  height: 5rem;
+  position: relative;
+
+  width: 4rem;
+  min-width: 4rem;
+  height: 4rem;
 
   display: flex;
   justify-content: center;
@@ -28,7 +30,6 @@ const Wrapper = styled.button`
 
   // colors
   background: ${({ theme }) => theme.gradients.bluepurp};
-
   color: white;
 
   // font
@@ -36,11 +37,27 @@ const Wrapper = styled.button`
   letter-spacing: 1.5px;
   font-weight: 600;
 
-  // spacing
-
   transition: all 0.1s ease-in-out;
 
+  z-index: 1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: ${({ theme }) => theme.gradients.bluepurp};
+    transition: all 0.3s ease-in-out;
+    z-index: -1;
+  }
+
   &:hover {
+    &::before {
+      animation: pulse 1.25s ease-in-out infinite;
+    }
     cursor: pointer;
   }
 `;
