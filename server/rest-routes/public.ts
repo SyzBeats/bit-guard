@@ -14,18 +14,15 @@ const router = express.Router({ caseSensitive: false });
  * they have obtained
  */
 
-const client = new PrismaClient();
-
 router.get('/link/:cipher', async (req, res) => {
+  const client = new PrismaClient();
+
   try {
     const { cipher } = req.params;
 
     const token = decryptAes256cbc(cipher);
 
-    const data: MessageToken | object | string = jwt.verify(
-      token,
-      JWT_TOKEN_SIGNATURE,
-    );
+    const data: MessageToken | object | string = jwt.verify(token, JWT_TOKEN_SIGNATURE);
 
     if (!isMessageToken(data)) {
       return res.status(500).json({ message: 'something went wrong' });
@@ -51,9 +48,9 @@ router.get('/link/:cipher', async (req, res) => {
 
     return res.status(200).json({ message: decryptedMessage });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ message: 'Something went wrong, we are sorry!' });
+    return res.status(500).json({
+      message: `Something went horribly wrong here. We are sorry! Error: ${error.message}`,
+    });
   } finally {
     await client.$disconnect();
   }
@@ -64,11 +61,10 @@ router.get('/link/:cipher', async (req, res) => {
  * @description one time signals will be decrypted and destroyed
  */
 router.get('/signal/:id', async (req, res) => {
-  // get the query string from the url
-  // get the cipher key
+  const client = new PrismaClient();
 
   const { id } = req.params;
-  const { key, IV } = req.query;
+  const { key } = req.query;
 
   try {
     // get the secret from the database
@@ -83,10 +79,23 @@ router.get('/signal/:id', async (req, res) => {
       },
     });
 
-    if (!signal) throw new Error('The signal does not exist');
+    if (!signal) {
+      throw new Error('The signal does not exist');
+    }
+
+    if (typeof key !== 'string') {
+      return res.status(409).json({ message: 'The initialization vector is not a string' });
+    }
+
+    const decryptedMessage = decryptAes256cbc(signal.content, key?.toString());
+
+    return res.status(200).json({ message: decryptedMessage });
   } catch (error) {
-    console.log(error);
-    return error;
+    return res.status(500).json({
+      message: `Something went horribly wrong here. We are sorry! Error: ${error.message}`,
+    });
+  } finally {
+    await client.$disconnect();
   }
 });
 

@@ -3,18 +3,10 @@ import { Context } from '../../context';
 import { JWT_TOKEN_SIGNATURE } from '../../config/keys';
 import { encryptAes256cbc } from '../../services/encryption';
 import { getHoursUntil } from '../../util/dateAndTime/time-until-date';
-import {
-  IcreateMessageLinkOutput,
-  IcreateSignalLinkOutput,
-  IDeleteLinkOutput,
-} from '../../util/typings';
+import { IcreateMessageLinkOutput, IcreateSignalLinkOutput, IDeleteLinkOutput } from '../../util/typings';
 
 const LinkMutation = {
-  async createMessageLink(
-    parent,
-    args,
-    ctx: Context,
-  ): Promise<IcreateMessageLinkOutput> {
+  async createMessageLink(parent, args, ctx: Context): Promise<IcreateMessageLinkOutput> {
     try {
       // parent can be used in case called by Message query
       const payLoad = args.data;
@@ -61,17 +53,11 @@ const LinkMutation = {
   },
 
   // this will be used to create a one time signal link
-  async createSignalLink(
-    parent,
-    args,
-    ctx: Context,
-  ): Promise<IcreateSignalLinkOutput> {
-    const { req, prisma } = ctx;
-
-    const { key, IV, signalId } = args.data;
+  async createSignalLink(parent, args, ctx: Context): Promise<IcreateSignalLinkOutput> {
+    const { key, signalId } = args?.data;
 
     return {
-      content: `http://localhost:4000/public/signal/${signalId}?key=${key}&IV=${IV}`,
+      content: `http://localhost:4000/public/signal/${signalId}?key=${key}`,
     };
   },
 
@@ -91,6 +77,10 @@ const LinkMutation = {
 
       // delete link from DB
       const link = await prisma.link.delete({ where: { id: data.id } });
+
+      if (!link) {
+        throw new Error('Link could not be deleted');
+      }
 
       return { data: link.id, expiry: link?.expiry ?? null };
     } catch (error) {

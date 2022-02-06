@@ -2,8 +2,11 @@ import * as crypto from 'crypto';
 import { ENCRYPTION_KEY_256BIT } from '../../config/keys';
 import { IencryptAes256cbcOutput } from '../../util/typings';
 
+// generate a random encryption key with 16 bytes
+// as it is encoded to hexadecimal, it is 32 characters long
+// and can be used as a key for the encryption
 function generateEncryptrionKey(): string {
-  return crypto.randomBytes(32).toString('hex');
+  return crypto.randomBytes(16).toString('hex');
 }
 
 /**
@@ -12,14 +15,13 @@ function generateEncryptrionKey(): string {
  * @param randomKey in case of one time use
  * @returns encrypted data
  */
-function encryptAes256cbc(
-  plainText: string,
-  randomKey: boolean = false,
-): IencryptAes256cbcOutput {
+function encryptAes256cbc(plainText: string, randomKey: boolean = false): IencryptAes256cbcOutput {
   // create a random Initialization vector
   const IV = crypto.randomBytes(16);
 
   const key = randomKey ? generateEncryptrionKey() : ENCRYPTION_KEY_256BIT;
+
+  console.log(key);
 
   // create a cipher
   const cipher = crypto.createCipheriv('aes-256-cbc', key, IV);
@@ -49,10 +51,7 @@ function encryptAes256cbc(
  * @param key in case of one time use, the key is transferred
  * @returns {string} decrypted data
  */
-function decryptAes256cbc(
-  cipher: string,
-  key: string | undefined = undefined,
-): string {
+function decryptAes256cbc(cipher: string, key: string | undefined = undefined): string {
   // split the two hex encoded strings
   const [data, ivHex] = cipher.split('_IV_');
 

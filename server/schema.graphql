@@ -36,7 +36,6 @@ type Message {
 
 type Signal {
   id: ID!
-  content: String!
   # create resolver
   link: Link!
 }
@@ -79,7 +78,6 @@ input KeyCreateInput {
 
 input MessageCreateInput {
   content: String!
-  owner: String
 }
 
 input LinkCreateInput {

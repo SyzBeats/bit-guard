@@ -42,9 +42,7 @@ const MessageMutation = {
   async createSignal(parent, args, ctx: Context): Promise<ICreateSignalOutput> {
     try {
       const { data } = args;
-
       const { prisma, req } = ctx;
-
       const token = authenticate(req);
 
       // encrypt the signal with a random key that is not known by anyone
@@ -71,11 +69,11 @@ const MessageMutation = {
       };
 
       // create a new link with the message
-      const link = await LinkMutation.createSignalLink(
-        parent,
-        linkPayload,
-        ctx,
-      );
+      const link = await LinkMutation.createSignalLink(parent, linkPayload, ctx);
+
+      if (!link) {
+        throw new Error('Link could not be created');
+      }
 
       return link;
     } catch (error) {
@@ -86,9 +84,7 @@ const MessageMutation = {
   async deleteMessage(parent, args, ctx: Context): Promise<Message> {
     try {
       const { data } = args;
-
       const { prisma, req } = ctx;
-
       authenticate(req);
 
       /**
@@ -110,7 +106,7 @@ const MessageMutation = {
 
       return deleted;
     } catch (error) {
-      throw new Error(error.message);
+      return error;
     }
   },
 };
