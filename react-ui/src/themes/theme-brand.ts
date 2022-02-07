@@ -9,6 +9,7 @@ const theme = {
     background: '#01141F',
     blue_dark: '#000406',
     white: '#F8F8F8',
+    red: '#fd1b45',
   },
   fonts: {},
   gradients: {
@@ -19,10 +20,8 @@ const theme = {
   shadows: {
     card_1: '1px 8px 16px -13px #1119',
     card_2: '1px 6px 21px -13px #1117, 3px 24px 18px #5551',
-    depth_1:
-      '0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)',
-    depth_2:
-      '0 3px 6px 0 rgba(0, 0, 0, 0.14), 0 3px 2px -5px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)',
+    depth_1: '0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)',
+    depth_2: '0 3px 6px 0 rgba(0, 0, 0, 0.14), 0 3px 2px -5px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)',
   },
   breakpoints: {
     xs: '576px',

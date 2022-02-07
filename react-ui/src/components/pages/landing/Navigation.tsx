@@ -18,14 +18,14 @@ const HeaderNavigation = styled.nav`
   top: 2rem;
   right: 2rem;
 
-  color: white;
+  color: #fff;
   z-index: 100;
 `;
 
 const LoginLink = styled(Link)`
   padding: 0.75rem;
   background: ${({ theme }) => theme.colors.blue_dark};
-  color: white;
+  color: #fff;
   text-decoration: none;
   border-radius: 0.3rem;
 

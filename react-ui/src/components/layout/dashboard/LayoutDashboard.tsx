@@ -18,6 +18,7 @@ const Container = styled.section`
 `;
 
 const Content = styled.div`
+  transition: all 0.3s ease-in-out;
   max-width: 160rem;
   width: 100%;
   margin: 0 auto;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Trash } from 'react-feather';
 import styled from 'styled-components';
 
-const Message = () => {
+const Signal = () => {
   return (
     <Wrapper>
       <MessageContent>
@@ -27,17 +27,13 @@ const Wrapper = styled.div`
   background: #fff;
   border-radius: 0.55rem;
   box-shadow: ${({ theme }) => theme.shadows.depth_1};
-
   min-height: 8rem;
   padding: 0.75rem;
   line-height: 1.5em;
-
   display: flex;
   flex-direction: row;
   justify-content: center;
-
   position: relative;
-
   transition: all 0.2s ease-in-out;
 
   &::after {
@@ -47,14 +43,11 @@ const Wrapper = styled.div`
     left: 0px;
     width: 0.4rem;
     height: 100%;
-
     transform: scaleX(0);
     transition: transform 0.2s ease-in-out;
     transform-origin: left;
-
     border-top-left-radius: 0.55rem;
     border-bottom-left-radius: 0.55rem;
-
     background: ${({ theme }) => theme.colors.highlight_blue};
   }
 
@@ -76,13 +69,11 @@ const MessageContent = styled.div`
 
 const MessageActions = styled.div`
   flex: 1;
-
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   flex-direction: column;
   gap: 0.75rem;
-
   svg {
     cursor: pointer;
   }
@@ -100,4 +91,4 @@ const MessageContentText = styled.span`
   font-weight: 300;
 `;
 
-export { Message };
+export { Signal as Message };

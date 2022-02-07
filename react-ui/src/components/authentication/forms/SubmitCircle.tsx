@@ -24,7 +24,7 @@ const ButtonWrapper = styled.button`
   height: 5rem;
 
   background: ${({ theme }) => theme.gradients.login};
-  color: white;
+  color: #fff;
   box-shadow: ${({ theme }) => theme.shadows.card_1};
   transition: all 0.1s ease-in-out;
 

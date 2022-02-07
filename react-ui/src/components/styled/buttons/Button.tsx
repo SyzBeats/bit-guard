@@ -21,7 +21,7 @@ const Wrapper = styled.button`
   // colors
   background: ${({ theme }) => theme.gradients.bluepurp};
 
-  color: white;
+  color: #fff;
 
   // font
   font-size: 1.5rem;

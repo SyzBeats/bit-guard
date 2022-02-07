@@ -20,6 +20,6 @@ const Wrapper = styled.footer`
 
   padding: 1rem;
 
-  color: white;
+  color: #fff;
 `;
 export default Footer;

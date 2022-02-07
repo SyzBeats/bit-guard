@@ -52,7 +52,7 @@ const IconBox = ({ type, title, content, textColor }: IconBoxType) => {
 };
 
 const Box = styled.div`
-  background: white;
+  background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;

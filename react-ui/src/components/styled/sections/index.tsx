@@ -8,7 +8,7 @@ const SectionBase = styled.section`
 `;
 
 const SectionBackground = styled(SectionBase)`
-  color: white;
+  color: #fff;
   background-color: ${({ theme }) => theme.colors.background};
 `;
 
