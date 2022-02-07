@@ -22,7 +22,7 @@ const BaseModal = ({ handler, children }: ModalProps) => {
             <CloseButton onClick={callback}>
               <X size={30} />
             </CloseButton>
-            <ModalContent> {children} </ModalContent>
+            <ModalContent>{children}</ModalContent>
           </Container>
         </Modal>
       </div>
@@ -31,28 +31,24 @@ const BaseModal = ({ handler, children }: ModalProps) => {
 };
 
 const Modal = styled.div`
-  position: fixed;
   animation: fadeInUp 0.3s ease-in-out forwards;
-  padding: 1rem;
-
-  top: 50%;
-  left: 50%;
-  width: 50vmin;
-  height: 50vmin;
-  min-width: 20rem;
-  min-height: 50vh;
-
   background: #fff;
   border-radius: 1rem;
-  box-shadow: ${({ theme }) => theme.shadows.depth_1};
   border-top: 0.5rem solid ${({ theme }) => theme.colors.highlight_iceblue};
-
-  z-index: 10000;
-
+  box-shadow: ${({ theme }) => theme.shadows.depth_1};
+  height: 50vmin;
+  left: 50%;
+  min-height: 50vh;
+  min-width: 20rem;
+  padding: 1rem;
+  position: fixed;
+  top: 50%;
+  width: 50vmin;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
+  z-index: 10000;
 `;
 
 const Container = styled.div`
