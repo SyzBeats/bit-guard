@@ -1,16 +1,5 @@
 import create from 'zustand';
-
-interface SignalState {
-  signals: any[];
-  addSignal: (signal: any) => void;
-  removeSignal: (signal: any) => void;
-}
-
-interface AuthState {
-  isLoggedIn: boolean;
-  login: () => void;
-  logout: () => void;
-}
+import { AuthState, SignalState } from './interfaces';
 
 const useSignalState = create<SignalState>((set) => ({
   signals: [],
