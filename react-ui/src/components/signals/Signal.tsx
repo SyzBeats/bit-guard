@@ -1,22 +1,48 @@
 import React from 'react';
-import { Trash } from 'react-feather';
+import { Link, Trash } from 'react-feather';
 import styled from 'styled-components';
+import { useSignalState } from '../../zustand/store';
+import { Signals } from './Signals';
 
-const Signal = () => {
+interface Iprops {
+  signal: {
+    id: string;
+    title: string;
+    createdAt: string;
+  };
+}
+
+const Signal = ({ signal }: Iprops) => {
+  const { id, title, createdAt } = signal;
+
+  const { removeSignal } = useSignalState();
+
+  /**
+   * @description handles the deletion of signals
+   */
+  const handleDelete = (): void => {
+    if (!id) {
+      return;
+    }
+
+    removeSignal(signal);
+  };
+
   return (
     <Wrapper>
       <MessageContent>
         <div>
           <MessageTitle>Title: </MessageTitle>
-          <MessageContentText>Some text 2</MessageContentText>
+          <MessageContentText>{title}</MessageContentText>
         </div>
         <div>
-          <MessageTitle>Content: </MessageTitle>
-          <MessageContentText>Some text</MessageContentText>
+          <MessageTitle>Created at: </MessageTitle>
+          <MessageContentText>{new Date(createdAt).toLocaleDateString()}</MessageContentText>
         </div>
       </MessageContent>
       <MessageActions>
-        <Trash size={20} color="#01141F" />
+        <Trash size={20} color="#01141F" onClick={() => handleDelete()} />
+        <Link size={20} color="#01141F" />
       </MessageActions>
     </Wrapper>
   );
@@ -88,7 +114,7 @@ const MessageTitle = styled.strong`
 const MessageContentText = styled.span`
   font-size: 1.6rem;
   line-height: 1.5em;
-  font-weight: 300;
+  font-weight: 400;
 `;
 
-export { Signal as Message };
+export { Signal };

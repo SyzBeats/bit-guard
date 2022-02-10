@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Logo from '../styled/image/Logo';
 import { SecondaryTitle } from '../styled/typography';
-import { Input } from './forms/Input';
-import { SubmitCircle } from './forms/SubmitCircle';
+import { Input } from '../forms/inputs/Input';
+import { SubmitCircle } from '../forms/inputs/SubmitCircle';
 
 const Login = () => {
   const [data, setData] = useState({

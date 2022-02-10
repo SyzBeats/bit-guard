@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FilePlus } from 'react-feather';
+import { useSignalState } from '../../zustand/store';
 import CreateSignal from '../forms/CreateSignal';
 import { FlexGridEqual } from '../layout/grids/FlexGrid';
 import { MessageGrid } from '../layout/grids/MessageGrid';
@@ -7,10 +8,11 @@ import BaseModal from '../modals/BaseModal';
 import { ContentBox } from '../styled/boxes/ContentBox';
 import { ButtonRound } from '../styled/buttons/ButtonRound';
 import { DashboardSectionTitle } from '../styled/typography';
-import { Message } from './Signal';
+import { Signal } from './Signal';
 
 const Signals = () => {
-  const [messages] = useState([1, 2, 3, 4, 5]);
+  const { signals } = useSignalState();
+
   const [open, setOpen] = useState(false);
   const openModal = () => setOpen(true);
 
@@ -36,8 +38,8 @@ const Signals = () => {
 
       <ContentBox borderColor="dark" bordered={true} title="Overview">
         <MessageGrid>
-          {messages.map((message, index) => (
-            <Message key={index} />
+          {signals.map((signal, index) => (
+            <Signal key={index} signal={signal} />
           ))}
         </MessageGrid>
       </ContentBox>
