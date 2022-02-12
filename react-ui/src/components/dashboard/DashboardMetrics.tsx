@@ -6,14 +6,14 @@ import Counter from '../styled/boxes/Counter';
 const DashboardMetrics = () => {
   return (
     <FlexGridEqual padded equal>
-      <ContentBox title="Shared Secrets">
-        <Counter />
+      <ContentBox title="Alltime Created Secrets">
+        <Counter type="signals" />
       </ContentBox>
-      <ContentBox title="One time Secrets">
-        <Counter />
+      <ContentBox title="Active Secrets">
+        <Counter type="message" />
       </ContentBox>
       <ContentBox title="Recent activity">
-        <Counter />
+        <Counter type="message" />
       </ContentBox>
     </FlexGridEqual>
   );
