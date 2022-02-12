@@ -1,5 +1,4 @@
 import React from 'react';
-import { Activity, MessageSquare } from 'react-feather';
 import styled from 'styled-components';
 
 import { useCreateSecretFormState, useSignalState } from '../../zustand/store';
@@ -10,7 +9,7 @@ import TextInput from './inputs/TextInput';
 
 const CreateSignal = () => {
   const addSignal = useSignalState((state) => state.addSignal);
-  const { selection, setContent, setTitle, title, content } = useCreateSecretFormState();
+  const { setContent, setTitle, title, content } = useCreateSecretFormState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
