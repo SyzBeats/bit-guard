@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useCreateSecretFormState, useSignalState } from '../../zustand/store';
 import { FlexGridEqual } from '../layout/grids/FlexGrid';
 import { FlexGridItem } from '../layout/grids/FlexGridItem';
+import HorizontalToggle from './controls/HorizontalToggle';
 import { TextArea } from './inputs/TextArea';
 import TextInput from './inputs/TextInput';
 
@@ -18,6 +19,7 @@ const CreateSignal = () => {
 
   return (
     <Wrapper>
+      <HorizontalToggle />
       <FlexGridEqual gap="1.5rem" justifyContent="stretch">
         <FlexGridItem alignSelf="stretch" flex="1">
           <TextInput label="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} />
@@ -29,7 +31,7 @@ const CreateSignal = () => {
       </FlexGridEqual>
 
       <FlexGridEqual gap="1.5rem" justifyContent="stretch">
-        <TextArea name="title" value={content} onChange={(e) => setContent(e.target.value)} />
+        <TextArea label="content" name="content" value={content} onChange={(e) => setContent(e.target.value)} />
       </FlexGridEqual>
 
       <button onClick={(e) => handleSubmit(e)}>Add Signal</button>

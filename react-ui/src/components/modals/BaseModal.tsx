@@ -86,6 +86,14 @@ const CloseButton = styled.button`
   &:hover {
     cursor: pointer;
   }
+
+  & > svg {
+    transition: all 0.3s;
+    transform-origin: center;
+    &:hover {
+      transform: rotate(90deg);
+    }
+  }
 `;
 
 const Curtain = styled.div`

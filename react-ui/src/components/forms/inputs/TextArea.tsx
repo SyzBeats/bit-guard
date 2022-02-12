@@ -4,13 +4,15 @@ import styled from 'styled-components';
 interface Props {
   name: string;
   value: string;
+  label: string;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   type?: string;
 }
 
-const TextArea = ({ name = '', value = '', onChange = () => null }: Props) => {
+const TextArea = ({ name = '', value = '', label = '', onChange = () => null }: Props) => {
   return (
     <Wrapper>
+      {label && <label htmlFor={name}>{label}</label>}
       <Area rows={5} name={name} value={value} onChange={onChange} />
     </Wrapper>
   );
@@ -18,8 +20,15 @@ const TextArea = ({ name = '', value = '', onChange = () => null }: Props) => {
 
 const Wrapper = styled.span`
   display: flex;
+  flex-direction: column;
+
   gap: 0.5rem;
   width: 100%;
+
+  label {
+    font-size: 1.2rem;
+    font-weight: 300;
+  }
 `;
 
 const Area = styled.textarea`
@@ -30,6 +39,9 @@ const Area = styled.textarea`
   border-radius: 0.5rem;
 
   resize: none;
+
+  font-family: inherit;
+  font-weight: 300;
 
   // change outline on focus
   &:focus {
