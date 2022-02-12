@@ -5,10 +5,11 @@ import { X } from 'react-feather';
 
 interface ModalProps {
   children: React.ReactNode;
+  title: string;
   handler: Function;
 }
 
-const BaseModal = ({ handler, children }: ModalProps) => {
+const BaseModal = ({ handler, children, title = '' }: ModalProps) => {
   const ref = useRef(null);
 
   const [callback] = useClickaway(ref, handler);
@@ -19,9 +20,12 @@ const BaseModal = ({ handler, children }: ModalProps) => {
       <div ref={ref}>
         <Modal>
           <Container>
-            <CloseButton onClick={callback}>
-              <X size={30} />
-            </CloseButton>
+            <ModalHeader>
+              <h3>{title}</h3>
+              <CloseButton onClick={callback}>
+                <X size={30} />
+              </CloseButton>
+            </ModalHeader>
             <ModalContent>{children}</ModalContent>
           </Container>
         </Modal>
@@ -36,11 +40,10 @@ const Modal = styled.div`
   border-radius: 1rem;
   border-top: 0.5rem solid ${({ theme }) => theme.colors.highlight_iceblue};
   box-shadow: ${({ theme }) => theme.shadows.depth_1};
-  height: 50vmin;
+  height: auto;
   left: 50%;
-  min-height: 50vh;
   min-width: 20rem;
-  padding: 1rem;
+  padding: 1rem 2.5rem;
   position: fixed;
   top: 50%;
   width: 50vmin;
@@ -51,16 +54,25 @@ const Modal = styled.div`
   z-index: 10000;
 `;
 
+const ModalHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+
+  h3 {
+    font-weight: 400;
+    font-size: 1.6rem;
+  }
+`;
+
 const Container = styled.div`
-  position: relative;
   height: 100%;
   width: 100%;
 `;
 
 const CloseButton = styled.button`
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
   width: 2.5rem;
   height: 2.5rem;
   border: none;
@@ -87,6 +99,8 @@ const Curtain = styled.div`
   background: rgba(0, 0, 0, 0.5);
 `;
 
-const ModalContent = styled.div``;
+const ModalContent = styled.div`
+  border-top: 1px solid ${({ theme }) => theme.colors.highlight_blue};
+`;
 
 export default BaseModal;

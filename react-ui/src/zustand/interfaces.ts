@@ -10,4 +10,12 @@ interface AuthState {
   logout: () => void;
 }
 
-export { SignalState, AuthState };
+interface CreateSecretFormState {
+  selection: 'signal' | 'message';
+  content: string;
+  title: string;
+  setSelection: (selection: 'signal' | 'message') => void;
+  setContent: (content: string) => void;
+  setTitle: (title: string) => void;
+}
+export { SignalState, AuthState, CreateSecretFormState };

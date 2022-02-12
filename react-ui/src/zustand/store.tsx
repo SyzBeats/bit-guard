@@ -1,7 +1,7 @@
 import create from 'zustand';
-import { AuthState, SignalState } from './interfaces';
+import { AuthState, CreateSecretFormState, SignalState } from './interfaces';
 
-const useSignalState = create<SignalState>((set) => ({
+const dummyData = {
   signals: [
     {
       id: '1',
@@ -14,6 +14,10 @@ const useSignalState = create<SignalState>((set) => ({
       createdAt: '2020-01-01',
     },
   ],
+};
+
+const useSignalState = create<SignalState>((set) => ({
+  signals: dummyData.signals,
   addSignal: (signal) => set((state) => ({ ...state, signals: [...state.signals, signal] })),
   removeSignal: (signal) => set((state) => ({ ...state, signals: state.signals.filter((s) => s.id !== signal.id) })),
 }));
@@ -24,4 +28,13 @@ const useAuthStore = create<AuthState>((set) => ({
   logout: () => set((state) => ({ ...state, isLoggedIn: false })),
 }));
 
-export { useSignalState, useAuthStore };
+const useCreateSecretFormState = create<CreateSecretFormState>((set) => ({
+  selection: 'signal',
+  content: '',
+  title: '',
+  setSelection: (selection) => set((state) => ({ ...state, selection })),
+  setContent: (content) => set((state) => ({ ...state, content })),
+  setTitle: (title) => set((state) => ({ ...state, title })),
+}));
+
+export { useSignalState, useAuthStore, useCreateSecretFormState };

@@ -1,0 +1,47 @@
+import React from 'react';
+import styled from 'styled-components';
+
+interface Props {
+  name: string;
+  value: string;
+  label?: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  type?: string;
+}
+
+const TextInput = ({ name = '', value = '', label = '', onChange = () => null, type = 'text' }: Props) => {
+  return (
+    <Wrapper>
+      {label && <label htmlFor={name}>{label}</label>}
+      <Input type={type} name={name} value={value} onChange={onChange} />
+    </Wrapper>
+  );
+};
+
+const Wrapper = styled.span`
+  display: flex;
+  gap: 0.5rem;
+
+  flex-direction: column;
+
+  label {
+    font-size: 1.2rem;
+    font-weight: 300;
+  }
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 1rem;
+  background: #f8f8f8;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+
+  // change outline on focus
+  &:focus {
+    outline: none;
+    border: 1px solid ${({ theme }) => theme.colors.highlight_blue};
+  }
+`;
+
+export default TextInput;

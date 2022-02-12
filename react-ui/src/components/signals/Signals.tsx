@@ -23,8 +23,7 @@ const Signals = () => {
   return (
     <>
       {open && (
-        <BaseModal handler={() => submit()}>
-          <p>Some content</p>
+        <BaseModal title="Create your Secret" handler={() => submit()}>
           <CreateSignal />
         </BaseModal>
       )}

@@ -18,4 +18,5 @@ const BaseContainer = styled.div`
   border-left: 2px dashed #8080803d;
   border-right: 2px dashed #8080803d;
 `;
+
 export { BaseContainer };

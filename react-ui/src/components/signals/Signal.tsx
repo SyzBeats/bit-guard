@@ -62,27 +62,9 @@ const Wrapper = styled.div`
   position: relative;
   transition: all 0.2s ease-in-out;
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 0.4rem;
-    height: 100%;
-    transform: scaleX(0);
-    transition: transform 0.2s ease-in-out;
-    transform-origin: left;
-    border-top-left-radius: 0.55rem;
-    border-bottom-left-radius: 0.55rem;
-    background: ${({ theme }) => theme.colors.highlight_blue};
-  }
-
   &:hover {
     box-shadow: ${({ theme }) => theme.shadows.depth_2};
-
-    &::after {
-      transform: scaleX(1);
-    }
+    background: #006eb50f;
   }
 `;
 
