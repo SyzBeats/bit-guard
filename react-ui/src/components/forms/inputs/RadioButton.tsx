@@ -29,8 +29,8 @@ const Wrapper = styled.span<WrapperProps>`
   align-items: center;
   gap: 0.5rem;
   padding: 2rem 1rem;
-  background: ${({ checked }) => (checked ? '#f8f8f8' : '#f2f2f2')};
-  color: ${({ checked }) => (checked ? '#222' : '#999')};
+  background: ${({ checked }) => (checked ? 'var(--color-light)' : 'var(--color-light--dimmed)')};
+  color: ${({ checked }) => (checked ? 'var(--color-bg)' : 'var(--color-grey--light)')};
   border: ${({ checked, theme }) => (checked ? `2px solid ${theme.colors.highlight_blue}` : '2px solid transparent')};
   border-radius: 0.5rem;
 

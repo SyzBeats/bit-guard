@@ -2,8 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap');
 /*=========== BASE STYLES =============*/
 :root {
-  --color-green: #2cda00;
   --color-bg: #021a21;
+  --color-green: #2cda00;
+  --color-green--light: #dff0df;
+  --color-red--light: #f2dede;
+  --color-blue--light: #c5f0f3;
+
+  --color-grey--dark: #494949;
+  --color-grey--light: #999;
+
+  --color-light: #f8f8f8;
+  --color-light--dimmed: #f2f2f2;
 }
 
 *,

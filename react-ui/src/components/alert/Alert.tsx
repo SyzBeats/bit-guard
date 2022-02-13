@@ -34,15 +34,15 @@ const AlertBase = styled.div`
 `;
 
 const AlertSuccess = styled(AlertBase)`
-  background-color: #dff0df;
+  background-color: var(--color-green--light);
 `;
 
 const AlertError = styled(AlertBase)`
-  background-color: #f2dede;
+  background-color: var(--color-red--light);
 `;
 
 const AlertInfo = styled(AlertBase)`
-  background-color: #c5f0f3;
+  background-color: var(--color-blue--light);
 `;
 
 export { Alert };

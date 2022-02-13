@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useCreateSecretFormState, useSignalState } from '../../zustand/store';
 import { FlexGridEqual } from '../layout/grids/FlexGrid';
 import { FlexGridItem } from '../layout/grids/FlexGridItem';
+import { ButtonWrapper } from '../styled/buttons/ButtonWrapper';
 import HorizontalToggle from './controls/HorizontalToggle';
 import { TextArea } from './inputs/TextArea';
 import TextInput from './inputs/TextInput';
@@ -34,7 +35,11 @@ const CreateSignal = () => {
         <TextArea label="content" name="content" value={content} onChange={(e) => setContent(e.target.value)} />
       </FlexGridEqual>
 
-      <button onClick={(e) => handleSubmit(e)}>Add Signal</button>
+      <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">
+        <ButtonWrapper>
+          <button onClick={(e) => handleSubmit(e)}>Add Signal</button>
+        </ButtonWrapper>
+      </FlexGridEqual>
     </Wrapper>
   );
 };

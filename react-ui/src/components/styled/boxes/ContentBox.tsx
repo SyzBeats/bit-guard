@@ -8,12 +8,7 @@ interface ContextBoxInterface {
   borderColor?: string;
 }
 
-const ContentBox = ({
-  title,
-  children,
-  bordered = false,
-  borderColor = 'light',
-}: ContextBoxInterface) => {
+const ContentBox = ({ title, children, bordered = false, borderColor = 'light' }: ContextBoxInterface) => {
   return (
     <Wrapper borderColor={borderColor} bordered={bordered}>
       <Title>{title}</Title>
@@ -41,13 +36,11 @@ const Wrapper = styled.div<WrapperProps>`
   min-height: 15rem;
   max-height: 50vh;
   background: ${({ theme }) => theme.colors.white};
-  color: #494949;
+  color: var(--color-grey--dark);
 
   border-top: ${({ bordered }) => (bordered ? `.6rem solid` : 'none')};
   border-color: ${({ theme, borderColor }) =>
-    borderColor === 'light'
-      ? `${theme.colors.highlight_iceblue}`
-      : `${theme.colors.highlight_blue}`};
+    borderColor === 'light' ? `${theme.colors.highlight_iceblue}` : `${theme.colors.highlight_blue}`};
 
   // make box scrollable
   overflow-y: auto;
