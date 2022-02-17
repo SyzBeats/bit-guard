@@ -2,18 +2,7 @@ import create from 'zustand';
 import { AuthState, CreateSecretFormState, SignalState } from './interfaces';
 
 const dummyData = {
-  signals: [
-    {
-      id: '1',
-      title: 'Signal 1',
-      createdAt: '2020-01-01',
-    },
-    {
-      id: '2',
-      title: 'Signal 2',
-      createdAt: '2020-01-01',
-    },
-  ],
+  signals: [],
 };
 
 const useSignalState = create<SignalState>((set) => ({

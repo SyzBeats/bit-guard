@@ -21,8 +21,6 @@ function encryptAes256cbc(plainText: string, randomKey: boolean = false): Iencry
 
   const key = randomKey ? generateEncryptrionKey() : ENCRYPTION_KEY_256BIT;
 
-  console.log(key);
-
   // create a cipher
   const cipher = crypto.createCipheriv('aes-256-cbc', key, IV);
 

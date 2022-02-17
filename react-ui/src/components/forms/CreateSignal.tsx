@@ -1,5 +1,7 @@
+import { useMutation } from '@apollo/client';
 import React from 'react';
 import styled from 'styled-components';
+import { CREATE_SIGNAL } from '../../graphql/mutations/signal/mutation-create-signal';
 
 import { useCreateSecretFormState, useSignalState } from '../../zustand/store';
 import { FlexGridEqual } from '../layout/grids/FlexGrid';
@@ -11,11 +13,29 @@ import TextInput from './inputs/TextInput';
 
 const CreateSignal = () => {
   const addSignal = useSignalState((state) => state.addSignal);
+
   const { setContent, setTitle, title, content } = useCreateSecretFormState();
+
+  const [createSignal] = useMutation(CREATE_SIGNAL, {
+    onCompleted: ({ createSignal }) => {
+      console.log(createSignal);
+      const { id, title, link, createdAt } = createSignal;
+      addSignal({ id, title, createdAt, link: link.content });
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addSignal({ id: `${Math.random()}`, title: 'Some signal', createdAt: Date.now() });
+
+    createSignal({
+      variables: {
+        title,
+        content,
+      },
+    });
   };
 
   return (

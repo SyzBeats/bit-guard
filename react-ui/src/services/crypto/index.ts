@@ -22,6 +22,7 @@ async function encryptAES128GCM(content: string) {
     );
 
     const iv = crypto.getRandomValues(new Uint8Array(12));
+
     // return the encrypted content
     const encrypted = await crypto.subtle.encrypt(
       {
@@ -50,11 +51,7 @@ async function encryptAES128GCM(content: string) {
  * @param iv the initialization vector
  * @returns  the decrypted content
  */
-async function decryptAES128GCM(
-  key: ArrayBuffer,
-  encrypted: Uint8Array,
-  iv: Uint8Array,
-) {
+async function decryptAES128GCM(key: ArrayBuffer, encrypted: Uint8Array, iv: Uint8Array) {
   try {
     const keyObject = await crypto.subtle.importKey(
       'raw',

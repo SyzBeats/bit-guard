@@ -8,7 +8,7 @@ interface MessageToken {
 
 interface IcreateMessageLinkOutput {
   content: string;
-  expiry: Date | null;
+  expiry?: Date | null;
 }
 
 interface IDeleteLinkOutput {
@@ -21,7 +21,10 @@ interface IcreateSignalLinkOutput {
 }
 
 interface ICreateSignalOutput {
-  content: string;
+  title: string;
+  id: string;
+  createdAt: Date;
+  link: IcreateSignalLinkOutput;
 }
 
 interface IencryptAes256cbcOutput {
@@ -30,11 +33,4 @@ interface IencryptAes256cbcOutput {
   key: string;
 }
 
-export {
-  MessageToken,
-  IcreateMessageLinkOutput,
-  IcreateSignalLinkOutput,
-  ICreateSignalOutput,
-  IDeleteLinkOutput,
-  IencryptAes256cbcOutput,
-};
+export { MessageToken, IcreateMessageLinkOutput, IcreateSignalLinkOutput, ICreateSignalOutput, IDeleteLinkOutput, IencryptAes256cbcOutput };

@@ -36,9 +36,10 @@ type Message {
 
 type Signal {
   id: ID!
-  content: String!
   title: String!
-  link: Link!
+  link: Link
+  content: String
+  createdAt: String
 }
 
 type User {

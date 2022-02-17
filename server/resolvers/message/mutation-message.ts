@@ -77,7 +77,12 @@ const MessageMutation = {
         throw new Error('Link could not be created');
       }
 
-      return link;
+      return {
+        id: signal.id,
+        title: signal.title,
+        createdAt: signal.createdAt,
+        link,
+      };
     } catch (error) {
       return error;
     }

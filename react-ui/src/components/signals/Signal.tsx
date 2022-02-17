@@ -37,7 +37,7 @@ const Signal = ({ signal }: Iprops) => {
         </div>
         <div>
           <MessageTitle>Created at: </MessageTitle>
-          <MessageContentText>{new Date(createdAt).toLocaleDateString()}</MessageContentText>
+          <MessageContentText>{new Date(parseInt(createdAt, 10)).toLocaleString()}</MessageContentText>
         </div>
       </MessageContent>
       <MessageActions>

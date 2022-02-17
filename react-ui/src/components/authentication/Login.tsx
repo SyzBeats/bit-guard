@@ -28,7 +28,12 @@ const Login = () => {
   };
 
   const [loginQuery, { loading, data, error }] = useLazyQuery(LOGIN_USER, {
-    onCompleted: () => {
+    onCompleted: (data) => {
+      if (data.loginUser.token) {
+        localStorage.setItem('token', data.loginUser.token);
+        window.location.href = '/dashboard';
+      }
+
       resetForm();
     },
     onError: (error) => {
