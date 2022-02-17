@@ -28,6 +28,7 @@ const MessageMutation = {
       // create message with connection to owner in database
       const message = await prisma.message.create({
         data: {
+          title: data.title,
           content: `${encrypted}_IV_${IV}`,
           owner: { connect: { id: (token as any).id } },
         },
@@ -52,6 +53,7 @@ const MessageMutation = {
       const signal = await prisma.signal.create({
         data: {
           content: `${encrypted}_IV_${IV}`,
+          title: data.title,
           owner: { connect: { id: (token as any).id } },
         },
       });

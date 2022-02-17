@@ -20,7 +20,7 @@ type Mutation {
   deleteLink(data: LinkWhereUniqueInput!): Link
 }
 
-# custom types
+# ================== custom types
 
 type Link {
   content: String!
@@ -30,13 +30,14 @@ type Link {
 type Message {
   id: ID!
   content: String!
-  # create resolver
+  title: String!
   links: [Link!]
 }
 
 type Signal {
   id: ID!
-  # create resolver
+  content: String!
+  title: String!
   link: Link!
 }
 
@@ -44,7 +45,6 @@ type User {
   id: ID!
   email: String!
   name: String
-  # create resolver
   messages: [Message!]
 }
 
@@ -58,7 +58,7 @@ type AuthPayload {
   token: String!
 }
 
-# input types
+# =================== input types
 
 input UserCreateInput {
   email: String!
@@ -78,6 +78,7 @@ input KeyCreateInput {
 
 input MessageCreateInput {
   content: String!
+  title: String!
 }
 
 input LinkCreateInput {

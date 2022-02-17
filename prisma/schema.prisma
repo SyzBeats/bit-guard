@@ -24,16 +24,28 @@ model Message {
   id        String   @id @default(uuid())
   userId    String
   owner     User     @relation(fields: [userId], references: [id])
+  title     String
   content   String
   links     Link[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
+// signals will not have links attached as it should not be stored
 model Signal {
   id        String   @id @default(uuid())
   userId    String
   owner     User     @relation(fields: [userId], references: [id])
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// public signals will be available also to unauthenticated users
+model PublicSignal {
+  id        String   @id @default(uuid())
+  title     String
   content   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
