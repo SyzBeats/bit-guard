@@ -41,7 +41,8 @@ const Area = styled.textarea`
   resize: none;
 
   font-family: inherit;
-  font-weight: 300;
+  font-weight: 400;
+  font-size: 1.4rem;
 
   // change outline on focus
   &:focus {

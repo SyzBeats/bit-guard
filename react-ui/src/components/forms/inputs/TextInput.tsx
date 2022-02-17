@@ -37,6 +37,10 @@ const Input = styled.input`
   border: 1px solid transparent;
   border-radius: 0.5rem;
 
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 1.4rem;
+
   // change outline on focus
   &:focus {
     outline: none;

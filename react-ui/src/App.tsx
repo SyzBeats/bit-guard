@@ -3,7 +3,7 @@ import { ApolloProvider, ApolloClient, createHttpLink } from '@apollo/client';
 import { ThemeProvider } from 'styled-components';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { cache } from './config/cache';
+import { cache } from './config/apollo/cache';
 import { theme } from './themes/theme-brand';
 import AppState from './context/app/AppState';
 import Dashboard from './components/dashboard/Dashboard';

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import { useLazyQuery } from '@apollo/client';
 import styled from 'styled-components';
 import Logo from '../styled/image/Logo';
 import { SecondaryTitle } from '../styled/typography';
 import { Input } from '../forms/inputs/Input';
 import { SubmitCircle } from '../forms/inputs/SubmitCircle';
+import { LOGIN_USER } from '../../graphql/queries/user/query-login';
+import { Alert } from '../alert/Alert';
 
 const Login = () => {
-  const [data, setData] = useState({
+  const [loginData, setLoginData] = useState({
     email: '',
     password: '',
   });
@@ -14,18 +17,38 @@ const Login = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setData((prev) => ({ ...prev, [name]: value }));
+    setLoginData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    console.log(data);
-
-    setData({
+  const resetForm = () => {
+    setLoginData({
       email: '',
       password: '',
     });
+  };
+
+  const [loginQuery, { loading, data, error }] = useLazyQuery(LOGIN_USER, {
+    onCompleted: () => {
+      resetForm();
+    },
+    onError: (error) => {
+      console.log(error.message);
+    },
+  });
+
+  const handleSubmit = (e) => {
+    try {
+      e.preventDefault();
+
+      loginQuery({
+        variables: {
+          email: loginData.email,
+          password: loginData.password,
+        },
+      });
+    } catch (error) {
+      console.error(`[ERROR] ${error.message}`);
+    }
   };
 
   return (
@@ -42,7 +65,7 @@ const Login = () => {
               required={true}
               type="text"
               changeHandler={(e) => handleChange(e)}
-              value={data.email}
+              value={loginData.email}
             />
           </label>
           <label>
@@ -51,13 +74,16 @@ const Login = () => {
               name="password"
               required={true}
               changeHandler={(e) => handleChange(e)}
-              value={data.password}
+              value={loginData.password}
               type="password"
               autocomplete="current-password"
             />
           </label>
           <SubmitCircle />
         </form>
+        {loading && <p>...loading</p>}
+        {error && <Alert message="Error" type="error" />}
+        {data && <Alert message="Success" type="success" />}
       </LoginBox>
     </Wrapper>
   );
@@ -77,7 +103,8 @@ const Wrapper = styled.div`
 
 const LoginBox = styled.div`
   width: 40rem;
-  height: 50rem;
+  min-height: 50rem;
+  height: auto;
   background: ${({ theme }) => theme.colors.white};
   border-radius: 0.5rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);

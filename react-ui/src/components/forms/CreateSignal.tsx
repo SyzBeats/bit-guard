@@ -25,10 +25,6 @@ const CreateSignal = () => {
         <FlexGridItem alignSelf="stretch" flex="1">
           <TextInput label="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} />
         </FlexGridItem>
-
-        <FlexGridItem alignSelf="stretch" flex="1">
-          <TextInput label="other label" name="title2" value="Some signal" onChange={(e) => null} />
-        </FlexGridItem>
       </FlexGridEqual>
 
       <FlexGridEqual gap="1.5rem" justifyContent="stretch">
