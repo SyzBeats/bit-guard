@@ -7,6 +7,7 @@ const dummyData = {
 
 const useSignalState = create<SignalState>((set) => ({
   signals: dummyData.signals,
+  setSignals: (signals) => set((state) => ({ ...state, signals })),
   addSignal: (signal) => set((state) => ({ ...state, signals: [...state.signals, signal] })),
   removeSignal: (signal) => set((state) => ({ ...state, signals: state.signals.filter((s) => s.id !== signal.id) })),
 }));

@@ -28,9 +28,9 @@ const Login = () => {
   };
 
   const [loginQuery, { loading, data, error }] = useLazyQuery(LOGIN_USER, {
-    onCompleted: (data) => {
-      if (data.loginUser.token) {
-        localStorage.setItem('token', data.loginUser.token);
+    onCompleted: ({ loginUser }) => {
+      if (loginUser?.token) {
+        localStorage.setItem('token', loginUser.token);
         window.location.href = '/dashboard';
       }
 

@@ -59,6 +59,19 @@ const MessageQuery = {
       return error;
     }
   },
+
+  async signalsByUser(parent, args, ctx: Context) {
+    try {
+      const { prisma, req } = ctx;
+      const user = authenticate(req);
+
+      return await prisma.signal.findMany({
+        where: { userId: (user as any).id },
+      });
+    } catch (error) {
+      return error;
+    }
+  },
 };
 
 export { MessageQuery };

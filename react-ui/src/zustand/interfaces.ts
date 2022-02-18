@@ -1,5 +1,6 @@
 interface SignalState {
   signals: any[];
+  setSignals: (signals: any[]) => void;
   addSignal: (signal: any) => void;
   removeSignal: (signal: any) => void;
 }

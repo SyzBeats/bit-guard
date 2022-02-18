@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, Trash } from 'react-feather';
 import styled from 'styled-components';
 import { useSignalState } from '../../zustand/store';
-import { Signals } from './Signals';
 
 interface Iprops {
   signal: {
@@ -42,7 +41,6 @@ const Signal = ({ signal }: Iprops) => {
       </MessageContent>
       <MessageActions>
         <Trash size={20} color="#01141F" onClick={() => handleDelete()} />
-        <Link size={20} color="#01141F" />
       </MessageActions>
     </Wrapper>
   );

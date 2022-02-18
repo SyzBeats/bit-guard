@@ -8,9 +8,9 @@ const MessageGrid = ({ children }) => {
 const Grid = styled.div`
   display: grid;
 
-  gap: 2rem;
+  gap: 1.5rem;
 
-  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
 `;
 
 export { MessageGrid };

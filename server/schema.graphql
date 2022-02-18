@@ -1,6 +1,7 @@
 type Query {
   # message
   messagesByUser: [Message!]!
+  signalsByUser: [Signal!]!
   messageById(data: MessageWhereUniqueInput!): Message
   # user
   loginUser(data: UserLoginInput!): AuthPayload!
