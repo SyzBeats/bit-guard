@@ -3,7 +3,9 @@
   "compilerOptions": {
     "lib": ["ESNext"],
     "strictNullChecks": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "outDir": "./build",
+    "removeComments": true
   },
-  "include": ["./server/**/*"]
+  "include": ["./**/*"]
 }

@@ -14,5 +14,9 @@ prisma/migrations/*
 frontend/node_modules
 react-ui/node_modules
 
+# builds
+react-ui/build
+server/build
+
 #workspace
 .vscode

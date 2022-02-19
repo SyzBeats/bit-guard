@@ -34,7 +34,8 @@
     "dev:server": "nodemon",
     "dev:client": "cd react-ui/ && npm run start",
     "install:client": "cd react-ui/ && npm install",
-    "install:server": "npm install"
+    "install:server": "npm install",
+    "build:server": "tsc --project server/tsconfig.json"
   },
   "keywords": [],
   "author": "Simeon Zimmermann - SZ WEB DEVELOPMENT",
