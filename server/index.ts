@@ -12,9 +12,16 @@ import options from './config/options';
 // routes
 import __public from './rest-routes/public';
 
+// constants
 const PORT = process.env.PORT || options.port;
 const app = express();
 
+// middleware
+app.use(
+  express.json({
+    limit: '1mb',
+  }),
+);
 app.use(cors(options.cors));
 app.use('/public', __public);
 
