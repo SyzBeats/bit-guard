@@ -1,4 +1,7 @@
+import { ApolloError, UserInputError } from 'apollo-server-express';
 import * as bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import { JWT_TOKEN_SIGNATURE } from '../../config/keys';
 import { Context } from '../../context';
 
 const UserMutation = {
@@ -13,15 +16,32 @@ const UserMutation = {
 
       // check if password is > 8 chars
       if (data.password.length < 8) {
-        throw new Error('The password is too short');
+        throw new UserInputError('The password is too short');
       }
+
       // hashing to prevent cleartext save
       const hash = await bcrypt.hash(data.password, 12);
-      data.password = hash;
 
-      return await prisma.user.create({ data });
+      // pre save adjustments to the data
+      data.password = hash;
+      data.email = data.email.toLowerCase();
+
+      const user = await prisma.user.create({ data });
+
+      const userCopy = {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+      };
+
+      // sign token - after RFC7515
+      const token = jwt.sign(userCopy, JWT_TOKEN_SIGNATURE, {
+        expiresIn: '8h',
+      });
+
+      return { token };
     } catch (error) {
-      return error;
+      return new ApolloError('Something went wrong signing up. Please contact the administrator');
     }
   },
 
@@ -32,7 +52,8 @@ const UserMutation = {
     try {
       const { prisma } = ctx;
       const { id } = args;
-      const deleted = prisma.user.delete({ where: { id } });
+
+      const deleted = await prisma.user.delete({ where: { id } });
 
       if (!deleted) {
         throw new Error('This user does not exist');
@@ -40,7 +61,7 @@ const UserMutation = {
 
       return deleted;
     } catch (error) {
-      return error;
+      return new ApolloError('Sorry! We were unable to delete this user');
     }
   },
 };

@@ -6,6 +6,7 @@ import { CREATE_SIGNAL } from '../../graphql/mutations/signal/mutation-create-si
 import { useCreateSecretFormState, useSignalState } from '../../zustand/store';
 import { FlexGridEqual } from '../layout/grids/FlexGrid';
 import { FlexGridItem } from '../layout/grids/FlexGridItem';
+import { DisplayLink } from '../signals/DisplayLink';
 import { ButtonWrapper } from '../styled/buttons/ButtonWrapper';
 import HorizontalToggle from './controls/HorizontalToggle';
 import { TextArea } from './inputs/TextArea';
@@ -14,13 +15,13 @@ import TextInput from './inputs/TextInput';
 const CreateSignal = () => {
   const addSignal = useSignalState((state) => state.addSignal);
 
-  const { setContent, setTitle, title, content } = useCreateSecretFormState();
+  const { setContent, setTitle, title, content, link, setLink } = useCreateSecretFormState();
 
-  const [createSignal] = useMutation(CREATE_SIGNAL, {
+  const [createSignalMutation] = useMutation(CREATE_SIGNAL, {
     onCompleted: ({ createSignal }) => {
-      console.log(createSignal);
       const { id, title, link, createdAt } = createSignal;
       addSignal({ id, title, createdAt, link: link.content });
+      setLink(link.content);
     },
     onError: (error) => {
       console.log(error);
@@ -30,7 +31,7 @@ const CreateSignal = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    createSignal({
+    createSignalMutation({
       variables: {
         title,
         content,
@@ -49,6 +50,10 @@ const CreateSignal = () => {
 
       <FlexGridEqual gap="1.5rem" justifyContent="stretch">
         <TextArea label="content" name="content" value={content} onChange={(e) => setContent(e.target.value)} />
+      </FlexGridEqual>
+
+      <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">
+        {!!link && <DisplayLink link={link} />}
       </FlexGridEqual>
 
       <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">

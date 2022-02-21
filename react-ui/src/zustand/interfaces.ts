@@ -15,8 +15,10 @@ interface CreateSecretFormState {
   selection: 'signal' | 'message';
   content: string;
   title: string;
+  link: string;
   setSelection: (selection: 'signal' | 'message') => void;
   setContent: (content: string) => void;
   setTitle: (title: string) => void;
+  setLink: (link: string) => void;
 }
 export { SignalState, AuthState, CreateSecretFormState };

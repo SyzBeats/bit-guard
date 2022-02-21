@@ -22,9 +22,11 @@ const useCreateSecretFormState = create<CreateSecretFormState>((set) => ({
   selection: 'signal',
   content: '',
   title: '',
+  link: '',
   setSelection: (selection) => set((state) => ({ ...state, selection })),
   setContent: (content) => set((state) => ({ ...state, content })),
   setTitle: (title) => set((state) => ({ ...state, title })),
+  setLink: (link) => set((state) => ({ ...state, link })),
 }));
 
 export { useSignalState, useAuthStore, useCreateSecretFormState };

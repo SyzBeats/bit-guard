@@ -9,6 +9,9 @@ const Navigation = () => {
       <LoginLink to="/login">
         login <LogIn />
       </LoginLink>
+      <SignupLink to="/signup">
+        signup <LogIn />
+      </SignupLink>
     </HeaderNavigation>
   );
 };
@@ -17,15 +20,15 @@ const HeaderNavigation = styled.nav`
   position: fixed;
   top: 2rem;
   right: 2rem;
-
   color: #fff;
   z-index: 100;
+
+  display: flex;
+  gap: 1rem;
 `;
 
-const LoginLink = styled(Link)`
+const NavLink = styled(Link)`
   padding: 0.75rem;
-  background: ${({ theme }) => theme.colors.blue_dark};
-  color: #fff;
   text-decoration: none;
   border-radius: 0.3rem;
 
@@ -34,4 +37,15 @@ const LoginLink = styled(Link)`
   justify-content: center;
   gap: 1rem;
 `;
+
+const LoginLink = styled(NavLink)`
+  background: ${({ theme }) => theme.colors.blue_dark};
+  color: #fff;
+`;
+
+const SignupLink = styled(NavLink)`
+  background: ${({ theme }) => theme.colors.blue_dark};
+  color: ${({ theme }) => theme.colors.highlight_iceblue};
+`;
+
 export default Navigation;

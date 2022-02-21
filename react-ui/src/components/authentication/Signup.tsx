@@ -5,9 +5,12 @@ import Logo from '../styled/image/Logo';
 import { SecondaryTitle } from '../styled/typography';
 import { Input } from '../forms/inputs/Input';
 import { SubmitCircle } from '../forms/inputs/SubmitCircle';
+import { useMutation } from '@apollo/client';
+import { SIGNUP_USER } from '../../graphql/mutations/user/mutation-signup-user';
 
 const SignUp = () => {
   const [data, setData] = useState({
+    name: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -16,6 +19,32 @@ const SignUp = () => {
   const [alert, setAlert] = useState({
     type: '',
     message: '',
+  });
+
+  const resetFields = () => {
+    setData({
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    });
+  };
+
+  const [signup] = useMutation(SIGNUP_USER, {
+    onCompleted: ({ signupUser }) => {
+      if (signupUser?.token) {
+        localStorage.setItem('token', signupUser.token);
+        window.location.href = '/dashboard';
+      }
+
+      resetFields();
+    },
+    onError: (error) => {
+      setAlert({
+        type: 'error',
+        message: error.message,
+      });
+    },
   });
 
   const handleChange = (e) => {
@@ -34,7 +63,9 @@ const SignUp = () => {
       });
 
       return;
-    } else if (data.password.length < 8) {
+    }
+
+    if (data.password.length < 8) {
       setAlert({
         type: 'error',
         message: 'Password must be at least 8 characters',
@@ -43,10 +74,12 @@ const SignUp = () => {
       return;
     }
 
-    setData({
-      email: '',
-      password: '',
-      confirmPassword: '',
+    signup({
+      variables: {
+        email: data.email,
+        password: data.password,
+        name: data.name,
+      },
     });
   };
 
@@ -56,6 +89,10 @@ const SignUp = () => {
         <Logo />
         <form method="POST" onSubmit={(e) => handleSubmit(e)}>
           <SecondaryTitle color="dark">Create your account</SecondaryTitle>
+          <label>
+            Name
+            <Input name="name" type="text" changeHandler={(e) => handleChange(e)} value={data.name} required={true} autocomplete="name" />
+          </label>
           <label>
             Email
             <Input

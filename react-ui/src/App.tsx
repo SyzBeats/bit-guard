@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { cache } from './config/apollo/cache';
 import { theme } from './themes/theme-brand';
 import AppState from './context/app/AppState';
-import Dashboard from './components/dashboard/Dashboard';
+import Dashboard from './components/pages/dashboard/Dashboard';
 import { LandingPage } from './components/pages/landing/LandingPage';
 import './style/App.css';
 import Login from './components/authentication/Login';

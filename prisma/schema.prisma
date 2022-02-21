@@ -11,12 +11,13 @@ generator client {
 }
 
 model User {
-  id       String    @id @default(uuid())
-  email    String    @unique
-  password String
-  name     String
-  Message  Message[]
-  Signal   Signal[]
+  id        String    @id @default(uuid())
+  email     String    @unique
+  password  String
+  name      String
+  confirmed Boolean   @default(false)
+  Message   Message[]
+  Signal    Signal[]
 }
 
 // message contains hashed content

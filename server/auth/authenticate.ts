@@ -9,6 +9,7 @@ import { JWT_TOKEN_SIGNATURE } from '../config/keys';
  */
 const authenticate = (req, requireAuth = true) => {
   const authHeader = req.headers.authorization;
+
   /**
    * The token will be transmitted as <Bearer> token, so the "Bearer" is stripped off
    * to gain the actual token value and verify it
