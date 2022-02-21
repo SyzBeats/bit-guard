@@ -2,7 +2,7 @@
   "name": "pw-warrior",
   "version": "1.0.1",
   "description": "",
-  "main": "prisma/index.ts",
+  "main": "server/index.ts",
   "dependencies": {
     "@prisma/client": "^3.8.1",
     "apollo-server": "^3.6.2",
@@ -31,11 +31,13 @@
     "typescript": "^4.5.5"
   },
   "scripts": {
+    "dev:client": "npm run start --prefix ./react-ui",
     "dev:server": "nodemon",
-    "dev:client": "cd react-ui/ && npm run start",
-    "install:client": "cd react-ui/ && npm install",
+    "install:client": "npm install --prefix ./react-ui",
     "install:server": "npm install",
-    "build:server": "tsc --project server/tsconfig.json"
+    "build:client": "npm run build --prefix ./react-ui",
+    "build:server": "tsc --project server/tsconfig.json && cp ./server/schema.graphql ./server/build/schema.graphql",
+    "start:server": "node server/build/index.js"
   },
   "keywords": [],
   "author": "Simeon Zimmermann - SZ WEB DEVELOPMENT",

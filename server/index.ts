@@ -1,8 +1,7 @@
 /* eslint-disable wrap-iife */
 import * as fs from 'fs';
-import { ApolloServer, gql } from 'apollo-server-express';
-import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
 import express from 'express';
+import { ApolloServer, gql } from 'apollo-server-express';
 import cors from 'cors';
 
 import { createContext } from './context';
@@ -39,7 +38,6 @@ const server = new ApolloServer({
   `,
   resolvers,
   context: ({ req }) => createContext(req),
-  plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
 });
 
 (async function start() {
