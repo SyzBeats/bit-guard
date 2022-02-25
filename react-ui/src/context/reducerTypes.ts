@@ -1,1 +1,0 @@
-export const USER_LOGGEDIN = 'USER_LOGGEDIN';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Trash } from 'react-feather';
+import { Trash } from 'react-feather';
 import styled from 'styled-components';
 import { useSignalState } from '../../zustand/store';
 
@@ -14,17 +14,14 @@ interface Iprops {
 const Signal = ({ signal }: Iprops) => {
   const { id, title, createdAt } = signal;
 
-  const { removeSignal } = useSignalState();
+  const signalState = useSignalState((state) => ({ removeSignal: state.removeSignal }));
 
-  /**
-   * @description handles the deletion of signals
-   */
   const handleDelete = (): void => {
     if (!id) {
       return;
     }
 
-    removeSignal(signal);
+    signalState.removeSignal(signal);
   };
 
   return (
@@ -80,6 +77,7 @@ const MessageActions = styled.div`
   align-items: flex-end;
   flex-direction: column;
   gap: 0.75rem;
+
   svg {
     cursor: pointer;
   }
