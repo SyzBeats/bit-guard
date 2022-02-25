@@ -3,10 +3,10 @@ import { useLazyQuery } from '@apollo/client';
 import styled from 'styled-components';
 import Logo from '../styled/image/Logo';
 import { SecondaryTitle } from '../styled/typography';
-import { Input } from '../forms/inputs/Input';
-import { SubmitCircle } from '../forms/inputs/SubmitCircle';
+import { Input } from '../ui/forms/inputs/Input';
+import { SubmitCircle } from '../ui/forms/inputs/SubmitCircle';
 import { LOGIN_USER } from '../../graphql/queries/user/query-login';
-import { Alert } from '../alert/Alert';
+import { Alert } from '../ui/alert/Alert';
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
@@ -28,14 +28,15 @@ const Login = () => {
   };
 
   const [loginQuery, { loading, data, error }] = useLazyQuery(LOGIN_USER, {
-    onCompleted: ({ loginUser }) => {
-      if (loginUser?.token) {
-        localStorage.setItem('token', loginUser.token);
+    onCompleted: (res) => {
+      if (res?.loginUser?.token) {
+        localStorage.setItem('token', res.loginUser.token);
         window.location.href = '/dashboard';
       }
 
       resetForm();
     },
+
     onError: (error) => {
       console.log(error.message);
     },
@@ -87,7 +88,7 @@ const Login = () => {
           <SubmitCircle />
         </form>
         {loading && <p>...loading</p>}
-        {error && <Alert message="Error" type="error" />}
+        {error && <Alert message={error.message} type="error" />}
         {data && <Alert message="Success" type="success" />}
       </LoginBox>
     </Wrapper>

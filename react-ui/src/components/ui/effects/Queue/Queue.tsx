@@ -32,12 +32,7 @@ const Queue = () => {
       <Wrapper>
         <ShadowTop />
         <TransitionContainer>
-          {items.map(
-            (item, i) =>
-              i !== items.length - 1 && (
-                <QueueItem key={Math.random()} index={i} content={item} />
-              ),
-          )}
+          {items.map((item, i) => i !== items.length - 1 && <QueueItem key={Math.random()} index={i} content={item} />)}
         </TransitionContainer>
         <ShadowBottom />
       </Wrapper>

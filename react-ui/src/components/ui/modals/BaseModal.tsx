@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import { useClickaway } from '../../hooks/useClickaway';
+import { useClickaway } from '../../../hooks/useClickaway';
 import { X } from 'react-feather';
 
 interface ModalProps {

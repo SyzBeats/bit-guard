@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Queue } from '../../../effects/Queue/Queue';
+import { Queue } from '../../../ui/effects/Queue/Queue';
 import Button from '../../../styled/buttons/Button';
 import Logo from '../../../styled/image/Logo';
 import { MainTitle, SecondaryTitle } from '../../../styled/typography';
@@ -33,10 +33,7 @@ const HeroLanding = () => {
                 The safe way to share your secrets
               </SecondaryTitle>
 
-              <Button
-                content="How it works"
-                onClick={() => scrollToElement("[data-anker='how-it-works']")}
-              />
+              <Button content="How it works" onClick={() => scrollToElement("[data-anker='how-it-works']")} />
             </GridRight>
           </Grid>
         </FlexBox>

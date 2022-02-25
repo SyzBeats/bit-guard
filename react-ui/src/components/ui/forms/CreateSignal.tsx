@@ -1,13 +1,13 @@
 import { useMutation } from '@apollo/client';
 import React from 'react';
 import styled from 'styled-components';
-import { CREATE_SIGNAL } from '../../graphql/mutations/signal/mutation-create-signal';
+import { CREATE_SIGNAL } from '../../../graphql/mutations/signal/mutation-create-signal';
 
-import { useCreateSecretFormState, useSignalState } from '../../zustand/store';
-import { FlexGridEqual } from '../layout/grids/FlexGrid';
-import { FlexGridItem } from '../layout/grids/FlexGridItem';
-import { DisplayLink } from '../signals/DisplayLink';
-import { ButtonWrapper } from '../styled/buttons/ButtonWrapper';
+import { useCreateSecretFormState, useSignalState } from '../../../zustand/store';
+import { FlexGridEqual } from '../../layout/grids/FlexGrid';
+import { FlexGridItem } from '../../layout/grids/FlexGridItem';
+import { DisplayLink } from '../../signals/DisplayLink';
+import { ButtonWrapper } from '../../styled/buttons/ButtonWrapper';
 import HorizontalToggle from './controls/HorizontalToggle';
 import { TextArea } from './inputs/TextArea';
 import TextInput from './inputs/TextInput';

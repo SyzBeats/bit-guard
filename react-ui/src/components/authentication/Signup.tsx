@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Alert } from '../alert/Alert';
+import { Alert } from '../ui/alert/Alert';
 import Logo from '../styled/image/Logo';
 import { SecondaryTitle } from '../styled/typography';
-import { Input } from '../forms/inputs/Input';
-import { SubmitCircle } from '../forms/inputs/SubmitCircle';
+import { Input } from '../ui/forms/inputs/Input';
+import { SubmitCircle } from '../ui/forms/inputs/SubmitCircle';
 import { useMutation } from '@apollo/client';
 import { SIGNUP_USER } from '../../graphql/mutations/user/mutation-signup-user';
 

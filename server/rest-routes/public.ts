@@ -46,7 +46,7 @@ router.get('/link/:cipher', async (req, res) => {
     // get the Message content
     const decryptedMessage = decryptAes256cbc(message.content);
 
-    return res.status(200).json({ message: decryptedMessage });
+    return res.status(200).send(decryptedMessage);
   } catch (error) {
     return res.status(500).json({
       message: `Something went horribly wrong here. We are sorry! Error: ${error.message}`,
@@ -89,7 +89,14 @@ router.get('/signal/:id', async (req, res) => {
 
     const decryptedMessage = decryptAes256cbc(signal.content, key?.toString());
 
-    return res.status(200).json({ message: decryptedMessage });
+    // delete the signal
+    await client.signal.delete({
+      where: {
+        id,
+      },
+    });
+
+    return res.status(200).send(decryptedMessage);
   } catch (error) {
     return res.status(500).json({
       message: `Something went horribly wrong here. We are sorry! Error: ${error.message}`,

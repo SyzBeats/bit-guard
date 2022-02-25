@@ -1,6 +1,6 @@
 {
-	"watch": ["./server"],
-	"ext": "ts,json",
-	"ignore": [],
-	"exec": "ts-node ./server/index.ts"
+  "watch": ["./server"],
+  "ext": "ts,json",
+  "ignore": [],
+  "exec": "npx ts-node ./server/index.ts"
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Activity, Home, Lock, Sliders } from 'react-feather';
 import NavigationButton from '../buttons/NavigationButton';
-import Avatar from '../user/Avatar';
+import Avatar from '../../user/Avatar';
 import Notification from './Notification';
 
 const Sidebar = () => (
