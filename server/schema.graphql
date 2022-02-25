@@ -13,11 +13,15 @@ type Query {
 type Mutation {
   signupUser(data: UserCreateInput!): AuthPayload!
   deleteUser(data: UserWhereUniqueInput!): User
+
   createMessage(data: MessageCreateInput): Message!
-  createSignal(data: MessageCreateInput): Signal!
-  deleteMessage(data: MessageWhereUniqueInput!): Message
   createMessageLink(data: LinkCreateInput!): Link!
+  deleteMessage(data: MessageWhereUniqueInput!): Message
+
+  createSignal(data: MessageCreateInput): Signal!
   createSignalLink(data: SignalLinkCreateInput!): Link!
+  deleteSignal(data: MessageWhereUniqueInput!): Signal
+
   deleteLink(data: LinkWhereUniqueInput!): Link
 }
 

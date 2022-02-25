@@ -1,4 +1,5 @@
-import { Message } from '@prisma/client';
+import { Message, Signal } from '@prisma/client';
+import { ApolloError, UserInputError } from 'apollo-server-express';
 import { authenticate } from '../../auth/authenticate';
 import { Context } from '../../context';
 import { encryptAes256cbc } from '../../services/encryption';
@@ -59,7 +60,7 @@ const MessageMutation = {
       });
 
       if (!signal) {
-        throw new Error('Signal could not be created');
+        throw new ApolloError('Signal could not be created');
       }
 
       const linkPayload = {
@@ -74,7 +75,7 @@ const MessageMutation = {
       const link = await LinkMutation.createSignalLink(parent, linkPayload, ctx);
 
       if (!link) {
-        throw new Error('Link could not be created');
+        throw new ApolloError('Link could not be created');
       }
 
       return {
@@ -113,7 +114,26 @@ const MessageMutation = {
 
       return deleted;
     } catch (error) {
-      return error;
+      throw new UserInputError('[Error]: Something went wrong deleting this message');
+    }
+  },
+
+  async deleteSignal(parent, args, ctx: Context): Promise<Signal | null> {
+    try {
+      const { data } = args;
+      const { prisma, req } = ctx;
+
+      authenticate(req);
+
+      const deleted = await prisma.signal.delete({
+        where: {
+          id: data.id,
+        },
+      });
+
+      return deleted;
+    } catch (error) {
+      throw new UserInputError('[Error]: Something went wrong deleting this signal');
     }
   },
 };

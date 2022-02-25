@@ -1,7 +1,11 @@
 import React from 'react';
-import { Trash } from 'react-feather';
 import styled from 'styled-components';
+import { useMutation } from '@apollo/client';
+import { Trash } from 'react-feather';
+
+import dateService from '../../services/dates';
 import { useSignalState } from '../../zustand/store';
+import { DELETE_SIGNAL } from '../../graphql/mutations/signal/mutation-delete-signal';
 
 interface Iprops {
   signal: {
@@ -14,6 +18,19 @@ interface Iprops {
 const Signal = ({ signal }: Iprops) => {
   const { id, title, createdAt } = signal;
 
+  const [deleteSignal] = useMutation(DELETE_SIGNAL, {
+    onCompleted: (data) => {
+      if (!data?.deleteSignal?.id) {
+        console.error("[ERROR] Couldn't delete signal");
+      }
+
+      signalState.removeSignal(data?.deleteSignal?.id);
+    },
+    onError: (error) => {
+      console.error(error.message);
+    },
+  });
+
   const signalState = useSignalState((state) => ({ removeSignal: state.removeSignal }));
 
   const handleDelete = (): void => {
@@ -21,7 +38,11 @@ const Signal = ({ signal }: Iprops) => {
       return;
     }
 
-    signalState.removeSignal(signal);
+    const variables = { id };
+
+    deleteSignal({
+      variables,
+    });
   };
 
   return (
@@ -31,11 +52,13 @@ const Signal = ({ signal }: Iprops) => {
           <MessageTitle>Title: </MessageTitle>
           <MessageContentText>{title}</MessageContentText>
         </div>
+
         <div>
           <MessageTitle>Created at: </MessageTitle>
-          <MessageContentText>{new Date(parseInt(createdAt, 10)).toLocaleString()}</MessageContentText>
+          <MessageContentText>{dateService.parseStringToLocaleDate(createdAt)}</MessageContentText>
         </div>
       </MessageContent>
+
       <MessageActions>
         <Trash size={20} color="#01141F" onClick={() => handleDelete()} />
       </MessageActions>
