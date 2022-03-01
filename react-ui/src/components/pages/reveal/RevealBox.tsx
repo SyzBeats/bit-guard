@@ -22,6 +22,8 @@ const Content = styled.div`
   word-wrap: break-word;
 
   max-height: 30vh;
+  font-family: monospace;
+  letter-spacing: 0.1rem;
 `;
 
 export { RevealBox };

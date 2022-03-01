@@ -106,4 +106,54 @@ router.get('/signal/:id', async (req, res) => {
   }
 });
 
+/**
+ * @GET /public/signal/:id
+ * @description one time signals will be decrypted and destroyed
+ */
+router.get('/publicSignal/:id', async (req, res) => {
+  const client = new PrismaClient();
+
+  const { id } = req.params;
+  const { key } = req.query;
+
+  try {
+    // get the secret from the database
+    const signal = await client.publicSignal.findUnique({
+      where: {
+        id,
+      },
+      select: {
+        content: true,
+        id: true,
+        createdAt: true,
+      },
+    });
+
+    if (!signal) {
+      throw new Error('The signal does not exist');
+    }
+
+    if (typeof key !== 'string') {
+      return res.status(409).json({ message: 'The initialization vector is not a string' });
+    }
+
+    const decryptedMessage = decryptAes256cbc(signal.content, key?.toString());
+
+    // delete the signal
+    await client.publicSignal.delete({
+      where: {
+        id,
+      },
+    });
+
+    return res.status(200).json({ message: decryptedMessage });
+  } catch (error) {
+    return res.status(500).json({
+      message: `Something went horribly wrong here. We are sorry! Error: ${error.message}`,
+    });
+  } finally {
+    await client.$disconnect();
+  }
+});
+
 export default router;

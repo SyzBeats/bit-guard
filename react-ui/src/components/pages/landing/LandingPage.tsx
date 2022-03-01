@@ -11,6 +11,7 @@ import CallToAction from './CallToAction';
 import Footer from '../../layout/generic/footer/Footer';
 import HeroLanding from './hero/HeroLanding';
 import Navigation from './Navigation';
+import SignalBox from './signal/SignalBox';
 
 const LandingPage = () => {
   return (
@@ -24,7 +25,10 @@ const LandingPage = () => {
           <SecondaryTitle color="dark" textAlign="center">
             What <strong>.envite</strong> does for you
           </SecondaryTitle>
+
           <LandingPageIconGrid />
+
+          <SignalBox />
         </BaseContainer>
       </SectionGradientBase>
 

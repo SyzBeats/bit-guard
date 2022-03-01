@@ -54,7 +54,7 @@ const LinkMutation = {
   },
 
   // create a one time signal link that cannot be used again
-  async createSignalLink(parent, args): Promise<IcreateSignalLinkOutput> {
+  async createSignalLink(args, isPublic = false): Promise<IcreateSignalLinkOutput> {
     const { key, signalId } = args?.data;
 
     if (!key) {
@@ -65,8 +65,10 @@ const LinkMutation = {
       throw new Error('signalId is missing');
     }
 
+    const clientRoute = isPublic ? 'reveal/public' : 'reveal';
+
     return {
-      content: `${options.app.domain}/reveal/${signalId}/${key}`,
+      content: `${options.app.domain}/${clientRoute}/${signalId}/${key}`,
     };
   },
 

@@ -33,7 +33,7 @@ const HeroLanding = () => {
                 The safe way to share your secrets
               </SecondaryTitle>
 
-              <Button content="How it works" onClick={() => scrollToElement("[data-anker='how-it-works']")} />
+              <Button content="See the demo!" onClick={() => scrollToElement("[data-anker='how-it-works']")} />
             </GridRight>
           </Grid>
         </FlexBox>
@@ -69,7 +69,7 @@ const GridRight = styled.div`
 `;
 
 const Hero = styled.header`
-  min-height: 65vh;
+  min-height: 55vh;
   background-image: ${({ theme }) =>
     `radial-gradient(ellipse at 46% 30%, #EE82EE00 51%, #00BCD400 81%, #14BFCA1A 90%), radial-gradient(ellipse at 0% 0%, #00BCD400 32%, #14beca11 42%, #EE82EE00 49%), linear-gradient(to right, ${theme.colors.background}, ${theme.colors.blue_dark})`};
 

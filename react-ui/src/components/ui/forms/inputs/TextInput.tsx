@@ -25,7 +25,7 @@ const Wrapper = styled.span`
   flex-direction: column;
 
   label {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     font-weight: 300;
   }
 `;
@@ -33,7 +33,7 @@ const Wrapper = styled.span`
 const Input = styled.input`
   width: 100%;
   padding: 1rem;
-  background: #f8f8f8;
+  background: #f2f2f2;
   border: 1px solid transparent;
   border-radius: 0.5rem;
 

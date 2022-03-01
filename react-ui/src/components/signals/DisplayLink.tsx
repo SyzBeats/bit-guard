@@ -18,7 +18,7 @@ const DisplayLink = ({ link }: Props) => {
   return (
     <Container copied={copied}>
       <CopySection>
-        Message link: <Copy onClick={() => copyLinkToClipboard(link)} />
+        Secret Link: <Copy onClick={() => copyLinkToClipboard(link)} />
       </CopySection>
       <Wrapper>{link}</Wrapper>
     </Container>

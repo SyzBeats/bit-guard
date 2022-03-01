@@ -22,6 +22,15 @@ const SecondaryTitle = styled.h2<TitleType>`
   text-align: ${(props) => props.textAlign || 'left'};
 `;
 
+const SecondaryTitleBlue = styled.h2<TitleType>`
+  color: ${({ theme }) => theme.colors.highlight_blue};
+  font-size: 2.45rem;
+  line-height: 1.25;
+  letter-spacing: 1px;
+  margin: 2rem 0;
+  text-align: ${(props) => props.textAlign || 'left'};
+`;
+
 const TertiaryTitle = styled.h3`
   color: #fff;
   font-size: 1.55rem;
@@ -36,4 +45,4 @@ const DashboardSectionTitle = styled.h4`
   margin: 2rem 0;
 `;
 
-export { MainTitle, SecondaryTitle, TertiaryTitle, DashboardSectionTitle };
+export { MainTitle, SecondaryTitle, TertiaryTitle, DashboardSectionTitle, SecondaryTitleBlue };

@@ -7,19 +7,27 @@ import { SectionBackground, SectionBase } from '../../ui/styled/sections';
 import CallToAction from '../landing/CallToAction';
 import { RevealBox } from './RevealBox';
 
-const RevealPage = () => {
+interface Props {
+  isPublic?: boolean;
+}
+
+const RevealPage = ({ isPublic }: Props) => {
   const params = useParams();
 
   const [revealed, setRevealed] = useState({
     message: '',
   });
 
+  const apiPath = isPublic ? 'public/publicSignal' : 'public/signal';
+
   useEffect(() => {
     async function fetchData() {
       if (!params.secret || !params.key) {
         return;
       }
-      const data = await (await fetch(`http://localhost:4000/public/signal/${params.secret}?key=${params.key}`)).json();
+
+      const data = await (await fetch(`http://localhost:4000/${apiPath}/${params.secret}?key=${params.key}`)).json();
+
       setRevealed(data);
     }
 

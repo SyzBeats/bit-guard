@@ -66,11 +66,10 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
 
-            <Route path="reveal" element={<RevealPage />}>
-              <Route path=":secret">
-                <Route path=":key" />
-              </Route>
-            </Route>
+            <Route path="reveal" element={<RevealPage isPublic={false} />} />
+            <Route path="reveal/:secret/:key" element={<RevealPage isPublic={false} />} />
+            <Route path="reveal/public/" element={<RevealPage isPublic={true} />} />
+            <Route path="reveal/public/:secret/:key" element={<RevealPage isPublic={true} />} />
 
             <Route
               path="/login"

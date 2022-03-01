@@ -74,7 +74,7 @@ const MessageMutation = {
       };
 
       // create a new link with the message
-      const link = await LinkMutation.createSignalLink(parent, linkPayload);
+      const link = await LinkMutation.createSignalLink(linkPayload);
 
       if (!link) {
         throw new ApolloError('Link could not be created');
@@ -124,7 +124,7 @@ const MessageMutation = {
       };
 
       // create a new link with the message
-      const link = await LinkMutation.createSignalLink(parent, linkPayload);
+      const link = await LinkMutation.createSignalLink(linkPayload, true);
 
       if (!link) {
         throw new ApolloError('Link could not be created');
