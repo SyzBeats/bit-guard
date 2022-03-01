@@ -67,7 +67,9 @@ function App() {
             <Route path="/" element={<LandingPage />} />
 
             <Route path="reveal" element={<RevealPage />}>
-              <Route path=":secret" element={<RevealPage />} />
+              <Route path=":secret">
+                <Route path=":key" />
+              </Route>
             </Route>
 
             <Route

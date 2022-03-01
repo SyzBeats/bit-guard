@@ -9,7 +9,7 @@ import { SecondaryTitle } from '../../ui/styled/typography';
 const CallToAction = () => {
   return (
     <Wrapper>
-      <SecondaryTitle color="light">Create your account now!</SecondaryTitle>
+      <SecondaryTitle color="light">Create your account!</SecondaryTitle>
       <Link to="/signup">
         <Button content="Start for free!" />
       </Link>

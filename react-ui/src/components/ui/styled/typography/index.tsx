@@ -16,6 +16,7 @@ const MainTitle = styled.h1<TitleType>`
 const SecondaryTitle = styled.h2<TitleType>`
   color: ${(props) => (props.color === 'light' ? '#fff' : props.theme.colors.highlight)};
   font-size: 2.45rem;
+  line-height: 1.25;
   letter-spacing: 1px;
   margin: 2rem 0;
   text-align: ${(props) => props.textAlign || 'left'};

@@ -45,7 +45,7 @@ const LinkMutation = {
 
       // link contains message ID, expiry
       return {
-        content: `http://localhost:4000/public/link/${encrypted}_IV_${IV}`,
+        content: `${options.server.protocol}://${options.server.host}/public/link/${encrypted}_IV_${IV}`,
         expiry: payLoad?.expiry ?? null,
       };
     } catch (error) {
@@ -66,16 +66,12 @@ const LinkMutation = {
     }
 
     return {
-      content: `${options.server.protocol}://${options.server.host}/public/signal/${signalId}?key=${key}`,
+      content: `${options.app.domain}/reveal/${signalId}/${key}`,
     };
   },
 
   /**
    * @description deletes a link from the database, based on the ID
-   * @param parent
-   * @param args
-   * @param ctx
-   * @param info
    */
   async deleteLink(parent, args, ctx: Context): Promise<IDeleteLinkOutput> {
     try {

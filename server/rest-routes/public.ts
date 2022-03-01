@@ -96,7 +96,7 @@ router.get('/signal/:id', async (req, res) => {
       },
     });
 
-    return res.status(200).send(decryptedMessage);
+    return res.status(200).json({ message: decryptedMessage });
   } catch (error) {
     return res.status(500).json({
       message: `Something went horribly wrong here. We are sorry! Error: ${error.message}`,

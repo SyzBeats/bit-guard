@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Footer from '../../layout/generic/footer/Footer';
 import { BaseContainer } from '../../ui/containers';
@@ -10,7 +10,22 @@ import { RevealBox } from './RevealBox';
 const RevealPage = () => {
   const params = useParams();
 
-  console.log(params);
+  const [revealed, setRevealed] = useState({
+    message: '',
+  });
+
+  useEffect(() => {
+    async function fetchData() {
+      if (!params.secret || !params.key) {
+        return;
+      }
+      const data = await (await fetch(`http://localhost:4000/public/signal/${params.secret}?key=${params.key}`)).json();
+      setRevealed(data);
+    }
+
+    fetchData();
+  }, [params]);
+
   return (
     <>
       <SectionBackground>
@@ -26,9 +41,10 @@ const RevealPage = () => {
             <Logo />
           </div>
           <h1>Secret Decryption</h1>
-          <RevealBox />
+          <RevealBox message={revealed.message} />
         </BaseContainer>
       </SectionBackground>
+
       <SectionBase>
         <BaseContainer>
           <CallToAction />
