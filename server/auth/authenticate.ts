@@ -32,4 +32,5 @@ const authenticate = (req, requireAuth = true) => {
 
   return null;
 };
+
 export { authenticate };

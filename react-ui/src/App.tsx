@@ -1,17 +1,21 @@
 import React from 'react';
-import { ApolloProvider, ApolloClient, createHttpLink } from '@apollo/client';
-import { ThemeProvider } from 'styled-components';
+import { ApolloProvider, ApolloClient, createHttpLink, from } from '@apollo/client';
+import { onError } from '@apollo/client/link/error';
 import { setContext } from '@apollo/client/link/context';
+import { ThemeProvider } from 'styled-components';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import { cache } from './config/apollo/cache';
-import { theme } from './style/themes/theme-brand';
+
 import Dashboard from './components/pages/dashboard/Dashboard';
-import { LandingPage } from './components/pages/landing/LandingPage';
+import { theme } from './style/themes/theme-brand';
 import './style/App.css';
+
+import { LandingPage } from './components/pages/landing/LandingPage';
 import Login from './components/authentication/Login';
-import SignUp from './components/authentication/Signup';
 import ProtectedRoute from './components/routes/Protected';
 import PublicOnlyRoute from './components/routes/PublicOnly';
+import SignUp from './components/authentication/Signup';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:4000/graphql',
@@ -20,6 +24,7 @@ const httpLink = createHttpLink({
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage
   const token = localStorage.getItem('token');
+
   // return headers to context to supply httpLink
   return {
     headers: {
@@ -29,8 +34,26 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+// global error handler
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) {
+    // executes a function for each graphql error
+    for (let error of graphQLErrors) {
+      // ensure that once a token is expired, the user is redirected to the login page
+      if (error.message === 'jwt expired') {
+        localStorage.removeItem('token');
+        window.location.reload();
+      }
+    }
+  }
+
+  if (networkError) {
+    console.error(`[Network error]: ${networkError}`);
+  }
+});
+
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: from([errorLink, authLink.concat(httpLink)]),
   cache,
 });
 

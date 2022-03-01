@@ -42,14 +42,14 @@ const UserQuery = {
         throw new ApolloError('Something went wrong');
       }
 
-      // check if password matches
+      // ensure the password is correct
       const matches = await bcrypt.compare(data.password, user.password);
 
       if (!matches) {
         throw new ApolloError('Something went wrong');
       }
 
-      // matches and can be serialized
+      // the user can be serialized to send back to the client
       const userCopy = {
         id: user.id,
         email: user.email,
@@ -60,6 +60,7 @@ const UserQuery = {
       const token = jwt.sign(userCopy, JWT_TOKEN_SIGNATURE, {
         expiresIn: '8h',
       });
+
       return { token };
     } catch (error) {
       return error;
