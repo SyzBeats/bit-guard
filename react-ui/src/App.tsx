@@ -16,6 +16,7 @@ import Login from './components/authentication/Login';
 import ProtectedRoute from './components/routes/Protected';
 import PublicOnlyRoute from './components/routes/PublicOnly';
 import SignUp from './components/authentication/Signup';
+import { RevealPage } from './components/pages/reveal/RevealPage';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:4000/graphql',
@@ -64,6 +65,11 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<LandingPage />} />
+
+            <Route path="reveal" element={<RevealPage />}>
+              <Route path=":secret" element={<RevealPage />} />
+            </Route>
+
             <Route
               path="/login"
               element={
@@ -72,6 +78,7 @@ function App() {
                 </PublicOnlyRoute>
               }
             />
+
             <Route
               path="/signup"
               element={
@@ -80,6 +87,7 @@ function App() {
                 </PublicOnlyRoute>
               }
             />
+
             <Route
               path="/dashboard"
               element={

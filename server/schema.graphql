@@ -19,6 +19,8 @@ type Mutation {
   deleteMessage(data: MessageWhereUniqueInput!): Message
 
   createSignal(data: MessageCreateInput): Signal!
+  createPublicSignal(data: MessageCreateInput): Signal!
+
   createSignalLink(data: SignalLinkCreateInput!): Link!
   deleteSignal(data: MessageWhereUniqueInput!): Signal
 

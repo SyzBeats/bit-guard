@@ -6,6 +6,7 @@ import { Trash } from 'react-feather';
 import dateService from '../../services/dates';
 import { useSignalState } from '../../zustand/store';
 import { DELETE_SIGNAL } from '../../graphql/mutations/signal/mutation-delete-signal';
+import shallow from 'zustand/shallow';
 
 interface Iprops {
   signal: {
@@ -17,6 +18,7 @@ interface Iprops {
 
 const Signal = ({ signal }: Iprops) => {
   const { id, title, createdAt } = signal;
+  const signalState = useSignalState((state) => ({ removeSignal: state.removeSignal }), shallow);
 
   const [deleteSignal] = useMutation(DELETE_SIGNAL, {
     onCompleted: (data) => {
@@ -30,8 +32,6 @@ const Signal = ({ signal }: Iprops) => {
       console.error(error.message);
     },
   });
-
-  const signalState = useSignalState((state) => ({ removeSignal: state.removeSignal }));
 
   const handleDelete = (): void => {
     if (!id) {

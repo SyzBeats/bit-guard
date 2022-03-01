@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Activity, Home, Lock, Sliders } from 'react-feather';
 import NavigationButton from '../buttons/NavigationButton';
-import Avatar from '../../user/Avatar';
+import Avatar from '../user/Avatar';
 import Notification from './Notification';
 
 const Sidebar = () => (
@@ -32,11 +32,10 @@ const Sidebar = () => (
 const Wrapper = styled.header`
   padding: 2rem 0.25rem;
   height: 100vh;
-  top: 0;
-  left: 0;
 
   position: sticky;
   top: 0;
+  left: 0;
 
   background: ${({ theme }) => theme.colors.background};
   color: ${({ theme }) => theme.colors.highlight_iceblue};
@@ -65,4 +64,5 @@ const LowerSection = styled.div`
   flex-direction: column;
   gap: 2rem;
 `;
+
 export { Sidebar };

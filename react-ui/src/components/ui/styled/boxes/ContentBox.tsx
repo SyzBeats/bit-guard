@@ -2,16 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface ContextBoxInterface {
-  title: string;
   children: React.ReactNode;
+  title?: string;
   bordered?: boolean;
   borderColor?: string;
 }
 
-const ContentBox = ({ title, children, bordered = false, borderColor = 'light' }: ContextBoxInterface) => {
+const ContentBox = ({ title = '', children, bordered = false, borderColor = 'light' }: ContextBoxInterface) => {
   return (
     <Wrapper borderColor={borderColor} bordered={bordered}>
-      <Title>{title}</Title>
+      {title && <Title>{title}</Title>}
+
       {children}
     </Wrapper>
   );

@@ -16,7 +16,9 @@ const LandingPage = () => {
   return (
     <LayoutLanding>
       <Navigation />
+
       <HeroLanding />
+
       <SectionGradientBase>
         <BaseContainer data-anker="how-it-works">
           <SecondaryTitle color="dark" textAlign="center">
@@ -25,21 +27,25 @@ const LandingPage = () => {
           <LandingPageIconGrid />
         </BaseContainer>
       </SectionGradientBase>
+
       <SectionBackground>
         <BaseContainer>
           <HomepageStory />
         </BaseContainer>
       </SectionBackground>
+
       <SectionBase>
         <BaseContainer>
           <HomepageControl />
         </BaseContainer>
       </SectionBase>
+
       <SectionBase>
         <BaseContainer>
           <CallToAction />
         </BaseContainer>
       </SectionBase>
+
       <Footer />
     </LayoutLanding>
   );

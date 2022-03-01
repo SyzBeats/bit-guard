@@ -4,6 +4,7 @@ import { JWT_TOKEN_SIGNATURE } from '../../config/keys';
 import { encryptAes256cbc } from '../../services/encryption';
 import { getHoursUntil } from '../../util/dateAndTime/time-until-date';
 import { IcreateMessageLinkOutput, IcreateSignalLinkOutput, IDeleteLinkOutput } from '../../util/typings';
+import options from '../../config/options';
 
 const LinkMutation = {
   async createMessageLink(parent, args, ctx: Context): Promise<IcreateMessageLinkOutput> {
@@ -52,12 +53,20 @@ const LinkMutation = {
     }
   },
 
-  // this will be used to create a one time signal link
-  async createSignalLink(parent, args, ctx: Context): Promise<IcreateSignalLinkOutput> {
+  // create a one time signal link that cannot be used again
+  async createSignalLink(parent, args): Promise<IcreateSignalLinkOutput> {
     const { key, signalId } = args?.data;
 
+    if (!key) {
+      throw new Error('key is missing');
+    }
+
+    if (!signalId) {
+      throw new Error('signalId is missing');
+    }
+
     return {
-      content: `http://localhost:4000/public/signal/${signalId}?key=${key}`,
+      content: `${options.server.protocol}://${options.server.host}/public/signal/${signalId}?key=${key}`,
     };
   },
 

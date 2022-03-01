@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { AvatarType } from '../../typings/types-components';
+import { AvatarType } from '../../../typings/types-components';
 
 const Avatar = ({ src, alt }: AvatarType) => {
   return (

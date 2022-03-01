@@ -12,7 +12,7 @@ import options from './config/options';
 import __public from './rest-routes/public';
 
 // constants
-const PORT = process.env.PORT || options.port;
+const PORT = options.server.port;
 const app = express();
 
 // middleware
