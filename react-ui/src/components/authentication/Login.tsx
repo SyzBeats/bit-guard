@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
 import styled from 'styled-components';
-import Logo from '../styled/image/Logo';
-import { SecondaryTitle } from '../styled/typography';
+import Logo from '../ui/styled/image/Logo';
+import { SecondaryTitle } from '../ui/styled/typography';
 import { Input } from '../ui/forms/inputs/Input';
 import { SubmitCircle } from '../ui/forms/inputs/SubmitCircle';
 import { LOGIN_USER } from '../../graphql/queries/user/query-login';

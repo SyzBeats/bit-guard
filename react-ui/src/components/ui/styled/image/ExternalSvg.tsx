@@ -12,4 +12,5 @@ const ExternalSvg = ({ src }: ExternalSvgType) => {
 const ExternalSvgWrapper = styled.img`
   width: 5rem;
 `;
+
 export { ExternalSvg };

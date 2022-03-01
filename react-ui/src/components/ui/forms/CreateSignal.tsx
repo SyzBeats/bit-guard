@@ -7,7 +7,7 @@ import { useCreateSecretFormState, useSignalState } from '../../../zustand/store
 import { FlexGridEqual } from '../../layout/grids/FlexGrid';
 import { FlexGridItem } from '../../layout/grids/FlexGridItem';
 import { DisplayLink } from '../../signals/DisplayLink';
-import { ButtonWrapper } from '../../styled/buttons/ButtonWrapper';
+import { ButtonWrapper } from '../buttons/ButtonWrapper';
 import HorizontalToggle from './controls/HorizontalToggle';
 import { TextArea } from './inputs/TextArea';
 import TextInput from './inputs/TextInput';

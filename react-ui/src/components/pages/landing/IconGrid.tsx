@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconName } from '../../../typings/enums';
 import { Grid } from '../../layout/grids/Grid';
-import { IconBox } from '../../styled/boxes/IconBox';
+import { IconBox } from '../../ui/styled/boxes/IconBox';
 
 const LandingPageIconGrid = () => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo from '../../../styled/image/Logo';
+import Logo from '../../../ui/styled/image/Logo';
 
 const FooterTop = () => {
   return (

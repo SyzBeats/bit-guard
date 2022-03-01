@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import waves from '../../../images/waves.svg';
-import Button from '../../styled/buttons/Button';
-import { SecondaryTitle } from '../../styled/typography';
+import Button from '../../ui/buttons/Button';
+import { SecondaryTitle } from '../../ui/styled/typography';
 
 const CallToAction = () => {
   return (

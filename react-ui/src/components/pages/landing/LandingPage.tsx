@@ -1,20 +1,16 @@
 import React from 'react';
-import HeroLanding from './hero/HeroLanding';
-import Footer from '../../layout/generic/footer/Footer';
-import { LayoutLanding } from '../../layout/landing/LayoutLanding';
-import { BaseContainer } from '../../styled/containers';
-import {
-  SectionBackground,
-  SectionBase,
-  SectionGradientBase,
-} from '../../styled/sections';
-// icons
-import { LandingPageIconGrid } from './IconGrid';
-import { SecondaryTitle } from '../../styled/typography';
-import Navigation from './Navigation';
-import { HomepageStory } from './Story';
+
+import { BaseContainer } from '../../ui/containers';
 import { HomepageControl } from './HomepageControl';
+import { HomepageStory } from './Story';
+import { LandingPageIconGrid } from './IconGrid';
+import { LayoutLanding } from '../../layout/landing/LayoutLanding';
+import { SecondaryTitle } from '../../ui/styled/typography';
+import { SectionBackground, SectionBase, SectionGradientBase } from '../../ui/styled/sections';
 import CallToAction from './CallToAction';
+import Footer from '../../layout/generic/footer/Footer';
+import HeroLanding from './hero/HeroLanding';
+import Navigation from './Navigation';
 
 const LandingPage = () => {
   return (
@@ -24,7 +20,7 @@ const LandingPage = () => {
       <SectionGradientBase>
         <BaseContainer data-anker="how-it-works">
           <SecondaryTitle color="dark" textAlign="center">
-            What .envite does for you
+            What <strong>.envite</strong> does for you
           </SecondaryTitle>
           <LandingPageIconGrid />
         </BaseContainer>

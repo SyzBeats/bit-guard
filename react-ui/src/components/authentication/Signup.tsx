@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Alert } from '../ui/alert/Alert';
-import Logo from '../styled/image/Logo';
-import { SecondaryTitle } from '../styled/typography';
+import Logo from '../ui/styled/image/Logo';
+import { SecondaryTitle } from '../ui/styled/typography';
 import { Input } from '../ui/forms/inputs/Input';
 import { SubmitCircle } from '../ui/forms/inputs/SubmitCircle';
 import { useMutation } from '@apollo/client';

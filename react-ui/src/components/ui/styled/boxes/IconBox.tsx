@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ExternalSvg } from '../image/ExternalSvg';
-import { IconName } from '../../../typings/enums';
+import { IconName } from '../../../../typings/enums';
 
 // icons
-import IconFingerprint from '../../../images/security/fi__fingerprint-lock.svg';
-import IconLock from '../../../images/security/fi__lock-connection.svg';
-import IconPincode from '../../../images/security/fi__pin-code.svg';
-import IconDatabase from '../../../images/security/fi__secure-database.svg';
-import IconMessage from '../../../images/security/fi__secure-message.svg';
-import IconWorld from '../../../images/security/fi__world-secure.svg';
-import IconWall from '../../../images/security/fi__wall.svg';
+import IconFingerprint from '../../../../images/security/fi__fingerprint-lock.svg';
+import IconLock from '../../../../images/security/fi__lock-connection.svg';
+import IconPincode from '../../../../images/security/fi__pin-code.svg';
+import IconDatabase from '../../../../images/security/fi__secure-database.svg';
+import IconMessage from '../../../../images/security/fi__secure-message.svg';
+import IconWorld from '../../../../images/security/fi__world-secure.svg';
+import IconWall from '../../../../images/security/fi__wall.svg';
 import { SecondaryTitle } from '../typography';
 
 type IconBoxType = {

@@ -10,9 +10,9 @@ import { Signal } from './Signal';
 import CreateSignal from '../ui/forms/CreateSignal';
 import BaseModal from '../ui/modals/BaseModal';
 
-import { ContentBox } from '../styled/boxes/ContentBox';
-import { ButtonRound } from '../styled/buttons/ButtonRound';
-import { DashboardSectionTitle } from '../styled/typography';
+import { ContentBox } from '../ui/styled/boxes/ContentBox';
+import { ButtonRound } from '../ui/buttons/ButtonRound';
+import { DashboardSectionTitle } from '../ui/styled/typography';
 
 const Signals = () => {
   const [open, setOpen] = useState(false);

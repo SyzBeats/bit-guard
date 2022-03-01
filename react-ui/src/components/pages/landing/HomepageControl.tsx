@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Sharing from '../../../images/undraw_control.svg';
-import { MainTitle, SecondaryTitle } from '../../styled/typography';
+import { MainTitle, SecondaryTitle } from '../../ui/styled/typography';
 const HomepageControl = () => {
   return (
     <Wrapper>
@@ -14,9 +14,8 @@ const HomepageControl = () => {
               Administer your secrets
             </SecondaryTitle>
             <p>
-              You have full control over your secrets at any time. You can view
-              recent activity or change the settings of your generated messages
-              and links as many times as you want.
+              You have full control over your secrets at any time. You can view recent activity or change the settings of your generated
+              messages and links as many times as you want.
             </p>
           </ContentBlock>
           <ContentBlock margin={true}>
@@ -24,8 +23,7 @@ const HomepageControl = () => {
               Secure secrets with Passwords
             </SecondaryTitle>
             <p>
-              You want an extra layer of security? Protect your secrets with a
-              password. That way even if an unauthorized person obtains the
+              You want an extra layer of security? Protect your secrets with a password. That way even if an unauthorized person obtains the
               link, they will not be able to access it without the password.
             </p>
           </ContentBlock>
@@ -34,8 +32,7 @@ const HomepageControl = () => {
               Delete at any time
             </SecondaryTitle>
             <p>
-              You can delete your messages and links at any time. This will
-              completely remove the content from our database - no traces left
+              You can delete your messages and links at any time. This will completely remove the content from our database - no traces left
             </p>
           </ContentBlock>
         </Content>
