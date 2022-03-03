@@ -14,7 +14,7 @@ module.exports = {
   plugins: [['@snowpack/plugin-typescript'], '@snowpack/plugin-react-refresh'],
   env: {
     DEV_API_URL: 'http://localhost:4000',
-    PROD_API_URL: 'https://api.example.com',
+    PROD_API_URL: 'https://api.envite.dev',
   },
   routes: [{ match: 'routes', src: '.*', dest: '/index.html' }],
   optimize: {

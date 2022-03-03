@@ -1,0 +1,10 @@
+node_modules 
+react-ui
+db
+server/build
+
+npm-debug.log
+.git
+.gitignore
+.vscode
+.eslintrc
