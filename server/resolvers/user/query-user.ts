@@ -3,7 +3,7 @@ import * as jwt from 'jsonwebtoken';
 import { ApolloError } from 'apollo-server-express';
 import { Context } from '../../context';
 import { authenticate } from '../../auth/authenticate';
-import { JWT_TOKEN_SIGNATURE } from '../../config/keys';
+import * as keys from '../../config/keys';
 
 const UserQuery = {
   /**
@@ -57,7 +57,7 @@ const UserQuery = {
       };
 
       // sign token - after RFC7515
-      const token = jwt.sign(userCopy, JWT_TOKEN_SIGNATURE, {
+      const token = jwt.sign(userCopy, keys.JWT_TOKEN_SIGNATURE, {
         expiresIn: '8h',
       });
 

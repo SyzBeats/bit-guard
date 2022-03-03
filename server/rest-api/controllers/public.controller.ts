@@ -1,7 +1,7 @@
 import * as express from 'express';
 import * as jwt from 'jsonwebtoken';
 import { PrismaClient } from '@prisma/client';
-import { JWT_TOKEN_SIGNATURE } from '../../config/keys';
+import * as keys from '../../config/keys';
 import { decryptAes256cbc } from '../../services/encryption';
 import { MessageToken } from '../../util/typings';
 import { isMessageToken } from '../../util/typings/typeguards';
@@ -22,7 +22,7 @@ router.get('/link/:cipher', async (req, res) => {
 
     const token = decryptAes256cbc(cipher);
 
-    const data: MessageToken | object | string = jwt.verify(token, JWT_TOKEN_SIGNATURE);
+    const data: MessageToken | object | string = jwt.verify(token, keys.JWT_TOKEN_SIGNATURE);
 
     if (!isMessageToken(data)) {
       return res.status(500).json({ message: 'something went wrong' });

@@ -1,5 +1,5 @@
 import * as crypto from 'crypto';
-import { ENCRYPTION_KEY_256BIT } from '../../config/keys';
+import * as keys from '../../config/keys';
 import { IencryptAes256cbcOutput } from '../../util/typings';
 
 // generate a random encryption key with 16 bytes
@@ -19,7 +19,7 @@ function encryptAes256cbc(plainText: string, randomKey: boolean = false): Iencry
   // create a random Initialization vector
   const IV = crypto.randomBytes(16);
 
-  const key = randomKey ? generateEncryptrionKey() : ENCRYPTION_KEY_256BIT;
+  const key = randomKey ? generateEncryptrionKey() : keys.ENCRYPTION_KEY_256BIT;
 
   // create a cipher
   const cipher = crypto.createCipheriv('aes-256-cbc', key, IV);
@@ -53,7 +53,7 @@ function decryptAes256cbc(cipher: string, key: string | undefined = undefined): 
   // split the two hex encoded strings
   const [data, ivHex] = cipher.split('_IV_');
 
-  const encryptionKey = key || ENCRYPTION_KEY_256BIT;
+  const encryptionKey = key || keys.ENCRYPTION_KEY_256BIT;
 
   // create a buffer as the current IV is encoded
   const IV = Buffer.from(ivHex, 'hex');

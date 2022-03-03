@@ -1,6 +1,6 @@
 import * as jwt from 'jsonwebtoken';
 import { Context } from '../../context';
-import { JWT_TOKEN_SIGNATURE } from '../../config/keys';
+import * as keys from '../../config/keys';
 import { encryptAes256cbc } from '../../services/encryption';
 import { getHoursUntil } from '../../util/dateAndTime/time-until-date';
 import { IcreateMessageLinkOutput, IcreateSignalLinkOutput, IDeleteLinkOutput } from '../../util/typings';
@@ -31,7 +31,7 @@ const LinkMutation = {
        * the messageID which the link is connected to also, by default the expiry
        * is set to 3 hours
        */
-      const token = jwt.sign(payLoad, JWT_TOKEN_SIGNATURE, expiryInformation);
+      const token = jwt.sign(payLoad, keys.JWT_TOKEN_SIGNATURE, expiryInformation);
 
       const { IV, encrypted } = encryptAes256cbc(token);
 

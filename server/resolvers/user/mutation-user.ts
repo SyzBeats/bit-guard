@@ -1,7 +1,7 @@
 import { ApolloError, UserInputError } from 'apollo-server-express';
 import * as bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { JWT_TOKEN_SIGNATURE } from '../../config/keys';
+import * as keys from '../../config/keys';
 import { Context } from '../../context';
 
 const UserMutation = {
@@ -35,7 +35,7 @@ const UserMutation = {
       };
 
       // sign token - after RFC7515
-      const token = jwt.sign(userCopy, JWT_TOKEN_SIGNATURE, {
+      const token = jwt.sign(userCopy, keys.JWT_TOKEN_SIGNATURE, {
         expiresIn: '8h',
       });
 

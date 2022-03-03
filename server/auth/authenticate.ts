@@ -1,5 +1,5 @@
 import * as jwt from 'jsonwebtoken';
-import { JWT_TOKEN_SIGNATURE } from '../config/keys';
+import * as keys from '../config/keys';
 
 /**
  * @description to protect certain routes there is an authentication against
@@ -17,7 +17,7 @@ const authenticate = (req, requireAuth = true) => {
   if (authHeader) {
     const token = authHeader.replace('Bearer ', '');
 
-    const decoded = jwt.verify(token, JWT_TOKEN_SIGNATURE);
+    const decoded = jwt.verify(token, keys.JWT_TOKEN_SIGNATURE);
 
     return decoded;
   }
