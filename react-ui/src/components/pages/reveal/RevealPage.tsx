@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Footer from '../../layout/generic/footer/Footer';
-import { BaseContainer } from '../../ui/containers';
+
 import Logo from '../../ui/styled/image/Logo';
-import { SectionBackground, SectionBase } from '../../ui/styled/sections';
+import Footer from '../../layout/generic/footer/Footer';
 import CallToAction from '../landing/CallToAction';
+import { SectionBackground, SectionBase } from '../../ui/styled/sections';
 import { RevealBox } from './RevealBox';
+import { BaseContainer } from '../../ui/containers';
 
 interface Props {
   isPublic?: boolean;
@@ -18,7 +19,8 @@ const RevealPage = ({ isPublic }: Props) => {
     message: '',
   });
 
-  const apiPath = isPublic ? 'public/publicSignal' : 'public/signal';
+  const queryPath = isPublic ? 'api/public/publicSignal' : 'api/public/signal';
+  const endpoint = `http://localhost:4000/${queryPath}/${params.secret}?key=${params.key}`;
 
   useEffect(() => {
     async function fetchData() {
@@ -26,7 +28,7 @@ const RevealPage = ({ isPublic }: Props) => {
         return;
       }
 
-      const data = await (await fetch(`http://localhost:4000/${apiPath}/${params.secret}?key=${params.key}`)).json();
+      const data = await (await fetch(endpoint)).json();
 
       setRevealed(data);
     }

@@ -1,10 +1,10 @@
 import * as express from 'express';
 import * as jwt from 'jsonwebtoken';
 import { PrismaClient } from '@prisma/client';
-import { JWT_TOKEN_SIGNATURE } from '../config/keys';
-import { decryptAes256cbc } from '../services/encryption';
-import { MessageToken } from '../util/typings';
-import { isMessageToken } from '../util/typings/typeguards';
+import { JWT_TOKEN_SIGNATURE } from '../../config/keys';
+import { decryptAes256cbc } from '../../services/encryption';
+import { MessageToken } from '../../util/typings';
+import { isMessageToken } from '../../util/typings/typeguards';
 
 const router = express.Router({ caseSensitive: false });
 
@@ -28,11 +28,9 @@ router.get('/link/:cipher', async (req, res) => {
       return res.status(500).json({ message: 'something went wrong' });
     }
 
-    const { messageId } = data;
-
     const message = await client.message.findUnique({
       where: {
-        id: messageId,
+        id: data.messageId,
       },
       select: {
         content: true,
@@ -87,7 +85,7 @@ router.get('/signal/:id', async (req, res) => {
       return res.status(409).json({ message: 'The initialization vector is not a string' });
     }
 
-    const decryptedMessage = decryptAes256cbc(signal.content, key?.toString());
+    const message = decryptAes256cbc(signal.content, key?.toString());
 
     // delete the signal
     await client.signal.delete({
@@ -96,7 +94,7 @@ router.get('/signal/:id', async (req, res) => {
       },
     });
 
-    return res.status(200).json({ message: decryptedMessage });
+    return res.status(200).json({ message });
   } catch (error) {
     return res.status(500).json({
       message: `Something went horribly wrong here. We are sorry! Error: ${error.message}`,
@@ -107,8 +105,10 @@ router.get('/signal/:id', async (req, res) => {
 });
 
 /**
- * @GET /public/signal/:id
- * @description one time signals will be decrypted and destroyed
+ * @GET /public/publicSignal/:id
+ * @description This route is used for signals which have been created via the
+ * public feature on the home page. This route is used to decrypt the signal and
+ * destroy it afterwards.
  */
 router.get('/publicSignal/:id', async (req, res) => {
   const client = new PrismaClient();
@@ -137,7 +137,7 @@ router.get('/publicSignal/:id', async (req, res) => {
       return res.status(409).json({ message: 'The initialization vector is not a string' });
     }
 
-    const decryptedMessage = decryptAes256cbc(signal.content, key?.toString());
+    const message = decryptAes256cbc(signal.content, key?.toString());
 
     // delete the signal
     await client.publicSignal.delete({
@@ -146,7 +146,7 @@ router.get('/publicSignal/:id', async (req, res) => {
       },
     });
 
-    return res.status(200).json({ message: decryptedMessage });
+    return res.status(200).json({ message });
   } catch (error) {
     return res.status(500).json({
       message: `Something went horribly wrong here. We are sorry! Error: ${error.message}`,

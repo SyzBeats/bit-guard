@@ -45,7 +45,7 @@ const LinkMutation = {
 
       // link contains message ID, expiry
       return {
-        content: `${options.server.protocol}://${options.server.host}/public/link/${encrypted}_IV_${IV}`,
+        content: `${options.server.protocol}://${options.server.host}/api/public/link/${encrypted}_IV_${IV}`,
         expiry: payLoad?.expiry ?? null,
       };
     } catch (error) {

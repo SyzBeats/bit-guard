@@ -9,20 +9,17 @@ import { Query, Mutation, Message, Link, User } from './resolvers';
 import options from './config/options';
 
 // routes
-import __public from './rest-routes/public';
+import __api from './rest-api/controllers';
 
 // constants
 const PORT = options.server.port;
 const app = express();
+const limit = '100kb';
 
 // middleware
-app.use(
-  express.json({
-    limit: '100kb',
-  }),
-);
+app.use(express.json({ limit }));
 app.use(cors(options.cors));
-app.use('/public', __public);
+app.use('/api/public', __api.publicRoutes);
 
 const resolvers = {
   Query,
