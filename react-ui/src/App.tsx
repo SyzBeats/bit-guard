@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { cache } from './config/apollo/cache';
+import config from './config/env';
 
 import Dashboard from './components/pages/dashboard/Dashboard';
 import { theme } from './style/themes/theme-brand';
@@ -19,7 +20,7 @@ import SignUp from './components/authentication/Signup';
 import { RevealPage } from './components/pages/reveal/RevealPage';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000/graphql',
+  uri: `${config.API_URL}/graphql`,
 });
 
 const authLink = setContext((_, { headers }) => {

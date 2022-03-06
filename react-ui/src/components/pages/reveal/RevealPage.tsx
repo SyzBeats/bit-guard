@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import config from '../../../config/env';
 import Logo from '../../ui/styled/image/Logo';
 import Footer from '../../layout/generic/footer/Footer';
 import CallToAction from '../landing/CallToAction';
 import { SectionBackground, SectionBase } from '../../ui/styled/sections';
 import { RevealBox } from './RevealBox';
 import { BaseContainer } from '../../ui/containers';
-
 interface Props {
   isPublic?: boolean;
 }
@@ -20,7 +20,9 @@ const RevealPage = ({ isPublic }: Props) => {
   });
 
   const queryPath = isPublic ? 'api/public/publicSignal' : 'api/public/signal';
-  const endpoint = `http://localhost:4000/${queryPath}/${params.secret}?key=${params.key}`;
+  const endpoint = `${config.API_URL}/${queryPath}/${params.secret}?key=${params.key}`;
+
+  console.log(endpoint);
 
   useEffect(() => {
     async function fetchData() {

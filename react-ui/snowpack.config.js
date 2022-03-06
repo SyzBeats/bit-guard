@@ -11,11 +11,7 @@ module.exports = {
       url: '/dist',
     },
   },
-  plugins: [['@snowpack/plugin-typescript'], '@snowpack/plugin-react-refresh'],
-  env: {
-    DEV_API_URL: 'http://localhost:4000',
-    PROD_API_URL: 'https://api.envite.dev',
-  },
+  plugins: ['@snowpack/plugin-typescript', '@snowpack/plugin-react-refresh', '@snowpack/plugin-dotenv'],
   routes: [{ match: 'routes', src: '.*', dest: '/index.html' }],
   optimize: {
     /* Example: Bundle your final build: */
