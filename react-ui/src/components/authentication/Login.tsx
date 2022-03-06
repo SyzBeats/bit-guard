@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
 import styled from 'styled-components';
+
 import Logo from '../ui/styled/image/Logo';
 import { SecondaryTitle } from '../ui/styled/typography';
 import { Input } from '../ui/forms/inputs/Input';
@@ -14,12 +15,14 @@ const Login = () => {
     password: '',
   });
 
+  // change handler for form fields
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     setLoginData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // resets the form fields
   const resetForm = () => {
     setLoginData({
       email: '',
@@ -27,6 +30,7 @@ const Login = () => {
     });
   };
 
+  // login hook query
   const [loginQuery, { loading, data, error }] = useLazyQuery(LOGIN_USER, {
     onCompleted: (res) => {
       if (res?.loginUser?.token) {
@@ -42,6 +46,7 @@ const Login = () => {
     },
   });
 
+  // submit handler for form
   const handleSubmit = (e) => {
     try {
       e.preventDefault();

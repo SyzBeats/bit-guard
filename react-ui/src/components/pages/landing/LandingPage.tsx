@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { BaseContainer } from '../../ui/containers';
-import { HomepageControl } from './HomepageControl';
+import { SectionControl } from './SectionControl';
 import { HomepageStory } from './Story';
 import { LandingPageIconGrid } from './IconGrid';
 import { LayoutLanding } from '../../layout/landing/LayoutLanding';
@@ -9,7 +9,7 @@ import { SecondaryTitle } from '../../ui/styled/typography';
 import { SectionBackground, SectionBase, SectionGradientBase } from '../../ui/styled/sections';
 import CallToAction from './CallToAction';
 import Footer from '../../layout/generic/footer/Footer';
-import HeroLanding from './hero/HeroLanding';
+import HeroLanding from './Hero';
 import Navigation from './Navigation';
 import SignalBox from './signal/SignalBox';
 
@@ -40,7 +40,7 @@ const LandingPage = () => {
 
       <SectionBase>
         <BaseContainer>
-          <HomepageControl />
+          <SectionControl />
         </BaseContainer>
       </SectionBase>
 

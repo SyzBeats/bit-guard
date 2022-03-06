@@ -1,7 +1,7 @@
 import environment from './environment';
-import apolloCache from './apollo-cache';
+import apollo from './apollo';
 
 export default {
   environment,
-  apolloCache,
+  apollo,
 };

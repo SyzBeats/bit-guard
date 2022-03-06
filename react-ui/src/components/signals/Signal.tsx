@@ -18,6 +18,7 @@ interface Iprops {
 
 const Signal = ({ signal }: Iprops) => {
   const { id, title, createdAt } = signal;
+
   const signalState = useSignalState((state) => ({ removeSignal: state.removeSignal }), shallow);
 
   const [deleteSignal] = useMutation(DELETE_SIGNAL, {

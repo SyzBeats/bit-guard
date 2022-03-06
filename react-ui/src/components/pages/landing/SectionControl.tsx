@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Sharing from '../../../images/undraw_control.svg';
 import { MainTitle, SecondaryTitle } from '../../ui/styled/typography';
-const HomepageControl = () => {
+const SectionControl = () => {
   return (
     <Wrapper>
       <MainTitle color="dark">Advanced Control Panel</MainTitle>
@@ -75,4 +75,4 @@ const ContentBlock = styled.div<ContentBlockProps>`
   margin-top: ${(props) => (props.margin ? '2rem' : '0')};
 `;
 
-export { HomepageControl };
+export { SectionControl };

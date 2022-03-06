@@ -3,8 +3,8 @@ import shallow from 'zustand/shallow';
 import { useSignalState } from '../../zustand/store';
 
 const SignalCount = () => {
-  const { signals } = useSignalState((state) => ({ signals: state.signals }), shallow);
-  return <>{signals?.length}</>;
+  const signalState = useSignalState((state) => ({ signals: state.signals }), shallow);
+  return <>{signalState.signals?.length}</>;
 };
 
 export { SignalCount };

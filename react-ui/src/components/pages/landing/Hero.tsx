@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Queue } from '../../../ui/effects/Queue/Queue';
-import Button from '../../../ui/buttons/Button';
-import Logo from '../../../ui/styled/image/Logo';
-import { MainTitle, SecondaryTitle } from '../../../ui/styled/typography';
+import { Queue } from '../../ui/effects/Queue/Queue';
+import Button from '../../ui/buttons/Button';
+import Logo from '../../ui/styled/image/Logo';
+import { MainTitle, SecondaryTitle } from '../../ui/styled/typography';
 
 const HeroLanding = () => {
   const scrollToElement = (element: string) => {

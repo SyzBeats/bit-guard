@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useMutation } from '@apollo/client';
+
 import { Alert } from '../ui/alert/Alert';
 import Logo from '../ui/styled/image/Logo';
 import { SecondaryTitle } from '../ui/styled/typography';
 import { Input } from '../ui/forms/inputs/Input';
 import { SubmitCircle } from '../ui/forms/inputs/SubmitCircle';
-import { useMutation } from '@apollo/client';
 import { SIGNUP_USER } from '../../graphql/mutations/user/mutation-signup-user';
 
 const SignUp = () => {
@@ -16,11 +17,13 @@ const SignUp = () => {
     confirmPassword: '',
   });
 
+  // alert to be displayed when there is a notification
   const [alert, setAlert] = useState({
     type: '',
     message: '',
   });
 
+  // resets the form fields
   const resetFields = () => {
     setData({
       name: '',
@@ -30,6 +33,7 @@ const SignUp = () => {
     });
   };
 
+  // signup hook mutation
   const [signup] = useMutation(SIGNUP_USER, {
     onCompleted: ({ signupUser }) => {
       if (signupUser?.token) {
@@ -47,12 +51,14 @@ const SignUp = () => {
     },
   });
 
+  // change handler for form fields
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     setData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // submit handler for form
   const handleSubmit = (e) => {
     e.preventDefault();
 

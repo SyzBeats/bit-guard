@@ -1,7 +1,5 @@
 import React from 'react';
-import { ApolloProvider, ApolloClient, createHttpLink, from } from '@apollo/client';
-import { onError } from '@apollo/client/link/error';
-import { setContext } from '@apollo/client/link/context';
+import { ApolloProvider, ApolloClient, from } from '@apollo/client';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -18,44 +16,9 @@ import { RevealPage } from './components/pages/reveal/RevealPage';
 
 import './style/App.css';
 
-const httpLink = createHttpLink({
-  uri: `${config.environment.API_URL}/graphql`,
-});
-
-const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage
-  const token = localStorage.getItem('token');
-
-  // return headers to context to supply httpLink
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : '',
-    },
-  };
-});
-
-// global error handler
-const errorLink = onError(({ graphQLErrors, networkError }) => {
-  if (graphQLErrors) {
-    // executes a function for each graphql error
-    for (let error of graphQLErrors) {
-      // ensure that once a token is expired, the user is redirected to the login page
-      if (error.message === 'jwt expired') {
-        localStorage.removeItem('token');
-        window.location.reload();
-      }
-    }
-  }
-
-  if (networkError) {
-    console.error(`[Network error]: ${networkError}`);
-  }
-});
-
 const client = new ApolloClient({
-  link: from([errorLink, authLink.concat(httpLink)]),
-  cache: config.apolloCache.cache,
+  link: from([config.apollo.errorLink, config.apollo.authLink.concat(config.apollo.httpLink)]),
+  cache: config.apollo.cache,
 });
 
 function App() {

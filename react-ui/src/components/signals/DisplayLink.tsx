@@ -5,6 +5,9 @@ import styled from 'styled-components';
 interface Props {
   link: string;
 }
+interface ContainerState {
+  copied: boolean;
+}
 
 const DisplayLink = ({ link }: Props) => {
   const [copied, setCopied] = useState(false);
@@ -24,10 +27,6 @@ const DisplayLink = ({ link }: Props) => {
     </Container>
   );
 };
-
-interface ContainerState {
-  copied: boolean;
-}
 
 const Container = styled.div<ContainerState>`
   display: flex;
