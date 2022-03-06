@@ -5,13 +5,10 @@ import { setContext } from '@apollo/client/link/context';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { cache } from './config/apollo/cache';
-import config from './config/env';
+import config from './config';
 
-import Dashboard from './components/pages/dashboard/Dashboard';
 import { theme } from './style/themes/theme-brand';
-import './style/App.css';
-
+import Dashboard from './components/pages/dashboard/Dashboard';
 import { LandingPage } from './components/pages/landing/LandingPage';
 import Login from './components/authentication/Login';
 import ProtectedRoute from './components/routes/Protected';
@@ -19,8 +16,10 @@ import PublicOnlyRoute from './components/routes/PublicOnly';
 import SignUp from './components/authentication/Signup';
 import { RevealPage } from './components/pages/reveal/RevealPage';
 
+import './style/App.css';
+
 const httpLink = createHttpLink({
-  uri: `${config.API_URL}/graphql`,
+  uri: `${config.environment.API_URL}/graphql`,
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -56,7 +55,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
 const client = new ApolloClient({
   link: from([errorLink, authLink.concat(httpLink)]),
-  cache,
+  cache: config.apolloCache.cache,
 });
 
 function App() {

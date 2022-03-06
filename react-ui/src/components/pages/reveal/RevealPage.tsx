@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import config from '../../../config/env';
+import config from '../../../config/environment';
 import Logo from '../../ui/styled/image/Logo';
 import Footer from '../../layout/generic/footer/Footer';
 import CallToAction from '../landing/CallToAction';
