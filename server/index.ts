@@ -4,17 +4,17 @@ import express from 'express';
 import { ApolloServer, gql } from 'apollo-server-express';
 import cors from 'cors';
 
+import options from './config/options';
 import { createContext } from './context';
 import { Query, Mutation, Message, Link, User } from './resolvers';
-import options from './config/options';
 
 // routes
 import __api from './rest-api/controllers';
 
 // constants
-const PORT = options.server.port;
-const app = express();
+const port = options.server.port;
 const limit = '100kb';
+const app = express();
 
 // middleware
 app.use(express.json({ limit }));
@@ -42,5 +42,7 @@ const server = new ApolloServer({
 
   server.applyMiddleware({ app, path: '/graphql' });
 
-  app.listen({ port: PORT }, () => console.log('🚀 Server ready'));
+  app.listen({ port }, () => {
+    console.log('🚀 Server ready');
+  });
 })();

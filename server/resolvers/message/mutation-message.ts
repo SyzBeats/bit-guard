@@ -15,9 +15,7 @@ const MessageMutation = {
   async createMessage(parent, args, ctx: Context): Promise<Message> {
     try {
       const { data } = args;
-
       const { prisma, req } = ctx;
-
       const token = authenticate(req);
 
       // encrypt the message
@@ -62,7 +60,7 @@ const MessageMutation = {
       });
 
       if (!signal) {
-        throw new ApolloError('Signal could not be created');
+        throw new ApolloError('Signal creation failed');
       }
 
       const linkPayload = {
@@ -77,7 +75,7 @@ const MessageMutation = {
       const link = await LinkMutation.createSignalLink(linkPayload);
 
       if (!link) {
-        throw new ApolloError('Link could not be created');
+        throw new ApolloError('Link creation failed');
       }
 
       return {
