@@ -14,7 +14,6 @@ const MessageQuery = {
   async messageById(parent, args, ctx: Context) {
     try {
       const { prisma } = ctx;
-
       const { data } = args;
 
       // gain encrypted message from database
@@ -50,6 +49,7 @@ const MessageQuery = {
   async messagesByUser(parent, args, ctx: Context) {
     try {
       const { prisma, req } = ctx;
+
       const user = authenticate(req);
 
       return await prisma.message.findMany({
@@ -63,6 +63,7 @@ const MessageQuery = {
   async signalsByUser(parent, args, ctx: Context) {
     try {
       const { prisma, req } = ctx;
+
       const user = authenticate(req);
 
       return await prisma.signal.findMany({

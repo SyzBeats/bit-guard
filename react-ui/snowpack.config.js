@@ -10,6 +10,7 @@ module.exports = {
     src: {
       url: '/dist',
     },
+    'public/fonts': '/fonts',
   },
   plugins: ['@snowpack/plugin-typescript', '@snowpack/plugin-react-refresh', '@snowpack/plugin-dotenv'],
   routes: [{ match: 'routes', src: '.*', dest: '/index.html' }],

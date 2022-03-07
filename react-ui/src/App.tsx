@@ -28,38 +28,40 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<LandingPage />} />
-
             <Route path="reveal" element={<RevealPage isPublic={false} />} />
             <Route path="reveal/:secret/:key" element={<RevealPage isPublic={false} />} />
             <Route path="reveal/public/" element={<RevealPage isPublic={true} />} />
             <Route path="reveal/public/:secret/:key" element={<RevealPage isPublic={true} />} />
 
-            <Route
-              path="/login"
-              element={
-                <PublicOnlyRoute>
-                  <Login />
-                </PublicOnlyRoute>
-              }
-            />
-
-            <Route
-              path="/signup"
-              element={
-                <PublicOnlyRoute>
-                  <SignUp />
-                </PublicOnlyRoute>
-              }
-            />
-
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              }
-            />
+            {/* These features are under development */}
+            {config.environment.MODE === 'development' && (
+              <>
+                <Route
+                  path="/login"
+                  element={
+                    <PublicOnlyRoute>
+                      <Login />
+                    </PublicOnlyRoute>
+                  }
+                />
+                <Route
+                  path="/signup"
+                  element={
+                    <PublicOnlyRoute>
+                      <SignUp />
+                    </PublicOnlyRoute>
+                  }
+                />
+                <Route
+                  path="/dashboard"
+                  element={
+                    <ProtectedRoute>
+                      <Dashboard />
+                    </ProtectedRoute>
+                  }
+                />
+              </>
+            )}
           </Routes>
         </BrowserRouter>
       </ApolloProvider>

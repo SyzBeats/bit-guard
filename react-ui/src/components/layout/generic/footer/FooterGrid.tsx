@@ -18,7 +18,9 @@ const FooterGrid = () => {
       </List>
       <List>
         <ListTitle>About us</ListTitle>
-        <ListItem>SZ WEB Development</ListItem>
+        <ListItem>
+          <a href="https://sz-development.com">SZ WEB Development</a>
+        </ListItem>
         <ListItem>Data protection</ListItem>
         <ListItem>Imprint</ListItem>
       </List>
@@ -51,6 +53,16 @@ const ListTitle = styled.h2`
 const ListItem = styled.li`
   font-weight: 100;
   letter-spacing: 0.1rem;
+
+  a {
+    color: ${({ theme }) => theme.colors.white};
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.highlight_iceblue};
+    }
+  }
 `;
 
 export default FooterGrid;
