@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface AlertProps {
-  type: string;
+  type?: string;
   message: string;
 }
 

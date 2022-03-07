@@ -7,7 +7,6 @@ interface Props {
 }
 
 const RevealBox = ({ message }: Props) => {
-  console.log(message);
   return (
     <ContentBox>
       <Content>{message}</Content>

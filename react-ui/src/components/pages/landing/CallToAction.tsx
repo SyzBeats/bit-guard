@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import config from '../../../config';
 
 import waves from '../../../images/waves.svg';
 import Button from '../../ui/buttons/Button';
@@ -10,9 +11,13 @@ const CallToAction = () => {
   return (
     <Wrapper>
       <SecondaryTitle color="light">Create your account!</SecondaryTitle>
-      <Link to="/signup">
-        <Button content="Start for free!" />
-      </Link>
+      {config.environment.MODE === 'development' ? (
+        <Link to="/signup">
+          <Button content="Start for free!" />
+        </Link>
+      ) : (
+        <p>coming soon</p>
+      )}
     </Wrapper>
   );
 };
@@ -35,6 +40,10 @@ const Wrapper = styled.div`
   margin: auto;
   box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.3);
   padding: 2rem;
+
+  p {
+    color: white;
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
     background-position: unset;

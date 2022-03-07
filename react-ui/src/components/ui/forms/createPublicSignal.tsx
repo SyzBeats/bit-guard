@@ -1,12 +1,13 @@
-import { useMutation } from '@apollo/client';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useMutation } from '@apollo/client';
 import { CREATE_PUBLIC_SIGNAL } from '../../../graphql/mutations/signal/mutation-create-public-signal';
 
 import { useCreateSecretFormState } from '../../../zustand/store';
 import { FlexGridEqual } from '../../layout/grids/FlexGrid';
 import { FlexGridItem } from '../../layout/grids/FlexGridItem';
 import { DisplayLink } from '../../signals/DisplayLink';
+import { Alert } from '../alert/Alert';
 import { ButtonWrapper } from '../buttons/ButtonWrapper';
 import { TextArea } from './inputs/TextArea';
 import TextInput from './inputs/TextInput';
@@ -14,17 +15,32 @@ import TextInput from './inputs/TextInput';
 const CreatePublicSignal = () => {
   const { setContent, setTitle, title, content, link, setLink } = useCreateSecretFormState();
 
+  const [alert, setAlert] = useState({
+    type: '',
+    message: '',
+  });
+
   const [createSignalMutation] = useMutation(CREATE_PUBLIC_SIGNAL, {
     onCompleted: ({ createPublicSignal }) => {
       setLink(createPublicSignal?.link?.content);
+      setAlert({ type: 'success', message: '' });
     },
     onError: (error) => {
-      console.log(error);
+      setAlert((prev) => ({
+        ...prev,
+        type: 'error',
+        message: error.message,
+      }));
     },
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!title || !content) {
+      setAlert({ type: 'error', message: 'Please fill in all fields' });
+      return;
+    }
 
     createSignalMutation({
       variables: {
@@ -55,6 +71,7 @@ const CreatePublicSignal = () => {
           <button onClick={(e) => handleSubmit(e)}>Create a Signal</button>
         </ButtonWrapper>
       </FlexGridEqual>
+      {alert.message && <Alert message={alert.message} type={alert.type} />}
     </Wrapper>
   );
 };

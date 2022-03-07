@@ -40,7 +40,6 @@ async function encryptAES128GCM(content: string) {
       iv,
     };
   } catch (e) {
-    console.log(e);
     return null;
   }
 }
@@ -76,7 +75,6 @@ async function decryptAES128GCM(key: ArrayBuffer, encrypted: Uint8Array, iv: Uin
 
     return new TextDecoder().decode(decrypted);
   } catch (e) {
-    console.log(e);
     return null;
   }
 }

@@ -5,13 +5,16 @@ const FooterGrid = () => {
   return (
     <Wrapper>
       <List>
-        <ListTitle>Quick Links</ListTitle>
-        <ListItem>Login</ListItem>
-        <ListItem>Blog</ListItem>
-        <ListItem>Contact</ListItem>
+        <ListTitle>External Links</ListTitle>
+        <ListItem>
+          <a href="https://sz-development.tech/blog">Blog</a>
+        </ListItem>
+        <ListItem>
+          <a href="https://sz-development.tech/kontakt">Contact</a>
+        </ListItem>
       </List>
       <List>
-        <ListTitle>Tutorials</ListTitle>
+        <ListTitle>Tutorials (soon)</ListTitle>
         <ListItem>Create a Message</ListItem>
         <ListItem>Share a Link</ListItem>
         <ListItem>Our Encryption</ListItem>
@@ -19,10 +22,14 @@ const FooterGrid = () => {
       <List>
         <ListTitle>About us</ListTitle>
         <ListItem>
-          <a href="https://sz-development.com">SZ WEB Development</a>
+          <a href="https://sz-development.tech/blog">SZ WEB Development</a>
         </ListItem>
-        <ListItem>Data protection</ListItem>
-        <ListItem>Imprint</ListItem>
+        <ListItem>
+          <a href="https://sz-development.tech/datenschutz">Data Protection</a>
+        </ListItem>
+        <ListItem>
+          <a href="https://sz-development.tech/impressum">Imprint</a>
+        </ListItem>
       </List>
     </Wrapper>
   );
