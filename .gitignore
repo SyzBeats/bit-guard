@@ -1,7 +1,6 @@
 # modules
 node_modules
 
-server/config/*.ts
 # env
 .env
 .env.*

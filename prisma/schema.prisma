@@ -28,6 +28,7 @@ model Message {
   title     String
   content   String
   links     Link[]
+  password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

@@ -41,6 +41,7 @@ const UserMutation = {
 
       return { token };
     } catch (error) {
+      console.log(error.message);
       return new ApolloError('Something went wrong signing up. Please contact the administrator');
     }
   },
