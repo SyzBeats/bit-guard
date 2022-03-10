@@ -20,7 +20,7 @@ const CreatePublicSignal = () => {
     message: '',
   });
 
-  const [createSignalMutation] = useMutation(CREATE_PUBLIC_SIGNAL, {
+  const [createSignalMutation, { loading }] = useMutation(CREATE_PUBLIC_SIGNAL, {
     onCompleted: ({ createPublicSignal }) => {
       setLink(createPublicSignal?.link?.content);
       setAlert({ type: 'success', message: '' });
@@ -71,6 +71,7 @@ const CreatePublicSignal = () => {
           <button onClick={(e) => handleSubmit(e)}>Create a Signal</button>
         </ButtonWrapper>
       </FlexGridEqual>
+      {loading && <p>Loading...</p>}
       {alert.message && <Alert message={alert.message} type={alert.type} />}
     </Wrapper>
   );

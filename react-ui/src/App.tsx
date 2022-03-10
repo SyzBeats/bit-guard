@@ -7,7 +7,7 @@ import config from './config';
 
 import { theme } from './style/themes/theme-brand';
 import Dashboard from './components/pages/dashboard/Dashboard';
-import { LandingPage } from './components/pages/landing/LandingPage';
+import { HomePage } from './components/pages/home/HomePage';
 import Login from './components/authentication/Login';
 import ProtectedRoute from './components/routes/Protected';
 import PublicOnlyRoute from './components/routes/PublicOnly';
@@ -27,7 +27,7 @@ function App() {
       <ApolloProvider client={client}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<LandingPage />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="reveal" element={<RevealPage isPublic={false} />} />
             <Route path="reveal/:secret/:key" element={<RevealPage isPublic={false} />} />
             <Route path="reveal/public/" element={<RevealPage isPublic={true} />} />

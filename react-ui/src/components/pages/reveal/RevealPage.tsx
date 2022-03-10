@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import config from '../../../config/environment';
 import Logo from '../../ui/styled/image/Logo';
 import Footer from '../../layout/generic/footer/Footer';
-import CallToAction from '../landing/CallToAction';
+import CallToAction from '../home/CallToAction';
 import { SectionBackground, SectionBase } from '../../ui/styled/sections';
 import { RevealBox } from './RevealBox';
 import { BaseContainer } from '../../ui/containers';

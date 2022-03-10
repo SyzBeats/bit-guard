@@ -13,7 +13,7 @@ import HeroLanding from './Hero';
 import Navigation from './Navigation';
 import SignalBox from './signal/SignalBox';
 
-const LandingPage = () => {
+const HomePage = () => {
   return (
     <LayoutLanding>
       <Navigation />
@@ -55,4 +55,4 @@ const LandingPage = () => {
   );
 };
 
-export { LandingPage };
+export { HomePage };
