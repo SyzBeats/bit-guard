@@ -11,6 +11,9 @@ module.exports = {
       url: '/dist',
     },
     'public/fonts': '/fonts',
+    netlify: {
+      url: '/',
+    },
   },
   plugins: ['@snowpack/plugin-typescript', '@snowpack/plugin-react-refresh', '@snowpack/plugin-dotenv'],
   routes: [{ match: 'routes', src: '.*', dest: '/index.html' }],
