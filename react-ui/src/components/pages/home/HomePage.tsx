@@ -22,13 +22,11 @@ const HomePage = () => {
 
       <SectionGradientBase>
         <BaseContainer data-anker="how-it-works">
+          <SignalBox />
           <SecondaryTitle color="dark" textAlign="center">
             What <strong>.envite</strong> does for you
           </SecondaryTitle>
-
           <LandingPageIconGrid />
-
-          <SignalBox />
         </BaseContainer>
       </SectionGradientBase>
 

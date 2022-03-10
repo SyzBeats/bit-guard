@@ -28,7 +28,7 @@ const SignalBox = () => {
 const Wrapper = styled.div`
   box-sizing: border-box;
   max-width: 80rem;
-  margin: 10rem auto 0 auto;
+  margin: 0rem auto 10rem auto;
 
   p {
     display: flex;

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Copy } from 'react-feather';
 import styled from 'styled-components';
+import { useSignalState } from '../../zustand/store';
 
 interface Props {
   link: string;
@@ -10,16 +11,15 @@ interface ContainerState {
 }
 
 const DisplayLink = ({ link }: Props) => {
-  const [copied, setCopied] = useState(false);
+  const signalState = useSignalState((state) => ({ linkCopied: state.linkCopied, setLinkCopied: state.setLinkCopied }));
 
   const copyLinkToClipboard = (link: string) => {
-    // use navigator.clipboard.writeText(text) to copy to clipboard
     navigator.clipboard.writeText(link);
-    setCopied(true);
+    signalState.setLinkCopied(true);
   };
 
   return (
-    <Container copied={copied}>
+    <Container copied={signalState.linkCopied}>
       <CopySection>
         Secret Link: <Copy onClick={() => copyLinkToClipboard(link)} />
       </CopySection>
@@ -64,4 +64,5 @@ const CopySection = styled.div`
   gap: 1rem;
   margin-bottom: 1rem;
 `;
+
 export { DisplayLink };

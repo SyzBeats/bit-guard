@@ -1,5 +1,7 @@
 interface SignalState {
   signals: any[];
+  linkCopied: boolean;
+  setLinkCopied: (linkCopied: boolean) => void;
   setSignals: (signals: any[]) => void;
   addSignal: (signal: any) => void;
   removeSignal: (signal: any) => void;

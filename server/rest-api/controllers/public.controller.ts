@@ -49,7 +49,8 @@ router.get('/link/:cipher', async (req, res) => {
     return res.status(200).send(decryptedMessage);
   } catch (error) {
     return res.status(500).json({
-      message: `Something went horribly wrong here. We are sorry! Error: ${error.message}`,
+      message: 'Something went horribly wrong here. We are sorry!',
+      error: error.message,
     });
   } finally {
     await client.$disconnect();
@@ -99,7 +100,8 @@ router.get('/signal/:id', async (req, res) => {
     return res.status(200).json({ message });
   } catch (error) {
     return res.status(500).json({
-      message: `Something went horribly wrong here. We are sorry! Error: ${error.message}`,
+      message: 'Something went horribly wrong here. We are sorry!',
+      error: error.message,
     });
   } finally {
     await client.$disconnect();
@@ -125,9 +127,9 @@ router.get('/publicSignal/:id', async (req, res) => {
         id,
       },
       select: {
-        content: true,
         id: true,
-        createdAt: true,
+        title: true,
+        content: true,
       },
     });
 
@@ -148,10 +150,11 @@ router.get('/publicSignal/:id', async (req, res) => {
       },
     });
 
-    return res.status(200).json({ message });
+    return res.status(200).json({ message, title: signal.title });
   } catch (error) {
     return res.status(500).json({
-      message: `Something went horribly wrong here. We are sorry! Error: ${error.message}`,
+      message: 'Something went horribly wrong here. We are sorry!',
+      error: error.message,
     });
   } finally {
     await client.$disconnect();

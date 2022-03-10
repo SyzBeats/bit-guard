@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useMutation } from '@apollo/client';
 import { CREATE_PUBLIC_SIGNAL } from '../../../graphql/mutations/signal/mutation-create-public-signal';
 
-import { useCreateSecretFormState } from '../../../zustand/store';
+import { useCreateSecretFormState, useSignalState } from '../../../zustand/store';
 import { FlexGridEqual } from '../../layout/grids/FlexGrid';
 import { FlexGridItem } from '../../layout/grids/FlexGridItem';
 import { DisplayLink } from '../../signals/DisplayLink';
@@ -11,9 +11,22 @@ import { Alert } from '../alert/Alert';
 import { ButtonWrapper } from '../buttons/ButtonWrapper';
 import { TextArea } from './inputs/TextArea';
 import TextInput from './inputs/TextInput';
+import shallow from 'zustand/shallow';
 
 const CreatePublicSignal = () => {
-  const { setContent, setTitle, title, content, link, setLink } = useCreateSecretFormState();
+  const formState = useCreateSecretFormState(
+    (state) => ({
+      setLink: state.setLink,
+      setContent: state.setContent,
+      setTitle: state.setTitle,
+      content: state.content,
+      title: state.title,
+      link: state.link,
+    }),
+    shallow,
+  );
+
+  const signalState = useSignalState((state) => ({ setLinkCopied: state.setLinkCopied }), shallow);
 
   const [alert, setAlert] = useState({
     type: '',
@@ -22,30 +35,30 @@ const CreatePublicSignal = () => {
 
   const [createSignalMutation, { loading }] = useMutation(CREATE_PUBLIC_SIGNAL, {
     onCompleted: ({ createPublicSignal }) => {
-      setLink(createPublicSignal?.link?.content);
-      setAlert({ type: 'success', message: '' });
+      formState.setLink(createPublicSignal?.link?.content);
+      formState.setContent('');
+      formState.setTitle('');
+      signalState.setLinkCopied(false);
+      setAlert({ type: '', message: '' });
     },
     onError: (error) => {
-      setAlert((prev) => ({
-        ...prev,
-        type: 'error',
-        message: error.message,
-      }));
+      setAlert({ type: 'error', message: error.message });
+      signalState.setLinkCopied(false);
     },
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!title || !content) {
+    if (!formState.title || !formState.content) {
       setAlert({ type: 'error', message: 'Please fill in all fields' });
       return;
     }
 
     createSignalMutation({
       variables: {
-        title,
-        content,
+        title: formState.title,
+        content: formState.content,
       },
     });
   };
@@ -54,16 +67,21 @@ const CreatePublicSignal = () => {
     <Wrapper>
       <FlexGridEqual gap="1.5rem" justifyContent="stretch">
         <FlexGridItem alignSelf="stretch" flex="1">
-          <TextInput label="Enter a title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+          <TextInput label="Enter a title" name="title" value={formState.title} onChange={(e) => formState.setTitle(e.target.value)} />
         </FlexGridItem>
       </FlexGridEqual>
 
       <FlexGridEqual gap="1.5rem" justifyContent="stretch">
-        <TextArea label="Your message content" name="content" value={content} onChange={(e) => setContent(e.target.value)} />
+        <TextArea
+          label="Your message content"
+          name="content"
+          value={formState.content}
+          onChange={(e) => formState.setContent(e.target.value)}
+        />
       </FlexGridEqual>
 
       <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">
-        {!!link && <DisplayLink link={link} />}
+        {!!formState.link && <DisplayLink link={formState.link} />}
       </FlexGridEqual>
 
       <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">

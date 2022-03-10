@@ -17,6 +17,7 @@ const RevealPage = ({ isPublic }: Props) => {
 
   const [revealed, setRevealed] = useState({
     message: '',
+    title: '',
   });
 
   const queryPath = isPublic ? 'api/public/publicSignal' : 'api/public/signal';
@@ -25,13 +26,24 @@ const RevealPage = ({ isPublic }: Props) => {
 
   useEffect(() => {
     async function fetchData() {
-      if (!params.secret || !params.key) {
-        return;
+      try {
+        if (!params.secret || !params.key) {
+          return;
+        }
+
+        const data = await (await fetch(endpoint)).json();
+
+        if (data.error) {
+          throw new Error(data.error);
+        }
+
+        setRevealed(data);
+      } catch {
+        setRevealed({
+          message: 'We could not find the secret you were looking for. Sorry!',
+          title: 'No Data found',
+        });
       }
-
-      const data = await (await fetch(endpoint)).json();
-
-      setRevealed(data);
     }
 
     fetchData();
@@ -56,6 +68,7 @@ const RevealPage = ({ isPublic }: Props) => {
             )}
           </TextWrapper>
 
+          <RevealTitle>{revealed.title}</RevealTitle>
           <RevealBox message={revealed.message || 'No message found...'} />
         </BaseContainer>
       </SectionBackground>
@@ -82,6 +95,12 @@ const TextWrapper = styled.div`
   h1 {
     margin-bottom: 1rem;
   }
+`;
+
+const RevealTitle = styled.h2`
+  margin: 4rem 0 2rem 0;
+  font-size: 2rem;
+  font-weight: 400;
 `;
 
 export { RevealPage };

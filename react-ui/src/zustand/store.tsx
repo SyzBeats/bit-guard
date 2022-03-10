@@ -1,13 +1,11 @@
 import create from 'zustand';
 import { AuthState, CreateSecretFormState, SignalState } from './interfaces';
 
-const dummyData = {
-  signals: [],
-};
-
 const useSignalState = create<SignalState>((set) => ({
-  signals: dummyData.signals,
+  signals: [],
+  linkCopied: false,
   setSignals: (signals) => set((state) => ({ ...state, signals })),
+  setLinkCopied: (linkCopied) => set((state) => ({ ...state, linkCopied })),
   addSignal: (signal) => set((state) => ({ ...state, signals: [...state.signals, signal] })),
   removeSignal: (signal) => set((state) => ({ ...state, signals: state.signals.filter((s) => s.id !== signal) })),
 }));
