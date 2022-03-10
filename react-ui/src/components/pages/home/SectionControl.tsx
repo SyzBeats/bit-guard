@@ -5,7 +5,7 @@ import { MainTitle, SecondaryTitle } from '../../ui/styled/typography';
 const SectionControl = () => {
   return (
     <Wrapper>
-      <MainTitle color="dark">Advanced Control Panel</MainTitle>
+      <MainTitle color="dark">Advanced Control Panel (soon)</MainTitle>
       <Grid>
         <Image src={Sharing} alt="Illustration of sharing people" />
         <Content className="test">
