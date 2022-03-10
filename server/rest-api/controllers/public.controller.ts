@@ -1,11 +1,10 @@
 import * as express from 'express';
 import * as jwt from 'jsonwebtoken';
-import { PrismaClient } from '@prisma/client';
 import * as keys from '../../config/keys';
 import { decryptAes256cbc } from '../../services/encryption';
 import { MessageToken } from '../../util/typings';
 import { isMessageToken } from '../../util/typings/typeguards';
-
+import { prisma } from '../../lib/prisma';
 const router = express.Router({ caseSensitive: false });
 
 /**
@@ -15,7 +14,7 @@ const router = express.Router({ caseSensitive: false });
  */
 
 router.get('/link/:cipher', async (req, res) => {
-  const client = new PrismaClient();
+  await prisma.$connect();
 
   try {
     const { cipher } = req.params;
@@ -28,7 +27,7 @@ router.get('/link/:cipher', async (req, res) => {
       return res.status(500).json({ message: 'something went wrong' });
     }
 
-    const message = await client.message.findUnique({
+    const message = await prisma.message.findUnique({
       where: {
         id: data.messageId,
       },
@@ -53,7 +52,7 @@ router.get('/link/:cipher', async (req, res) => {
       error: error.message,
     });
   } finally {
-    await client.$disconnect();
+    await prisma.$disconnect();
   }
 });
 
@@ -62,14 +61,14 @@ router.get('/link/:cipher', async (req, res) => {
  * @description one time signals will be decrypted and destroyed
  */
 router.get('/signal/:id', async (req, res) => {
-  const client = new PrismaClient();
+  await prisma.$connect();
 
   const { id } = req.params;
   const { key } = req.query;
 
   try {
     // get the secret from the database
-    const signal = await client.signal.findUnique({
+    const signal = await prisma.signal.findUnique({
       where: {
         id,
       },
@@ -91,7 +90,7 @@ router.get('/signal/:id', async (req, res) => {
     const message = decryptAes256cbc(signal.content, key?.toString());
 
     // delete the signal
-    await client.signal.delete({
+    await prisma.signal.delete({
       where: {
         id,
       },
@@ -104,7 +103,7 @@ router.get('/signal/:id', async (req, res) => {
       error: error.message,
     });
   } finally {
-    await client.$disconnect();
+    await prisma.$disconnect();
   }
 });
 
@@ -115,14 +114,14 @@ router.get('/signal/:id', async (req, res) => {
  * destroy it afterwards.
  */
 router.get('/publicSignal/:id', async (req, res) => {
-  const client = new PrismaClient();
+  await prisma.$connect();
 
   const { id } = req.params;
   const { key } = req.query;
 
   try {
     // get the secret from the database
-    const signal = await client.publicSignal.findUnique({
+    const signal = await prisma.publicSignal.findUnique({
       where: {
         id,
       },
@@ -144,7 +143,7 @@ router.get('/publicSignal/:id', async (req, res) => {
     const message = decryptAes256cbc(signal.content, key?.toString());
 
     // delete the signal
-    await client.publicSignal.delete({
+    await prisma.publicSignal.delete({
       where: {
         id,
       },
@@ -157,7 +156,7 @@ router.get('/publicSignal/:id', async (req, res) => {
       error: error.message,
     });
   } finally {
-    await client.$disconnect();
+    await prisma.$disconnect();
   }
 });
 
