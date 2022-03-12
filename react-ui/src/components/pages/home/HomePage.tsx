@@ -4,20 +4,16 @@ import { BaseContainer } from '../../ui/containers';
 import { SectionControl } from './SectionControl';
 import { HomepageStory } from './Story';
 import { LandingPageIconGrid } from './IconGrid';
-import { LayoutLanding } from '../../layout/landing/LayoutLanding';
+import { LayoutMain } from '../../layout/landing/layoutMain';
 import { SecondaryTitle } from '../../ui/styled/typography';
 import { SectionBackground, SectionBase, SectionGradientBase } from '../../ui/styled/sections';
 import CallToAction from './CallToAction';
-import Footer from '../../layout/generic/footer/Footer';
 import HeroLanding from './Hero';
-import Navigation from './Navigation';
 import SignalBox from './signal/SignalBox';
 
 const HomePage = () => {
   return (
-    <LayoutLanding>
-      <Navigation />
-
+    <LayoutMain>
       <HeroLanding />
 
       <SectionGradientBase>
@@ -47,9 +43,7 @@ const HomePage = () => {
           <CallToAction />
         </BaseContainer>
       </SectionBase>
-
-      <Footer />
-    </LayoutLanding>
+    </LayoutMain>
   );
 };
 

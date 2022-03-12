@@ -15,6 +15,8 @@ import SignUp from './components/authentication/Signup';
 import { RevealPage } from './components/pages/reveal/RevealPage';
 
 import './style/App.css';
+import { Dataprotection } from './components/pages/dataprotection/Dataprotection';
+import { Imprint } from './components/pages/imprint/Imprint';
 
 const client = new ApolloClient({
   link: from([config.apollo.errorLink, config.apollo.authLink.concat(config.apollo.httpLink)]),
@@ -28,6 +30,9 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="dataprotection" element={<Dataprotection />} />
+            <Route path="imprint" element={<Imprint />} />
+
             <Route path="reveal" element={<RevealPage isPublic={false} />} />
             <Route path="reveal/:secret/:key" element={<RevealPage isPublic={false} />} />
             <Route path="reveal/public/" element={<RevealPage isPublic={true} />} />

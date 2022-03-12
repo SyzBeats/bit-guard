@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const FooterGrid = () => {
@@ -25,10 +26,10 @@ const FooterGrid = () => {
           <a href="https://sz-development.tech/blog">SZ WEB Development</a>
         </ListItem>
         <ListItem>
-          <a href="https://sz-development.tech/datenschutz">Data Protection</a>
+          <Link to="/dataprotection">Data Protection</Link>
         </ListItem>
         <ListItem>
-          <a href="https://sz-development.tech/impressum">Imprint</a>
+          <Link to="/imprint">Imprint</Link>
         </ListItem>
       </List>
     </Wrapper>
