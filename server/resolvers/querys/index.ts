@@ -1,9 +1,9 @@
-import { MessageQuery } from '../message';
+import { SecretQuery } from '../secret';
 import { UserQuery } from '../user';
 import { LinkQuery } from '../link';
 
 const Query = {
-  ...MessageQuery,
+  ...SecretQuery,
   ...UserQuery,
   ...LinkQuery,
 };

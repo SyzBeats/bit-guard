@@ -6,7 +6,7 @@ import { encryptAes256cbc } from '../../services/encryption';
 import { ICreateSignalOutput } from '../../util/typings';
 import { LinkMutation } from '../link';
 
-const MessageMutation = {
+const SecretMutation = {
   /**
    * @protected
    * @description: creates an encrypted message with a random IV and key
@@ -45,6 +45,7 @@ const MessageMutation = {
     try {
       const { data } = args;
       const { prisma, req } = ctx;
+
       const token = authenticate(req);
 
       // encrypt the signal with a random key that is not known by anyone
@@ -150,6 +151,7 @@ const MessageMutation = {
     try {
       const { data } = args;
       const { prisma, req } = ctx;
+
       authenticate(req);
 
       /**
@@ -201,4 +203,4 @@ const MessageMutation = {
   },
 };
 
-export { MessageMutation };
+export { SecretMutation };

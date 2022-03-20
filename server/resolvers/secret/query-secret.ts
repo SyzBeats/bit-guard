@@ -2,7 +2,7 @@ import { authenticate } from '../../auth/authenticate';
 import { Context } from '../../context';
 import { decryptAes256cbc } from '../../services/encryption';
 
-const MessageQuery = {
+const SecretQuery = {
   /**
    * @description get as message by its id and decrypts the content
    * to display it to the user
@@ -75,4 +75,4 @@ const MessageQuery = {
   },
 };
 
-export { MessageQuery };
+export { SecretQuery };

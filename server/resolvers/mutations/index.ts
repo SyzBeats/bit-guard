@@ -1,11 +1,11 @@
 import { UserMutation } from '../user';
 import { LinkMutation } from '../link';
-import { MessageMutation } from '../message';
+import { SecretMutation } from '../secret';
 
 const Mutation = {
   ...UserMutation,
   ...LinkMutation,
-  ...MessageMutation,
+  ...SecretMutation,
 };
 
 export { Mutation };
