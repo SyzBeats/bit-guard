@@ -1,5 +1,3 @@
-import { Message, Signal } from '@prisma/client';
-
 interface MessageToken {
   messageId: string;
   iat: number;

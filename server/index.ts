@@ -9,17 +9,15 @@ import { createContext } from './context';
 import { Query, Mutation, Message, Link, User } from './resolvers';
 
 // routes
-import __api from './rest-api/controllers';
+import _api from './rest-api/controllers';
 
 // constants
-const port = options.server.port;
-const limit = '100kb';
 const app = express();
 
 // middleware
-app.use(express.json({ limit }));
+app.use(express.json({ limit: options.server.limit }));
 app.use(cors(options.cors));
-app.use('/api/public', __api.publicRoutes);
+app.use('/api/public', _api.publicRoutes);
 
 const resolvers = {
   Query,
@@ -42,7 +40,7 @@ const server = new ApolloServer({
 
   server.applyMiddleware({ app, path: '/graphql' });
 
-  app.listen({ port }, () => {
+  app.listen({ port: options.server.port }, () => {
     console.log('🚀 Server ready');
   });
 })();

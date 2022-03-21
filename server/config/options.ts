@@ -1,6 +1,6 @@
 const options = {
   cors: {
-    origin: ['http://localhost:8080', 'https://envite.dev'],
+    origin: process.env.NODE_ENV === 'production' ? ['https://envite.dev'] : ['http://localhost:8080'],
     credentials: true,
   },
   server: {
@@ -8,6 +8,7 @@ const options = {
     host: process.env.HOST || 'localhost:4000',
     protocol: process.env.NODE_ENV === 'production' ? 'https' : 'http',
     endpoint: '/graphql',
+    limit: '100kb',
   },
   app: {
     domain: process.env.APP_DOMAIN || 'http://localhost:8080',
