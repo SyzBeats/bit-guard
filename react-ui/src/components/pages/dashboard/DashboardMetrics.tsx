@@ -12,9 +12,6 @@ const DashboardMetrics = () => {
       <ContentBox title="Active Secrets">
         <Counter type="message" />
       </ContentBox>
-      <ContentBox title="Recent activity">
-        <Counter type="message" />
-      </ContentBox>
     </FlexGridEqual>
   );
 };

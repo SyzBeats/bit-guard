@@ -46,9 +46,9 @@ const authLink = setContext((_, { headers }) => {
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     // executes a function for each graphql error
-    for (let error of graphQLErrors) {
+    for (const error of graphQLErrors) {
       // ensure that once a token is expired, the user is redirected to the login page
-      if (error.message === 'jwt expired') {
+      if (['jwt expired', 'invalid signature'].includes(error.message)) {
         localStorage.removeItem('token');
 
         window.location.reload();
