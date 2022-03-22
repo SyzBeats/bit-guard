@@ -18,6 +18,15 @@ model User {
   confirmed Boolean   @default(false)
   Message   Message[]
   Signal    Signal[]
+  Metrics   Metrics[]
+}
+
+model Metrics {
+  id     String @id @default(uuid())
+  type   String
+  value  String
+  userId String
+  owner  User   @relation(fields: [userId], references: [id])
 }
 
 // message contains hashed content

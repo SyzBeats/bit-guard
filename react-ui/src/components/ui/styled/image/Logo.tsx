@@ -3,16 +3,20 @@ import LogoPath from '../../../../images/shield_logosvg.svg';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const Logo = () => {
+interface Props {
+  width?: string;
+}
+
+const Logo = ({ width }: Props) => {
   return (
     <Link to="/">
-      <BrandLogo src={LogoPath} />
+      <BrandLogo width={width} src={LogoPath} />
     </Link>
   );
 };
 
-const BrandLogo = styled.img`
-  width: 8rem;
+const BrandLogo = styled.img<Props>`
+  width: ${({ width }) => width || '8rem'};
 `;
 
 export default Logo;
