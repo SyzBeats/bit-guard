@@ -19,3 +19,7 @@ server/build
 
 #workspace
 .vscode
+
+# gcp
+
+gcp/cloud-functions/node_modules

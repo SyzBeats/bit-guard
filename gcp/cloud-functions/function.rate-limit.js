@@ -1,18 +1,19 @@
-import { Firestore } from '@google-cloud/firestore';
-import config from './config';
+const { Firestore } = require('@google-cloud/firestore');
+
+const config = require('./config');
 
 const db = new Firestore({ projectId: config.PROJECT_ID });
 const collection = db.collection('extension-store');
 
-exports.helloWorld = async (req, res) => {
+exports.rateLimit = async (req, res) => {
   // return if OPTIONS request
-  if (req.method === 'OPTIONS') {
-    return res.status(200).send('OK');
+  if (req?.method === 'OPTIONS') {
+    return res?.status(200)?.send('OK');
   }
 
   // request body needs to have title and content
-  if (!req.body.title || !req.body.content) {
-    return res.status(400).send('Request body must contain title and content');
+  if (!req?.body?.title || !req?.body?.content) {
+    return res?.status(400)?.send('Request body must contain title and content');
   }
 
   // fetch the document
