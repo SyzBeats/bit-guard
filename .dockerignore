@@ -2,6 +2,7 @@ node_modules
 react-ui
 db
 server/build
+gcp
 
 npm-debug.log
 .git

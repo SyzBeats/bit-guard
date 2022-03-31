@@ -1,0 +1,10 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "removeComments": true
+  },
+  "include": ["./**/*.ts"]
+}
