@@ -1,0 +1,20 @@
+{
+  "parserOptions": {
+    "project": "./**/*",
+    "ecmaVersion": 2020
+  },
+  "rules": {
+    "no-unused-vars": 1,
+    "linebreak-style": 0,
+    "object-curly-newline": 0,
+    "object-property-newline": 0,
+    "object-curly-spacing": "off",
+    "no-console": 0,
+    "implicit-arrow-linebreak": 0,
+    "function-paren-newline": 0,
+    "import/prefer-default-export": "off",
+    "indent": "off",
+    "no-use-before-define": "off",
+    "arrow-body-style": "off"
+  }
+}
