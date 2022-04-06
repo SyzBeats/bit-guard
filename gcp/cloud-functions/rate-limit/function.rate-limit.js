@@ -24,23 +24,7 @@ exports.rateLimit = async (req, res) => {
     // fetch the document based on sub
     const document = collection.doc(sub);
 
-    if (!document) {
-      // this user has never been hit before. Check if it is a valid id token
-      const idToken = req?.body?.idToken;
-
-      if (!idToken) {
-        return res?.status(400)?.send('Request body must contain idToken');
-      }
-
-      // get the user's email from the ID token
-      const idTokenInfo = await services.api.getIdTokenInfo(idToken);
-
-      // set the initial document for this user
-      await services.api.setInitialDocument(collection, Date.now(), idTokenInfo.sub);
-
-      return res.status(200).send('user has been initialized');
-    }
-
+    // get the actual data from the document
     const doc = await document.get();
 
     const nowInMs = new Date().getTime();
@@ -80,8 +64,19 @@ exports.rateLimit = async (req, res) => {
       return res.send('Hello World!');
     } else {
       // user has not been hit yet, so the initial document needs to be created
+      const idToken = req?.body?.idToken;
 
-      await services.api.setInitialDocument(collection, Date.now(), sub);
+      if (!idToken) {
+        return res?.status(400)?.send('Request body must contain idToken');
+      }
+
+      // get the user's email from the ID token
+      const idTokenInfo = await services.api.getIdTokenInfo(idToken);
+
+      // set the initial document for this user
+      await services.api.setInitialDocument(collection, Date.now(), idTokenInfo.sub);
+
+      return res.status(200).send('user has been initialized');
     }
   } catch (err) {
     console.error(err);
