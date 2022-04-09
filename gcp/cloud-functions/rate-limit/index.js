@@ -27,6 +27,10 @@ exports.rateLimit = async (req, res) => {
     const sub = req.body?.sub;
     const nowInMs = new Date().getTime();
 
+    if (!sub) {
+      return res?.status(400)?.json({ message: 'Request body must contain sub' });
+    }
+
     // fetch the document based on sub
     const document = collection.doc(sub);
     const doc = await document.get();
@@ -44,10 +48,10 @@ exports.rateLimit = async (req, res) => {
       // the expiration date is over, the user can hit the API again
       if (nowInMs > expirationInMs) {
         await services.api.resetHitCount(document, nowInMs);
-        await services.api.hitEnviteAPI(payLoad);
+        const link = await services.api.hitEnviteAPI(payLoad);
 
         // return with a response from envite api
-        res.status(200).json({ message: 'api was called' });
+        res.status(200).json({ message: link });
 
         return;
       }
