@@ -9,25 +9,22 @@ const collection = db.collection('extension-store');
 exports.rateLimit = async (req, res) => {
   try {
     // return if OPTIONS request
-    if (req?.method === 'OPTIONS') {
+    if (req.method === 'OPTIONS') {
       return res?.status(200)?.send('OK');
     }
 
     // request body needs to have title and content
-    if (!req?.body?.title || !req?.body?.content) {
+    if (!req.body?.title || !req.body?.content) {
       return res?.status(400)?.send('Request body must contain title and content');
     }
 
     // get the users sub, which is the unique identifier for the user of google
-    const sub = req?.body?.sub;
+    const sub = req.body?.sub;
+    const nowInMs = new Date().getTime();
 
     // fetch the document based on sub
     const document = collection.doc(sub);
-
-    // get the actual data from the document
     const doc = await document.get();
-
-    const nowInMs = new Date().getTime();
 
     if (doc.exists) {
       const data = doc.data();
@@ -37,15 +34,14 @@ exports.rateLimit = async (req, res) => {
       }
 
       const expirationInMs = new Date(data.expiration).getTime();
-
       const hitCount = data.hitCount;
 
       // the expiration date is over, the user can hit the API again
       if (nowInMs > expirationInMs) {
-        await services.api.resetUser(document, nowInMs);
-
+        await services.api.resetHitCount(document, nowInMs);
         await services.api.hitEnviteAPI();
 
+        // return with a response from envite api
         res.status(200).send('api was called');
 
         return;
@@ -58,13 +54,13 @@ exports.rateLimit = async (req, res) => {
       }
 
       await services.api.updateHitCount(document);
-
       await services.api.hitEnviteAPI();
 
+      // return with a response from envite api
       return res.send('Hello World!');
     } else {
       // user has not been hit yet, so the initial document needs to be created
-      const idToken = req?.body?.idToken;
+      const idToken = req.body?.idToken;
 
       if (!idToken) {
         return res?.status(400)?.send('Request body must contain idToken');

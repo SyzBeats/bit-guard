@@ -13,7 +13,7 @@ async function setInitialDocument(collection, nowInMs, id) {
   });
 }
 
-async function resetUser(document, nowInMs) {
+async function resetHitCount(document, nowInMs) {
   await document.set({
     expiration: nowInMs + config.TIMEOUT,
     hitCount: 1,
@@ -63,7 +63,7 @@ async function hitEnviteAPI() {
 
 module.exports = {
   setInitialDocument,
-  resetUser,
+  resetHitCount,
   getIdTokenInfo,
   updateHitCount,
   hitEnviteAPI,
