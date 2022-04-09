@@ -18,6 +18,11 @@ exports.rateLimit = async (req, res) => {
       return res?.status(400)?.send('Request body must contain title and content');
     }
 
+    const payLoad = {
+      title: req.body.title,
+      content: req.body.content,
+    };
+
     // get the users sub, which is the unique identifier for the user of google
     const sub = req.body?.sub;
     const nowInMs = new Date().getTime();
@@ -39,7 +44,7 @@ exports.rateLimit = async (req, res) => {
       // the expiration date is over, the user can hit the API again
       if (nowInMs > expirationInMs) {
         await services.api.resetHitCount(document, nowInMs);
-        await services.api.hitEnviteAPI();
+        await services.api.hitEnviteAPI(payLoad);
 
         // return with a response from envite api
         res.status(200).send('api was called');
@@ -54,7 +59,7 @@ exports.rateLimit = async (req, res) => {
       }
 
       await services.api.updateHitCount(document);
-      await services.api.hitEnviteAPI();
+      await services.api.hitEnviteAPI(payLoad);
 
       // return with a response from envite api
       return res.send('Hello World!');

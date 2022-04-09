@@ -39,26 +39,22 @@ async function getIdTokenInfo(idToken) {
   return tokenInfo;
 }
 
-async function hitEnviteAPI() {
-  // call api with graphql query
-  // await fetch('https://api.graph.cool/simple/v1/cj7zf0zj0b7z70101xqjqjqj', {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  //   body: JSON.stringify({
-  //     query: `
-  //       query {
-  //         allUsers {
-  //           id
-  //           name
-  //           email
-  //         }
-  //       }
-  //     `,
-  //   }),
-  // });
-  return;
+/**
+ *
+ * @param {{title:string, content:string}} signal
+ * @returns
+ */
+async function hitEnviteAPI(signal) {
+  // TODO send as graphql query
+  const response = await fetch(config.ENVITE_API, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(signal),
+  });
+
+  return response;
 }
 
 module.exports = {
