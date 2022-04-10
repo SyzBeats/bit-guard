@@ -1,5 +1,7 @@
 const { Firestore } = require('@google-cloud/firestore');
-const config = require('../config');
+require('isomorphic-fetch');
+
+const config = require('./config');
 const services = require('./services');
 
 const db = new Firestore({ projectId: config.PROJECT_ID });
@@ -85,6 +87,6 @@ exports.rateLimit = async (req, res) => {
     }
   } catch (err) {
     console.error(err);
-    res.status(500).send({ message: 'Something went wrong' });
+    res.status(500).send({ message: `Something went wrong: ${err.message}` });
   }
 };
