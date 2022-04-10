@@ -1,4 +1,4 @@
-const config = require('../../config');
+const config = require('../config');
 
 /**
  * @description add a new document to the database
@@ -7,17 +7,25 @@ const config = require('../../config');
  * @param {string} id the new document id
  */
 async function setInitialDocument(collection, nowInMs, id) {
-  await collection.doc(id).set({
-    hitCount: 1,
-    expiration: new Date(nowInMs + config.TIMEOUT),
-  });
+  try {
+    await collection.doc(id).set({
+      hitCount: 1,
+      expiration: new Date(nowInMs + config.TIMEOUT),
+    });
+  } catch (err) {
+    throw new Error('failed to set the initial document');
+  }
 }
 
 async function resetHitCount(document, nowInMs) {
-  await document.set({
-    expiration: nowInMs + config.TIMEOUT,
-    hitCount: 1,
-  });
+  try {
+    await document.set({
+      expiration: nowInMs + config.TIMEOUT,
+      hitCount: 1,
+    });
+  } catch (err) {
+    throw new Error('failed to reset the hit count');
+  }
 }
 
 async function updateHitCount(document) {
@@ -27,38 +35,39 @@ async function updateHitCount(document) {
 }
 
 async function getIdTokenInfo(idToken) {
-  // call google api to get the user's email
-  const response = await fetch(config.GOOGLE_IDENT_URL + idToken);
+  try {
+    // call google api to get the user's email
+    const response = await fetch(config.GOOGLE_IDENT_URL + idToken);
 
-  const tokenInfo = await response.json();
+    const tokenInfo = await response.json();
 
-  if (!tokenInfo.email || !tokenInfo.email_verified) {
-    throw new Error('Invalid ID token');
+    if (!tokenInfo.email || !tokenInfo.email_verified) {
+      throw new Error('Invalid ID token provided');
+    }
+
+    return tokenInfo;
+  } catch (err) {
+    // rethrow for handling in the calling function
+    throw new Error(err.message);
   }
-
-  return tokenInfo;
 }
 
-async function hitEnviteAPI() {
-  // call api with graphql query
-  // await fetch('https://api.graph.cool/simple/v1/cj7zf0zj0b7z70101xqjqjqj', {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  //   body: JSON.stringify({
-  //     query: `
-  //       query {
-  //         allUsers {
-  //           id
-  //           name
-  //           email
-  //         }
-  //       }
-  //     `,
-  //   }),
-  // });
-  return;
+/**
+ *
+ * @param {{title:string, content:string}} signal
+ * @returns
+ */
+async function hitEnviteAPI(signal) {
+  // TODO send as graphql query
+  const response = await fetch(config.ENVITE_API, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(signal),
+  });
+
+  return response;
 }
 
 module.exports = {

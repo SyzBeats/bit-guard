@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "functions-framework --source=./rate-limit --target=rateLimit"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google-cloud/firestore": "^5.0.2"
+    "@google-cloud/firestore": "^5.0.2",
+    "isomorphic-fetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "@google-cloud/functions-framework": "^3.1.0"
   }
 }
