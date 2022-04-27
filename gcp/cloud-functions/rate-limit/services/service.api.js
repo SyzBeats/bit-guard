@@ -2,16 +2,12 @@ const config = require('../config');
 
 /**
  * @description add a new document to the database
- * @param {FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>} collection
- * @param {number} nowInMs
- * @param {string} id the new document id
+ * @param {number} nowInMs the current time in milliseconds
+ * @param {string} email the users email
  */
-async function setInitialDocument(collection, nowInMs, id) {
+async function setInitialDocument(nowInMs, email) {
   try {
-    await collection.doc(id).set({
-      hitCount: 1,
-      expiration: new Date(nowInMs + config.TIMEOUT),
-    });
+    // TODO: create a new user and set the rate limit document
   } catch (err) {
     throw new Error('failed to set the initial document');
   }
@@ -34,6 +30,11 @@ async function updateHitCount(document) {
   });
 }
 
+/**
+ *
+ * @param {string} idToken the google id token
+ * @returns
+ */
 async function getIdTokenInfo(idToken) {
   try {
     // call google api to get the user's email

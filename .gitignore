@@ -5,10 +5,6 @@ node_modules
 .env
 .env.*
 
-# migrations
-prisma/migrations
-prisma/migrations/*
-
 # frontend
 frontend/node_modules
 react-ui/node_modules

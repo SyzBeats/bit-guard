@@ -23,9 +23,11 @@ model User {
 }
 
 model RateLimit {
-  id     String @id @default(uuid())
-  userId String
-  owner  User   @relation(fields: [userId], references: [id])
+  id       String   @id @default(uuid())
+  userId   String
+  hitCount Int
+  expire   DateTime
+  owner    User     @relation(fields: [userId], references: [id])
 }
 
 model Metrics {
