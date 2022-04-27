@@ -43,9 +43,9 @@ exports.rateLimit = async (req, res) => {
 
     if (user) {
       // fetch expiration and hitCount from the user document
-      const expirationInMs = new Date().getTime();
+      const expirationInMs = new Date(user.RateLimit[0].expire).getTime();
 
-      const hitCount = data.hitCount;
+      const hitCount = user.RateLimit[0].hitCount;
 
       // the expiration date is over, the user can hit the API again
       if (nowInMs > expirationInMs) {
@@ -54,15 +54,11 @@ exports.rateLimit = async (req, res) => {
         const link = await services.api.hitEnviteAPI(payLoad);
 
         // return with a response from envite api
-        res.status(200).json({ message: link });
-
-        return;
+        return res.status(200).json({ message: link });
       }
 
       if (hitCount >= config.HIT_LIMIT) {
-        res.status(429).json({ message: 'Too many requests' });
-
-        return;
+        return res.status(429).json({ message: 'Too many requests' });
       }
 
       await services.api.updateHitCount(document);
@@ -88,6 +84,9 @@ exports.rateLimit = async (req, res) => {
     }
 
     // create a new user not based on google auth
+    return await services.api.setInitialDocument(Date.now(), email);
+
+    // TODO hit the envite API
   } catch (err) {
     console.error(err);
     res.status(500).send({ message: `Something went wrong: ${err.message}` });
