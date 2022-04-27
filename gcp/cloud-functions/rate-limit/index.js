@@ -1,12 +1,11 @@
-const { Firestore } = require('@google-cloud/firestore');
+const { PrismaClient } = require('@prisma/client');
+
+const prisma = new PrismaClient();
+
 require('isomorphic-fetch');
 
 const config = require('./config');
 const services = require('./services');
-
-const db = new Firestore({ projectId: config.PROJECT_ID });
-
-const collection = db.collection('extension-store');
 
 exports.rateLimit = async (req, res) => {
   try {
@@ -33,23 +32,24 @@ exports.rateLimit = async (req, res) => {
       return res?.status(400)?.json({ message: 'Request body must contain sub' });
     }
 
-    // fetch the document based on sub
-    const document = collection.doc(sub);
-    const doc = await document.get();
+    // fetch the user with prisma based on sub or email
+    // TODO: join the expiration and hitCount to make this query more efficient
+    const user = await prisma.user.findFirst({
+      where: { email: sub },
+    });
 
-    if (doc.exists) {
-      const data = doc.data();
+    if (user) {
+      // TODO: fetch the current expiration of the user as well
 
-      if (!data) {
-        return res.status(500).json({ message: 'Data does not exist' });
-      }
-
+      // fetch expiration and hitCount from the user document
       const expirationInMs = new Date(data.expiration).getTime();
+
       const hitCount = data.hitCount;
 
       // the expiration date is over, the user can hit the API again
       if (nowInMs > expirationInMs) {
         await services.api.resetHitCount(document, nowInMs);
+
         const link = await services.api.hitEnviteAPI(payLoad);
 
         // return with a response from envite api
@@ -65,6 +65,7 @@ exports.rateLimit = async (req, res) => {
       }
 
       await services.api.updateHitCount(document);
+
       const link = await services.api.hitEnviteAPI(payLoad);
 
       // return with a response from envite api

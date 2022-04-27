@@ -11,14 +11,21 @@ generator client {
 }
 
 model User {
-  id        String    @id @default(uuid())
-  email     String    @unique
+  id        String      @id @default(uuid())
+  email     String      @unique
   password  String
   name      String
-  confirmed Boolean   @default(false)
+  confirmed Boolean     @default(false)
   Message   Message[]
   Signal    Signal[]
   Metrics   Metrics[]
+  RateLimit RateLimit[]
+}
+
+model RateLimit {
+  id     String @id @default(uuid())
+  userId String
+  owner  User   @relation(fields: [userId], references: [id])
 }
 
 model Metrics {
