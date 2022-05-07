@@ -35,6 +35,7 @@ const Login = () => {
     onCompleted: (res) => {
       if (res?.loginUser?.token) {
         localStorage.setItem('token', res.loginUser.token);
+
         window.location.href = '/dashboard';
       }
 
@@ -68,6 +69,7 @@ const Login = () => {
         <Logo />
         <form method="POST" onSubmit={(e) => handleSubmit(e)}>
           <SecondaryTitle color="dark">Enter your credentials</SecondaryTitle>
+
           <label>
             Email
             <Input
@@ -79,6 +81,7 @@ const Login = () => {
               value={loginData.email}
             />
           </label>
+
           <label>
             Password
             <Input
@@ -90,10 +93,13 @@ const Login = () => {
               autocomplete="current-password"
             />
           </label>
+
           <SubmitCircle />
         </form>
         {loading && <p>...loading</p>}
+
         {error && <Alert message={error.message} type="error" />}
+
         {data && <Alert message="Success" type="success" />}
       </LoginBox>
     </Wrapper>

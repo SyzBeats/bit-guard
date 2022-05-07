@@ -95,10 +95,12 @@ const SignUp = () => {
         <Logo />
         <form method="POST" onSubmit={(e) => handleSubmit(e)}>
           <SecondaryTitle color="dark">Create your account</SecondaryTitle>
+
           <label>
             Name
             <Input name="name" type="text" changeHandler={(e) => handleChange(e)} value={data.name} required={true} autocomplete="name" />
           </label>
+
           <label>
             Email
             <Input
@@ -110,6 +112,7 @@ const SignUp = () => {
               autocomplete="email"
             />
           </label>
+
           <label>
             Password
             <Input
@@ -121,6 +124,7 @@ const SignUp = () => {
               autocomplete="new-password"
             />
           </label>
+
           <label>
             Confirm Password
             <Input
@@ -132,6 +136,7 @@ const SignUp = () => {
               autocomplete="new-password"
             />
           </label>
+
           <SubmitCircle />
         </form>
         {alert.message && <Alert message={alert.message} type={alert.type} />}

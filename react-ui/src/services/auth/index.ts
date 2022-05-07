@@ -6,4 +6,4 @@ const logout = () => {
   window.location.href = '/';
 };
 
-export { logout };
+export default { logout };
