@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useMutation } from '@apollo/client';
 import { Trash } from 'react-feather';
 
-import dateService from '../../services/dates';
+import services from '../../services';
 import { useSignalState } from '../../zustand/store';
 import { DELETE_SIGNAL } from '../../graphql/mutations/signal/mutation-delete-signal';
 import shallow from 'zustand/shallow';
@@ -56,7 +56,7 @@ const Signal = ({ signal }: Iprops) => {
 
         <div>
           <MessageTitle>Created at: </MessageTitle>
-          <MessageContentText>{dateService.parseStringToLocaleDate(createdAt)}</MessageContentText>
+          <MessageContentText>{services.dates.parseStringToLocaleDate(createdAt)}</MessageContentText>
         </div>
       </MessageContent>
 

@@ -4,19 +4,9 @@ import { Queue } from '../../ui/effects/Queue/Queue';
 import Button from '../../ui/buttons/Button';
 import Logo from '../../ui/styled/image/Logo';
 import { MainTitle, SecondaryTitle } from '../../ui/styled/typography';
+import services from '../../../services';
 
 const HeroLanding = () => {
-  const scrollToElement = (element: string) => {
-    const elementToScrollTo = document.querySelector(element);
-
-    if (elementToScrollTo) {
-      elementToScrollTo.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
-    }
-  };
-
   return (
     <Hero>
       <Container>
@@ -33,7 +23,7 @@ const HeroLanding = () => {
                 The safe way to share your secrets
               </SecondaryTitle>
 
-              <Button content="See the demo!" onClick={() => scrollToElement("[data-anker='how-it-works']")} />
+              <Button content="See the demo!" onClick={() => services.ui.scrollToElement("[data-anker='how-it-works']")} />
             </GridRight>
           </Grid>
         </FlexBox>

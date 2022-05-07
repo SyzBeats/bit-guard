@@ -1,12 +1,11 @@
-const { Firestore } = require('@google-cloud/firestore');
+const { PrismaClient } = require('@prisma/client');
+
+const prisma = new PrismaClient();
+
 require('isomorphic-fetch');
 
 const config = require('./config');
 const services = require('./services');
-
-const db = new Firestore({ projectId: config.PROJECT_ID });
-
-const collection = db.collection('extension-store');
 
 exports.rateLimit = async (req, res) => {
   try {
@@ -25,66 +24,69 @@ exports.rateLimit = async (req, res) => {
       content: req.body.content,
     };
 
-    // get the users sub, which is the unique identifier for the user of google
-    const sub = req.body?.sub;
+    // get the users email from the id token
+    const email = req.body?.email;
     const nowInMs = new Date().getTime();
 
-    if (!sub) {
-      return res?.status(400)?.json({ message: 'Request body must contain sub' });
+    if (!email) {
+      return res?.status(400)?.json({ message: 'Request body must contain the users email address' });
     }
 
-    // fetch the document based on sub
-    const document = collection.doc(sub);
-    const doc = await document.get();
+    // fetch the user with prisma based on sub or email
+    // TODO: join the expiration and hitCount to make this query more efficient
+    const user = await prisma.user.findFirst({
+      where: { email },
+      include: {
+        RateLimit: true,
+      },
+    });
 
-    if (doc.exists) {
-      const data = doc.data();
+    if (user) {
+      // fetch expiration and hitCount from the user document
+      const expirationInMs = new Date(user.RateLimit[0].expire).getTime();
 
-      if (!data) {
-        return res.status(500).json({ message: 'Data does not exist' });
-      }
-
-      const expirationInMs = new Date(data.expiration).getTime();
-      const hitCount = data.hitCount;
+      const hitCount = user.RateLimit[0].hitCount;
 
       // the expiration date is over, the user can hit the API again
       if (nowInMs > expirationInMs) {
         await services.api.resetHitCount(document, nowInMs);
+
         const link = await services.api.hitEnviteAPI(payLoad);
 
         // return with a response from envite api
-        res.status(200).json({ message: link });
-
-        return;
+        return res.status(200).json({ message: link });
       }
 
       if (hitCount >= config.HIT_LIMIT) {
-        res.status(429).json({ message: 'Too many requests' });
-
-        return;
+        return res.status(429).json({ message: 'Too many requests' });
       }
 
       await services.api.updateHitCount(document);
+
       const link = await services.api.hitEnviteAPI(payLoad);
 
       // return with a response from envite api
       return res.json({ message: link });
-    } else {
-      // user has not been hit yet, so the initial document needs to be created
-      const idToken = req.body?.idToken;
+    }
 
-      if (!idToken) {
-        return res?.status(400)?.json({ message: 'Request body must contain idToken' });
-      }
+    // user has not been hit yet, so the initial document needs to be created
+    const idToken = req.body?.id_token;
 
+    if (idToken) {
+      // this is a google id token - create an account based on google
       // get the user's email from the ID token
       const idTokenInfo = await services.api.getIdTokenInfo(idToken);
 
       // set the initial document for this user
-      await services.api.setInitialDocument(collection, Date.now(), idTokenInfo.sub);
+      await services.api.setInitialDocument(Date.now(), idTokenInfo.email);
 
       return res.status(200).json({ message: 'user has been initialized' });
     }
+
+    // create a new user not based on google auth
+    return await services.api.setInitialDocument(Date.now(), email);
+
+    // TODO hit the envite API
   } catch (err) {
     console.error(err);
     res.status(500).send({ message: `Something went wrong: ${err.message}` });
