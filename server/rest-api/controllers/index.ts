@@ -1,3 +1,3 @@
-import publicRoutes from './public.controller';
+import publicRoutes from './public';
 
 export default { publicRoutes };
