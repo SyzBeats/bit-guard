@@ -8,6 +8,7 @@ import CallToAction from '../home/CallToAction';
 import { SectionBackground, SectionBase } from '../../ui/styled/sections';
 import { RevealBox } from './RevealBox';
 import { BaseContainer } from '../../ui/containers';
+import { SkeletonArticle } from '../../ui/skeletons/SkeletonArticle';
 interface Props {
   isPublic?: boolean;
 }
@@ -18,11 +19,51 @@ const RevealPage = ({ isPublic }: Props) => {
   const [revealed, setRevealed] = useState({
     message: '',
     title: '',
+    loading: true,
   });
 
   const queryPath = isPublic ? 'api/public/publicSignal' : 'api/public/signal';
 
   const endpoint = `${config.API_URL}/${queryPath}/${params.secret}?key=${params.key}`;
+
+  const getInfoContent = () => {
+    if (revealed.loading) {
+      return (
+        <TextWrapper>
+          <h1>Loading</h1>
+          <p>The secret is about to be revealed</p>
+        </TextWrapper>
+      );
+    }
+
+    return (
+      <TextWrapper>
+        <h1>The secret was decrypted</h1>
+        <p>
+          This is the secret you were looking for. It has been destroyed now that you viewed it. Once you leave or reload the page, it will
+          be lost forever!
+        </p>
+      </TextWrapper>
+    );
+  };
+
+  const getRevealContent = () => {
+    if (revealed.loading) {
+      return (
+        <>
+          <RevealTitle>We are solving the mystery...</RevealTitle>
+          <SkeletonArticle rounded />
+        </>
+      );
+    }
+
+    return (
+      <>
+        <RevealTitle>{revealed.title}</RevealTitle>
+        <RevealBox message={revealed.message || 'No message found...'} />
+      </>
+    );
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -37,11 +78,12 @@ const RevealPage = ({ isPublic }: Props) => {
           throw new Error(data.error);
         }
 
-        setRevealed(data);
+        setRevealed({ ...data, loading: false });
       } catch {
         setRevealed({
           message: 'We could not find the secret you were looking for. Sorry!',
           title: 'No Data found',
+          loading: false,
         });
       }
     }
@@ -56,20 +98,8 @@ const RevealPage = ({ isPublic }: Props) => {
           <FlexWrapper>
             <Logo />
           </FlexWrapper>
-
-          <TextWrapper>
-            <h1>Secret Decryption</h1>
-
-            {revealed.message && (
-              <p>
-                This is the secret message you were looking for. It has been destroyed now that you viewed it. Once you reload the page, it
-                will be lost forever!
-              </p>
-            )}
-          </TextWrapper>
-
-          <RevealTitle>{revealed.title}</RevealTitle>
-          <RevealBox message={revealed.message || 'No message found...'} />
+          {getInfoContent()}
+          {getRevealContent()}
         </BaseContainer>
       </SectionBackground>
 
