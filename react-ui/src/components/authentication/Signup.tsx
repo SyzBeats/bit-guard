@@ -52,14 +52,14 @@ const SignUp = () => {
   });
 
   // change handler for form fields
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     setData((prev) => ({ ...prev, [name]: value }));
   };
 
   // submit handler for form
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (data.password !== data.confirmPassword) {

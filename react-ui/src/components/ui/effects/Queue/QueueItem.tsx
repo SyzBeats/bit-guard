@@ -2,8 +2,8 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Code, Layers, Clock, Shield, Database, Share2 } from 'react-feather';
 
-const QueueItem = ({ content, index }) => {
-  const getIcon = (text) => {
+const QueueItem = ({ content, index }: any) => {
+  const getIcon = (text: string) => {
     switch (text) {
       case 'Military Grade Encryption':
         return <Database color="white" />;
@@ -69,8 +69,7 @@ const Wrapper = styled.div<WrapperType>`
   justify-content: center;
   align-items: center;
 
-  background-image: ${({ theme }) =>
-    `linear-gradient(110deg, ${theme.colors.highlight} 21.5%, white 21.5%) `};
+  background-image: ${({ theme }) => `linear-gradient(110deg, ${theme.colors.highlight} 21.5%, white 21.5%) `};
   padding: 0 20px;
   border-radius: 4px;
   box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);

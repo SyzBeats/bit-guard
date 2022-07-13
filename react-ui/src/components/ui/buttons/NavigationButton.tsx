@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { PropsChildren } from '../../../typings/types.components';
 
-const NavigationButton = ({ children }) => {
+const NavigationButton = ({ children }: PropsChildren) => {
   return <Button>{children}</Button>;
 };
 
@@ -13,8 +14,7 @@ const Button = styled.div`
   &:hover {
     cursor: pointer;
     transform: scale3d(1.1, 1.1, 1.1);
-    filter: ${({ theme }) =>
-      `grayscale(0) drop-shadow(1px 2px 9px ${theme.colors.highlight_iceblue_50})`};
+    filter: ${({ theme }) => `grayscale(0) drop-shadow(1px 2px 9px ${theme.colors.highlight_iceblue_50})`};
   }
 `;
 export default NavigationButton;

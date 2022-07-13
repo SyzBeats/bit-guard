@@ -28,7 +28,7 @@ const CreateSignal = () => {
     },
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
     createSignalMutation({

@@ -7,12 +7,17 @@ interface Props {
   type: 'signals' | 'message';
 }
 
-function getCounter(type) {
+function getCounter(type: string) {
   switch (type) {
-    case 'signals':
+    case 'signals': {
       return <SignalCount />;
-    case 'message':
+    }
+    case 'message': {
       return <MessageCount />;
+    }
+    default: {
+      return null;
+    }
   }
 }
 

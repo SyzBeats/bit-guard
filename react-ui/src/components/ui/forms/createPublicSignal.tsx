@@ -47,7 +47,7 @@ const CreatePublicSignal = () => {
     },
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
     if (!formState.title || !formState.content) {

@@ -2,8 +2,9 @@
 
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { PropsChildren } from '../../typings/types.components';
 
-const ProtectedRoute = (props) => {
+const ProtectedRoute = (props: PropsChildren) => {
   const navigate = useNavigate();
 
   const isLoggedIn = localStorage.getItem('token');

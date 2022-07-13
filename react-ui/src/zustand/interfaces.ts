@@ -23,4 +23,5 @@ interface CreateSecretFormState {
   setTitle: (title: string) => void;
   setLink: (link: string) => void;
 }
-export { SignalState, AuthState, CreateSecretFormState };
+
+export type { SignalState, AuthState, CreateSecretFormState };

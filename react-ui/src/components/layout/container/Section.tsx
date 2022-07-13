@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { PropsChildren } from '../../../typings/types.components';
 
-const Section = ({ children }) => {
+const Section = ({ children }: PropsChildren) => {
   return <Wrapper>{children}</Wrapper>;
 };
 

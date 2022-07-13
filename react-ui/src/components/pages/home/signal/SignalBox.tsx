@@ -10,12 +10,12 @@ const SignalBox = () => {
     <>
       <Wrapper>
         <SecondaryTitleBlue color="light" textAlign="center">
-          Create your secure secret!
+          Create a secure secret!
         </SecondaryTitleBlue>
 
         <p>
           <Info />
-          You can share the secret with anyone you want. The secret will be destroyed after it is used.
+          You can share the secret link with anyone. The secret will be destroyed after it is used.
         </p>
         <ContentBox bordered borderColor="dark">
           <CreatePublicSignal />

@@ -16,7 +16,7 @@ const Login = () => {
   });
 
   // change handler for form fields
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     setLoginData((prev) => ({ ...prev, [name]: value }));
@@ -48,7 +48,7 @@ const Login = () => {
   });
 
   // submit handler for form
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
 
@@ -58,7 +58,7 @@ const Login = () => {
           password: loginData.password,
         },
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error(`[ERROR] ${error.message}`);
     }
   };

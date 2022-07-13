@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { PropsChildren } from '../../../typings/types.components';
 
 import Navigation from '../../pages/home/Navigation';
 import Footer from '../generic/footer/Footer';
 
-const LayoutMain = ({ children }) => (
+const LayoutMain = ({ children }: PropsChildren) => (
   <Container>
     <Content>
       <Navigation />

@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { PropsChildren } from '../../../typings/types.components';
 
-const MessageGrid = ({ children }) => {
+const MessageGrid = ({ children }: PropsChildren) => {
   return <Grid>{children}</Grid>;
 };
 

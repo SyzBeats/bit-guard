@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
-function useClickaway(ref, callback) {
+function useClickaway(ref: any, callback: any) {
   useEffect(() => {
-    const listener = (event) => {
+    const listener = (event: any) => {
       // check if the event target is not within the ref
       if (!ref.current || ref.current.contains(event.target)) {
         return;
