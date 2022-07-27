@@ -1,11 +1,10 @@
-const { PrismaClient } = require('@prisma/client');
-
-const prisma = new PrismaClient();
-
 require('isomorphic-fetch');
+const { PrismaClient } = require('@prisma/client');
 
 const config = require('./config');
 const services = require('./services');
+
+const prisma = new PrismaClient();
 
 exports.rateLimit = async (req, res) => {
   try {
@@ -75,16 +74,11 @@ exports.rateLimit = async (req, res) => {
     if (idToken) {
       // this is a google id token - create an account based on google
       // get the user's email from the ID token
-      const idTokenInfo = await services.api.getIdTokenInfo(idToken);
-
-      // set the initial document for this user
-      await services.api.setInitialDocument(Date.now(), idTokenInfo.email);
-
-      return res.status(200).json({ message: 'user has been initialized' });
+      return await initAccountCreation(idToken, res);
     }
 
     // create a new user not based on google auth
-    return await services.api.setInitialDocument(Date.now(), email);
+    return await services.api.createUserAccount(Date.now(), email);
 
     // TODO hit the envite API
   } catch (err) {
@@ -92,3 +86,12 @@ exports.rateLimit = async (req, res) => {
     res.status(500).send({ message: `Something went wrong: ${err.message}` });
   }
 };
+
+async function initAccountCreation(idToken, res) {
+  const idTokenInfo = await services.api.getIdTokenInfo(idToken);
+
+  // set the initial document for this user
+  await services.api.createUserAccount(Date.now(), idTokenInfo.email);
+
+  return res.status(200).json({ message: 'user has been initialized' });
+}

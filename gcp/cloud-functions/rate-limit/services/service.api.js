@@ -5,7 +5,7 @@ const config = require('../config');
  * @param {number} nowInMs the current time in milliseconds
  * @param {string} email the users email
  */
-async function setInitialDocument(nowInMs, email) {
+async function createUserAccount(nowInMs, email) {
   try {
     // TODO: create a new user and set the rate limit document
   } catch (err) {
@@ -72,7 +72,7 @@ async function hitEnviteAPI(signal) {
 }
 
 module.exports = {
-  setInitialDocument,
+  createUserAccount,
   resetHitCount,
   getIdTokenInfo,
   updateHitCount,
