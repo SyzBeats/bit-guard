@@ -18,80 +18,66 @@ exports.rateLimit = async (req, res) => {
       return res?.status(400)?.json({ message: 'Request body must contain title and content' });
     }
 
+    // message payload
     const payLoad = {
       title: req.body.title,
       content: req.body.content,
     };
 
-    // get the users email from the id token
-    const email = req.body?.email;
+    // get the user data from the request
+    const authToken = req.headers.authorization;
     const nowInMs = new Date().getTime();
 
-    if (!email) {
-      return res?.status(400)?.json({ message: 'Request body must contain the users email address' });
+    if (!authToken) {
+      return res?.status(400)?.json({ message: 'Request body must contain an authorization token' });
     }
 
-    // fetch the user with prisma based on sub or email
+    // TODO: decode the token
+    const decoded = { email: 'some-jwt-token' };
+
+    // fetch the user with prisma based on email
     // TODO: join the expiration and hitCount to make this query more efficient
     const user = await prisma.user.findFirst({
-      where: { email },
+      where: { email: decoded.email },
       include: {
         RateLimit: true,
       },
     });
 
-    if (user) {
-      // fetch expiration and hitCount from the user document
-      const expirationInMs = new Date(user.RateLimit[0].expire).getTime();
+    if (!user) {
+      return res?.status(400)?.json({ message: 'User does not exist' });
+    }
 
-      const hitCount = user.RateLimit[0].hitCount;
+    // fetch expiration and hitCount from the user document
+    const expirationInMs = new Date(user.RateLimit[0].expire).getTime();
 
-      // the expiration date is over, the user can hit the API again
-      if (nowInMs > expirationInMs) {
-        await services.api.resetHitCount(document, nowInMs);
+    const hitCount = user.RateLimit[0].hitCount;
 
-        const link = await services.api.hitEnviteAPI(payLoad);
-
-        // return with a response from envite api
-        return res.status(200).json({ message: link });
-      }
-
-      if (hitCount >= config.HIT_LIMIT) {
-        return res.status(429).json({ message: 'Too many requests' });
-      }
-
-      await services.api.updateHitCount(document);
+    // the expiration date is over, the user can hit the API again
+    if (nowInMs > expirationInMs) {
+      await services.api.resetHitCount(document, nowInMs);
 
       const link = await services.api.hitEnviteAPI(payLoad);
 
       // return with a response from envite api
-      return res.json({ message: link });
+      return res.status(200).json({ message: link });
     }
 
-    // user has not been hit yet, so the initial document needs to be created
-    const idToken = req.body?.id_token;
-
-    if (idToken) {
-      // this is a google id token - create an account based on google
-      // get the user's email from the ID token
-      return await initAccountCreation(idToken, res);
+    // currently handled with a config but will change to plans in the future
+    if (hitCount >= config.HIT_LIMIT) {
+      return res.status(429).json({ message: 'Too many requests' });
     }
 
-    // create a new user not based on google auth
-    return await services.api.createUserAccount(Date.now(), email);
+    await services.api.updateHitCount(document);
 
-    // TODO hit the envite API
+    const link = await services.api.hitEnviteAPI(payLoad);
+
+    // return with a response from envite api
+    return res.json({ message: link });
+
+    // TODO hit the envite API to get the secret
   } catch (err) {
     console.error(err);
     res.status(500).send({ message: `Something went wrong: ${err.message}` });
   }
 };
-
-async function initAccountCreation(idToken, res) {
-  const idTokenInfo = await services.api.getIdTokenInfo(idToken);
-
-  // set the initial document for this user
-  await services.api.createUserAccount(Date.now(), idTokenInfo.email);
-
-  return res.status(200).json({ message: 'user has been initialized' });
-}
