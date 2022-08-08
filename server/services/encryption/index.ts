@@ -5,7 +5,7 @@ import { IencryptAes256cbcOutput } from '../../util/typings';
 // generate a random encryption key with 16 bytes
 // as it is encoded to hexadecimal, it is 32 characters long
 // and can be used as a key for the encryption
-function generateEncryptrionKey(): string {
+function generateEncryptionKey(): string {
   return crypto.randomBytes(16).toString('hex');
 }
 
@@ -19,7 +19,7 @@ function encryptAes256cbc(plainText: string, randomKey: boolean = false): Iencry
   // create a random Initialization vector
   const IV = crypto.randomBytes(16);
 
-  const key = randomKey ? generateEncryptrionKey() : keys.ENCRYPTION_KEY_256BIT;
+  const key = randomKey ? generateEncryptionKey() : keys.ENCRYPTION_KEY_256BIT;
 
   // create a cipher
   const cipher = crypto.createCipheriv('aes-256-cbc', key, IV);

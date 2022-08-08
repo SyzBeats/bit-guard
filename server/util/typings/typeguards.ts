@@ -1,7 +1,3 @@
-/**
- * is MessageToken
- */
-
 import { MessageToken } from './interfaces';
 
 /**

@@ -6,6 +6,7 @@ import { LinkMutation } from '../../../resolvers/link';
 const createLink = async (req, res) => {
   // This is called to authentify the App
   const { challenge } = req.body;
+
   if (challenge) {
     res.send(SlackService.resolveChallenge(challenge));
     return;
@@ -13,6 +14,7 @@ const createLink = async (req, res) => {
 
   // The command is the "slash" word. Text is everything which comes after
   const { command, text } = req.body;
+
   if (command === '/envite') {
     if (!text) {
       res.send(SlackService.messageToIssuer('Usage: /envite myCoolPassword'));
