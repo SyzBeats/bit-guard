@@ -86,10 +86,11 @@ const CreatePublicSignal = () => {
 
       <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">
         <ButtonWrapper>
-          <button onClick={(e) => handleSubmit(e)}>Create a Signal</button>
+          <button onClick={(e) => handleSubmit(e)}>Create Secret</button>
         </ButtonWrapper>
       </FlexGridEqual>
-      {loading && <p>Loading...</p>}
+
+      {loading && <p>encrypting message...</p>}
       {alert.message && <Alert message={alert.message} type={alert.type} />}
     </Wrapper>
   );

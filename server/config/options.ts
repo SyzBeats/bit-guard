@@ -1,6 +1,6 @@
 const options = {
   cors: {
-    origin: process.env.NODE_ENV === 'production' ? ['https://envite.dev'] : ['http://localhost:8080'],
+    origin: process.env.NODE_ENV === 'production' ? ['https://envite.dev'] : ['http://127.0.0.1:5173'],
     credentials: true,
   },
   server: {
@@ -11,7 +11,7 @@ const options = {
     limit: '100kb',
   },
   app: {
-    domain: process.env.APP_DOMAIN || 'http://localhost:8080',
+    domain: process.env.APP_DOMAIN || 'http://127.0.0.1:5173',
   },
 };
 

@@ -45,6 +45,10 @@ const Wrapper = styled.div`
     color: white;
   }
 
+  a {
+    text-decoration: none;
+  }
+
   @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
     background-position: unset;
     height: 20rem;

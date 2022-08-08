@@ -29,10 +29,12 @@ function App() {
       <ApolloProvider client={client}>
         <BrowserRouter>
           <Routes>
+            {/** Basic application routes */}
             <Route path="/" element={<HomePage />} />
             <Route path="dataprotection" element={<Dataprotection />} />
             <Route path="imprint" element={<Imprint />} />
 
+            {/** routes for public reveals */}
             <Route path="reveal" element={<RevealPage isPublic={false} />} />
             <Route path="reveal/:secret/:key" element={<RevealPage isPublic={false} />} />
             <Route path="reveal/public/" element={<RevealPage isPublic={true} />} />
@@ -67,6 +69,9 @@ function App() {
                 />
               </>
             )}
+
+            {/* Fallback route to homepage */}
+            <Route path="*" element={<HomePage />} />
           </Routes>
         </BrowserRouter>
       </ApolloProvider>

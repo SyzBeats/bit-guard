@@ -15,6 +15,10 @@ const Wrapper = styled.button`
   padding: 1.25rem 3rem;
   border: none;
 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   border-radius: 0.4rem;
   box-shadow: ${({ theme }) => theme.shadows.depth_1};
 
@@ -32,6 +36,11 @@ const Wrapper = styled.button`
   margin: 2rem 0;
 
   transition: all 0.1s ease-in-out;
+
+  // button icons
+  svg {
+    margin-right: 0.75rem;
+  }
 
   &:hover {
     cursor: pointer;

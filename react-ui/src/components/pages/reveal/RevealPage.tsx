@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { useParams } from 'react-router-dom';
+import { Copy, CheckCircle } from 'react-feather';
 import styled from 'styled-components';
+
 import config from '../../../config/environment';
 import Logo from '../../ui/styled/image/Logo';
 import Footer from '../../layout/generic/footer/Footer';
@@ -9,6 +11,10 @@ import { SectionBackground, SectionBase } from '../../ui/styled/sections';
 import { RevealBox } from './RevealBox';
 import { BaseContainer } from '../../ui/containers';
 import { SkeletonArticle } from '../../ui/skeletons/SkeletonArticle';
+import { ButtonWrapper } from '../../ui/buttons/ButtonWrapper';
+import Button from '../../ui/buttons/Button';
+import services from '../../../services';
+import { Alert } from '../../ui/alert/Alert';
 interface Props {
   isPublic?: boolean;
 }
@@ -22,11 +28,16 @@ const RevealPage = ({ isPublic }: Props) => {
     loading: true,
   });
 
+  const [copied, setCopied] = useState(false);
+
+  const mounted = useRef(false);
+
   const queryPath = isPublic ? 'api/public/publicSignal' : 'api/public/signal';
 
   const endpoint = `${config.API_URL}/${queryPath}/${params.secret}?key=${params.key}`;
 
-  const getInfoContent = () => {
+  // render the content above the reveal box
+  const getInfoContent = (): React.ReactNode => {
     if (revealed.loading) {
       return (
         <TextWrapper>
@@ -39,19 +50,17 @@ const RevealPage = ({ isPublic }: Props) => {
     return (
       <TextWrapper>
         <h1>The secret was decrypted</h1>
-        <p>
-          This is the secret you were looking for. It has been destroyed now that you viewed it. Once you leave or reload the page, it will
-          be lost forever!
-        </p>
+        <p>The secret has been decrypted & destroyed. Once you leave or reload the page, it will be lost forever!</p>
       </TextWrapper>
     );
   };
 
-  const getRevealContent = () => {
+  // render the content within the reveal box
+  const getRevealContent = (): React.ReactNode => {
     if (revealed.loading) {
       return (
         <>
-          <RevealTitle>We are solving the mystery...</RevealTitle>
+          <RevealTitle>We are decrypting the secret...</RevealTitle>
           <SkeletonArticle rounded />
         </>
       );
@@ -65,31 +74,65 @@ const RevealPage = ({ isPublic }: Props) => {
     );
   };
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        if (!params.secret || !params.key) {
-          return;
-        }
+  const getButtonContent = (): React.ReactNode => {
+    if (!revealed.title) {
+      return null;
+    }
 
-        const data = await (await fetch(endpoint)).json();
+    return (
+      <ButtonWrapper>
+        <Button
+          onClick={() => {
+            services.ui.copyLinkToClipboard(revealed?.message ?? '');
+            setCopied(true);
+          }}
+          content={
+            <>
+              {copied ? <CheckCircle color="#6cdf8f" size={20} /> : <Copy size={20} />}
+              <span>{copied ? 'Copied!' : 'Copy secret'}</span>
+            </>
+          }
+        />
+      </ButtonWrapper>
+    );
+  };
 
-        if (data.error) {
-          throw new Error(data.error);
-        }
+  const fetchData = useCallback(async () => {
+    try {
+      const data = await (await fetch(endpoint)).json();
 
-        setRevealed({ ...data, loading: false });
-      } catch {
-        setRevealed({
-          message: 'We could not find the secret you were looking for. Sorry!',
-          title: 'No Data found',
-          loading: false,
-        });
+      if (data.error) {
+        throw new Error(data.error);
       }
+
+      setRevealed({
+        ...data,
+        loading: false,
+      });
+    } catch {
+      setRevealed({
+        title: '',
+        message: 'We could not find the secret you were looking for. Sorry!',
+        loading: false,
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!params.secret || !params.key) {
+      return;
+    }
+
+    if (revealed.message || mounted.current) {
+      return;
     }
 
     fetchData();
-  }, [params]);
+
+    if (!mounted.current) {
+      mounted.current = true;
+    }
+  }, [fetchData]);
 
   return (
     <>
@@ -100,6 +143,7 @@ const RevealPage = ({ isPublic }: Props) => {
           </FlexWrapper>
           {getInfoContent()}
           {getRevealContent()}
+          {getButtonContent()}
         </BaseContainer>
       </SectionBackground>
 

@@ -31,7 +31,7 @@
     "typescript": "^4.6.3"
   },
   "scripts": {
-    "dev:client": "npm run start --prefix ./react-ui",
+    "dev:client": "npm run dev --prefix ./react-ui",
     "dev:server": "nodemon",
     "install:client": "npm install --prefix ./react-ui",
     "install:server": "npm install",

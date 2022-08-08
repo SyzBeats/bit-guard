@@ -24,7 +24,7 @@ const CreateSignal = () => {
       setLink(link.content);
     },
     onError: (error) => {
-      console.log(error);
+      console.error(error);
     },
   });
 
