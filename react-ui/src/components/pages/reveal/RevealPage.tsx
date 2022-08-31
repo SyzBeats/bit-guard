@@ -14,7 +14,6 @@ import { SkeletonArticle } from '../../ui/skeletons/SkeletonArticle';
 import { ButtonWrapper } from '../../ui/buttons/ButtonWrapper';
 import Button from '../../ui/buttons/Button';
 import services from '../../../services';
-import { Alert } from '../../ui/alert/Alert';
 interface Props {
   isPublic?: boolean;
 }
