@@ -23,7 +23,9 @@ const FooterGrid = () => {
       <List>
         <ListTitle>About us</ListTitle>
         <ListItem>
-          <a href="https://sz-development.tech/blog">SZ WEB Development</a>
+          <a rel="noopener noreferrer" target="_blank" href="https://sz-development.tech/">
+            SZ WEB Development
+          </a>
         </ListItem>
         <ListItem>
           <Link to="/dataprotection">Data Protection</Link>
