@@ -1,13 +1,10 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+}
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-}
-
-generator client {
-  provider = "prisma-client-js"
 }
 
 model User {
@@ -17,16 +14,16 @@ model User {
   name      String
   confirmed Boolean     @default(false)
   Message   Message[]
-  Signal    Signal[]
   Metrics   Metrics[]
   RateLimit RateLimit[]
+  Signal    Signal[]
 }
 
 model RateLimit {
   id       String   @id @default(uuid())
   userId   String
-  hitCount Int
   expire   DateTime
+  hitCount Int
   owner    User     @relation(fields: [userId], references: [id])
 }
 
@@ -38,31 +35,28 @@ model Metrics {
   owner  User   @relation(fields: [userId], references: [id])
 }
 
-// message contains hashed content
 model Message {
   id        String   @id @default(uuid())
   userId    String
-  owner     User     @relation(fields: [userId], references: [id])
-  title     String
   content   String
-  links     Link[]
-  password  String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  title     String
+  password  String?
+  owner     User     @relation(fields: [userId], references: [id])
+  links     Link[]
 }
 
-// signals will not have links attached as it should not be stored
 model Signal {
   id        String   @id @default(uuid())
   userId    String
-  owner     User     @relation(fields: [userId], references: [id])
-  title     String
   content   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  title     String
+  owner     User     @relation(fields: [userId], references: [id])
 }
 
-// public signals will be available also to unauthenticated users
 model PublicSignal {
   id        String   @id @default(uuid())
   title     String
@@ -71,12 +65,11 @@ model PublicSignal {
   updatedAt DateTime @updatedAt
 }
 
-// Message 1 <----> N Link
 model Link {
   id        String    @id @default(uuid())
-  message   Message   @relation(fields: [messageId], references: [id])
   messageId String
   content   String
   createdAt DateTime  @default(now())
   expiry    DateTime?
+  message   Message   @relation(fields: [messageId], references: [id])
 }
