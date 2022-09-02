@@ -2,14 +2,14 @@ function resolveChallenge(challenge: any) {
   return challenge;
 }
 
-function messageToIssuer(message: String) {
+function messageToIssuer(message: string) {
   return {
     text: message,
-    response_type: 'ephemeral ',
+    response_type: 'ephemeral',
   };
 }
 
-function messageToChannel(message: String) {
+function messageToChannel(message: string) {
   return {
     text: message,
     response_type: 'in_channel',
