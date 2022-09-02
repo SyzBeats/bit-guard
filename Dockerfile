@@ -4,10 +4,11 @@ WORKDIR ${WDR}
 
 # prepare environment
 COPY package.json ${WDR}
-COPY package-lock.json ${WDR}
+COPY pnpm-lock.yaml ${WDR}
 COPY . ${WDR}
-RUN npm i
+RUN npm i -g pnpm
 
 # build server 
-RUN npm run build:server
-CMD ["npm", "run", "start:server"]
+RUN pnpm i
+RUN pnpm run build:server
+CMD ["pnpm", "run", "start:server"]
