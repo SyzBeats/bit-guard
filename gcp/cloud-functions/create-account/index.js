@@ -15,6 +15,7 @@ exports.rateLimit = async (req, res) => {
     // get the user data from the request
     const email = req.body?.email;
     const password = req.body?.password;
+    const name = req.body?.name;
 
     if (!email) {
       return res?.status(400)?.json({ message: 'Request body must contain the users email address' });
@@ -44,7 +45,7 @@ exports.rateLimit = async (req, res) => {
     }
 
     // create a new user based on native account creation
-    await services.auth.createAccountNative(email, password, res);
+    await services.auth.createAccountNative(email, password, name, res);
 
     // generate a token and return
     return 'some-jwt-token';

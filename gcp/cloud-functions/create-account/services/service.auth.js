@@ -9,8 +9,9 @@ const serviceApi = require('./service.api');
 async function createAccountFromGoogle(idToken, res) {
   const idTokenInfo = await serviceApi.getIdTokenInfo(idToken);
 
+  // TODO: name and password handling for google signup
   // set the initial document for this user
-  await serviceApi.createUserAccount(Date.now(), idTokenInfo.email);
+  await serviceApi.createUserAccount(Date.now(), idTokenInfo.email, '', '');
 
   return res.status(200).json({ message: 'user has been initialized' });
 }
@@ -19,11 +20,12 @@ async function createAccountFromGoogle(idToken, res) {
  * @description create a new user account based on native account creation
  * @param {string} email the users email address
  * @param {string} password the users selected password
+ * @param {string} name the cloud function response object
  * @param {object} res the cloud function response object
  * @returns {Promise<any>} a promise that resolves to the cloud function response
  */
-async function createAccountNative(email, password, res) {
-  await serviceApi.createUserAccount(Date.now(), email);
+async function createAccountNative(email, password, name, res) {
+  await serviceApi.createUserAccount(Date.now(), email, password, name);
 
   return res.status(200).json({ message: 'user has been initialized' });
 }
