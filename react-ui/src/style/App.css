@@ -45,6 +45,13 @@ body {
   line-height: 1.4em;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.5em;
+}
+
 /*=========== IMAGE STYLES =============*/
 
 /* Copy protection */
