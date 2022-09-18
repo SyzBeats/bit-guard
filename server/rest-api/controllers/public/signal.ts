@@ -1,5 +1,5 @@
 import { prisma } from '../../../lib/prisma';
-import { decryptAes256cbc } from '../../../services/encryption';
+import utility from '../../../utility';
 
 const decryptAndDestroy = async (req, res) => {
   await prisma.$connect();
@@ -28,7 +28,7 @@ const decryptAndDestroy = async (req, res) => {
       return res.status(409).json({ message: 'The initialization vector is not a string' });
     }
 
-    const message = decryptAes256cbc(signal.content, key?.toString());
+    const message = utility.encryption.decryptAes256cbc(signal.content, key?.toString());
 
     // delete the signal
     await prisma.signal.delete({
@@ -75,7 +75,7 @@ const decryptAndDestroyPublic = async (req, res) => {
       return res.status(409).json({ message: 'The initialization vector is not a string' });
     }
 
-    const message = decryptAes256cbc(signal.content, key?.toString());
+    const message = utility.encryption.decryptAes256cbc(signal.content, key?.toString());
 
     // delete the signal
     await prisma.publicSignal.delete({

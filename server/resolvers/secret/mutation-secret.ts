@@ -2,7 +2,7 @@ import { Message, Signal } from '@prisma/client';
 import { ApolloError, UserInputError } from 'apollo-server-express';
 import { authenticate } from '../../auth/authenticate';
 import { Context } from '../../context';
-import { encryptAes256cbc } from '../../services/encryption';
+import utility from '../../utility';
 import { ICreateSignalOutput } from '../../util/typings';
 import { LinkMutation } from '../link';
 
@@ -19,7 +19,7 @@ const SecretMutation = {
       const token = authenticate(req);
 
       // encrypt the message
-      const { encrypted, IV } = encryptAes256cbc(data.content);
+      const { encrypted, IV } = utility.encryption.encryptAes256cbc(data.content);
 
       // create message with connection to owner in database
       const message = await prisma.message.create({
@@ -49,7 +49,7 @@ const SecretMutation = {
       const token = authenticate(req);
 
       // encrypt the signal with a random key that is not known by anyone
-      const { encrypted, IV, key } = encryptAes256cbc(data.content, true);
+      const { encrypted, IV, key } = utility.encryption.encryptAes256cbc(data.content, true);
 
       // create signal with connection to owner in database
       const signal = await prisma.signal.create({
@@ -100,7 +100,7 @@ const SecretMutation = {
       const { prisma } = ctx;
 
       // encrypt the signal with a random key that is not known by anyone
-      const { encrypted, IV, key } = encryptAes256cbc(data.content, true);
+      const { encrypted, IV, key } = utility.encryption.encryptAes256cbc(data.content, true);
 
       // create signal with connection to owner in database
       const signal = await prisma.publicSignal.create({

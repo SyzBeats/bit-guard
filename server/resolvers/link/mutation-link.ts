@@ -1,7 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 import { Context } from '../../context';
 import * as keys from '../../config/keys';
-import { encryptAes256cbc } from '../../services/encryption';
+import utility from '../../utility';
 import { getHoursUntil } from '../../util/dateAndTime/time-until-date';
 import { IcreateMessageLinkOutput, IcreateSignalLinkOutput, IDeleteLinkOutput } from '../../util/typings';
 import options from '../../config/options';
@@ -33,7 +33,7 @@ const LinkMutation = {
        */
       const token = jwt.sign(payLoad, keys.JWT_TOKEN_SIGNATURE, expiryInformation);
 
-      const { IV, encrypted } = encryptAes256cbc(token);
+      const { IV, encrypted } = utility.encryption.encryptAes256cbc(token);
 
       await prisma.link.create({
         data: {

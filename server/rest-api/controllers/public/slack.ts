@@ -1,5 +1,5 @@
-import { encryptAes256cbc } from '../../../services/encryption';
-import * as SlackService from '../../../services/slack';
+import utility from '../../../utility';
+import * as SlackService from '../../../utility/slack';
 import { prisma } from '../../../lib/prisma';
 import { LinkMutation } from '../../../resolvers/link';
 
@@ -25,7 +25,7 @@ const createLink = async (req, res) => {
 
     try {
       // encrypt the signal with a random key that is not known by anyone
-      const { encrypted, IV, key } = encryptAes256cbc(text, true);
+      const { encrypted, IV, key } = utility.encryption.encryptAes256cbc(text, true);
 
       // create signal with connection to owner in database
       const signal = await prisma.publicSignal.create({

@@ -1,6 +1,6 @@
 import { authenticate } from '../../auth/authenticate';
 import { Context } from '../../context';
-import { decryptAes256cbc } from '../../services/encryption';
+import { decryptAes256cbc } from '../../utility/encryption';
 
 const SecretQuery = {
   /**
