@@ -1,7 +1,5 @@
 const services = require('./services');
 
-const MAIL_USER = process.env.MAIL_USER || 'mailuser';
-const MAIL_PASSWORD = process.env.MAIL_PASSWORD || 'mailpass';
 const REQ_AUTH = process.env.REQ_AUTH || 'strong-req-auth-pass';
 
 /**
@@ -44,7 +42,9 @@ exports.sendMail = async (req, res) => {
 
       // get the current user ID - this will be sent from the main backend API alsong with username and email
       const fullName = `${req.body.firstName} ${req.body.lastName}`;
+
       const email = req.body.email;
+
       const id = req.body.id;
 
       const token = services.token.generate({ id, email, name: fullName }, '1d');
