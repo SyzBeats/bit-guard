@@ -1,7 +1,5 @@
-const nodemailer = require('nodemailer');
-const jwt = require('jsonwebtoken');
+const services = require('./services');
 
-const SECRET_KEY = process.env.KEY || 'SomeSecret';
 const MAIL_USER = process.env.MAIL_USER || 'mailuser';
 const MAIL_PASSWORD = process.env.MAIL_PASSWORD || 'mailpass';
 const REQ_AUTH = process.env.REQ_AUTH || 'strong-req-auth-pass';
@@ -41,38 +39,29 @@ exports.sendMail = async (req, res) => {
       return res?.status(401)?.send('Unauthorized');
     }
 
-    // get the current user ID - this will be sent from the main backend API alsong with username and email
-    const fullName = `${req.body.firstName} ${req.body.lastName}`;
-    const email = req.body.email;
-    const id = req.body.id;
+    if (req.body.type === 'registration') {
+      services.validation.userRegistrationMail(req.body);
 
-    // create a token
+      // get the current user ID - this will be sent from the main backend API alsong with username and email
+      const fullName = `${req.body.firstName} ${req.body.lastName}`;
+      const email = req.body.email;
+      const id = req.body.id;
 
-    const token = jwt.sign({ id, email, name: fullName }, SECRET_KEY);
+      const token = services.token.generate({ id, email, name: fullName }, '1d');
 
-    // send an email to the user that has just registered and ask him to click the link
+      const text = generateText({
+        fullName,
+        confirmationUrl: `https://envite.dev/confirm/user?token=${token}`,
+      });
 
-    const transporter = nodemailer.createTransport({
-      host: 'smtppro.zoho.eu',
-      port: 465,
-      secure: true,
-      auth: {
-        user: MAIL_USER,
-        pass: MAIL_PASSWORD,
-      },
-    });
+      return await services.nodemailer.registrationMail(email, text);
+    }
 
-    const mailData = {
-      fullName,
-      confirmationUrl: `https://envite.dev/confirm/user?token=${token}`,
-    };
+    if (req.body.type === 'password-reset') {
+      // ...
+    }
 
-    return await transporter.sendMail({
-      from: `"Envite" <${MAIL_USER}>`,
-      to: email,
-      subject: 'Please confirm your registration with .envite',
-      text: generateText(mailData),
-    });
+    return res?.status(409)?.send('Unknown request type');
   } catch (e) {
     console.error(e);
     res.status(500).send({ message: `Something went wrong: ${e.message}` });
