@@ -33,7 +33,7 @@ const Wrapper = styled.div<WrapperProps>`
 
   margin: 2rem 0;
   padding: 1.5rem;
-  min-height: 15rem;
+  min-height: 20rem;
   max-height: 50vh;
 
   background: ${({ theme }) => theme.colors.white};
@@ -46,6 +46,10 @@ const Wrapper = styled.div<WrapperProps>`
 
   // make box scrollable
   overflow-y: auto;
+
+  @media (max-width: 768px) {
+    max-height: 60rem;
+  }
 `;
 
 const Title = styled.h2`

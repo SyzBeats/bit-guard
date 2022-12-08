@@ -7,21 +7,19 @@ import { SecondaryTitleBlue } from '../../../ui/styled/typography';
 
 const SignalBox = () => {
   return (
-    <>
-      <Wrapper>
-        <SecondaryTitleBlue color="light" textAlign="center">
-          Create a secure secret!
-        </SecondaryTitleBlue>
+    <Wrapper>
+      <SecondaryTitleBlue color="light" textAlign="center">
+        Create a secure secret!
+      </SecondaryTitleBlue>
 
-        <p>
-          <Info />
-          You can share the secret link with anyone. The secret will be destroyed after it is used.
-        </p>
-        <ContentBox bordered borderColor="dark">
-          <CreatePublicSignal />
-        </ContentBox>
-      </Wrapper>
-    </>
+      <p>
+        <Info />
+        You can share the secret link with anyone. The secret will be destroyed after it is used.
+      </p>
+      <ContentBox bordered borderColor="dark">
+        <CreatePublicSignal />
+      </ContentBox>
+    </Wrapper>
   );
 };
 

@@ -6,7 +6,7 @@ import { HomepageStory } from './Story';
 import { LandingPageIconGrid } from './IconGrid';
 import { LayoutMain } from '../../layout/landing/layoutMain';
 import { SecondaryTitle } from '../../ui/styled/typography';
-import { SectionBackground, SectionBase, SectionGradientBase } from '../../ui/styled/sections';
+import { SectionBackground, SectionBase } from '../../ui/styled/sections';
 import CallToAction from './CallToAction';
 import HeroLanding from './Hero';
 import SignalBox from './signal/SignalBox';
@@ -16,7 +16,7 @@ const HomePage = () => {
     <LayoutMain>
       <HeroLanding />
 
-      <SectionGradientBase>
+      <SectionBase>
         <BaseContainer data-anker="how-it-works">
           <SignalBox />
           <SecondaryTitle color="dark" textAlign="center">
@@ -24,7 +24,7 @@ const HomePage = () => {
           </SecondaryTitle>
           <LandingPageIconGrid />
         </BaseContainer>
-      </SectionGradientBase>
+      </SectionBase>
 
       <SectionBackground>
         <BaseContainer>

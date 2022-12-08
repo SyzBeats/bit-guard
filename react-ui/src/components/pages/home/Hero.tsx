@@ -40,7 +40,7 @@ const HeroLanding = () => {
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: 2;
+  grid-template-columns: repeat(2, 1fr);
   gap: 3rem;
 `;
 
@@ -55,13 +55,19 @@ const GridLeft = styled.div`
 
 const GridRight = styled.div`
   grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-end: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `;
 
 const Hero = styled.header`
-  min-height: 55vh;
+  min-height: 45vh;
   background-image: ${({ theme }) =>
-    `radial-gradient(ellipse at 46% 30%, #EE82EE00 51%, #00BCD400 81%, #14BFCA1A 90%), radial-gradient(ellipse at 0% 0%, #00BCD400 32%, #14beca11 42%, #EE82EE00 49%), linear-gradient(to right, ${theme.colors.background}, ${theme.colors.blue_dark})`};
+    `radial-gradient(ellipse at 46% 30%, #EE82EE00 51%, #00BCD400 81%, #14BFCA1A 90%), 
+     radial-gradient(ellipse at 0% 0%, #00BCD400 32%, #14beca11 42%, #EE82EE00 49%), 
+     linear-gradient(to right, ${theme.colors.background}, ${theme.colors.blue_dark})
+  `};
 
   display: flex;
   align-items: center;
@@ -85,13 +91,13 @@ const FlexBox = styled.div`
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     flex: 1;
   }
 `;
 
 const HideMobile = styled.div`
-  @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     display: none;
   }
 `;

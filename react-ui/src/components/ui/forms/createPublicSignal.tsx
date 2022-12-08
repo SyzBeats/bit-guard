@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import shallow from 'zustand/shallow';
 import { useMutation } from '@apollo/client';
-import { CREATE_PUBLIC_SIGNAL } from '../../../graphql/mutations/signal/mutation-create-public-signal';
 
 import { useCreateSecretFormState, useSignalState } from '../../../zustand/store';
+import { CREATE_PUBLIC_SIGNAL } from '../../../graphql/mutations/signal/mutation-create-public-signal';
+
 import { FlexGridEqual } from '../../layout/grids/FlexGrid';
 import { FlexGridItem } from '../../layout/grids/FlexGridItem';
 import { DisplayLink } from '../../signals/DisplayLink';
@@ -11,7 +13,7 @@ import { Alert } from '../alert/Alert';
 import { ButtonWrapper } from '../buttons/ButtonWrapper';
 import { TextArea } from './inputs/TextArea';
 import TextInput from './inputs/TextInput';
-import shallow from 'zustand/shallow';
+import { Loader } from '../loaders/Loader';
 
 const CreatePublicSignal = () => {
   const formState = useCreateSecretFormState(
@@ -33,7 +35,7 @@ const CreatePublicSignal = () => {
     message: '',
   });
 
-  const [createSignalMutation, { loading }] = useMutation(CREATE_PUBLIC_SIGNAL, {
+  const [createSignalMutation, { loading = false }] = useMutation(CREATE_PUBLIC_SIGNAL, {
     onCompleted: ({ createPublicSignal }) => {
       formState.setLink(createPublicSignal?.link?.content);
       formState.setContent('');
@@ -90,7 +92,7 @@ const CreatePublicSignal = () => {
         </ButtonWrapper>
       </FlexGridEqual>
 
-      {loading && <p>encrypting message...</p>}
+      <Loader loading={loading} />
       {alert.message && <Alert message={alert.message} type={alert.type} />}
     </Wrapper>
   );
@@ -99,7 +101,6 @@ const CreatePublicSignal = () => {
 const Wrapper = styled.form`
   display: flex;
   flex-direction: column;
-
   gap: 2rem;
 
   h4 {
