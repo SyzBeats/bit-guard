@@ -136,9 +136,9 @@ const RevealPage = ({ isPublic }: Props) => {
   return (
     <>
       <SectionBackground>
-        <BaseContainer>
+        <BaseContainer padding="5rem 2rem">
           <FlexWrapper>
-            <Logo />
+            <Logo width="5rem" />
           </FlexWrapper>
           {getInfoContent()}
           {getRevealContent()}

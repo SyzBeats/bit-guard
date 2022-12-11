@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { FilePlus } from 'react-feather';
 
@@ -29,12 +29,14 @@ const Signals = () => {
 
   const openModal = () => setOpen(true);
 
-  const submit = () => setOpen(false);
+  const closeModal = () => {
+    setOpen(false);
+  };
 
   return (
     <>
       {open && (
-        <BaseModal title="Create your Secret" handler={() => submit()}>
+        <BaseModal title="Create your Secret" handler={() => closeModal()}>
           <CreateSignal />
         </BaseModal>
       )}

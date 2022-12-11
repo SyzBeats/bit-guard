@@ -1,6 +1,10 @@
+const localOrigins = ['http://127.0.0.1:5173', 'http://localhost:5173'];
+
+const productionOrigins = ['https://envite.dev'];
+
 const options = {
   cors: {
-    origin: process.env.NODE_ENV === 'production' ? ['https://envite.dev'] : ['http://127.0.0.1:5173'],
+    origin: process.env.NODE_ENV === 'production' ? productionOrigins : localOrigins,
     credentials: true,
   },
   server: {

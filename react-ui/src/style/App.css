@@ -96,6 +96,15 @@ img {
   }
 }
 
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -104,6 +113,17 @@ img {
   100% {
     opacity: 1;
     transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -60%);
   }
 }
 
@@ -117,6 +137,16 @@ img {
   100% {
     transform: scale(1);
   }
+}
+
+/*global class styles */
+
+.fadeOut {
+  animation: fadeOut 0.5s ease-in-out;
+}
+
+.fadeOutUp {
+  animation: fadeOutUp 0.5s ease-in-out;
 }
 
 /*# sourceMappingURL=App.css.map */
