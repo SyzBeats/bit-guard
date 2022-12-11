@@ -5,14 +5,15 @@ import { X } from 'react-feather';
 
 interface ModalProps {
   children: React.ReactNode;
-  title: string;
   handler: Function;
+  title?: string;
+  preventClickAway?: boolean;
 }
 
-const BaseModal = ({ handler, children, title = '' }: ModalProps) => {
+const BaseModal = ({ handler, children, title = 'Action', preventClickAway = false }: ModalProps) => {
   const ref = useRef(null);
 
-  const [callback] = useClickaway(ref, handler);
+  const [callback] = useClickaway(ref, handler, preventClickAway);
 
   return (
     <>

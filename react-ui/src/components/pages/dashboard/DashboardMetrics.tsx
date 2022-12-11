@@ -6,7 +6,7 @@ import Counter from '../../ui/styled/boxes/Counter';
 const DashboardMetrics = () => {
   return (
     <FlexGridEqual padded equal>
-      <ContentBox title="Alltime Created Secrets">
+      <ContentBox title="Active secrets / signals">
         <Counter type="signals" />
       </ContentBox>
       <ContentBox title="Active Secrets">

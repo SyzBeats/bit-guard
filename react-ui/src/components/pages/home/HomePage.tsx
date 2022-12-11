@@ -17,10 +17,10 @@ const HomePage = () => {
       <HeroLanding />
 
       <SectionBase>
-        <BaseContainer data-anker="how-it-works">
+        <BaseContainer anker="how-it-works">
           <SignalBox />
           <SecondaryTitle color="dark" textAlign="center">
-            What <strong>.envite</strong> does for you
+            What <strong>.envite</strong> stands for
           </SecondaryTitle>
           <LandingPageIconGrid />
         </BaseContainer>

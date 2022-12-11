@@ -14,14 +14,20 @@ import styled from 'styled-components';
 interface IProps {
   children: React.ReactNode;
   padding?: string;
+  anker?: string;
 }
 
 interface IWrapperProps {
   padding?: string;
 }
 
-const BaseContainer = ({ children, padding = '10rem 2rem' }: IProps) => {
-  return <Wrapper padding={padding}>{children}</Wrapper>;
+const BaseContainer = ({ children, padding = '10rem 2rem', anker = '' }: IProps) => {
+  const forwardedProps = {
+    padding,
+    'data-anker': anker ? anker : undefined,
+  };
+
+  return <Wrapper {...forwardedProps}>{children}</Wrapper>;
 };
 
 const Wrapper = styled.div<IWrapperProps>`

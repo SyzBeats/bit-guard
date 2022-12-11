@@ -8,10 +8,19 @@ const FooterGrid = () => {
       <List>
         <ListTitle>External Links</ListTitle>
         <ListItem>
-          <a href="https://sz-development.tech/blog">Blog</a>
+          <a href="https://github.com/SyzBeats/envite" rel="noopener noreferrer" target="_blank">
+            GitHub
+          </a>
         </ListItem>
         <ListItem>
-          <a href="https://sz-development.tech/kontakt">Contact</a>
+          <a href="https://sz-development.tech/kontakt" rel="noopener noreferrer" target="_blank">
+            Contact
+          </a>
+        </ListItem>
+        <ListItem>
+          <a href="https://sz-development.tech/blog" rel="noopener noreferrer" target="_blank">
+            Blog
+          </a>
         </ListItem>
       </List>
       <List>

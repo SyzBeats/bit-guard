@@ -1,22 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { LogIn } from 'react-feather';
+import { LogIn, GitHub } from 'react-feather';
 import config from '../../../config';
 
 const Navigation = () => {
-  if (config.environment.MODE !== 'development') {
-    return null;
-  }
+  const isProduction = config.environment.MODE !== 'development';
 
   return (
     <HeaderNavigation>
-      <LoginLink to="/login">
-        login <LogIn />
-      </LoginLink>
-      <SignupLink to="/signup">
-        signup <LogIn />
-      </SignupLink>
+      {!isProduction && (
+        <>
+          <LoginLink to="/login">
+            login <LogIn />
+          </LoginLink>
+          <SignupLink to="/signup">
+            signup <LogIn />
+          </SignupLink>
+        </>
+      )}
+
+      <GithubLink href="https://github.com/SyzBeats/envite" target="_blank" rel="noopener noreferrer">
+        GitHub <GitHub />
+      </GithubLink>
     </HeaderNavigation>
   );
 };
@@ -49,6 +55,21 @@ const LoginLink = styled(NavLink)`
 `;
 
 const SignupLink = styled(NavLink)`
+  background: ${({ theme }) => theme.colors.blue_dark};
+  color: ${({ theme }) => theme.colors.highlight_iceblue};
+`;
+
+const GithubLink = styled.a`
+  padding: 0.75rem;
+  text-decoration: none;
+  border-radius: 0.3rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  line-height: 1em;
+
   background: ${({ theme }) => theme.colors.blue_dark};
   color: ${({ theme }) => theme.colors.highlight_iceblue};
 `;

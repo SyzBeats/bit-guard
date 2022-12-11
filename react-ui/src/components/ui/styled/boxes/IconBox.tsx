@@ -16,7 +16,7 @@ import { SecondaryTitle } from '../typography';
 type IconBoxType = {
   type: IconName;
   title: string;
-  content: string;
+  content: string | JSX.Element;
   textColor: 'light' | 'dark';
 };
 

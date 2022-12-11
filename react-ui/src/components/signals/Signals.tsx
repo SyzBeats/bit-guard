@@ -36,7 +36,7 @@ const Signals = () => {
   return (
     <>
       {open && (
-        <BaseModal title="Create your Secret" handler={() => closeModal()}>
+        <BaseModal title="Create your Secret" handler={() => closeModal()} preventClickAway>
           <CreateSignal />
         </BaseModal>
       )}

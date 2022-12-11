@@ -1,5 +1,5 @@
 import React from 'react';
-import { Copy } from 'react-feather';
+import { Copy, Check } from 'react-feather';
 import styled from 'styled-components';
 import services from '../../services';
 import { useSignalState } from '../../zustand/store';
@@ -19,11 +19,17 @@ const DisplayLink = ({ link }: Props) => {
     signalState.setLinkCopied(true);
   };
 
+  const displayIcon = () => {
+    if (signalState.linkCopied) {
+      return <Check />;
+    }
+
+    return <Copy onClick={() => handleClick()} />;
+  };
+
   return (
     <Container copied={signalState.linkCopied}>
-      <CopySection>
-        Secret Link: <Copy onClick={() => handleClick()} />
-      </CopySection>
+      <CopySection>Secret Link (please copy): {displayIcon()}</CopySection>
       <Wrapper>{link}</Wrapper>
     </Container>
   );

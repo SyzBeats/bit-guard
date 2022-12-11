@@ -11,10 +11,6 @@ Conversely, the majority of block cipher operating modes require an IV that is r
 
 In any case, the IV need never be kept secret - if it were, it would be a key, not an IV. In fact, in most cases it would be impractical to keep the IV secret even if you wanted to, since the recipient needs to know this in order to decrypt the data (or check the hash, etc.).
 
-## Libraries in use
-
-- Charts: https://airbnb.io/visx/gallery or https://react-charts.tanstack.com/docs/getting-started
-
 ## Flow
 
 ### Generate a Message
