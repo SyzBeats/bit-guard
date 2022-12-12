@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { useMutation } from '@apollo/client';
 import { Trash } from 'react-feather';
+import shallow from 'zustand/shallow';
 
 import services from '../../services';
 import { useSignalState } from '../../zustand/store';
 import { DELETE_SIGNAL } from '../../graphql/mutations/signal/mutation-delete-signal';
-import shallow from 'zustand/shallow';
 
 interface Iprops {
   signal: {

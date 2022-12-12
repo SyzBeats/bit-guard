@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { LayoutMain } from '../../layout/landing/layoutMain';
 import { BaseContainer } from '../../ui/containers';
 import { SectionBase } from '../../ui/styled/sections';

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { LogIn, GitHub } from 'react-feather';
+
 import config from '../../../config';
 
 const Navigation = () => {

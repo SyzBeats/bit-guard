@@ -1,7 +1,8 @@
 import React from 'react';
-import LogoPath from '../../../../images/shield_logosvg.svg';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+
+import LogoPath from '../../../../images/shield_logosvg.svg';
 
 interface Props {
   width?: string;

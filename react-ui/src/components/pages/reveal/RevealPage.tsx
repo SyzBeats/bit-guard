@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { Copy, CheckCircle } from 'react-feather';
 import styled from 'styled-components';
 
-import config from '../../../config/environment';
 import Logo from '../../ui/styled/image/Logo';
 import Footer from '../../layout/generic/footer/Footer';
 import CallToAction from '../home/CallToAction';
@@ -13,7 +12,9 @@ import { BaseContainer } from '../../ui/containers';
 import { SkeletonArticle } from '../../ui/skeletons/SkeletonArticle';
 import { ButtonWrapper } from '../../ui/buttons/ButtonWrapper';
 import Button from '../../ui/buttons/Button';
+
 import services from '../../../services';
+import config from '../../../config/environment';
 interface Props {
   isPublic?: boolean;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { PropsChildren } from '../../../typings/types.components';
 
 const NavigationButton = ({ children }: PropsChildren) => {
@@ -17,4 +18,5 @@ const Button = styled.div`
     filter: ${({ theme }) => `grayscale(0) drop-shadow(1px 2px 9px ${theme.colors.highlight_iceblue_50})`};
   }
 `;
+
 export default NavigationButton;

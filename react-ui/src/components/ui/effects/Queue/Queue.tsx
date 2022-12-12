@@ -1,5 +1,6 @@
 import React, { useLayoutEffect, useState } from 'react';
 import styled from 'styled-components';
+
 import { QueueItem } from './QueueItem';
 
 const TIMEOUT = 2000;
