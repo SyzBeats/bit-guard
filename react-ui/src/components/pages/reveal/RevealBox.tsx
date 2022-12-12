@@ -1,6 +1,7 @@
 import React from 'react';
-import { ContentBox } from '../../ui/styled/boxes/ContentBox';
 import styled from 'styled-components';
+
+import { ContentBox } from '../../ui/styled/boxes/ContentBox';
 
 interface Props {
   message: string;

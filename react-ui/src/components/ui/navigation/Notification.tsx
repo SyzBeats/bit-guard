@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Bell, BellOff } from 'react-feather';
+import { Bell } from 'react-feather';
 
 const Notification = () => {
   return (

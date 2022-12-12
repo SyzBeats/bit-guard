@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { ExternalSvg } from '../image/ExternalSvg';
 import { IconName } from '../../../../typings/enums';
 

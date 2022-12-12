@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import Sharing from '../../../images/undraw_share.svg';
+
 import { MainTitle, SecondaryTitle } from '../../ui/styled/typography';
+
+import Sharing from '../../../images/undraw_share.svg';
+
 const HomepageStory = () => {
   return (
     <Wrapper>
