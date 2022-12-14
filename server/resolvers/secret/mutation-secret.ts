@@ -1,9 +1,10 @@
 import { Message, Signal } from '@prisma/client';
 import { ApolloError, UserInputError } from 'apollo-server-express';
+
+import utility from '../../utility';
 import { authenticate } from '../../auth/authenticate';
 import { Context } from '../../context';
-import utility from '../../utility';
-import { ICreateSignalOutput } from '../../util/typings';
+import { ICreateSignalOutput } from '../../typings';
 import { LinkMutation } from '../link';
 
 const SecretMutation = {

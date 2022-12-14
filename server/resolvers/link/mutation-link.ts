@@ -1,10 +1,11 @@
 import * as jwt from 'jsonwebtoken';
-import { Context } from '../../context';
+
 import * as keys from '../../config/keys';
-import utility from '../../utility';
-import { getHoursUntil } from '../../util/dateAndTime/time-until-date';
-import { IcreateMessageLinkOutput, IcreateSignalLinkOutput, IDeleteLinkOutput } from '../../util/typings';
 import options from '../../config/options';
+
+import utility from '../../utility';
+import { Context } from '../../context';
+import { IcreateMessageLinkOutput, IcreateSignalLinkOutput, IDeleteLinkOutput } from '../../typings';
 
 const LinkMutation = {
   async createMessageLink(parent, args, ctx: Context): Promise<IcreateMessageLinkOutput> {
@@ -18,7 +19,7 @@ const LinkMutation = {
 
       // set the expiry in hour format, calculated
       if (payLoad?.expiry) {
-        timeUntilExpiry = getHoursUntil(payLoad.expiry);
+        timeUntilExpiry = utility.dateAndTime.getHoursUntil(payLoad.expiry);
       }
 
       // if not given, set default value, 3 hours

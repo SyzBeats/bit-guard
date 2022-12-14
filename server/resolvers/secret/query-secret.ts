@@ -1,6 +1,6 @@
 import { authenticate } from '../../auth/authenticate';
 import { Context } from '../../context';
-import { decryptAes256cbc } from '../../utility/encryption';
+import utility from '../../utility';
 
 const SecretQuery = {
   /**
@@ -26,7 +26,7 @@ const SecretQuery = {
       }
 
       // decrypt the message and get the result
-      const decryptedMessage = decryptAes256cbc(encryptedMessage.content);
+      const decryptedMessage = utility.encryption.decryptAes256cbc(encryptedMessage.content);
 
       // assign values to new message variable
       const message = {
