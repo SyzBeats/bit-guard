@@ -7,11 +7,11 @@ const TIMEOUT = 2000;
 
 const Queue = () => {
   const staticItems = [
-    'Military Grade Encryption',
-    'Expiry Management',
-    'Simple User interface',
-    'Protected Secrets',
-    'Simplified Sharing function',
+    'Military grade encryption',
+    'Expiry management',
+    'Simple user interface',
+    'Protected secrets',
+    'Simplified sharing function',
     'Smart deletion',
   ];
 

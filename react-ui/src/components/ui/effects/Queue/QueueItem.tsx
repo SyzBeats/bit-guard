@@ -1,21 +1,20 @@
-import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Code, Layers, Clock, Shield, Database, Share2 } from 'react-feather';
 
 const QueueItem = ({ content, index }: any) => {
   const getIcon = (text: string) => {
     switch (text) {
-      case 'Military Grade Encryption':
+      case 'Military grade encryption':
         return <Database color="white" />;
-      case 'Simple User interface':
+      case 'Simple user interface':
         return <Code color="white" />;
-      case 'Protected Secrets':
+      case 'Protected secrets':
         return <Shield color="white" />;
-      case 'Simplified Sharing function':
+      case 'Simplified sharing function':
         return <Share2 color="white" />;
       case 'Smart deletion':
         return <Layers color="white" />;
-      case 'Expiry Management':
+      case 'Expiry management':
         return <Clock color="white" />;
       default:
         return null;
