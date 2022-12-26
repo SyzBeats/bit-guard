@@ -1,6 +1,6 @@
 import { prisma } from '../../lib/prisma';
 import utility from '../../utility';
-import { MessageToken } from '../../util/typings';
+import { MessageToken } from '../../typings';
 
 const findAndDecrypt = async (data: MessageToken) => {
   try {

@@ -1,5 +1,4 @@
 import utility from '../../../utility';
-import * as SlackService from '../../../utility/slack';
 import { prisma } from '../../../lib/prisma';
 import { LinkMutation } from '../../../resolvers/link';
 
@@ -8,7 +7,7 @@ const createLink = async (req, res) => {
   const { challenge } = req.body;
 
   if (challenge) {
-    res.send(SlackService.resolveChallenge(challenge));
+    res.send(utility.slack.resolveChallenge(challenge));
     return;
   }
 
@@ -17,7 +16,7 @@ const createLink = async (req, res) => {
 
   if (command === '/envite') {
     if (!text) {
-      res.send(SlackService.messageToIssuer('Usage: /envite myCoolPassword'));
+      res.send(utility.slack.messageToIssuer('Usage: /envite myCoolPassword'));
       return;
     }
 
@@ -54,9 +53,9 @@ const createLink = async (req, res) => {
         throw new Error('Link could not be created');
       }
 
-      res.json(SlackService.messageToChannel(`Secret: ${link}. This link can be opened only once!`));
+      res.json(utility.slack.messageToChannel(`Secret: ${link}. This link can be opened only once!`));
     } catch (error) {
-      return res.send(SlackService.messageToIssuer(`Something went horribly wrong here. We are sorry!: ${error.message}`));
+      return res.send(utility.slack.messageToIssuer(`Something went horribly wrong here. We are sorry!: ${error.message}`));
     } finally {
       await prisma.$disconnect();
     }
