@@ -3,8 +3,7 @@ import * as jwt from 'jsonwebtoken';
 import * as keys from '../../../config/keys';
 import * as apiService from '../../services';
 import utility from '../../../utility';
-import { MessageToken } from '../../../typings';
-import { isMessageToken } from '../../../typings/typeguards';
+import { MessageToken, isMessageToken } from '../../../typings';
 
 const decipher = async (req, res) => {
   try {
