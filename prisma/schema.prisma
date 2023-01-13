@@ -48,21 +48,32 @@ model Message {
 }
 
 model Signal {
-  id        String   @id @default(uuid())
+  id        String     @id @default(uuid())
   userId    String
   content   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
   title     String
-  owner     User     @relation(fields: [userId], references: [id])
+  owner     User       @relation(fields: [userId], references: [id])
+  type      SignalType @relation(fields: [typeId], references: [id])
+  typeId    String
 }
 
 model PublicSignal {
-  id        String   @id @default(uuid())
+  id        String     @id @default(uuid())
   title     String
   content   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  typeId    String
+  type      SignalType @relation(fields: [typeId], references: [id])
+}
+
+model SignalType {
+  id           String         @id @default(uuid())
+  name         Type           @default(TEXT)
+  Signal       Signal[]
+  PublicSignal PublicSignal[]
 }
 
 model Link {
@@ -72,4 +83,13 @@ model Link {
   createdAt DateTime  @default(now())
   expiry    DateTime?
   message   Message   @relation(fields: [messageId], references: [id])
+}
+
+// enums 
+enum Type {
+  TEXT
+  IMAGE
+  VIDEO
+  AUDIO
+  FILE
 }
