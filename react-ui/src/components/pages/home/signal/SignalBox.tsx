@@ -1,6 +1,7 @@
 import React from 'react';
 import { Info } from 'react-feather';
 import styled from 'styled-components';
+import TypeSelector from '../../../shared/TypeSelector';
 import CreatePublicSignal from '../../../ui/forms/createPublicSignal';
 import { ContentBox } from '../../../ui/styled/boxes/ContentBox';
 import { SecondaryTitleBlue } from '../../../ui/styled/typography';
@@ -14,8 +15,11 @@ const SignalBox = () => {
 
       <p>
         <Info />
-        You can share the secret link with anyone. The secret will be destroyed after it is used.
+        You can share the secret link with anyone. It will be destroyed after beeing viewed.
       </p>
+
+      <TypeSelector />
+
       <ContentBox bordered borderColor="dark">
         <CreatePublicSignal />
       </ContentBox>
