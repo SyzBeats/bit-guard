@@ -55,8 +55,8 @@ model Signal {
   updatedAt DateTime   @updatedAt
   title     String
   owner     User       @relation(fields: [userId], references: [id])
-  type      SignalType @relation(fields: [typeId], references: [id])
-  typeId    String
+  type      Type       @default(text)
+  extension Extension? @default(txt)
 }
 
 model PublicSignal {
@@ -65,15 +65,8 @@ model PublicSignal {
   content   String
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
-  typeId    String
-  type      SignalType @relation(fields: [typeId], references: [id])
-}
-
-model SignalType {
-  id           String         @id @default(uuid())
-  name         Type           @default(TEXT)
-  Signal       Signal[]
-  PublicSignal PublicSignal[]
+  type      Type       @default(text)
+  extension Extension? @default(txt)
 }
 
 model Link {
@@ -87,9 +80,31 @@ model Link {
 
 // enums 
 enum Type {
-  TEXT
-  IMAGE
-  VIDEO
-  AUDIO
-  FILE
+  text
+  image
+  video
+  audio
+  file
+}
+
+enum Extension {
+  txt
+  png
+  jpg
+  jpeg
+  gif
+  mp4
+  mp3
+  wav
+  pdf
+  doc
+  docx
+  xls
+  xlsx
+  ppt
+  pptx
+  zip
+  rar
+  tar
+  gz
 }
