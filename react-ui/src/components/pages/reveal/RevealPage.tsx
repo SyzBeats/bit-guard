@@ -8,7 +8,7 @@ import Footer from '../../layout/generic/footer/Footer';
 import CallToAction from '../home/CallToAction';
 import { SectionBackground, SectionBase } from '../../ui/styled/sections';
 import { RevealBox } from './RevealBox';
-import { BaseContainer } from '../../ui/containers';
+import { BaseContainer } from '../../ui/containers/BaseContainer';
 import { SkeletonArticle } from '../../ui/skeletons/SkeletonArticle';
 import { ButtonWrapper } from '../../ui/buttons/ButtonWrapper';
 import Button from '../../ui/buttons/Button';

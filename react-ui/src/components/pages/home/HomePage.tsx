@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BaseContainer } from '../../ui/containers';
+import { BaseContainer } from '../../ui/containers/BaseContainer';
 import { SectionControl } from './SectionControl';
 import { HomepageStory } from './Story';
 import { LandingPageIconGrid } from './IconGrid';

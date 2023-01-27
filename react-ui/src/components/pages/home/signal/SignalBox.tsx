@@ -1,7 +1,7 @@
-import React from 'react';
 import { Info } from 'react-feather';
 import styled from 'styled-components';
-import TypeSelector from '../../../shared/TypeSelector';
+
+import TypeSelector from '../../../shared/SecretTypeSelector';
 import CreatePublicSignal from '../../../ui/forms/createPublicSignal';
 import { ContentBox } from '../../../ui/styled/boxes/ContentBox';
 import { SecondaryTitleBlue } from '../../../ui/styled/typography';
