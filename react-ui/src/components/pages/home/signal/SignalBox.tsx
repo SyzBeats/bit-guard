@@ -1,9 +1,6 @@
-import { Info } from 'react-feather';
 import styled from 'styled-components';
 
 import TypeSelector from '../../../shared/SecretTypeSelector';
-import CreatePublicSignal from '../../../ui/forms/createPublicSignal';
-import { ContentBox } from '../../../ui/styled/boxes/ContentBox';
 import { SecondaryTitleBlue } from '../../../ui/styled/typography';
 
 const SignalBox = () => {
@@ -13,23 +10,14 @@ const SignalBox = () => {
         Create a secure secret!
       </SecondaryTitleBlue>
 
-      <p>
-        <Info />
-        You can share the secret link with anyone. It will be destroyed after beeing viewed.
-      </p>
-
       <TypeSelector />
-
-      <ContentBox bordered borderColor="dark">
-        <CreatePublicSignal />
-      </ContentBox>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
   box-sizing: border-box;
-  max-width: 80rem;
+  max-width: 100rem;
   margin: 0rem auto 10rem auto;
 
   p {

@@ -5,40 +5,44 @@ import { CardContainer } from '../ui/containers/CardContainer';
 import { IconCard } from '../ui/cards/IconCard/IconCard';
 import { AnimatedModal } from '../ui/modals/AnimatedModal';
 
+type SecretType = 'text' | 'image' | 'pdf';
+
 export default function SecretTypeSelector() {
   const [open, setOpen] = useState(false);
+  const [type, setType] = useState<SecretType>('text');
 
-  const handleClick: MouseEventHandler<HTMLDivElement> = () => {
+  const handleClick = (type: SecretType) => {
+    setType(type);
     setOpen(!open);
   };
 
   return (
-    <div className="App">
+    <div>
       <CardContainer>
         <IconCard
-          title="Encrypted text message"
-          content="Send encrypted text to your recipient"
+          title="Text message"
+          content="Send encrypted text"
           icon={<FileText />}
           color="blue"
-          clickHandler={handleClick}
+          clickHandler={() => handleClick('text')}
         />
         <IconCard
-          title="Ecrypted Image file"
+          title="Image"
           content="send and encrypted image"
           icon={<Image />}
           color="purple"
-          clickHandler={handleClick}
+          clickHandler={() => handleClick('image')}
         />
         <IconCard
-          title="Encrypted .pdf file"
-          content="Send an encrypted PDF document"
+          title="Document"
+          content="Send an encrypted document"
           icon={<File />}
           color="green"
-          clickHandler={handleClick}
+          clickHandler={() => handleClick('pdf')}
         />
       </CardContainer>
 
-      <AnimatedModal isOpen={open} close={handleClick} />
+      <AnimatedModal isOpen={open} close={handleClick} type={type} />
     </div>
   );
 }
