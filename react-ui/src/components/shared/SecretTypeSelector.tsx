@@ -21,14 +21,14 @@ export default function SecretTypeSelector() {
       <CardContainer>
         <IconCard
           title="Text message"
-          content="Send encrypted text"
+          content="Send an encrypted text"
           icon={<FileText />}
           color="blue"
           clickHandler={() => handleClick('text')}
         />
         <IconCard
           title="Image"
-          content="send and encrypted image"
+          content="Send an encrypted image"
           icon={<Image />}
           color="purple"
           clickHandler={() => handleClick('image')}

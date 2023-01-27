@@ -7,7 +7,7 @@ const SignalBox = () => {
   return (
     <Wrapper>
       <SecondaryTitleBlue color="light" textAlign="center">
-        Create a secure secret!
+        Select a message type:
       </SecondaryTitleBlue>
 
       <TypeSelector />
@@ -18,7 +18,7 @@ const SignalBox = () => {
 const Wrapper = styled.div`
   box-sizing: border-box;
   max-width: 100rem;
-  margin: 0rem auto 10rem auto;
+  margin: 0rem auto 0rem auto;
 
   p {
     display: flex;
