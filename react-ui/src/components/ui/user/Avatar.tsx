@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import config from '../../../config';
-import { AvatarType } from '../../../typings/types-components';
+import { AvatarType } from '../../../types/types-components';
 import Logo from '../styled/image/Logo';
 
 const Avatar = ({ src, alt }: AvatarType) => {

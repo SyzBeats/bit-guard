@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconName } from '../../../typings/enums';
+import { IconName } from '../../../types/enums';
 import { Grid } from '../../layout/grids/Grid';
 import { IconBox } from '../../ui/styled/boxes/IconBox';
 

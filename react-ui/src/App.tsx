@@ -10,8 +10,8 @@ import { HomePage } from '~/components/pages/home/HomePage';
 import { RevealPage } from '~/components/pages/reveal/RevealPage';
 import { Dataprotection } from '~/components/pages/dataprotection/Dataprotection';
 import { Imprint } from '~/components/pages/imprint/Imprint';
-import ProtectedRoute from '~/components/routes/Protected';
-import PublicOnlyRoute from '~/components/routes/PublicOnly';
+import ProtectedRoute from '~/routes/Protected';
+import PublicOnlyRoute from '~/routes/PublicOnly';
 import Login from '~/components/authentication/Login';
 import SignUp from '~/components/authentication/Signup';
 

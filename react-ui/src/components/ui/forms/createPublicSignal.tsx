@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import shallow from 'zustand/shallow';
 import { useMutation } from '@apollo/client';
 
-import { useCreateSecretFormState, useSignalState } from '../../../zustand/store';
+import { useCreateSecretFormState, useSignalState } from '../../../store/store';
 import { CREATE_PUBLIC_SIGNAL } from '../../../graphql/mutations/signal/mutation-create-public-signal';
 
 import { FlexGridEqual } from '../../layout/grids/FlexGrid';

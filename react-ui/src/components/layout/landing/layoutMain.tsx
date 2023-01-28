@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Navigation from '../../pages/home/Navigation';
 import Footer from '../generic/footer/Footer';
 
-import { PropsChildren } from '../../../typings/types.components';
+import { PropsChildren } from '../../../types/types.components';
 
 const LayoutMain = ({ children }: PropsChildren) => (
   <Container>

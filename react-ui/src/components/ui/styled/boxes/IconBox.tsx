@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { ExternalSvg } from '../image/ExternalSvg';
-import { IconName } from '../../../../typings/enums';
+import { IconName } from '../../../../types/enums';
 
 // icons
 import IconFingerprint from '../../../../images/security/fi__fingerprint-lock.svg';

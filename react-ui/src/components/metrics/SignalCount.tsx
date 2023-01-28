@@ -1,7 +1,7 @@
 import React from 'react';
 import shallow from 'zustand/shallow';
 
-import { useSignalState } from '../../zustand/store';
+import { useSignalState } from '../../store/store';
 
 const SignalCount = () => {
   const signalState = useSignalState((state) => ({ signals: state.signals }), shallow);

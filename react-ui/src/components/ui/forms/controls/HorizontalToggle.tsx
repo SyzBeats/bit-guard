@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useCreateSecretFormState } from '../../../../zustand/store';
+import { useCreateSecretFormState } from '../../../../store/store';
 import { FlexGridEqual } from '../../../layout/grids/FlexGrid';
 import { FlexGridItem } from '../../../layout/grids/FlexGridItem';
 import RadioButton from '../inputs/RadioButton';

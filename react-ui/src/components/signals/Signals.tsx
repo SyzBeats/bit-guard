@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { FilePlus } from 'react-feather';
 
-import { useSignalState } from '../../zustand/store';
+import { useSignalState } from '../../store/store';
 import { GET_SIGNALS_BY_USER } from '../../graphql/queries/signal/query-signals-by-user';
 import { FlexGridEqual } from '../layout/grids/FlexGrid';
 import { MessageGrid } from '../layout/grids/MessageGrid';
