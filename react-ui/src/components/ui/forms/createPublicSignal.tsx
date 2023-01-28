@@ -88,7 +88,7 @@ const CreatePublicSignal = () => {
 
       <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">
         <ButtonWrapper>
-          <button onClick={(e) => handleSubmit(e)}>Create Secret</button>
+          <button onClick={(e) => handleSubmit(e)}>Encrypt</button>
         </ButtonWrapper>
       </FlexGridEqual>
 

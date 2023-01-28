@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const ButtonWrapper = styled.span`
@@ -6,13 +5,11 @@ const ButtonWrapper = styled.span`
   & button {
     padding: 1rem 2rem;
     border: none;
-
     border-radius: 0.4rem;
     box-shadow: ${({ theme }) => theme.shadows.depth_1};
 
     // colors
     background: ${({ theme }) => theme.colors.highlight_blue};
-
     color: #fff;
 
     // font
@@ -23,7 +20,7 @@ const ButtonWrapper = styled.span`
     // spacing
     margin: 1rem 0;
 
-    transition: all 0.1s ease-in-out;
+    transition: all 0.2s ease-in-out;
 
     &:hover {
       cursor: pointer;

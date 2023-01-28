@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import TypeSelector from '../../../shared/SecretTypeSelector';
-import { SecondaryTitleBlue } from '../../../ui/styled/typography';
+import TypeSelector from '~/components/collections/SecretTypeSelector';
+import { SecondaryTitleBlue } from '~/components/ui/styled/typography';
 
 const SignalBox = () => {
   return (
