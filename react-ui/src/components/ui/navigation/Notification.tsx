@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { Bell } from 'react-feather';
 
@@ -18,6 +17,7 @@ const Wrapper = styled.div`
     cursor: pointer;
   }
 `;
+
 const BellMarker = styled.div`
   width: 1rem;
   height: 1rem;
@@ -30,4 +30,5 @@ const BellMarker = styled.div`
   background: ${({ theme }) => theme.colors.highlight};
   box-shadow: ${({ theme }) => theme.shadows.depth_1};
 `;
+
 export default Notification;

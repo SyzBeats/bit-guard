@@ -2,11 +2,10 @@ import { lazy } from 'react';
 import { useSpring, animated } from '@react-spring/web';
 import { X } from 'react-feather';
 
-// lazy import the public signal form
-
 const PublicSignalForm = lazy(() => import('../forms/createPublicSignal'));
 
 import styles from './Animatedmodal.module.scss';
+import { ImageDropZone } from '../forms/inputs/ImageDropZone';
 
 interface ModalProps {
   isOpen: Boolean;
@@ -15,6 +14,7 @@ interface ModalProps {
 }
 
 const AnimatedModal = (props: ModalProps) => {
+  // Spring styles
   const [style] = useSpring(
     () => ({
       from: { opacity: 0, bottom: '-20%' },
@@ -38,6 +38,7 @@ const AnimatedModal = (props: ModalProps) => {
     [props.isOpen],
   );
 
+  // Class definitions
   const backdropClasses = [styles.backdrop];
 
   if (props.isOpen) {
@@ -46,12 +47,13 @@ const AnimatedModal = (props: ModalProps) => {
     backdropClasses.push(styles.hidden);
   }
 
-  let Content = () => {
+  // Determine content
+  const Content = () => {
     switch (props.type) {
       case 'text':
         return <PublicSignalForm />;
       case 'image':
-        return <div>Image</div>;
+        return <ImageDropZone />;
       case 'pdf':
         return <div>PDF</div>;
       default:
