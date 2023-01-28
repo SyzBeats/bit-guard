@@ -1,22 +1,21 @@
-import React from 'react';
 import { ApolloProvider, ApolloClient, from } from '@apollo/client';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import config from './config';
+import config from '~/config';
+import { theme } from '~/style/themes/theme-brand';
 
-import { theme } from './style/themes/theme-brand';
-import Dashboard from './components/pages/dashboard/Dashboard';
-import { HomePage } from './components/pages/home/HomePage';
-import Login from './components/authentication/Login';
-import ProtectedRoute from './components/routes/Protected';
-import PublicOnlyRoute from './components/routes/PublicOnly';
-import SignUp from './components/authentication/Signup';
-import { RevealPage } from './components/pages/reveal/RevealPage';
+import Dashboard from '~/components/pages/dashboard/Dashboard';
+import { HomePage } from '~/components/pages/home/HomePage';
+import { RevealPage } from '~/components/pages/reveal/RevealPage';
+import { Dataprotection } from '~/components/pages/dataprotection/Dataprotection';
+import { Imprint } from '~/components/pages/imprint/Imprint';
+import ProtectedRoute from '~/components/routes/Protected';
+import PublicOnlyRoute from '~/components/routes/PublicOnly';
+import Login from '~/components/authentication/Login';
+import SignUp from '~/components/authentication/Signup';
 
 import './style/App.css';
-import { Dataprotection } from './components/pages/dataprotection/Dataprotection';
-import { Imprint } from './components/pages/imprint/Imprint';
 
 const client = new ApolloClient({
   link: from([config.apollo.errorLink, config.apollo.authLink.concat(config.apollo.httpLink)]),

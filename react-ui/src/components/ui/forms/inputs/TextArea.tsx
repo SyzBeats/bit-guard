@@ -12,8 +12,7 @@ interface Props {
 const TextArea = ({ name = '', value = '', label = '', onChange = () => null }: Props) => {
   return (
     <Wrapper>
-      {label && <label htmlFor={name}>{label}</label>}
-      <Area rows={5} name={name} value={value} onChange={onChange} />
+      <Area rows={5} name={name} value={value} placeholder={label} onChange={onChange} />
     </Wrapper>
   );
 };
@@ -34,9 +33,9 @@ const Wrapper = styled.span`
 const Area = styled.textarea`
   width: 100%;
   padding: 1rem;
-  background: #f2f2f2;
-  border: 1px solid transparent;
-  border-radius: 0.5rem;
+  background: #fefefe;
+  border: 1px solid #ddd;
+  border-radius: 0.3rem;
 
   resize: none;
 

@@ -12,8 +12,7 @@ interface Props {
 const TextInput = ({ name = '', value = '', label = '', onChange = () => null, type = 'text' }: Props) => {
   return (
     <Wrapper>
-      {label && <label htmlFor={name}>{label}</label>}
-      <Input type={type} name={name} value={value} onChange={onChange} />
+      <Input type={type} name={name} value={value} placeholder={label} onChange={onChange} />
     </Wrapper>
   );
 };
@@ -33,9 +32,9 @@ const Wrapper = styled.span`
 const Input = styled.input`
   width: 100%;
   padding: 1rem;
-  background: #f2f2f2;
-  border: 1px solid transparent;
-  border-radius: 0.5rem;
+  background: #fefefe;
+  border: 1px solid #ddd;
+  border-radius: 0.3rem;
 
   font-family: inherit;
   font-weight: 400;
