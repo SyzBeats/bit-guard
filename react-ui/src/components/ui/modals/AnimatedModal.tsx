@@ -5,7 +5,7 @@ import { X } from 'react-feather';
 const PublicSignalForm = lazy(() => import('../forms/createPublicSignal'));
 
 import styles from './Animatedmodal.module.scss';
-import { ImageDropZone } from '../forms/inputs/ImageDropZone';
+import { FormCreatePublicImage } from '../forms/CreatePublicImage';
 
 interface ModalProps {
   isOpen: Boolean;
@@ -53,11 +53,11 @@ const AnimatedModal = (props: ModalProps) => {
       case 'text':
         return <PublicSignalForm />;
       case 'image':
-        return <ImageDropZone />;
+        return <FormCreatePublicImage />;
       case 'pdf':
         return <div>PDF</div>;
       default:
-        return <div>Text</div>;
+        return <PublicSignalForm />;
     }
   };
 

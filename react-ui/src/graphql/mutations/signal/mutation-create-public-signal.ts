@@ -5,11 +5,13 @@ import { gql } from '@apollo/client';
  * returns the Link and the title
  */
 const CREATE_PUBLIC_SIGNAL = gql`
-  mutation CreatePublicSignal($content: String!, $title: String!) {
-    createPublicSignal(data: { content: $content, title: $title }) {
+  mutation CreatePublicSignal($content: String!, $title: String!, $type: String, $extension: String) {
+    createPublicSignal(data: { content: $content, title: $title, type: $type, extension: $extension }) {
       id
       title
       createdAt
+      type
+      extension
       link {
         content
       }

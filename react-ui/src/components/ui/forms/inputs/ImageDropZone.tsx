@@ -3,19 +3,22 @@ import { Image } from 'react-feather';
 
 import styles from './Imagedropzone.module.scss';
 
-const ImageDropZone = () => {
+interface IProps {
+  handleContent: (content: string) => void;
+  handleExtension: (extension: string) => void;
+}
+
+const ImageDropZone = (props: IProps) => {
   // States
   const [file, setFile] = useState<File | undefined>(undefined);
-
-  const [base64, setBase64] = useState<string | undefined>(undefined);
 
   // File selection handler
   const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const file = e.target.files[0];
       // max 1024Kbit
-      if (file.size > 1024 * 1024) {
-        alert('File is too big! Max 1MB');
+      if (file.size > 512 * 1024) {
+        alert('File is too big! Max 512 Kb');
         return;
       }
 
@@ -23,11 +26,11 @@ const ImageDropZone = () => {
 
       // create Buffer from file
       const reader = new FileReader();
-
       reader.readAsDataURL(file);
 
       reader.onload = () => {
-        setBase64(reader.result as string);
+        props.handleContent(reader.result as string);
+        props.handleExtension(file.type.split('/')[1]);
       };
     }
   };
