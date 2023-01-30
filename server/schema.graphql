@@ -46,6 +46,8 @@ type Signal {
   title: String!
   link: Link
   content: String
+  type: String
+  extension: String
   createdAt: String
 }
 
@@ -87,6 +89,8 @@ input KeyCreateInput {
 input MessageCreateInput {
   content: String!
   title: String!
+  type: String
+  extension: String
 }
 
 input LinkCreateInput {

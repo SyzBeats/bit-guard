@@ -3,7 +3,7 @@ import { Copy, Check } from 'react-feather';
 import styled from 'styled-components';
 
 import services from '../../services';
-import { useSignalState } from '../../zustand/store';
+import { useSignalState } from '../../store/store';
 
 interface Props {
   link: string;

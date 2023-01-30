@@ -1,8 +1,6 @@
 const scrollToElement = (element: string) => {
   const elementToScrollTo = document.querySelector(element);
 
-  console.log('elementToScrollTo', element);
-
   if (elementToScrollTo) {
     elementToScrollTo.scrollIntoView({
       behavior: 'smooth',

@@ -1,32 +1,24 @@
-import React from 'react';
-import { Info } from 'react-feather';
 import styled from 'styled-components';
-import CreatePublicSignal from '../../../ui/forms/createPublicSignal';
-import { ContentBox } from '../../../ui/styled/boxes/ContentBox';
-import { SecondaryTitleBlue } from '../../../ui/styled/typography';
+
+import TypeSelector from '~/components/collections/SecretTypeSelector';
+import { SecondaryTitleBlue } from '~/components/ui/styled/typography';
 
 const SignalBox = () => {
   return (
     <Wrapper>
       <SecondaryTitleBlue color="light" textAlign="center">
-        Create a secure secret!
+        Select a message type:
       </SecondaryTitleBlue>
 
-      <p>
-        <Info />
-        You can share the secret link with anyone. The secret will be destroyed after it is used.
-      </p>
-      <ContentBox bordered borderColor="dark">
-        <CreatePublicSignal />
-      </ContentBox>
+      <TypeSelector />
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
   box-sizing: border-box;
-  max-width: 80rem;
-  margin: 0rem auto 10rem auto;
+  max-width: 100rem;
+  margin: 5vh auto 5vh auto;
 
   p {
     display: flex;

@@ -1,8 +1,8 @@
 import * as express from 'express';
 
-import link from './link';
-import signal from './signal';
-import slack from './slack';
+import link from './link.controller';
+import signal from './signal.controller';
+import slack from './slack.controller';
 
 const router = express.Router({ caseSensitive: false });
 

@@ -6,6 +6,7 @@ const theme = {
     highlight_blue_50: '#006eb599',
     highlight_iceblue: '#399ede',
     highlight_iceblue_50: '#399ede99',
+    highlight_iceblue_10: '#399ede19',
     background: '#01141F',
     blue_dark: '#000406',
     white: '#F8F8F8',

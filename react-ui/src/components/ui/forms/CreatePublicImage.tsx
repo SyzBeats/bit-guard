@@ -6,24 +6,28 @@ import { useMutation } from '@apollo/client';
 import { useCreateSecretFormState, useSignalState } from '~/store/store';
 import { CREATE_PUBLIC_SIGNAL } from '~/graphql/mutations/signal/mutation-create-public-signal';
 
-import { FlexGridEqual } from '../../layout/grids/FlexGrid';
-import { FlexGridItem } from '../../layout/grids/FlexGridItem';
-import { DisplayLink } from '../../signals/DisplayLink';
-import { Alert } from '../alert/Alert';
-import { ButtonWrapper } from '../buttons/ButtonWrapper';
-import { TextArea } from './inputs/TextArea';
-import TextInput from './inputs/TextInput';
-import { Loader } from '../loaders/Loader';
+import { FlexGridEqual } from '~/components/layout/grids/FlexGrid';
+import { FlexGridItem } from '~/components/layout/grids/FlexGridItem';
+import { DisplayLink } from '~/components/signals/DisplayLink';
+import { Alert } from '~/components/ui/alert/Alert';
+import { ButtonWrapper } from '~/components/ui/buttons/ButtonWrapper';
+import { Loader } from '~/components/ui/loaders/Loader';
+import TextInput from '~/components/ui/forms/inputs/TextInput';
+import { ImageDropZone } from '~/components/ui/forms/inputs/ImageDropZone';
 
-const CreatePublicSignal = () => {
+const FormCreatePublicImage = () => {
   const formState = useCreateSecretFormState(
     (state) => ({
-      setLink: state.setLink,
-      setContent: state.setContent,
-      setTitle: state.setTitle,
       content: state.content,
       title: state.title,
       link: state.link,
+      type: state.type,
+      extension: state.extension,
+      setLink: state.setLink,
+      setContent: state.setContent,
+      setTitle: state.setTitle,
+      setType: state.setType,
+      setExtension: state.setExtension,
     }),
     shallow,
   );
@@ -61,6 +65,8 @@ const CreatePublicSignal = () => {
       variables: {
         title: formState.title,
         content: formState.content,
+        extension: formState.extension,
+        type: 'image',
       },
     });
   };
@@ -73,9 +79,10 @@ const CreatePublicSignal = () => {
         </FlexGridItem>
       </FlexGridEqual>
 
-      <FlexGridEqual gap="1.5rem" justifyContent="stretch">
-        <TextArea label="Enter a message" name="content" value={formState.content} onChange={(e) => formState.setContent(e.target.value)} />
-      </FlexGridEqual>
+      <ImageDropZone
+        handleContent={(content: string) => formState.setContent(content)}
+        handleExtension={(extension: string) => formState.setExtension(extension)}
+      />
 
       <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">
         {!!formState.link && <DisplayLink link={formState.link} />}
@@ -108,4 +115,4 @@ const Wrapper = styled.form`
   }
 `;
 
-export default CreatePublicSignal;
+export { FormCreatePublicImage };

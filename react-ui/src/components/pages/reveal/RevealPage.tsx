@@ -3,18 +3,20 @@ import { useParams } from 'react-router-dom';
 import { Copy, CheckCircle } from 'react-feather';
 import styled from 'styled-components';
 
-import Logo from '../../ui/styled/image/Logo';
-import Footer from '../../layout/generic/footer/Footer';
-import CallToAction from '../home/CallToAction';
-import { SectionBackground, SectionBase } from '../../ui/styled/sections';
+import Logo from '~/components/ui/styled/image/Logo';
+import Footer from '~/components/layout/generic/footer/Footer';
+import CallToAction from '~/components/pages/home/CallToAction';
+import { SectionBackground, SectionBase } from '~/components/ui/styled/sections';
 import { RevealBox } from './RevealBox';
-import { BaseContainer } from '../../ui/containers';
-import { SkeletonArticle } from '../../ui/skeletons/SkeletonArticle';
-import { ButtonWrapper } from '../../ui/buttons/ButtonWrapper';
-import Button from '../../ui/buttons/Button';
+import { BaseContainer } from '~/components/ui/containers/BaseContainer';
+import { SkeletonArticle } from '~/components/ui/skeletons/SkeletonArticle';
+import { ButtonWrapper } from '~/components/ui/buttons/ButtonWrapper';
+import Button from '~/components/ui/buttons/Button';
+import { SignalMimeType } from '~/store/interfaces';
 
-import services from '../../../services';
-import config from '../../../config/environment';
+import services from '~/services';
+import config from '~/config/environment';
+
 interface Props {
   isPublic?: boolean;
 }
@@ -25,6 +27,8 @@ const RevealPage = ({ isPublic }: Props) => {
   const [revealed, setRevealed] = useState({
     message: '',
     title: '',
+    extension: '',
+    type: 'text' as SignalMimeType,
     loading: true,
   });
 
@@ -69,13 +73,17 @@ const RevealPage = ({ isPublic }: Props) => {
     return (
       <>
         <RevealTitle>{revealed.title}</RevealTitle>
-        <RevealBox message={revealed.message || 'No message found...'} />
+        <RevealBox type={revealed.type} message={revealed.message || 'No message found...'} />
       </>
     );
   };
 
   const getButtonContent = (): React.ReactNode => {
     if (!revealed.title) {
+      return null;
+    }
+
+    if (revealed.type !== 'text') {
       return null;
     }
 
@@ -113,6 +121,8 @@ const RevealPage = ({ isPublic }: Props) => {
       setRevealed({
         title: '',
         message: 'We could not find the secret you were looking for. Sorry!',
+        type: 'text',
+        extension: '',
         loading: false,
       });
     }

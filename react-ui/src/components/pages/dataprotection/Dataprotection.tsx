@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { LayoutMain } from '../../layout/landing/layoutMain';
-import { BaseContainer } from '../../ui/containers';
+import { BaseContainer } from '../../ui/containers/BaseContainer';
 import { SectionBase } from '../../ui/styled/sections';
 
 const Dataprotection = () => {

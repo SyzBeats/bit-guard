@@ -5,7 +5,7 @@ import { Trash } from 'react-feather';
 import shallow from 'zustand/shallow';
 
 import services from '../../services';
-import { useSignalState } from '../../zustand/store';
+import { useSignalState } from '../../store/store';
 import { DELETE_SIGNAL } from '../../graphql/mutations/signal/mutation-delete-signal';
 
 interface Iprops {

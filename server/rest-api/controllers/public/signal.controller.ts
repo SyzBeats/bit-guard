@@ -16,6 +16,8 @@ const decryptAndDestroy = async (req, res) => {
       select: {
         content: true,
         id: true,
+        type: true,
+        extension: true,
         createdAt: true,
       },
     });
@@ -25,19 +27,15 @@ const decryptAndDestroy = async (req, res) => {
     }
 
     if (typeof key !== 'string') {
-      return res.status(409).json({ message: 'The initialization vector is not a string' });
+      return res.status(409).json({ message: 'The provided key needs to be a string' });
     }
 
     const message = utility.encryption.decryptAes256cbc(signal.content, key?.toString());
 
     // delete the signal
-    await prisma.signal.delete({
-      where: {
-        id,
-      },
-    });
+    await prisma.signal.delete({ where: { id } });
 
-    return res.status(200).json({ message });
+    return res.status(200).json({ message, type: signal.type, extension: signal.extension });
   } catch (error) {
     return res.status(500).json({
       message: 'Something went horribly wrong here. We are sorry!',
@@ -64,6 +62,8 @@ const decryptAndDestroyPublic = async (req, res) => {
         id: true,
         title: true,
         content: true,
+        type: true,
+        extension: true,
       },
     });
 
@@ -72,19 +72,15 @@ const decryptAndDestroyPublic = async (req, res) => {
     }
 
     if (typeof key !== 'string') {
-      return res.status(409).json({ message: 'The initialization vector is not a string' });
+      return res.status(409).json({ message: 'The provided key needs to be a string' });
     }
 
     const message = utility.encryption.decryptAes256cbc(signal.content, key?.toString());
 
     // delete the signal
-    await prisma.publicSignal.delete({
-      where: {
-        id,
-      },
-    });
+    await prisma.publicSignal.delete({ where: { id } });
 
-    return res.status(200).json({ message, title: signal.title });
+    return res.status(200).json({ message, title: signal.title, type: signal.type, extension: signal.extension });
   } catch (error) {
     return res.status(500).json({
       message: 'Something went horribly wrong here. We are sorry!',

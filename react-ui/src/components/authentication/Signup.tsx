@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useMutation } from '@apollo/client';
 
-import { Alert } from '../ui/alert/Alert';
-import Logo from '../ui/styled/image/Logo';
-import { SecondaryTitle } from '../ui/styled/typography';
-import { Input } from '../ui/forms/inputs/Input';
-import { SubmitCircle } from '../ui/forms/inputs/SubmitCircle';
-import { SIGNUP_USER } from '../../graphql/mutations/user/mutation-signup-user';
+import { Alert } from '~/components/ui/alert/Alert';
+import Logo from '~/components/ui/styled/image/Logo';
+import { SecondaryTitle } from '~/components/ui/styled/typography';
+import { Input } from '~/components/ui/forms/inputs/Input';
+import { SubmitCircle } from '~/components/ui/forms/inputs/SubmitCircle';
+import { SIGNUP_USER } from '~/graphql/mutations/user/mutation-signup-user';
 
 const SignUp = () => {
   const [data, setData] = useState({

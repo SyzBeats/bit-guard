@@ -1,0 +1,47 @@
+.modal {
+  position: fixed;
+  left: 50%;
+  padding: 1rem 2rem;
+  width: clamp(25rem, 50vw, 50rem);
+  min-height: 15rem;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0.1rem 0.2rem 15rem rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  transform: translate(-50%, -50%);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-bottom: 1rem;
+}
+
+.modalBody h2 {
+  font-size: 1.8rem;
+  font-weight: 300;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(3, 20, 58, 0.3);
+  z-index: 10;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.hidden {
+  visibility: hidden;
+  user-select: none;
+}
+
+.icon:hover {
+  cursor: pointer;
+}

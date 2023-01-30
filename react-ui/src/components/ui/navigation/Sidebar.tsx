@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { Activity, Home, Lock, Sliders } from 'react-feather';
 
@@ -13,12 +12,15 @@ const Sidebar = () => (
       <NavigationButton>
         <Home />
       </NavigationButton>
+
       <NavigationButton>
         <Activity />
       </NavigationButton>
+
       <NavigationButton>
         <Lock />
       </NavigationButton>
+
       <NavigationButton>
         <Sliders />
       </NavigationButton>

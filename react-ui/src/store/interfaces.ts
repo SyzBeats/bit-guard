@@ -13,15 +13,22 @@ interface AuthState {
   logout: () => void;
 }
 
+// TODO: move to a separate file for types
+type SignalMimeType = 'text' | 'image' | 'video' | 'audio' | 'file';
+
 interface CreateSecretFormState {
   selection: 'signal' | 'message';
   content: string;
   title: string;
   link: string;
+  type?: SignalMimeType;
+  extension?: string;
   setSelection: (selection: 'signal' | 'message') => void;
   setContent: (content: string) => void;
   setTitle: (title: string) => void;
   setLink: (link: string) => void;
+  setType: (type: SignalMimeType) => void;
+  setExtension: (extension: string) => void;
 }
 
-export type { SignalState, AuthState, CreateSecretFormState };
+export type { SignalState, AuthState, CreateSecretFormState, SignalMimeType };
