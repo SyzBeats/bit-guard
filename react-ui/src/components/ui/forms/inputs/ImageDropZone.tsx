@@ -47,7 +47,7 @@ const ImageDropZone = (props: IProps) => {
     <div className={classes.join(' ')}>
       <label>
         <Image size="30" />
-        {file ? <p>{file.name}</p> : <p>Drop file here (Max 1024 Kb)</p>}
+        {file ? <p>{file.name}</p> : <p>Select an image (Max 512 Kb)</p>}
         <input type="file" id="file" accept="image/*" onChange={(e) => handleFile(e)} />
       </label>
     </div>

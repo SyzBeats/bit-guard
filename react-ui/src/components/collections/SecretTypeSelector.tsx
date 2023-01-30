@@ -1,19 +1,37 @@
-import { MouseEventHandler, useState } from 'react';
+import { useState } from 'react';
 import { FileText, Image, File } from 'react-feather';
+import shallow from 'zustand/shallow';
 
-import { CardContainer } from '../ui/containers/CardContainer';
-import { IconCard } from '../ui/cards/IconCard/IconCard';
-import { AnimatedModal } from '../ui/modals/AnimatedModal';
+import { useCreateSecretFormState } from '~/store/store';
+import { CardContainer } from '~/components/ui/containers/CardContainer';
+import { IconCard } from '~/components/ui/cards/IconCard/IconCard';
+import { AnimatedModal } from '~/components/ui/modals/AnimatedModal';
 
 type SecretType = 'text' | 'image' | 'pdf';
 
-export default function SecretTypeSelector() {
-  const [open, setOpen] = useState(false);
-  const [type, setType] = useState<SecretType>('text');
+interface Istate {
+  modalOpen: boolean;
+  secretType: SecretType;
+}
 
+export default function SecretTypeSelector() {
+  // State
+  const { setLink } = useCreateSecretFormState((state) => ({ setLink: state.setLink }), shallow);
+
+  const [state, setState] = useState<Istate>({
+    modalOpen: false,
+    secretType: 'text',
+  });
+
+  const { modalOpen, secretType } = state;
+
+  // Handlers
   const handleClick = (type: SecretType) => {
-    setType(type);
-    setOpen(!open);
+    if (modalOpen) {
+      setLink('');
+    }
+
+    setState({ modalOpen: !state.modalOpen, secretType: type });
   };
 
   return (
@@ -33,16 +51,9 @@ export default function SecretTypeSelector() {
           color="purple"
           clickHandler={() => handleClick('image')}
         />
-        <IconCard
-          title="Document"
-          content="Send an encrypted document"
-          icon={<File />}
-          color="green"
-          clickHandler={() => handleClick('pdf')}
-        />
       </CardContainer>
 
-      <AnimatedModal isOpen={open} close={handleClick} type={type} />
+      <AnimatedModal isOpen={modalOpen} close={handleClick} type={secretType} />
     </div>
   );
 }

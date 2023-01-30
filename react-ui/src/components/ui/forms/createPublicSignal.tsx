@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import shallow from 'zustand/shallow';
 import { useMutation } from '@apollo/client';
 
-import { useCreateSecretFormState, useSignalState } from '../../../store/store';
-import { CREATE_PUBLIC_SIGNAL } from '../../../graphql/mutations/signal/mutation-create-public-signal';
+import { useCreateSecretFormState, useSignalState } from '~/store/store';
+import { CREATE_PUBLIC_SIGNAL } from '~/graphql/mutations/signal/mutation-create-public-signal';
 
 import { FlexGridEqual } from '../../layout/grids/FlexGrid';
 import { FlexGridItem } from '../../layout/grids/FlexGridItem';
@@ -74,12 +74,7 @@ const CreatePublicSignal = () => {
       </FlexGridEqual>
 
       <FlexGridEqual gap="1.5rem" justifyContent="stretch">
-        <TextArea
-          label="Your message content"
-          name="content"
-          value={formState.content}
-          onChange={(e) => formState.setContent(e.target.value)}
-        />
+        <TextArea label="Enter a message" name="content" value={formState.content} onChange={(e) => formState.setContent(e.target.value)} />
       </FlexGridEqual>
 
       <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">
