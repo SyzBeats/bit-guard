@@ -29,6 +29,7 @@ interface CreateSecretFormState {
   setLink: (link: string) => void;
   setType: (type: SignalMimeType) => void;
   setExtension: (extension: string) => void;
+  clear: () => void;
 }
 
 export type { SignalState, AuthState, CreateSecretFormState, SignalMimeType };

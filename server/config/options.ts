@@ -12,7 +12,7 @@ const options = {
     host: process.env.HOST || 'localhost:4000',
     protocol: process.env.NODE_ENV === 'production' ? 'https' : 'http',
     endpoint: '/graphql',
-    limit: '512kb',
+    limit: '800kb',
   },
   app: {
     domain: process.env.APP_DOMAIN || 'http://127.0.0.1:5173',

@@ -29,6 +29,7 @@ const useCreateSecretFormState = create<CreateSecretFormState>((set) => ({
   setLink: (link) => set((state) => ({ ...state, link })),
   setType: (type) => set((state) => ({ ...state, type })),
   setExtension: (extension) => set((state) => ({ ...state, extension })),
+  clear: () => set((state) => ({ ...state, content: '', title: '', link: '' })),
 }));
 
 export { useSignalState, useAuthStore, useCreateSecretFormState };

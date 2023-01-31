@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import shallow from 'zustand/shallow';
+import { shallow } from 'zustand/shallow';
 import { useMutation } from '@apollo/client';
 
 import { useCreateSecretFormState, useSignalState } from '~/store/store';

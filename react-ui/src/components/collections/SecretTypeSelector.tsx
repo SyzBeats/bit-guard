@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FileText, Image, File } from 'react-feather';
-import shallow from 'zustand/shallow';
+import { shallow } from 'zustand/shallow';
 
 import { useCreateSecretFormState } from '~/store/store';
 import { CardContainer } from '~/components/ui/containers/CardContainer';
@@ -16,7 +16,7 @@ interface Istate {
 
 export default function SecretTypeSelector() {
   // State
-  const { setLink } = useCreateSecretFormState((state) => ({ setLink: state.setLink }), shallow);
+  const { clear } = useCreateSecretFormState((state) => ({ clear: state.clear }), shallow);
 
   const [state, setState] = useState<Istate>({
     modalOpen: false,
@@ -28,7 +28,7 @@ export default function SecretTypeSelector() {
   // Handlers
   const handleClick = (type: SecretType) => {
     if (modalOpen) {
-      setLink('');
+      clear();
     }
 
     setState({ modalOpen: !state.modalOpen, secretType: type });
