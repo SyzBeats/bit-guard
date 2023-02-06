@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { FlexGridEqual } from '../../layout/grids/FlexGrid';
-import { ContentBox } from '../../ui/styled/boxes/ContentBox';
-import Counter from '../../ui/styled/boxes/Counter';
+import { FlexGridEqual } from '~/components/layout/grids/FlexGrid';
+import { ContentBox } from '~/components/ui/styled/boxes/ContentBox';
+import Counter from '~/components/ui/styled/boxes/Counter';
 
 const DashboardMetrics = () => {
   return (

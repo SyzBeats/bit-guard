@@ -1,8 +1,7 @@
-import React from 'react';
 import styled from 'styled-components';
 
-import { PropsChildren } from '../../../types/types.components';
-import { Sidebar } from '../../ui/navigation/Sidebar';
+import { PropsChildren } from '~/types/types.components';
+import { Sidebar } from '~/components/ui/navigation/Sidebar';
 
 const LayoutDashboard = ({ children }: PropsChildren) => (
   <Container>

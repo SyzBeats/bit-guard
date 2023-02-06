@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Section from '../../layout/container/Section';
-import { LayoutDashboard } from '../../layout/dashboard/LayoutDashboard';
+import Section from '~/components/layout/container/Section';
+import { LayoutDashboard } from '~/components/layout/dashboard/LayoutDashboard';
 import { Signals } from '../../signals/Signals';
 import { DashboardMetrics } from './DashboardMetrics';
 

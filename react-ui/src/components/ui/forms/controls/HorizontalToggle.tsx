@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { useCreateSecretFormState } from '../../../../store/store';
-import { FlexGridEqual } from '../../../layout/grids/FlexGrid';
-import { FlexGridItem } from '../../../layout/grids/FlexGridItem';
+import { FlexGridEqual } from '~/components/layout/grids/FlexGrid';
+import { FlexGridItem } from '~/components/layout/grids/FlexGridItem';
 import RadioButton from '../inputs/RadioButton';
 
 const HorizontalToggle = () => {

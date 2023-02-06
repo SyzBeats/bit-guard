@@ -1,12 +1,10 @@
 import React from 'react';
 
-import { BaseContainer } from '../../ui/containers/BaseContainer';
+import { BaseContainer } from '~/components/ui/containers/BaseContainer';
 import { SectionControl } from './SectionControl';
 import { HomepageStory } from './Story';
-import { LandingPageIconGrid } from './IconGrid';
-import { LayoutMain } from '../../layout/landing/layoutMain';
-import { SecondaryTitle } from '../../ui/styled/typography';
-import { SectionBackground, SectionBase } from '../../ui/styled/sections';
+import { LayoutMain } from '~/components/layout/landing/layoutMain';
+import { SectionBackground, SectionBase } from '~/components/ui/styled/sections';
 import CallToAction from './CallToAction';
 import HeroLanding from './Hero';
 import SignalBox from './signal/SignalBox';

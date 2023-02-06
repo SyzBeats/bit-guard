@@ -2,10 +2,10 @@ import { lazy } from 'react';
 import { useSpring, animated } from '@react-spring/web';
 import { X } from 'react-feather';
 
-const PublicSignalForm = lazy(() => import('../forms/createPublicSignal'));
+const PublicSignalForm = lazy(() => import('~/components/ui/forms/createPublicSignal'));
+import { FormCreatePublicImage } from '~/components/ui/forms/CreatePublicImage';
 
 import styles from './Animatedmodal.module.scss';
-import { FormCreatePublicImage } from '../forms/CreatePublicImage';
 
 interface ModalProps {
   isOpen: Boolean;

@@ -8,6 +8,6 @@ COPY package-lock.json ${WDR}
 COPY . ${WDR}
 
 # build server 
-RUN npm i
+RUN npm ci
 RUN npm run build:server
 CMD ["npm", "run", "start:server"]

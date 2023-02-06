@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 import { CREATE_SIGNAL } from '../../../graphql/mutations/signal/mutation-create-signal';
 import { useCreateSecretFormState, useSignalState } from '../../../store/store';
-import { FlexGridEqual } from '../../layout/grids/FlexGrid';
-import { FlexGridItem } from '../../layout/grids/FlexGridItem';
+import { FlexGridEqual } from '~/components/layout/grids/FlexGrid';
+import { FlexGridItem } from '~/components/layout/grids/FlexGridItem';
 import { DisplayLink } from '../../signals/DisplayLink';
 import { ButtonWrapper } from '../buttons/ButtonWrapper';
 import HorizontalToggle from './controls/HorizontalToggle';

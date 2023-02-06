@@ -6,8 +6,8 @@ import { useMutation } from '@apollo/client';
 import { useCreateSecretFormState, useSignalState } from '~/store/store';
 import { CREATE_PUBLIC_SIGNAL } from '~/graphql/mutations/signal/mutation-create-public-signal';
 
-import { FlexGridEqual } from '../../layout/grids/FlexGrid';
-import { FlexGridItem } from '../../layout/grids/FlexGridItem';
+import { FlexGridEqual } from '~/components/layout/grids/FlexGrid';
+import { FlexGridItem } from '~/components/layout/grids/FlexGridItem';
 import { DisplayLink } from '../../signals/DisplayLink';
 import { Alert } from '../alert/Alert';
 import { ButtonWrapper } from '../buttons/ButtonWrapper';

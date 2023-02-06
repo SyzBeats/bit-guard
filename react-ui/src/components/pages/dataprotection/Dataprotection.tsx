@@ -1,9 +1,8 @@
-import React from 'react';
 import styled from 'styled-components';
 
-import { LayoutMain } from '../../layout/landing/layoutMain';
-import { BaseContainer } from '../../ui/containers/BaseContainer';
-import { SectionBase } from '../../ui/styled/sections';
+import { LayoutMain } from '~/components/layout/landing/layoutMain';
+import { BaseContainer } from '~/components/ui/containers/BaseContainer';
+import { SectionBase } from '~/components/ui/styled/sections';
 
 const Dataprotection = () => {
   return (

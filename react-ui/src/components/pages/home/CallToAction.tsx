@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import config from '../../../config';
-import waves from '../../../images/waves.svg';
-import Button from '../../ui/buttons/Button';
-import { SecondaryTitle } from '../../ui/styled/typography';
+import config from '~/config';
+import waves from '~/images/waves.svg';
+import Button from '~/components/ui/buttons/Button';
+import { SecondaryTitle } from '~/components/ui/styled/typography';
 
 const CallToAction = () => {
   return (

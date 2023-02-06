@@ -1,8 +1,7 @@
-import React from 'react';
 import styled from 'styled-components';
 
 import Sharing from '../../../images/undraw_control.svg';
-import { MainTitle, SecondaryTitle } from '../../ui/styled/typography';
+import { MainTitle, SecondaryTitle } from '~/components/ui/styled/typography';
 const SectionControl = () => {
   return (
     <Wrapper>
