@@ -51,7 +51,7 @@ const SecretTypeSelector = () => {
           color="purple"
           clickHandler={() => handleClick('image')}
         />
-        <IconCard title="PDF" content="Send an encrypted document" icon={<File />} color="purple" clickHandler={() => handleClick('pdf')} />
+        <IconCard title="PDF" content="Send an encrypted document" icon={<File />} color="green" clickHandler={() => handleClick('pdf')} />
       </CardContainer>
 
       <PublicSecretModal isOpen={modalOpen} close={handleClick} type={secretType} />
