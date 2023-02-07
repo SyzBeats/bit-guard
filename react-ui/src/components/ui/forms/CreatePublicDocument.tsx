@@ -13,9 +13,9 @@ import { Alert } from '~/components/ui/alert/Alert';
 import { ButtonWrapper } from '~/components/ui/buttons/ButtonWrapper';
 import { Loader } from '~/components/ui/loaders/Loader';
 import TextInput from '~/components/ui/forms/inputs/TextInput';
-import { ImageDropZone } from '~/components/ui/forms/inputs/ImageDropZone';
+import { FileDropzone } from '~/components/ui/forms/inputs/FileDropzone';
 
-const FormCreatePublicImage = () => {
+const FormCreatePublicDocument = () => {
   const formState = useCreateSecretFormState(
     (state) => ({
       content: state.content,
@@ -66,7 +66,7 @@ const FormCreatePublicImage = () => {
         title: formState.title,
         content: formState.content,
         extension: formState.extension,
-        type: 'image',
+        type: 'file',
       },
     });
   };
@@ -79,7 +79,7 @@ const FormCreatePublicImage = () => {
         </FlexGridItem>
       </FlexGridEqual>
 
-      <ImageDropZone
+      <FileDropzone
         handleContent={(content: string) => formState.setContent(content)}
         handleExtension={(extension: string) => formState.setExtension(extension)}
       />
@@ -115,4 +115,4 @@ const Wrapper = styled.form`
   }
 `;
 
-export default FormCreatePublicImage;
+export default FormCreatePublicDocument;

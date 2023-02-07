@@ -5,7 +5,7 @@ import { shallow } from 'zustand/shallow';
 import { useCreateSecretFormState } from '~/store/store';
 import { CardContainer } from '~/components/ui/containers/CardContainer';
 import { IconCard } from '~/components/ui/cards/IconCard/IconCard';
-import { AnimatedModal } from '~/components/ui/modals/AnimatedModal';
+import { PublicSecretModal } from '~/components/ui/modals/PublicSecretModal';
 
 type SecretType = 'text' | 'image' | 'pdf';
 
@@ -14,7 +14,7 @@ interface Istate {
   secretType: SecretType;
 }
 
-export default function SecretTypeSelector() {
+const SecretTypeSelector = () => {
   // State
   const { clear } = useCreateSecretFormState((state) => ({ clear: state.clear }), shallow);
 
@@ -51,9 +51,12 @@ export default function SecretTypeSelector() {
           color="purple"
           clickHandler={() => handleClick('image')}
         />
+        <IconCard title="PDF" content="Send an encrypted document" icon={<File />} color="purple" clickHandler={() => handleClick('pdf')} />
       </CardContainer>
 
-      <AnimatedModal isOpen={modalOpen} close={handleClick} type={secretType} />
+      <PublicSecretModal isOpen={modalOpen} close={handleClick} type={secretType} />
     </div>
   );
-}
+};
+
+export { SecretTypeSelector };

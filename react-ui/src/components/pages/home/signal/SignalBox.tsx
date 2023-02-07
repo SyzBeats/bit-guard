@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import TypeSelector from '~/components/collections/SecretTypeSelector';
+import { SecretTypeSelector } from '~/components/collections/SecretTypeSelector';
 import { SecondaryTitleBlue } from '~/components/ui/styled/typography';
 
 const SignalBox = () => {
@@ -10,7 +10,7 @@ const SignalBox = () => {
         Select a message type:
       </SecondaryTitleBlue>
 
-      <TypeSelector />
+      <SecretTypeSelector />
     </Wrapper>
   );
 };

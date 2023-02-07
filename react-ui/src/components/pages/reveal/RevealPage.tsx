@@ -73,7 +73,7 @@ const RevealPage = ({ isPublic }: Props) => {
     return (
       <>
         <RevealTitle>{revealed.title}</RevealTitle>
-        <RevealBox type={revealed.type} message={revealed.message || 'No message found...'} />
+        <RevealBox type={revealed.type} message={revealed.message || 'No message found...'} extension={revealed.extension} />
       </>
     );
   };

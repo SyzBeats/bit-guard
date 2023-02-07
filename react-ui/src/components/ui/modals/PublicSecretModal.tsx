@@ -1,11 +1,12 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 import { useSpring, animated } from '@react-spring/web';
 import { X } from 'react-feather';
 
-const PublicSignalForm = lazy(() => import('~/components/ui/forms/createPublicSignal'));
-import { FormCreatePublicImage } from '~/components/ui/forms/CreatePublicImage';
+const FormCreatePublicSignal = lazy(() => import('~/components/ui/forms/createPublicSignal'));
+const FormCreatePublicImage = lazy(() => import('~/components/ui/forms/CreatePublicImage'));
+const FormCreatePublicDocument = lazy(() => import('~/components/ui/forms/CreatePublicDocument'));
 
-import styles from './Animatedmodal.module.scss';
+import styles from './PublicSecretModal.module.scss';
 
 interface ModalProps {
   isOpen: Boolean;
@@ -13,7 +14,7 @@ interface ModalProps {
   close: Function;
 }
 
-const AnimatedModal = (props: ModalProps) => {
+const PublicSecretModal = (props: ModalProps) => {
   // Spring styles
   const [style] = useSpring(
     () => ({
@@ -51,13 +52,13 @@ const AnimatedModal = (props: ModalProps) => {
   const Content = () => {
     switch (props.type) {
       case 'text':
-        return <PublicSignalForm />;
+        return <FormCreatePublicSignal />;
       case 'image':
         return <FormCreatePublicImage />;
       case 'pdf':
-        return <div>PDF</div>;
+        return <FormCreatePublicDocument />;
       default:
-        return <PublicSignalForm />;
+        return <FormCreatePublicSignal />;
     }
   };
 
@@ -72,7 +73,9 @@ const AnimatedModal = (props: ModalProps) => {
           </div>
 
           <div className={styles.modalBody}>
-            <Content />
+            <Suspense>
+              <Content />
+            </Suspense>
           </div>
         </div>
       </animated.div>
@@ -81,4 +84,4 @@ const AnimatedModal = (props: ModalProps) => {
   );
 };
 
-export { AnimatedModal };
+export { PublicSecretModal };
