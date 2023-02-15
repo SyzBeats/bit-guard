@@ -3,8 +3,8 @@ import { useSpring, animated } from '@react-spring/web';
 import { X } from 'react-feather';
 
 const FormCreatePublicSignal = lazy(() => import('~/components/ui/forms/CreatePublicSignal'));
-const FormCreatePublicImage = lazy(() => import('~/components/ui/forms/CreatePublicImage'));
 const FormCreatePublicDocument = lazy(() => import('~/components/ui/forms/CreatePublicDocument'));
+const FormCreatePublicImage = lazy(() => import('~/components/ui/forms/CreatePublicImage'));
 
 import styles from './PublicSecretModal.module.scss';
 
