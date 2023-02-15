@@ -2,9 +2,9 @@ import { lazy, Suspense } from 'react';
 import { useSpring, animated } from '@react-spring/web';
 import { X } from 'react-feather';
 
-const FormCreatePublicSignal = lazy(() => import('~/components/ui/forms/CreatePublicSignal'));
-const FormCreatePublicDocument = lazy(() => import('~/components/ui/forms/CreatePublicDocument'));
-const FormCreatePublicImage = lazy(() => import('~/components/ui/forms/CreatePublicImage'));
+const FormCreatePublicDocument = lazy(() => import('~/components/ui/forms/FormCreatePublicDocument'));
+const FormCreatePublicImage = lazy(() => import('~/components/ui/forms/FormCreatePublicImage'));
+const FormCreatePublicSignal = lazy(() => import('~/components/ui/forms/FormCreatePublicSignal'));
 
 import styles from './PublicSecretModal.module.scss';
 

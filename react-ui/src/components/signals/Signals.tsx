@@ -2,17 +2,17 @@ import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { FilePlus } from 'react-feather';
 
-import { useSignalState } from '../../store/store';
-import { GET_SIGNALS_BY_USER } from '../../graphql/queries/signal/query-signals-by-user';
-import { FlexGridEqual } from '../layout/grids/FlexGrid';
-import { MessageGrid } from '../layout/grids/MessageGrid';
+import { useSignalState } from '~/store/store';
+import { GET_SIGNALS_BY_USER } from '~/graphql/queries/signal/query-signals-by-user';
+import { FlexGridEqual } from '~/components/layout/grids/FlexGrid';
+import { MessageGrid } from '~/components/layout/grids/MessageGrid';
 import { Signal } from './Signal';
-import CreateSignal from '../ui/forms/CreateSignal';
-import BaseModal from '../ui/modals/BaseModal';
+import CreateSignal from '~/components/ui/forms/FormCreateSignal';
+import BaseModal from '~/components/ui/modals/BaseModal';
 
-import { ContentBox } from '../ui/styled/boxes/ContentBox';
-import { ButtonRound } from '../ui/buttons/ButtonRound';
-import { DashboardSectionTitle } from '../ui/styled/typography';
+import { ContentBox } from '~/components/ui/styled/boxes/ContentBox';
+import { ButtonRound } from '~/components/ui/buttons/ButtonRound';
+import { DashboardSectionTitle } from '~/components/ui/styled/typography';
 
 const Signals = () => {
   const [open, setOpen] = useState(false);
