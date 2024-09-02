@@ -37,7 +37,8 @@
     "install:server": "npm install",
     "build:client": "npm run build --prefix ./react-ui",
     "build:server": "npx prisma generate && tsc --project server/tsconfig.json && cp ./server/schema.graphql ./server/build/schema.graphql",
-    "start:server": "node server/build/index.js"
+    "start:server": "node server/build/index.js",
+    "db:push": "prisma db push"
   },
   "keywords": [],
   "author": "Simeon Zimmermann - SZ WEB DEVELOPMENT",
