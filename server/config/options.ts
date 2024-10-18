@@ -1,6 +1,6 @@
-const localOrigins = ['http://127.0.0.1:5173', 'http://localhost:5173'];
+const localOrigins = ['http://127.0.0.1:5173', 'http://localhost:5173', 'chrome-extension://ighklpeepmlefngjceekopegipffehck'];
 
-const productionOrigins = ['https://envite.dev'];
+const productionOrigins = ['https://envite.dev', 'chrome-extension://ighklpeepmlefngjceekopegipffehck'];
 
 const options = {
   cors: {
