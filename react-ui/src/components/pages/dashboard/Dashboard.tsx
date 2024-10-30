@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Section from '~/components/layout/container/Section';
 import { LayoutDashboard } from '~/components/layout/dashboard/LayoutDashboard';
 import { Signals } from '../../signals/Signals';

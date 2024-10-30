@@ -17,6 +17,7 @@ const HomepageStory = () => {
             </SecondaryTitle>
             <p>In your dashboard, simply create a new message. The content of this message will be encrypted and stored in our database.</p>
           </ContentBlock>
+
           <ContentBlock margin={true}>
             <SecondaryTitle color="light" textAlign="left">
               Generate a Link
@@ -26,6 +27,7 @@ const HomepageStory = () => {
               encrypted content of your Message.
             </p>
           </ContentBlock>
+
           <ContentBlock margin={true}>
             <SecondaryTitle color="light" textAlign="left">
               Share the Link with anyone

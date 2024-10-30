@@ -1,16 +1,21 @@
 import styled from 'styled-components';
+import { MessageTypes } from '~/types/enums';
 
 interface AlertProps {
-  type?: string;
+  type: MessageTypes;
   message: string;
 }
 
 const Alert = ({ type, message }: AlertProps) => {
+  if (!message) {
+    return null;
+  }
+
   switch (type) {
-    case 'success':
+    case MessageTypes.SUCCESS:
       return <AlertSuccess>{message}</AlertSuccess>;
 
-    case 'error':
+    case MessageTypes.ERROR:
       return <AlertError>{message}</AlertError>;
 
     default:

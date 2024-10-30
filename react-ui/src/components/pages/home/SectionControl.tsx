@@ -18,6 +18,7 @@ const SectionControl = () => {
               messages and links as many times as you want.
             </p>
           </ContentBlock>
+
           <ContentBlock margin={true}>
             <SecondaryTitle color="dark" textAlign="left">
               Secure secrets with Passwords
@@ -27,6 +28,7 @@ const SectionControl = () => {
               link, they will not be able to access it without the password.
             </p>
           </ContentBlock>
+
           <ContentBlock margin={true}>
             <SecondaryTitle color="dark" textAlign="left">
               Delete at any time

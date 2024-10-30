@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 import { Queue } from '~/components/ui/effects/Queue/Queue';

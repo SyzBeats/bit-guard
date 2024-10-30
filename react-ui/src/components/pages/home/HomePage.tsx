@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { BaseContainer } from '~/components/ui/containers/BaseContainer';
 import { SectionControl } from './SectionControl';
 import { HomepageStory } from './Story';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { shallow } from 'zustand/shallow';
 
 import { useSignalState } from '../../store/store';

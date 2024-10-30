@@ -15,6 +15,7 @@ const Navigation = () => {
           <LoginLink to="/login">
             login <LogIn />
           </LoginLink>
+
           <SignupLink to="/signup">
             signup <LogIn />
           </SignupLink>

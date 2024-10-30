@@ -8,6 +8,7 @@ import { SecondaryTitle } from '~/components/ui/styled/typography';
 import { Input } from '~/components/ui/forms/inputs/Input';
 import { SubmitCircle } from '~/components/ui/forms/inputs/SubmitCircle';
 import { SIGNUP_USER } from '~/graphql/mutations/user/mutation-signup-user';
+import { MessageTypes } from '~/types/enums';
 
 const SignUp = () => {
   const [data, setData] = useState({
@@ -18,8 +19,8 @@ const SignUp = () => {
   });
 
   // alert to be displayed when there is a notification
-  const [alert, setAlert] = useState({
-    type: '',
+  const [alert, setAlert] = useState<{ type: MessageTypes; message: string }>({
+    type: MessageTypes.INFO,
     message: '',
   });
 
@@ -45,7 +46,7 @@ const SignUp = () => {
     },
     onError: (error) => {
       setAlert({
-        type: 'error',
+        type: MessageTypes.ERROR,
         message: error.message,
       });
     },
@@ -64,7 +65,7 @@ const SignUp = () => {
 
     if (data.password !== data.confirmPassword) {
       setAlert({
-        type: 'error',
+        type: MessageTypes.ERROR,
         message: 'Passwords do not match',
       });
 
@@ -73,7 +74,7 @@ const SignUp = () => {
 
     if (data.password.length < 8) {
       setAlert({
-        type: 'error',
+        type: MessageTypes.ERROR,
         message: 'Password must be at least 8 characters',
       });
 
@@ -139,6 +140,7 @@ const SignUp = () => {
 
           <SubmitCircle />
         </form>
+
         {alert.message && <Alert message={alert.message} type={alert.type} />}
       </SignUpBox>
     </Wrapper>

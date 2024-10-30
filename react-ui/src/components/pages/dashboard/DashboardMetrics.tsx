@@ -10,6 +10,7 @@ const DashboardMetrics = () => {
       <ContentBox title="Active secrets / signals">
         <Counter type="signals" />
       </ContentBox>
+
       <ContentBox title="Active Secrets">
         <Counter type="message" />
       </ContentBox>

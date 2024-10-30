@@ -8,4 +8,10 @@ enum IconName {
   WORLD = 'world',
 }
 
-export { IconName };
+enum MessageTypes {
+  ERROR = 'error',
+  SUCCESS = 'success',
+  INFO = 'info',
+}
+
+export { IconName, MessageTypes };

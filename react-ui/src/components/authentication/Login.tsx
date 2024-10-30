@@ -8,6 +8,7 @@ import { Input } from '~/components/ui/forms/inputs/Input';
 import { SubmitCircle } from '~/components/ui/forms/inputs/SubmitCircle';
 import { Alert } from '~/components/ui/alert/Alert';
 import { LOGIN_USER } from '~/graphql/queries/user/query-login';
+import { MessageTypes } from '~/types/enums';
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
@@ -15,14 +16,14 @@ const Login = () => {
     password: '',
   });
 
-  // change handler for form fields
+  // Change handler for form fields
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     setLoginData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // resets the form fields
+  // Resets the form fields
   const resetForm = () => {
     setLoginData({
       email: '',
@@ -30,7 +31,7 @@ const Login = () => {
     });
   };
 
-  // login hook query
+  // Login hook query
   const [loginQuery, { loading, data, error }] = useLazyQuery(LOGIN_USER, {
     onCompleted: (res) => {
       if (res?.loginUser?.token) {
@@ -47,7 +48,7 @@ const Login = () => {
     },
   });
 
-  // submit handler for form
+  // Submit handler for form
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
@@ -96,11 +97,12 @@ const Login = () => {
 
           <SubmitCircle />
         </form>
+
         {loading && <p>...loading</p>}
 
-        {error && <Alert message={error.message} type="error" />}
+        {error && <Alert message={error.message} type={MessageTypes.ERROR} />}
 
-        {data && <Alert message="Success" type="success" />}
+        {data && <Alert message="Success" type={MessageTypes.SUCCESS} />}
       </LoginBox>
     </Wrapper>
   );

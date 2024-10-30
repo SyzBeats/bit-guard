@@ -1,6 +1,10 @@
 import { create } from 'zustand';
 import { AuthState, CreateSecretFormState, SignalState } from './interfaces';
 
+/**
+ * This store is used handle the states used in
+ * during the signal creation
+ */
 const useSignalState = create<SignalState>((set) => ({
   signals: [],
   linkCopied: false,
@@ -10,12 +14,19 @@ const useSignalState = create<SignalState>((set) => ({
   removeSignal: (signal) => set((state) => ({ ...state, signals: state.signals.filter((s) => s.id !== signal) })),
 }));
 
+/**
+ * This Store is used for app wide authentication states
+ */
 const useAuthStore = create<AuthState>((set) => ({
   isLoggedIn: false,
   login: () => set((state) => ({ ...state, isLoggedIn: true })),
   logout: () => set((state) => ({ ...state, isLoggedIn: false })),
 }));
 
+/**
+ * This store is used for the secret creation form that
+ * allows for text document and image selection
+ */
 const useCreateSecretFormState = create<CreateSecretFormState>((set) => ({
   selection: 'signal',
   content: '',
