@@ -14,6 +14,7 @@ import { ButtonWrapper } from '~/components/ui/buttons/ButtonWrapper';
 import { Loader } from '~/components/ui/loaders/Loader';
 import TextInput from '~/components/ui/forms/inputs/TextInput';
 import { FileDropzone } from '~/components/ui/forms/inputs/FileDropzone';
+import { MessageTypes } from '~/types/enums';
 
 const FormCreatePublicDocument = () => {
   const formState = useCreateSecretFormState(
@@ -35,7 +36,7 @@ const FormCreatePublicDocument = () => {
   const signalState = useSignalState((state) => ({ setLinkCopied: state.setLinkCopied }), shallow);
 
   const [alert, setAlert] = useState({
-    type: '',
+    type: MessageTypes.INFO,
     message: '',
   });
 
@@ -45,10 +46,10 @@ const FormCreatePublicDocument = () => {
       formState.setContent('');
       formState.setTitle('');
       signalState.setLinkCopied(false);
-      setAlert({ type: '', message: '' });
+      setAlert({ type: MessageTypes.INFO, message: '' });
     },
     onError: (error) => {
-      setAlert({ type: 'error', message: error.message });
+      setAlert({ type: MessageTypes.ERROR, message: error.message });
       signalState.setLinkCopied(false);
     },
   });
@@ -57,7 +58,7 @@ const FormCreatePublicDocument = () => {
     e.preventDefault();
 
     if (!formState.title || !formState.content) {
-      setAlert({ type: 'error', message: 'Please fill in all fields' });
+      setAlert({ type: MessageTypes.ERROR, message: 'Please fill in all fields' });
       return;
     }
 

@@ -14,6 +14,7 @@ import { ButtonWrapper } from '../buttons/ButtonWrapper';
 import { TextArea } from './inputs/TextArea';
 import TextInput from './inputs/TextInput';
 import { Loader } from '../loaders/Loader';
+import { MessageTypes } from '~/types/enums';
 
 const CreatePublicSignal = () => {
   const formState = useCreateSecretFormState(
@@ -31,7 +32,7 @@ const CreatePublicSignal = () => {
   const signalState = useSignalState((state) => ({ setLinkCopied: state.setLinkCopied }), shallow);
 
   const [alert, setAlert] = useState({
-    type: '',
+    type: MessageTypes.INFO,
     message: '',
   });
 
@@ -41,10 +42,10 @@ const CreatePublicSignal = () => {
       formState.setContent('');
       formState.setTitle('');
       signalState.setLinkCopied(false);
-      setAlert({ type: '', message: '' });
+      setAlert({ type: MessageTypes.INFO, message: '' });
     },
     onError: (error) => {
-      setAlert({ type: 'error', message: error.message });
+      setAlert({ type: MessageTypes.ERROR, message: error.message });
       signalState.setLinkCopied(false);
     },
   });
@@ -53,7 +54,7 @@ const CreatePublicSignal = () => {
     e.preventDefault();
 
     if (!formState.title || !formState.content) {
-      setAlert({ type: 'error', message: 'Please fill in all fields' });
+      setAlert({ type: MessageTypes.ERROR, message: 'Please fill in all fields' });
       return;
     }
 
