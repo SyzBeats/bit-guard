@@ -9,7 +9,7 @@ import { PublicSecretModal } from '~/components/ui/modals/PublicSecretModal';
 
 type SecretType = 'text' | 'image' | 'pdf';
 
-interface Istate {
+interface IState {
   modalOpen: boolean;
   secretType: SecretType;
 }
@@ -18,7 +18,7 @@ const SecretTypeSelector = () => {
   // State
   const { clear } = useCreateSecretFormState((state) => ({ clear: state.clear }), shallow);
 
-  const [state, setState] = useState<Istate>({
+  const [state, setState] = useState<IState>({
     modalOpen: false,
     secretType: 'text',
   });
@@ -29,7 +29,6 @@ const SecretTypeSelector = () => {
   /**
    * Handles the user action intent if a specific card was clicked
    * and ensures that the modal with the correct secret type is opened
-   * @param type
    */
   const handleClick = (type: SecretType) => {
     if (modalOpen) {
@@ -39,7 +38,7 @@ const SecretTypeSelector = () => {
     setState({ modalOpen: !state.modalOpen, secretType: type });
   };
 
-  
+
   return (
     <div>
       <CardContainer>

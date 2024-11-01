@@ -12,16 +12,21 @@ const Alert = ({ type, message }: AlertProps) => {
   }
 
   switch (type) {
-    case MessageTypes.SUCCESS:
+    case MessageTypes.SUCCESS: {
       return <AlertSuccess>{message}</AlertSuccess>;
+    }
 
-    case MessageTypes.ERROR:
+    case MessageTypes.ERROR: {
       return <AlertError>{message}</AlertError>;
+    }
 
-    default:
+    default: {
       return <AlertInfo>{message}</AlertInfo>;
+    }
   }
 };
+
+// --- Styled components ---
 
 const AlertBase = styled.div`
   width: 100%;

@@ -12,14 +12,14 @@ const Footer = () => {
   );
 };
 
+// --- Styled components ---
+
 const Wrapper = styled.footer`
   min-height: 30vh;
-  background: ${({ theme }) => theme.colors.background};
-  border-top: 0.5rem solid #2d95da;
   margin-top: 1rem;
-
   padding: 1rem;
-
+  background: ${({ theme }) => theme.colors.background};
   color: #fff;
+  border-top: 0.5rem solid #2d95da;
 `;
 export default Footer;

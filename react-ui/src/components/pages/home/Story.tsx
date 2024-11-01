@@ -8,41 +8,46 @@ import Sharing from '../../../images/undraw_share.svg';
 const HomepageStory = () => {
   return (
     <Wrapper>
-      <MainTitle color="light">Simply share your content</MainTitle>
+      <MainTitle color='light'>Simply share your content</MainTitle>
       <Grid>
-        <Content className="test">
+        <Content className='test'>
           <ContentBlock margin={false}>
-            <SecondaryTitle color="light" textAlign="left">
+            <SecondaryTitle color='light' textAlign='left'>
               Creating a Message
             </SecondaryTitle>
-            <p>In your dashboard, simply create a new message. The content of this message will be encrypted and stored in our database.</p>
+            <p>In your dashboard, simply create a new message. The content of this message will be encrypted and stored
+              in our database.</p>
           </ContentBlock>
 
           <ContentBlock margin={true}>
-            <SecondaryTitle color="light" textAlign="left">
+            <SecondaryTitle color='light' textAlign='left'>
               Generate a Link
             </SecondaryTitle>
             <p>
-              To give people access to your secrets, you will have to generate a Link for your Message. This link will point to the
+              To give people access to your secrets, you will have to generate a Link for your Message. This link will
+              point to the
               encrypted content of your Message.
             </p>
           </ContentBlock>
 
           <ContentBlock margin={true}>
-            <SecondaryTitle color="light" textAlign="left">
+            <SecondaryTitle color='light' textAlign='left'>
               Share the Link with anyone
             </SecondaryTitle>
             <p>
-              You choose who can access your Message. You can share the link with anyone you want. Friends, family, coworkers or business
+              You choose who can access your Message. You can share the link with anyone you want. Friends, family,
+              coworkers or business
               partners.
             </p>
           </ContentBlock>
         </Content>
-        <Image src={Sharing} alt="Illustration of sharing people" />
+        <Image src={Sharing} alt='Illustration of sharing people' />
       </Grid>
     </Wrapper>
   );
 };
+
+// --- Styled components ---
 
 const Wrapper = styled.div`
   display: flex;

@@ -10,8 +10,13 @@ const ButtonRound = ({ children, onClick = () => null }: ButtonProps) => {
   return <Wrapper onClick={onClick}>{children}</Wrapper>;
 };
 
+// --- Styled components ---
+
 const Wrapper = styled.button`
-  // generics
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   padding: 1rem;
   border: none;
 
@@ -20,10 +25,6 @@ const Wrapper = styled.button`
   width: 4rem;
   min-width: 4rem;
   height: 4rem;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   border-radius: 50%;
   box-shadow: ${({ theme }) => theme.shadows.depth_1};
@@ -58,6 +59,7 @@ const Wrapper = styled.button`
     &::before {
       animation: pulse 1.25s ease-in-out infinite;
     }
+
     cursor: pointer;
   }
 `;

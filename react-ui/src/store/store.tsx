@@ -30,17 +30,17 @@ const useAuthStore = create<AuthState>((set) => ({
 const useCreateSecretFormState = create<CreateSecretFormState>((set) => ({
   selection: 'signal',
   content: '',
-  title: '',
-  link: '',
+  signalTitle: '',
+  signalLink: '',
   type: 'text',
   extension: 'txt',
   setSelection: (selection) => set((state) => ({ ...state, selection })),
   setContent: (content) => set((state) => ({ ...state, content })),
-  setTitle: (title) => set((state) => ({ ...state, title })),
-  setLink: (link) => set((state) => ({ ...state, link })),
+  setTitle: (title) => set((state) => ({ ...state, signalTitle: title })),
+  setLink: (link) => set((state) => ({ ...state, signalLink: link })),
   setType: (type) => set((state) => ({ ...state, type })),
   setExtension: (extension) => set((state) => ({ ...state, extension })),
-  clear: () => set((state) => ({ ...state, content: '', title: '', link: '' })),
+  clear: () => set((state) => ({ ...state, content: '', signalTitle: '', signalLink: '' })),
 }));
 
 export { useSignalState, useAuthStore, useCreateSecretFormState };

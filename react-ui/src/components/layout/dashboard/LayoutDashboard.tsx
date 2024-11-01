@@ -10,6 +10,8 @@ const LayoutDashboard = ({ children }: PropsChildren) => (
   </Container>
 );
 
+// --- Styled components ---
+
 const Container = styled.section`
   display: grid;
   grid-template-columns: 8rem 1fr;

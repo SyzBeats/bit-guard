@@ -61,6 +61,7 @@ const Wrapper = styled.div`
 const TransitionContainer = styled.div`
   height: 100%;
 `;
+
 const Shadow = styled.div`
   height: 1rem;
   z-index: 100;
@@ -78,4 +79,5 @@ const ShadowBottom = styled(Shadow)`
   background: linear-gradient(to top, #0a0a0a 30%, transparent 70%);
   bottom: 0;
 `;
+
 export { Queue };

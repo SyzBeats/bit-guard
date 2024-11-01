@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLazyQuery } from '@apollo/client';
+import { ApolloError, useLazyQuery } from '@apollo/client';
 import styled from 'styled-components';
 
 import Logo from '~/components/ui/styled/image/Logo';
@@ -11,19 +11,21 @@ import { LOGIN_USER } from '~/graphql/queries/user/query-login';
 import { MessageTypes } from '~/types/enums';
 
 const Login = () => {
+  // State
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
   });
 
-  // Change handler for form fields
+
+  // Handlers
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     setLoginData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Resets the form fields
+
   const resetForm = () => {
     setLoginData({
       email: '',
@@ -31,7 +33,23 @@ const Login = () => {
     });
   };
 
-  // Login hook query
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault();
+
+      loginQuery({
+        variables: {
+          email: loginData.email,
+          password: loginData.password,
+        },
+      });
+    } catch (err: ApolloError) {
+      console.error(`[ERROR] ${err.message}`);
+    }
+  };
+
+
   const [loginQuery, { loading, data, error }] = useLazyQuery(LOGIN_USER, {
     onCompleted: (res) => {
       if (res?.loginUser?.token) {
@@ -43,41 +61,28 @@ const Login = () => {
       resetForm();
     },
 
-    onError: (error) => {
-      console.error(error.message);
+    onError: (err: ApolloError) => {
+      console.error(err.message);
     },
+
   });
 
-  // Submit handler for form
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    try {
-      e.preventDefault();
 
-      loginQuery({
-        variables: {
-          email: loginData.email,
-          password: loginData.password,
-        },
-      });
-    } catch (error: any) {
-      console.error(`[ERROR] ${error.message}`);
-    }
-  };
-
+  // Content
   return (
     <Wrapper>
       <LoginBox>
         <Logo />
-        <form method="POST" onSubmit={(e) => handleSubmit(e)}>
-          <SecondaryTitle color="dark">Enter your credentials</SecondaryTitle>
+        <form method='POST' onSubmit={(e) => handleSubmit(e)}>
+          <SecondaryTitle color='dark'>Enter your credentials</SecondaryTitle>
 
           <label>
             Email
             <Input
-              name="email"
-              autocomplete="email"
+              name='email'
+              autocomplete='email'
               required={true}
-              type="text"
+              type='text'
               changeHandler={(e) => handleChange(e)}
               value={loginData.email}
             />
@@ -86,27 +91,29 @@ const Login = () => {
           <label>
             Password
             <Input
-              name="password"
+              name='password'
               required={true}
               changeHandler={(e) => handleChange(e)}
               value={loginData.password}
-              type="password"
-              autocomplete="current-password"
+              type='password'
+              autocomplete='current-password'
             />
           </label>
 
           <SubmitCircle />
         </form>
 
-        {loading && <p>...loading</p>}
+        {loading && <p>loading...</p>}
 
         {error && <Alert message={error.message} type={MessageTypes.ERROR} />}
 
-        {data && <Alert message="Success" type={MessageTypes.SUCCESS} />}
+        {data && <Alert message='Success' type={MessageTypes.SUCCESS} />}
       </LoginBox>
     </Wrapper>
   );
 };
+
+// --- Styled components ---
 
 const Wrapper = styled.div`
   height: 100vh;

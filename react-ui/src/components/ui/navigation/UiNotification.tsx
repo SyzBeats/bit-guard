@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { Bell } from 'react-feather';
 
-const Notification = () => {
+const UiNotification = () => {
   return (
     <Wrapper>
-      <Bell size="28" />
-      <BellMarker aria-details="indicates notifications" />
+      <Bell size='28' />
+      <BellMarker aria-details='indicates notifications' />
     </Wrapper>
   );
 };
@@ -13,6 +13,7 @@ const Notification = () => {
 const Wrapper = styled.div`
   position: relative;
   margin: 0 2.5rem;
+
   &:hover {
     cursor: pointer;
   }
@@ -31,4 +32,4 @@ const BellMarker = styled.div`
   box-shadow: ${({ theme }) => theme.shadows.depth_1};
 `;
 
-export default Notification;
+export default UiNotification;

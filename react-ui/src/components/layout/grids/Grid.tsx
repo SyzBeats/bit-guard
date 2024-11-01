@@ -16,12 +16,13 @@ const Grid = ({ rows, gap = '3rem', rowHeight = '25rem', children }: GridType) =
   );
 };
 
+// --- Styled components ---
+
 const Wrapper = styled.div<GridType>`
   display: grid;
   max-width: 120rem;
   margin: ${({ gap }) => gap} auto;
   gap: ${({ gap }) => gap};
-  // responsive mobile grid with minmax
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
 `;
 

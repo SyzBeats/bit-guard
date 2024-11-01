@@ -23,8 +23,8 @@ const CreatePublicSignal = () => {
       setContent: state.setContent,
       setTitle: state.setTitle,
       content: state.content,
-      title: state.title,
-      link: state.link,
+      title: state.signalTitle,
+      link: state.signalLink,
     }),
     shallow,
   );
@@ -68,21 +68,23 @@ const CreatePublicSignal = () => {
 
   return (
     <Wrapper>
-      <FlexGridEqual gap="1.5rem" justifyContent="stretch">
-        <FlexGridItem alignSelf="stretch" flex="1">
-          <TextInput label="Enter a title" name="title" value={formState.title} onChange={(e) => formState.setTitle(e.target.value)} />
+      <FlexGridEqual gap='1.5rem' justifyContent='stretch'>
+        <FlexGridItem alignSelf='stretch' flex='1'>
+          <TextInput label='Enter a title' name='title' value={formState.title}
+                     onChange={(e) => formState.setTitle(e.target.value)} />
         </FlexGridItem>
       </FlexGridEqual>
 
-      <FlexGridEqual gap="1.5rem" justifyContent="stretch">
-        <TextArea label="Enter a message" name="content" value={formState.content} onChange={(e) => formState.setContent(e.target.value)} />
+      <FlexGridEqual gap='1.5rem' justifyContent='stretch'>
+        <TextArea label='Enter a message' name='content' value={formState.content}
+                  onChange={(e) => formState.setContent(e.target.value)} />
       </FlexGridEqual>
 
-      <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">
+      <FlexGridEqual gap='1.5rem' alignItems='center' justifyContent='flex-end'>
         {!!formState.link && <DisplayLink link={formState.link} />}
       </FlexGridEqual>
 
-      <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">
+      <FlexGridEqual gap='1.5rem' alignItems='center' justifyContent='flex-end'>
         <ButtonWrapper>
           <button onClick={(e) => handleSubmit(e)}>Encrypt</button>
         </ButtonWrapper>

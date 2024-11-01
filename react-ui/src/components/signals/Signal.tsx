@@ -5,10 +5,10 @@ import { Trash } from 'react-feather';
 import { shallow } from 'zustand/shallow';
 
 import services from '../../services';
-import { useSignalState } from '../../store/store';
-import { DELETE_SIGNAL } from '../../graphql/mutations/signal/mutation-delete-signal';
+import { useSignalState } from '~/store/store';
+import { DELETE_SIGNAL } from '~/graphql/mutations/signal/mutation-delete-signal';
 
-interface Iprops {
+interface IProps {
   signal: {
     id: string;
     title: string;
@@ -16,7 +16,7 @@ interface Iprops {
   };
 }
 
-const Signal = ({ signal }: Iprops) => {
+const Signal = ({ signal }: IProps) => {
   const { id, title, createdAt } = signal;
 
   const signalState = useSignalState((state) => ({ removeSignal: state.removeSignal }), shallow);
@@ -24,7 +24,7 @@ const Signal = ({ signal }: Iprops) => {
   const [deleteSignal] = useMutation(DELETE_SIGNAL, {
     onCompleted: (data) => {
       if (!data?.deleteSignal?.id) {
-        console.error("[ERROR] Couldn't delete signal");
+        console.error('[ERROR] Couldn\'t delete signal');
       }
 
       signalState.removeSignal(data?.deleteSignal?.id);
@@ -61,11 +61,13 @@ const Signal = ({ signal }: Iprops) => {
       </MessageContent>
 
       <MessageActions>
-        <Trash size={20} color="#01141F" onClick={() => handleDelete()} />
+        <Trash size={20} color='#01141F' onClick={() => handleDelete()} />
       </MessageActions>
     </Wrapper>
   );
 };
+
+// --- Styled components ---
 
 const Wrapper = styled.div`
   color: #333;

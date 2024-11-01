@@ -7,6 +7,8 @@ const NavigationButton = ({ children }: PropsChildren) => {
   return <Button>{children}</Button>;
 };
 
+// --- Styled components ---
+
 const Button = styled.div`
   margin: 1.75rem 0;
   filter: grayscale(0.2);

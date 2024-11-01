@@ -12,22 +12,24 @@ const Navigation = () => {
     <HeaderNavigation>
       {!isProduction && (
         <>
-          <LoginLink to="/login">
+          <LoginLink to='/login'>
             login <LogIn />
           </LoginLink>
 
-          <SignupLink to="/signup">
+          <SignupLink to='/signup'>
             signup <LogIn />
           </SignupLink>
         </>
       )}
 
-      <GithubLink href="https://github.com/SyzBeats/envite" target="_blank" rel="noopener noreferrer">
+      <GithubLink href='https://github.com/SyzBeats/envite' target='_blank' rel='noopener noreferrer'>
         GitHub <GitHub />
       </GithubLink>
     </HeaderNavigation>
   );
 };
+
+// --- Styled components ---
 
 const HeaderNavigation = styled.nav`
   position: fixed;

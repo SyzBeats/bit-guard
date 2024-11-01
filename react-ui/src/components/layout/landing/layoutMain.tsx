@@ -15,6 +15,8 @@ const LayoutMain = ({ children }: PropsChildren) => (
   </Container>
 );
 
+
+// --- Styled components ---
 const Container = styled.main`
   min-height: 100vh;
 `;

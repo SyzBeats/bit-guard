@@ -1,13 +1,13 @@
 import styled from 'styled-components';
-import { Activity, Home, Lock, Sliders } from 'react-feather';
+import { Activity, Home, Lock as LockIcon, Sliders } from 'react-feather';
 
 import NavigationButton from '../buttons/NavigationButton';
 import Avatar from '../user/Avatar';
-import Notification from './Notification';
+import UiNotification from './UiNotification';
 
 const Sidebar = () => (
   <Wrapper>
-    <Avatar src="https://source.unsplash.com/random" alt="avatar" />
+    <Avatar src='https://source.unsplash.com/random' alt='avatar' />
     <UpperSection>
       <NavigationButton>
         <Home />
@@ -18,7 +18,7 @@ const Sidebar = () => (
       </NavigationButton>
 
       <NavigationButton>
-        <Lock />
+        <LockIcon />
       </NavigationButton>
 
       <NavigationButton>
@@ -27,7 +27,7 @@ const Sidebar = () => (
     </UpperSection>
 
     <LowerSection>
-      <Notification />
+      <UiNotification />
     </LowerSection>
   </Wrapper>
 );

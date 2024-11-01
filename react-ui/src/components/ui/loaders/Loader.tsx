@@ -18,6 +18,7 @@ const Loader = (props: IProps) => {
   );
 };
 
+// --- Styled components ---
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;

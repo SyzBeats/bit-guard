@@ -25,7 +25,7 @@ const SignUp = () => {
   });
 
   // resets the form fields
-  const resetFields = () => {
+  const handleResetFields = () => {
     setData({
       name: '',
       email: '',
@@ -34,26 +34,9 @@ const SignUp = () => {
     });
   };
 
-  // signup hook mutation
-  const [signup] = useMutation(SIGNUP_USER, {
-    onCompleted: ({ signupUser }) => {
-      if (signupUser?.token) {
-        localStorage.setItem('token', signupUser.token);
-        window.location.href = '/dashboard';
-      }
-
-      resetFields();
-    },
-    onError: (error) => {
-      setAlert({
-        type: MessageTypes.ERROR,
-        message: error.message,
-      });
-    },
-  });
 
   // change handler for form fields
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     setData((prev) => ({ ...prev, [name]: value }));
@@ -90,51 +73,77 @@ const SignUp = () => {
     });
   };
 
+
+  // Mutation Hooks
+  const [signup] = useMutation(SIGNUP_USER, {
+    onCompleted: ({ signupUser }) => {
+      if (signupUser?.token) {
+        localStorage.setItem('token', signupUser.token);
+        window.location.href = '/dashboard';
+      }
+
+      handleResetFields();
+    },
+    onError: (error) => {
+      setAlert({
+        type: MessageTypes.ERROR,
+        message: error.message,
+      });
+    },
+  });
+
   return (
     <Wrapper>
       <SignUpBox>
         <Logo />
-        <form method="POST" onSubmit={(e) => handleSubmit(e)}>
-          <SecondaryTitle color="dark">Create your account</SecondaryTitle>
+        <form method='POST' onSubmit={(e) => handleSubmit(e)}>
+          <SecondaryTitle color='dark'>Create your account</SecondaryTitle>
 
           <label>
             Name
-            <Input name="name" type="text" changeHandler={(e) => handleChange(e)} value={data.name} required={true} autocomplete="name" />
+            <Input
+              name='name'
+              type='text'
+              changeHandler={(e) => handleInputChange(e)}
+              value={data.name}
+              required={true}
+              autocomplete='name'
+            />
           </label>
 
           <label>
             Email
             <Input
-              name="email"
-              type="email"
-              changeHandler={(e) => handleChange(e)}
+              name='email'
+              type='email'
+              changeHandler={(e) => handleInputChange(e)}
               value={data.email}
               required={true}
-              autocomplete="email"
+              autocomplete='email'
             />
           </label>
 
           <label>
             Password
             <Input
-              name="password"
-              changeHandler={(e) => handleChange(e)}
+              name='password'
+              changeHandler={(e) => handleInputChange(e)}
               value={data.password}
-              type="password"
+              type='password'
               required={true}
-              autocomplete="new-password"
+              autocomplete='new-password'
             />
           </label>
 
           <label>
             Confirm Password
             <Input
-              name="confirmPassword"
-              changeHandler={(e) => handleChange(e)}
+              name='confirmPassword'
+              changeHandler={(e) => handleInputChange(e)}
               value={data.confirmPassword}
-              type="password"
+              type='password'
               required={true}
-              autocomplete="new-password"
+              autocomplete='new-password'
             />
           </label>
 
@@ -147,6 +156,8 @@ const SignUp = () => {
   );
 };
 
+
+// --- Styled components ---
 const Wrapper = styled.div`
   height: 100vh;
   width: 100vw;

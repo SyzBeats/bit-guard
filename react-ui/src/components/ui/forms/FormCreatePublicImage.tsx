@@ -20,8 +20,8 @@ const FormCreatePublicImage = () => {
   const formState = useCreateSecretFormState(
     (state) => ({
       content: state.content,
-      title: state.title,
-      link: state.link,
+      title: state.signalTitle,
+      link: state.signalLink,
       type: state.type,
       extension: state.extension,
       setLink: state.setLink,
@@ -74,9 +74,10 @@ const FormCreatePublicImage = () => {
 
   return (
     <Wrapper>
-      <FlexGridEqual gap="1.5rem" justifyContent="stretch">
-        <FlexGridItem alignSelf="stretch" flex="1">
-          <TextInput label="Enter a title" name="title" value={formState.title} onChange={(e) => formState.setTitle(e.target.value)} />
+      <FlexGridEqual gap='1.5rem' justifyContent='stretch'>
+        <FlexGridItem alignSelf='stretch' flex='1'>
+          <TextInput label='Enter a title' name='title' value={formState.title}
+                     onChange={(e) => formState.setTitle(e.target.value)} />
         </FlexGridItem>
       </FlexGridEqual>
 
@@ -85,11 +86,11 @@ const FormCreatePublicImage = () => {
         handleExtension={(extension: string) => formState.setExtension(extension)}
       />
 
-      <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">
+      <FlexGridEqual gap='1.5rem' alignItems='center' justifyContent='flex-end'>
         {!!formState.link && <DisplayLink link={formState.link} />}
       </FlexGridEqual>
 
-      <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">
+      <FlexGridEqual gap='1.5rem' alignItems='center' justifyContent='flex-end'>
         <ButtonWrapper>
           <button onClick={(e) => handleSubmit(e)}>Encrypt</button>
         </ButtonWrapper>

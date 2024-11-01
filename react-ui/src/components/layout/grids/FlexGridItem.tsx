@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-interface IwrapperProps {
+interface IWrapperProps {
   alignSelf?: string;
   justifySelf?: string;
   flex?: string;
 }
 
-const FlexGridItem = styled.div<IwrapperProps>`
+const FlexGridItem = styled.div<IWrapperProps>`
   align-self: ${({ alignSelf }) => alignSelf || 'initial'};
   justify-self: ${({ justifySelf }) => justifySelf || 'initial'};
   flex: ${({ flex }) => flex || 'initial'};

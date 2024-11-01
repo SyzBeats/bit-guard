@@ -8,6 +8,12 @@ interface Props {
   children: React.ReactNode;
 }
 
+interface WrapperProps {
+  bg?: string;
+  rounded?: boolean;
+}
+
+
 const SkeletonWrapper = ({ children, bg, rounded }: Props) => {
   return (
     <Wrapper bg={bg} rounded={rounded}>
@@ -17,10 +23,8 @@ const SkeletonWrapper = ({ children, bg, rounded }: Props) => {
   );
 };
 
-interface WrapperProps {
-  bg?: string;
-  rounded?: boolean;
-}
+
+// --- Styled components ---
 
 const Wrapper = styled.div<WrapperProps>`
   position: relative;

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const ButtonWrapper = styled.span`
-  // generics
   & button {
     padding: 1rem 2rem;
     border: none;

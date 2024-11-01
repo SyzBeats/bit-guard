@@ -10,34 +10,29 @@ const Button = ({ content, onClick = () => null }: ButtonProps) => {
   return <Wrapper onClick={onClick}>{content}</Wrapper>;
 };
 
-const Wrapper = styled.button`
-  // generics
-  padding: 1.25rem 3rem;
-  border: none;
+// --- Styled components ---
 
+const Wrapper = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
 
+  margin: 2rem 0;
+  padding: 1.25rem 3rem;
+
+  border: none;
   border-radius: 0.4rem;
+
   box-shadow: ${({ theme }) => theme.shadows.depth_1};
-
-  // colors
   background: ${({ theme }) => theme.gradients.bluepurp};
-
   color: #fff;
 
-  // font
   font-size: 1.5rem;
   letter-spacing: 1.5px;
   font-weight: 600;
 
-  // spacing
-  margin: 2rem 0;
-
   transition: all 0.1s ease-in-out;
 
-  // button icons
   svg {
     margin-right: 0.75rem;
   }

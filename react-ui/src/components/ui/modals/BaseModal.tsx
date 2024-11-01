@@ -2,13 +2,13 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { X } from 'react-feather';
 
-import { useClickaway } from '../../../hooks/useClickaway';
+import { useClickaway } from '~/hooks/useClickaway';
 
 interface ModalProps {
   children: React.ReactNode;
   handler: Function;
   title?: string;
-  preventClickAway?: boolean;
+  preventClickAway: boolean;
 }
 
 const BaseModal = ({ handler, children, title = 'Action', preventClickAway = false }: ModalProps) => {
@@ -24,6 +24,7 @@ const BaseModal = ({ handler, children, title = 'Action', preventClickAway = fal
           <Container>
             <ModalHeader>
               <h3>{title}</h3>
+
               <CloseButton onClick={callback}>
                 <X size={30} />
               </CloseButton>
@@ -36,6 +37,7 @@ const BaseModal = ({ handler, children, title = 'Action', preventClickAway = fal
   );
 };
 
+// --- Styled components ---
 const Modal = styled.div`
   animation: fadeInUp 0.3s ease-in-out forwards;
   background: #fff;
@@ -92,6 +94,7 @@ const CloseButton = styled.button`
   & > svg {
     transition: all 0.3s;
     transform-origin: center;
+
     &:hover {
       transform: rotate(90deg);
     }

@@ -19,8 +19,8 @@ type SignalMimeType = 'text' | 'image' | 'video' | 'audio' | 'file';
 interface CreateSecretFormState {
   selection: 'signal' | 'message';
   content: string;
-  title: string;
-  link: string;
+  signalTitle: string;
+  signalLink: string;
   type?: SignalMimeType;
   extension?: string;
   setSelection: (selection: 'signal' | 'message') => void;

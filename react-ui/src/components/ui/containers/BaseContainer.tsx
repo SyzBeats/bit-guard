@@ -1,6 +1,6 @@
 /**
  * @escription containers are elements inside sections
- * which determine the with of the inner content
+ * which determine the width of the inner content
  *
  * a typical structure would be
  *

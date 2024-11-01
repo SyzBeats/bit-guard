@@ -8,44 +8,49 @@ const FooterGrid = () => {
       <List>
         <ListTitle>External Links</ListTitle>
         <ListItem>
-          <a href="https://github.com/SyzBeats/envite" rel="noopener noreferrer" target="_blank">
+          <a href='https://github.com/SyzBeats/envite' rel='noopener noreferrer' target='_blank'>
             GitHub
           </a>
         </ListItem>
         <ListItem>
-          <a href="https://sz-development.tech/kontakt" rel="noopener noreferrer" target="_blank">
+          <a href='https://sz-development.tech/kontakt' rel='noopener noreferrer' target='_blank'>
             Contact
           </a>
         </ListItem>
         <ListItem>
-          <a href="https://sz-development.tech/blog" rel="noopener noreferrer" target="_blank">
+          <a href='https://sz-development.tech/blog' rel='noopener noreferrer' target='_blank'>
             Blog
           </a>
         </ListItem>
       </List>
+
       <List>
         <ListTitle>Tutorials (soon)</ListTitle>
         <ListItem>Create a Message</ListItem>
         <ListItem>Share a Link</ListItem>
         <ListItem>Our Encryption</ListItem>
       </List>
+
       <List>
         <ListTitle>About us</ListTitle>
         <ListItem>
-          <a rel="noopener noreferrer" target="_blank" href="https://sz-development.tech/">
+          <a rel='noopener noreferrer' target='_blank' href='https://sz-development.tech/'>
             SZ WEB Development
           </a>
         </ListItem>
         <ListItem>
-          <Link to="/dataprotection">Data Protection</Link>
+          <Link to='/dataprotection'>Data Protection</Link>
         </ListItem>
         <ListItem>
-          <Link to="/imprint">Imprint</Link>
+          <Link to='/imprint'>Imprint</Link>
         </ListItem>
       </List>
     </Wrapper>
   );
 };
+
+
+// --- Styled components ---
 
 const Wrapper = styled.div`
   padding: 4rem 0;

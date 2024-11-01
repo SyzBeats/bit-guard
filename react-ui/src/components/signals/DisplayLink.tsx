@@ -3,11 +3,12 @@ import { Copy, Check } from 'react-feather';
 import styled from 'styled-components';
 
 import services from '../../services';
-import { useSignalState } from '../../store/store';
+import { useSignalState } from '~/store/store';
 
 interface Props {
   link: string;
 }
+
 interface ContainerState {
   copied: boolean;
 }
@@ -35,6 +36,8 @@ const DisplayLink = ({ link }: Props) => {
     </Container>
   );
 };
+
+// --- Styled components ---
 
 const Container = styled.div<ContainerState>`
   display: flex;

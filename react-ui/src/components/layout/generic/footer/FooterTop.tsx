@@ -11,6 +11,9 @@ const FooterTop = () => {
   );
 };
 
+
+// --- Styled components ---
+
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;

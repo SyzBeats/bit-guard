@@ -11,15 +11,17 @@ interface Props {
   extension: string;
 }
 
-const RevealBox = ({ message, type, extension }: Props) => {
-  // ensure user really wants to download the file
-
+const RevealBox = ({ message, type }: Props) => {
+  // Ensure user really wants to download the file.
+  // Since this might impose a security risk on the side of the
+  // user we need to guarantee, that the user understood the risk
+  // of downloading a file onto his machine.
   const [sure, setSure] = useState(false);
 
   useEffect(() => {
     if (type === 'file') {
-      const sure = window.confirm(`[SECURITY NOTE]:\n\nYou are about to display a PDF file. \nOnly proceed if you fully trust the sender.`);
-      setSure(sure);
+      const isSure = window.confirm('[SECURITY NOTE]:\n\nYou are about to display a PDF file. \nOnly proceed if you fully trust the sender.');
+      setSure(isSure);
     }
   }, []);
 
@@ -28,13 +30,15 @@ const RevealBox = ({ message, type, extension }: Props) => {
       case 'text': {
         return <Content>{message}</Content>;
       }
+
       case 'image': {
         return (
           <ImageContainer>
-            <img src={message} alt="secret" width="500" />
+            <img src={message} alt='secret' width='500' />
           </ImageContainer>
         );
       }
+
       case 'file': {
         if (!sure) {
           return <p>You have not confirmed to view the file. It has been destroyed</p>;
@@ -42,10 +46,11 @@ const RevealBox = ({ message, type, extension }: Props) => {
 
         return (
           <Content>
-            <object type="application/pdf" data={message} width="100%" height="400" />
+            <object type='application/pdf' data={message} width='100%' height='400' />
           </Content>
         );
       }
+
       default: {
         return <Content>{message}</Content>;
       }
@@ -58,6 +63,8 @@ const RevealBox = ({ message, type, extension }: Props) => {
     </ContentBox>
   );
 };
+
+// --- styled components ---
 
 const Content = styled.div`
   // preserve text white space
