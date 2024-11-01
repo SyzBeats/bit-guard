@@ -7,18 +7,24 @@ interface Props {
 
 const Skeleton = ({ shape }: Props) => {
   switch (shape) {
-    case 'text':
+    case 'text': {
       return <SkeletonText />;
-    case 'title':
+    }
+    case 'title': {
       return <SkeletonTitle />;
-    case 'avatar':
+    }
+    case 'avatar': {
       return <SkeletonAvatar />;
-    case 'thumbnail':
+    }
+    case 'thumbnail': {
       return <SkeletonThumbnail />;
-    case 'block':
+    }
+    case 'block': {
       return <SkeletonBlock />;
-    default:
+    }
+    default: {
       return <SkeletonText />;
+    }
   }
 };
 

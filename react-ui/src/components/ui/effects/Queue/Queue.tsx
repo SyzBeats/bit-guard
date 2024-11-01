@@ -22,9 +22,11 @@ const Queue = () => {
       setItems((prev) => {
         const nextTop = prev[prev.length - 1];
         const newShown = prev.slice(0, prev.length - 1);
+
         return [nextTop, ...newShown];
       });
     }, TIMEOUT);
+
     return () => clearInterval(interval);
   }, []);
 

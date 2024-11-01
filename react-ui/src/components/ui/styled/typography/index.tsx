@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-type TitleType = {
+interface TitleType {
   color: string;
   textAlign?: string;
-};
+}
 
 const MainTitle = styled.h1<TitleType>`
   color: ${(props) => (props.color === 'light' ? '#fff' : props.theme.colors.highlight_blue)};
@@ -31,13 +31,6 @@ const SecondaryTitleBlue = styled.h2<TitleType>`
   text-align: ${(props) => props.textAlign || 'left'};
 `;
 
-const TertiaryTitle = styled.h3`
-  color: #fff;
-  font-size: 1.55rem;
-  letter-spacing: 1px;
-  margin: 1.85rem 0;
-`;
-
 const DashboardSectionTitle = styled.h4`
   color: ${(props) => (props.color === 'light' ? '#fff' : props.theme.colors.blue_dark)};
   font-size: 2.45rem;
@@ -45,4 +38,4 @@ const DashboardSectionTitle = styled.h4`
   margin: 2rem 0;
 `;
 
-export { MainTitle, SecondaryTitle, TertiaryTitle, DashboardSectionTitle, SecondaryTitleBlue };
+export { MainTitle, SecondaryTitle, DashboardSectionTitle, SecondaryTitleBlue };

@@ -2,9 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { ExternalSvg } from '../image/ExternalSvg';
-import { IconName } from '~/types/enums';
-
-// icons
 import IconFingerprint from '../../../../images/security/fi__fingerprint-lock.svg';
 import IconLock from '../../../../images/security/fi__lock-connection.svg';
 import IconPincode from '../../../../images/security/fi__pin-code.svg';
@@ -14,12 +11,14 @@ import IconWorld from '../../../../images/security/fi__world-secure.svg';
 import IconWall from '../../../../images/security/fi__wall.svg';
 import { SecondaryTitle } from '../typography';
 
-type IconBoxType = {
+import { IconName } from '~/types/enums';
+
+interface IconBoxType {
   type: IconName;
   title: string;
   content: string | JSX.Element;
   textColor: 'light' | 'dark';
-};
+}
 
 const getIcon = (type: IconName) => {
   switch (type) {

@@ -2,15 +2,16 @@ import { useMutation } from '@apollo/client';
 import React from 'react';
 import styled from 'styled-components';
 
-import { CREATE_SIGNAL } from '~/graphql/mutations/signal/mutation-create-signal';
-import { useCreateSecretFormState, useSignalState } from '~/store/store';
-import { FlexGridEqual } from '~/components/layout/grids/FlexGrid';
-import { FlexGridItem } from '~/components/layout/grids/FlexGridItem';
 import { DisplayLink } from '../../signals/DisplayLink';
 import { ButtonWrapper } from '../buttons/ButtonWrapper';
 import HorizontalToggle from './controls/HorizontalToggle';
 import { TextArea } from './inputs/TextArea';
 import TextInput from './inputs/TextInput';
+
+import { FlexGridItem } from '~/components/layout/grids/FlexGridItem';
+import { FlexGridEqual } from '~/components/layout/grids/FlexGrid';
+import { useCreateSecretFormState, useSignalState } from '~/store/store';
+import { CREATE_SIGNAL } from '~/graphql/mutations/signal/mutation-create-signal';
 
 const CreateSignal = () => {
   const addSignal = useSignalState((state) => state.addSignal);
@@ -19,7 +20,6 @@ const CreateSignal = () => {
 
   const [createSignalMutation] = useMutation(CREATE_SIGNAL, {
     onCompleted: ({ createSignal: created }) => {
-
       addSignal({ id: created.id, title: created.title, createdAt: created.createdAt, link: created.link.content });
       setLink(created.link.content);
     },
@@ -37,27 +37,26 @@ const CreateSignal = () => {
         content,
       },
     });
-
   };
 
   return (
     <Wrapper>
       <HorizontalToggle />
-      <FlexGridEqual gap='1.5rem' justifyContent='stretch'>
-        <FlexGridItem alignSelf='stretch' flex='1'>
-          <TextInput label='title' name='title' value={title} onChange={(e) => setTitle(e.target.value)} />
+      <FlexGridEqual gap="1.5rem" justifyContent="stretch">
+        <FlexGridItem alignSelf="stretch" flex="1">
+          <TextInput label="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} />
         </FlexGridItem>
       </FlexGridEqual>
 
-      <FlexGridEqual gap='1.5rem' justifyContent='stretch'>
-        <TextArea label='content' name='content' value={content} onChange={(e) => setContent(e.target.value)} />
+      <FlexGridEqual gap="1.5rem" justifyContent="stretch">
+        <TextArea label="content" name="content" value={content} onChange={(e) => setContent(e.target.value)} />
       </FlexGridEqual>
 
-      <FlexGridEqual gap='1.5rem' alignItems='center' justifyContent='flex-end'>
+      <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">
         {!!link && <DisplayLink link={link} />}
       </FlexGridEqual>
 
-      <FlexGridEqual gap='1.5rem' alignItems='center' justifyContent='flex-end'>
+      <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">
         <ButtonWrapper>
           <button onClick={(e) => handleSubmit(e)}>Add Signal</button>
         </ButtonWrapper>

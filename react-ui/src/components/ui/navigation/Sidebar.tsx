@@ -7,7 +7,7 @@ import UiNotification from './UiNotification';
 
 const Sidebar = () => (
   <Wrapper>
-    <Avatar src='https://source.unsplash.com/random' alt='avatar' />
+    <Avatar src="https://source.unsplash.com/random" alt="avatar" />
     <UpperSection>
       <NavigationButton>
         <Home />

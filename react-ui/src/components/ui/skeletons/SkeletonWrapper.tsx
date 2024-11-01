@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { Shimmer } from './Shimmer';
 
 interface Props {
@@ -13,7 +14,6 @@ interface WrapperProps {
   rounded?: boolean;
 }
 
-
 const SkeletonWrapper = ({ children, bg, rounded }: Props) => {
   return (
     <Wrapper bg={bg} rounded={rounded}>
@@ -22,7 +22,6 @@ const SkeletonWrapper = ({ children, bg, rounded }: Props) => {
     </Wrapper>
   );
 };
-
 
 // --- Styled components ---
 

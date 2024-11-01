@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-type ButtonProps = {
+interface ButtonProps {
   content: React.ReactNode | string;
   onClick?: () => void;
-};
+}
 
 const Button = ({ content, onClick = () => null }: ButtonProps) => {
   return <Wrapper onClick={onClick}>{content}</Wrapper>;

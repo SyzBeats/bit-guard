@@ -3,17 +3,17 @@ import styled from 'styled-components';
 import { shallow } from 'zustand/shallow';
 import { useMutation } from '@apollo/client';
 
-import { useCreateSecretFormState, useSignalState } from '~/store/store';
-import { CREATE_PUBLIC_SIGNAL } from '~/graphql/mutations/signal/mutation-create-public-signal';
-
-import { FlexGridEqual } from '~/components/layout/grids/FlexGrid';
-import { FlexGridItem } from '~/components/layout/grids/FlexGridItem';
 import { DisplayLink } from '../../signals/DisplayLink';
 import { Alert } from '../alert/Alert';
 import { ButtonWrapper } from '../buttons/ButtonWrapper';
 import { TextArea } from './inputs/TextArea';
 import TextInput from './inputs/TextInput';
 import { Loader } from '../loaders/Loader';
+
+import { FlexGridItem } from '~/components/layout/grids/FlexGridItem';
+import { FlexGridEqual } from '~/components/layout/grids/FlexGrid';
+import { CREATE_PUBLIC_SIGNAL } from '~/graphql/mutations/signal/mutation-create-public-signal';
+import { useCreateSecretFormState, useSignalState } from '~/store/store';
 import { MessageTypes } from '~/types/enums';
 
 const CreatePublicSignal = () => {
@@ -55,6 +55,7 @@ const CreatePublicSignal = () => {
 
     if (!formState.title || !formState.content) {
       setAlert({ type: MessageTypes.ERROR, message: 'Please fill in all fields' });
+
       return;
     }
 
@@ -68,23 +69,21 @@ const CreatePublicSignal = () => {
 
   return (
     <Wrapper>
-      <FlexGridEqual gap='1.5rem' justifyContent='stretch'>
-        <FlexGridItem alignSelf='stretch' flex='1'>
-          <TextInput label='Enter a title' name='title' value={formState.title}
-                     onChange={(e) => formState.setTitle(e.target.value)} />
+      <FlexGridEqual gap="1.5rem" justifyContent="stretch">
+        <FlexGridItem alignSelf="stretch" flex="1">
+          <TextInput label="Enter a title" name="title" value={formState.title} onChange={(e) => formState.setTitle(e.target.value)} />
         </FlexGridItem>
       </FlexGridEqual>
 
-      <FlexGridEqual gap='1.5rem' justifyContent='stretch'>
-        <TextArea label='Enter a message' name='content' value={formState.content}
-                  onChange={(e) => formState.setContent(e.target.value)} />
+      <FlexGridEqual gap="1.5rem" justifyContent="stretch">
+        <TextArea label="Enter a message" name="content" value={formState.content} onChange={(e) => formState.setContent(e.target.value)} />
       </FlexGridEqual>
 
-      <FlexGridEqual gap='1.5rem' alignItems='center' justifyContent='flex-end'>
+      <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">
         {!!formState.link && <DisplayLink link={formState.link} />}
       </FlexGridEqual>
 
-      <FlexGridEqual gap='1.5rem' alignItems='center' justifyContent='flex-end'>
+      <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">
         <ButtonWrapper>
           <button onClick={(e) => handleSubmit(e)}>Encrypt</button>
         </ButtonWrapper>

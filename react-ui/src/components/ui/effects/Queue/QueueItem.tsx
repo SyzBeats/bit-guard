@@ -1,25 +1,39 @@
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Code, Layers, Clock, Shield, Database, Share2 } from 'react-feather';
 
-const QueueItem = ({ content, index }: any) => {
+interface Props {
+  content: string;
+  index: number;
+}
+
+const QueueItem = ({ content, index }: Props) => {
   const getIcon = (text: string) => {
     switch (text) {
-      case 'Military grade encryption':
+      case 'Military grade encryption': {
         return <Database color="white" />;
-      case 'Simple user interface':
+      }
+      case 'Simple user interface': {
         return <Code color="white" />;
-      case 'Protected secrets':
+      }
+      case 'Protected secrets': {
         return <Shield color="white" />;
-      case 'Simplified sharing function':
+      }
+      case 'Simplified sharing function': {
         return <Share2 color="white" />;
-      case 'Smart deletion':
+      }
+      case 'Smart deletion': {
         return <Layers color="white" />;
-      case 'Expiry management':
+      }
+      case 'Expiry management': {
         return <Clock color="white" />;
-      default:
+      }
+      default: {
         return null;
+      }
     }
   };
+
   return (
     <Wrapper index={index}>
       <ListIcon>{getIcon(content)}</ListIcon>
@@ -38,9 +52,9 @@ const rotate = keyframes`
   }
 `;
 
-type WrapperType = {
+interface WrapperType {
   index: number;
-};
+}
 
 const ListIcon = styled.div`
   flex: 1;
@@ -74,8 +88,6 @@ const Wrapper = styled.div<WrapperType>`
   box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
 
   font-size: 20px;
-  display: flex;
-  align-items: center;
   font-weight: 600;
   overflow: hidden;
 `;

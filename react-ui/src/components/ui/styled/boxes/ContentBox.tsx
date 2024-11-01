@@ -40,7 +40,7 @@ const Wrapper = styled.div<WrapperProps>`
   color: var(--color-grey--dark);
 
   border-radius: 0.55rem;
-  border-top: ${({ bordered }) => (bordered ? `.6rem solid` : 'none')};
+  border-top: ${({ bordered }) => (bordered ? '.6rem solid' : 'none')};
   border-color: ${({ theme, borderColor }) =>
     borderColor === 'light' ? `${theme.colors.highlight_iceblue}` : `${theme.colors.highlight_blue}`};
 

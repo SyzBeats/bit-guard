@@ -1,6 +1,16 @@
+import React, { MouseEventHandler } from 'react';
+
 import styles from './IconCard.module.scss';
 
-const IconCard = (props: any) => {
+interface CardProps {
+  color: string;
+  clickHandler: MouseEventHandler<HTMLDivElement>;
+  icon: React.ReactNode;
+  title: string;
+  content: string;
+}
+
+const IconCard = (props: CardProps) => {
   const shadowClass = [styles.shadow];
 
   shadowClass.push(styles[props.color]);

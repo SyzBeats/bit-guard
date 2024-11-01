@@ -5,7 +5,6 @@ import { useMutation } from '@apollo/client';
 
 import { useCreateSecretFormState, useSignalState } from '~/store/store';
 import { CREATE_PUBLIC_SIGNAL } from '~/graphql/mutations/signal/mutation-create-public-signal';
-
 import { FlexGridEqual } from '~/components/layout/grids/FlexGrid';
 import { FlexGridItem } from '~/components/layout/grids/FlexGridItem';
 import { DisplayLink } from '~/components/signals/DisplayLink';
@@ -59,6 +58,7 @@ const FormCreatePublicDocument = () => {
 
     if (!formState.title || !formState.content) {
       setAlert({ type: MessageTypes.ERROR, message: 'Please fill in all fields' });
+
       return;
     }
 
@@ -74,10 +74,9 @@ const FormCreatePublicDocument = () => {
 
   return (
     <Wrapper>
-      <FlexGridEqual gap='1.5rem' justifyContent='stretch'>
-        <FlexGridItem alignSelf='stretch' flex='1'>
-          <TextInput label='Enter a title' name='title' value={formState.title}
-                     onChange={(e) => formState.setTitle(e.target.value)} />
+      <FlexGridEqual gap="1.5rem" justifyContent="stretch">
+        <FlexGridItem alignSelf="stretch" flex="1">
+          <TextInput label="Enter a title" name="title" value={formState.title} onChange={(e) => formState.setTitle(e.target.value)} />
         </FlexGridItem>
       </FlexGridEqual>
 
@@ -86,11 +85,11 @@ const FormCreatePublicDocument = () => {
         handleExtension={(extension: string) => formState.setExtension(extension)}
       />
 
-      <FlexGridEqual gap='1.5rem' alignItems='center' justifyContent='flex-end'>
+      <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">
         {!!formState.link && <DisplayLink link={formState.link} />}
       </FlexGridEqual>
 
-      <FlexGridEqual gap='1.5rem' alignItems='center' justifyContent='flex-end'>
+      <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">
         <ButtonWrapper>
           <button onClick={(e) => handleSubmit(e)}>Encrypt</button>
         </ButtonWrapper>

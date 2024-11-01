@@ -4,8 +4,8 @@ import { Bell } from 'react-feather';
 const UiNotification = () => {
   return (
     <Wrapper>
-      <Bell size='28' />
-      <BellMarker aria-details='indicates notifications' />
+      <Bell size="28" />
+      <BellMarker aria-details="indicates notifications" />
     </Wrapper>
   );
 };

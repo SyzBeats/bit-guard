@@ -8,7 +8,7 @@
  *  <Container />
  * </Section>
  */
-
+import React from 'react';
 import styled from 'styled-components';
 
 interface IProps {
@@ -24,7 +24,7 @@ interface IWrapperProps {
 const BaseContainer = ({ children, padding = '10rem 2rem', anker = '' }: IProps) => {
   const forwardedProps = {
     padding,
-    'data-anker': anker ? anker : undefined,
+    'data-anker': anker || undefined,
   };
 
   return <Wrapper {...forwardedProps}>{children}</Wrapper>;

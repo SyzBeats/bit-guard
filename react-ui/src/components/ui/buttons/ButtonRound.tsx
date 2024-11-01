@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-type ButtonProps = {
+interface ButtonProps {
   onClick?: () => void;
   children?: React.ReactNode;
-};
+}
 
 const ButtonRound = ({ children, onClick = () => null }: ButtonProps) => {
   return <Wrapper onClick={onClick}>{children}</Wrapper>;

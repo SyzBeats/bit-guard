@@ -25,7 +25,6 @@ const SecretTypeSelector = () => {
 
   const { modalOpen, secretType } = state;
 
-
   /**
    * Handles the user action intent if a specific card was clicked
    * and ensures that the modal with the correct secret type is opened
@@ -37,7 +36,6 @@ const SecretTypeSelector = () => {
 
     setState({ modalOpen: !state.modalOpen, secretType: type });
   };
-
 
   return (
     <div>

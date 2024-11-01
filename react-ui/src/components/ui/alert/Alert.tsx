@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { MessageTypes } from '~/types/enums';
 
 interface AlertProps {
