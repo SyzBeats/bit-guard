@@ -44,7 +44,7 @@ const Login = () => {
           password: loginData.password,
         },
       });
-    } catch (err: unknown) {
+    } catch (err: any) {
       console.error(`[ERROR] ${err.message}`);
     }
   };
@@ -61,7 +61,7 @@ const Login = () => {
       resetForm();
     },
 
-    onError: (err: unknown) => {
+    onError: (err: any) => {
       console.error(err.message);
     },
 
