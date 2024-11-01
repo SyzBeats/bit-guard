@@ -41,10 +41,6 @@ const SecretQuery = {
 
     const user = authenticate(req);
 
-    if (!user) {
-      throw new AuthenticationError('Could not authenticate');
-    }
-
     return prisma.message.findMany({
       where: { userId: user.id },
     });

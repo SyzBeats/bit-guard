@@ -1,10 +1,10 @@
-import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 import { ApolloError } from 'apollo-server-express';
 
 import { Context } from '../../context';
 import { authenticate } from '../../auth/authenticate';
 import * as keys from '../../config/keys';
+import { verifyPassword } from '../../utility/encryption';
 
 const UserQuery = {
   /**
@@ -38,8 +38,7 @@ const UserQuery = {
       throw new ApolloError('Something went wrong');
     }
 
-    // ensure the password is correct
-    const matches = await bcrypt.compare(data.password, user.password);
+    const matches = await verifyPassword(data.password, user.password);
 
     if (!matches) {
       throw new ApolloError('Something went wrong');

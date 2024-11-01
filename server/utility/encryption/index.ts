@@ -1,4 +1,5 @@
 import * as crypto from 'crypto';
+import * as argon2 from 'argon2';
 
 import * as keys from '../../config/keys';
 import { IencryptAes256cbcOutput } from '../../types';
@@ -69,4 +70,24 @@ function decryptAes256cbc(cipher: string, key: string | undefined = undefined): 
   return decrypt + decipher.final('utf8');
 }
 
-export { decryptAes256cbc, encryptAes256cbc };
+/**
+ *
+ * @param password
+ */
+async function hashPassword(password: string): Promise<string | false> {
+  try {
+    return await argon2.hash(password);
+  } catch (e) {
+    return false;
+  }
+}
+
+async function verifyPassword(password: string, hash: string): Promise<boolean> {
+  try {
+    return await argon2.verify(hash, password);
+  } catch (e) {
+    return false;
+  }
+}
+
+export { decryptAes256cbc, encryptAes256cbc, hashPassword, verifyPassword };

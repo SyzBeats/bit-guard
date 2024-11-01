@@ -1,9 +1,9 @@
 import { UserInputError } from 'apollo-server-express';
-import * as bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 import * as keys from '../../config/keys';
 import { Context } from '../../context';
+import { hashPassword } from '../../utility/encryption';
 
 const UserMutation = {
   /**
@@ -21,7 +21,7 @@ const UserMutation = {
 
     // hashing to prevent cleartext save
     // pre save adjustments to the data
-    data.password = await bcrypt.hash(data.password, 12);
+    data.password = await hashPassword(data.password);
     data.email = data.email.toLowerCase();
 
     const user = await prisma.user.create({ data });
