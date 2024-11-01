@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ApolloError, useLazyQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 import styled from 'styled-components';
 
 import Logo from '~/components/ui/styled/image/Logo';
@@ -44,7 +44,7 @@ const Login = () => {
           password: loginData.password,
         },
       });
-    } catch (err: ApolloError) {
+    } catch (err: unknown) {
       console.error(`[ERROR] ${err.message}`);
     }
   };
@@ -61,7 +61,7 @@ const Login = () => {
       resetForm();
     },
 
-    onError: (err: ApolloError) => {
+    onError: (err: unknown) => {
       console.error(err.message);
     },
 
