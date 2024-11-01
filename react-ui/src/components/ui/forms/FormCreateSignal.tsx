@@ -15,14 +15,13 @@ import TextInput from './inputs/TextInput';
 const CreateSignal = () => {
   const addSignal = useSignalState((state) => state.addSignal);
 
-  const { setContent, setTitle, signalTitle, content, signalLink, setLink } = useCreateSecretFormState();
+  const { setContent, setTitle, title, content, link, setLink } = useCreateSecretFormState();
 
   const [createSignalMutation] = useMutation(CREATE_SIGNAL, {
-    onCompleted: ({ createSignal }) => {
-      const { id, title, link, createdAt } = createSignal;
+    onCompleted: ({ createSignal: created }) => {
 
-      addSignal({ id, title, createdAt, link: link.content });
-      setLink(link.content);
+      addSignal({ id: created.id, title: created.title, createdAt: created.createdAt, link: created.link.content });
+      setLink(created.link.content);
     },
     onError: (error) => {
       console.error(error.message);
@@ -34,7 +33,7 @@ const CreateSignal = () => {
 
     createSignalMutation({
       variables: {
-        signalTitle: signalTitle,
+        title,
         content,
       },
     });
@@ -46,7 +45,7 @@ const CreateSignal = () => {
       <HorizontalToggle />
       <FlexGridEqual gap='1.5rem' justifyContent='stretch'>
         <FlexGridItem alignSelf='stretch' flex='1'>
-          <TextInput label='title' name='title' value={signalTitle} onChange={(e) => setTitle(e.target.value)} />
+          <TextInput label='title' name='title' value={title} onChange={(e) => setTitle(e.target.value)} />
         </FlexGridItem>
       </FlexGridEqual>
 
@@ -55,7 +54,7 @@ const CreateSignal = () => {
       </FlexGridEqual>
 
       <FlexGridEqual gap='1.5rem' alignItems='center' justifyContent='flex-end'>
-        {!!signalLink && <DisplayLink link={signalLink} />}
+        {!!link && <DisplayLink link={link} />}
       </FlexGridEqual>
 
       <FlexGridEqual gap='1.5rem' alignItems='center' justifyContent='flex-end'>
@@ -71,7 +70,7 @@ const Wrapper = styled.form`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  
+
   padding: 2rem 0;
 
   h4 {

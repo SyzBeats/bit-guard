@@ -1,6 +1,7 @@
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 import { ApolloError } from 'apollo-server-express';
+
 import { Context } from '../../context';
 import { authenticate } from '../../auth/authenticate';
 import * as keys from '../../config/keys';
@@ -12,11 +13,11 @@ const UserQuery = {
   async currentUser(parent, args, ctx: Context) {
     const { prisma, req } = ctx;
 
-    const token = authenticate(req);
+    const user = authenticate(req);
 
     // query user and all the connected messages
     return prisma.user.findFirst({
-      where: { id: (token as any).id },
+      where: { id: user.id },
       include: { Message: true },
     });
   },

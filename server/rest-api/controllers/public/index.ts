@@ -8,7 +8,7 @@ const router = express.Router({ caseSensitive: false });
 
 /**
  * @GET /public/link/:token
- * @description access for non logged in users to links that
+ * @description access for non-logged-in users to links that
  * they have obtained
  */
 router.get('/link/:cipher', link.decipher);

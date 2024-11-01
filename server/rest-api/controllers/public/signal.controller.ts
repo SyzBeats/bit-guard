@@ -1,7 +1,9 @@
+import { Request, Response } from 'express';
+
 import { prisma } from '../../../lib/prisma';
 import utility from '../../../utility';
 
-const decryptAndDestroy = async (req, res) => {
+const decryptAndDestroy = async (req: Request, res: Response): Promise<Response> => {
   await prisma.$connect();
 
   const { id } = req.params;
@@ -47,7 +49,7 @@ const decryptAndDestroy = async (req, res) => {
   }
 };
 
-const decryptAndDestroyPublic = async (req, res) => {
+const decryptAndDestroyPublic = async (req: Request, res: Response): Promise<Response> => {
   await prisma.$connect();
 
   const { id } = req.params;

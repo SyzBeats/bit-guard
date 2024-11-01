@@ -7,8 +7,6 @@ import cors from 'cors';
 import options from './config/options';
 import { createContext } from './context';
 import { Query, Mutation, Message, User } from './resolvers';
-
-// Route definitions
 import _api from './rest-api/controllers';
 
 // Constants
@@ -30,7 +28,7 @@ const resolvers = {
 
 const server = new ApolloServer({
   typeDefs: gql`
-      ${fs.readFileSync(__dirname.concat('/schema.graphql'), 'utf-8')}
+    ${fs.readFileSync(__dirname.concat('/schema.graphql'), 'utf-8')}
   `,
   resolvers,
   context: ({ req }) => createContext(req),

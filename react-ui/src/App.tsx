@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import config from '~/config';
 import { theme } from '~/style/themes/theme-brand';
-
 import Dashboard from '~/components/pages/dashboard/Dashboard';
 import { HomePage } from '~/components/pages/home/HomePage';
 import { RevealPage } from '~/components/pages/reveal/RevealPage';
@@ -29,21 +28,21 @@ function App() {
         <BrowserRouter>
           <Routes>
             {/** Basic application routes */}
-            <Route path="/" element={<HomePage />} />
-            <Route path="dataprotection" element={<Dataprotection />} />
-            <Route path="imprint" element={<Imprint />} />
+            <Route path='/' element={<HomePage />} />
+            <Route path='dataprotection' element={<Dataprotection />} />
+            <Route path='imprint' element={<Imprint />} />
 
             {/** routes for public reveals */}
-            <Route path="reveal" element={<RevealPage isPublic={false} />} />
-            <Route path="reveal/:secret/:key" element={<RevealPage isPublic={false} />} />
-            <Route path="reveal/public/" element={<RevealPage isPublic={true} />} />
-            <Route path="reveal/public/:secret/:key" element={<RevealPage isPublic={true} />} />
+            <Route path='reveal' element={<RevealPage isPublic={false} />} />
+            <Route path='reveal/:secret/:key' element={<RevealPage isPublic={false} />} />
+            <Route path='reveal/public/' element={<RevealPage isPublic={true} />} />
+            <Route path='reveal/public/:secret/:key' element={<RevealPage isPublic={true} />} />
 
             {/* These features are under development */}
             {config.environment.MODE === 'development' && (
               <>
                 <Route
-                  path="/login"
+                  path='/login'
                   element={
                     <PublicOnlyRoute>
                       <Login />
@@ -51,7 +50,7 @@ function App() {
                   }
                 />
                 <Route
-                  path="/signup"
+                  path='/signup'
                   element={
                     <PublicOnlyRoute>
                       <SignUp />
@@ -59,7 +58,7 @@ function App() {
                   }
                 />
                 <Route
-                  path="/dashboard"
+                  path='/dashboard'
                   element={
                     <ProtectedRoute>
                       <Dashboard />
@@ -70,7 +69,7 @@ function App() {
             )}
 
             {/* Fallback route to homepage */}
-            <Route path="*" element={<HomePage />} />
+            <Route path='*' element={<HomePage />} />
           </Routes>
         </BrowserRouter>
       </ApolloProvider>

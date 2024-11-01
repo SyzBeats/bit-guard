@@ -5,8 +5,8 @@ import { MessageToken } from './interfaces';
  * @param data potentially a token
  * @returns true if the data is a token
  */
-function isMessageToken(data: any): data is MessageToken {
-  return !!(data.messageId && data.iat && data.exp);
+function isMessageToken(data: unknown): data is MessageToken {
+  return typeof data === 'object' && data !== null && 'messageId' in data && 'iat' in data && 'exp' in data;
 }
 
 export { isMessageToken };

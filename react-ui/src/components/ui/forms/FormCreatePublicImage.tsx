@@ -20,8 +20,8 @@ const FormCreatePublicImage = () => {
   const formState = useCreateSecretFormState(
     (state) => ({
       content: state.content,
-      title: state.signalTitle,
-      link: state.signalLink,
+      title: state.title,
+      link: state.link,
       type: state.type,
       extension: state.extension,
       setLink: state.setLink,

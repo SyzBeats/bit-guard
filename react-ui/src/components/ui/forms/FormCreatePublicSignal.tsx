@@ -23,8 +23,8 @@ const CreatePublicSignal = () => {
       setContent: state.setContent,
       setTitle: state.setTitle,
       content: state.content,
-      title: state.signalTitle,
-      link: state.signalLink,
+      title: state.title,
+      link: state.link,
     }),
     shallow,
   );

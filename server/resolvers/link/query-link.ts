@@ -1,4 +1,5 @@
 import { Link } from '@prisma/client';
+
 import { authenticate } from '../../auth/authenticate';
 import { Context } from '../../context';
 

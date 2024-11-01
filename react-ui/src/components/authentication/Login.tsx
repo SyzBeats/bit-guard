@@ -26,7 +26,7 @@ const Login = () => {
   };
 
 
-  const resetForm = () => {
+  const handleFormReset = () => {
     setLoginData({
       email: '',
       password: '',
@@ -58,7 +58,7 @@ const Login = () => {
         window.location.href = '/dashboard';
       }
 
-      resetForm();
+      handleFormReset();
     },
 
     onError: (err: any) => {

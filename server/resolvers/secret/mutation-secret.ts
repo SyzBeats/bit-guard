@@ -47,20 +47,20 @@ const SecretMutation = {
      * delete all Links related to the message
      * and delete the message itself
      */
-      // Todo: should be transactional
+    // Todo: should be transactional
     const [, deleted] = await Promise.all([
-        prisma.link.deleteMany({
-          where: {
-            messageId: data.id,
-          },
-        }),
-        prisma.message.delete({
-          where: {
-            id: data.id,
-          },
-        }),
-      ]);
-    
+      prisma.link.deleteMany({
+        where: {
+          messageId: data.id,
+        },
+      }),
+      prisma.message.delete({
+        where: {
+          id: data.id,
+        },
+      }),
+    ]);
+
     return deleted;
   },
 

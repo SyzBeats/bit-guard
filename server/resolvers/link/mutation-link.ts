@@ -2,7 +2,6 @@ import * as jwt from 'jsonwebtoken';
 
 import * as keys from '../../config/keys';
 import options from '../../config/options';
-
 import utility from '../../utility';
 import { Context } from '../../context';
 import { IcreateMessageLinkOutput, IcreateSignalLinkOutput, IDeleteLinkOutput } from '../../typings';
@@ -48,7 +47,6 @@ const LinkMutation = {
       content: `${options.server.protocol}://${options.server.host}/api/public/link/${encrypted}_IV_${IV}`,
       expiry: payLoad?.expiry ?? null,
     };
-
   },
 
   // create a one time signal link that cannot be used again

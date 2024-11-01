@@ -1,12 +1,12 @@
 import * as jwt from 'jsonwebtoken';
+import { Request, Response } from 'express';
 
 import * as keys from '../../../config/keys';
 import * as apiService from '../../services';
 import utility from '../../../utility';
-
 import { MessageToken, isMessageToken } from '../../../typings';
 
-const decipher = async (req, res) => {
+const decipher = async (req: Request, res: Response): Promise<Response> => {
   try {
     const { cipher } = req.params;
 

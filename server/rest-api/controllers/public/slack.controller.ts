@@ -1,12 +1,15 @@
+import { Request, Response } from 'express';
+
 import utility from '../../../utility';
 import { prisma } from '../../../lib/prisma';
 import { LinkMutation } from '../../../resolvers/link';
 
-const createLink = async (req, res) => {
+const createLink = async (req: Request, res: Response): Promise<unknown> => {
   const { challenge } = req.body;
 
   if (challenge) {
     res.send(utility.slack.resolveChallenge(challenge));
+
     return;
   }
 
@@ -16,6 +19,7 @@ const createLink = async (req, res) => {
   if (command === '/envite') {
     if (!text) {
       res.send(utility.slack.messageToIssuer('Usage: /envite myCoolPassword'));
+
       return;
     }
 
