@@ -4,7 +4,7 @@ import * as keys from '../../config/keys';
 import options from '../../config/options';
 import utility from '../../utility';
 import { Context } from '../../context';
-import { IcreateMessageLinkOutput, IcreateSignalLinkOutput, IDeleteLinkOutput } from '../../typings';
+import { IcreateMessageLinkOutput, IcreateSignalLinkOutput, IDeleteLinkOutput } from '../../types';
 
 const LinkMutation = {
   async createMessageLink(parent, args, ctx: Context): Promise<IcreateMessageLinkOutput> {

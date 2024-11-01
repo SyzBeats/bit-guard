@@ -1,7 +1,7 @@
 import * as crypto from 'crypto';
 
 import * as keys from '../../config/keys';
-import { IencryptAes256cbcOutput } from '../../typings';
+import { IencryptAes256cbcOutput } from '../../types';
 
 // generate a random encryption key with 16 bytes
 // as it is encoded to hexadecimal, it is 32 characters long

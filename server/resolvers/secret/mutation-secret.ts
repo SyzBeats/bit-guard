@@ -4,7 +4,7 @@ import { ApolloError, UserInputError } from 'apollo-server-express';
 import utility from '../../utility';
 import { authenticate } from '../../auth/authenticate';
 import { Context } from '../../context';
-import { ICreateSignalOutput } from '../../typings';
+import { ICreateSignalOutput } from '../../types';
 import { LinkMutation } from '../link';
 
 const SecretMutation = {

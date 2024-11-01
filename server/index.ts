@@ -1,4 +1,3 @@
-/* eslint-disable wrap-iife */
 import * as fs from 'fs';
 import express from 'express';
 import { ApolloServer, gql } from 'apollo-server-express';
@@ -6,7 +5,7 @@ import cors from 'cors';
 
 import options from './config/options';
 import { createContext } from './context';
-import { Query, Mutation, Message, User } from './resolvers';
+import resolvers from './resolvers';
 import _api from './rest-api/controllers';
 
 // Constants
@@ -18,13 +17,6 @@ app.use(cors(options.cors));
 
 // Routes
 app.use('/api/public', _api.publicRoutes);
-
-const resolvers = {
-  Query,
-  Mutation,
-  Message,
-  User,
-};
 
 const server = new ApolloServer({
   typeDefs: gql`
