@@ -71,8 +71,8 @@ function decryptAes256cbc(cipher: string, key: string | undefined = undefined): 
 }
 
 /**
- *
- * @param password
+ * @description hash the users password using the argon2 implementation
+ * @param password the password
  */
 async function hashPassword(password: string): Promise<string | false> {
   try {
@@ -82,6 +82,11 @@ async function hashPassword(password: string): Promise<string | false> {
   }
 }
 
+/**
+ * Verify the users password against the stored hash in the db
+ * @param password the entered password
+ * @param hash the stored password hash
+ */
 async function verifyPassword(password: string, hash: string): Promise<boolean> {
   try {
     return await argon2.verify(hash, password);

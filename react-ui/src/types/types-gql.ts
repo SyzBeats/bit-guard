@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
+
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K];
@@ -11,33 +12,34 @@ export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
   [SubKey in K]: Maybe<T[SubKey]>;
 };
 const defaultOptions = {};
+
 /** All built-in and custom scalars, mapped to their actual values */
-export type Scalars = {
+export interface Scalars {
   ID: string;
   String: string;
   Boolean: boolean;
   Int: number;
   Float: number;
-};
+}
 
-export type Query = {
+export interface Query {
   __typename?: 'Query';
   messagesByUser: Array<Message>;
   messageById?: Maybe<Message>;
   loginUser: AuthPayload;
   currentUser: User;
   linkByMessage: Array<Link>;
-};
+}
 
-export type QueryMessageByIdArgs = {
+export interface QueryMessageByIdArgs {
   data: MessageWhereUniqueInput;
-};
+}
 
-export type QueryLoginUserArgs = {
+export interface QueryLoginUserArgs {
   data: UserLoginInput;
-};
+}
 
-export type Mutation = {
+export interface Mutation {
   __typename?: 'Mutation';
   signupUser: User;
   deleteUser?: Maybe<User>;
@@ -45,102 +47,102 @@ export type Mutation = {
   deleteMessage?: Maybe<Message>;
   createMessageLink: Link;
   deleteLink?: Maybe<Link>;
-};
+}
 
-export type MutationSignupUserArgs = {
+export interface MutationSignupUserArgs {
   data: UserCreateInput;
-};
+}
 
-export type MutationDeleteUserArgs = {
+export interface MutationDeleteUserArgs {
   data: UserWhereUniqueInput;
-};
+}
 
-export type MutationCreateMessageArgs = {
+export interface MutationCreateMessageArgs {
   data?: Maybe<MessageCreateInput>;
-};
+}
 
-export type MutationDeleteMessageArgs = {
+export interface MutationDeleteMessageArgs {
   data: MessageWhereUniqueInput;
-};
+}
 
-export type MutationcreateMessageLinkArgs = {
+export interface MutationcreateMessageLinkArgs {
   data: LinkCreateInput;
-};
+}
 
-export type MutationDeleteLinkArgs = {
+export interface MutationDeleteLinkArgs {
   data: LinkWhereUniqueInput;
-};
+}
 
-export type Link = {
+export interface Link {
   __typename?: 'Link';
   content: Scalars['String'];
   expiry?: Maybe<Scalars['String']>;
-};
+}
 
-export type Message = {
+export interface Message {
   __typename?: 'Message';
   id: Scalars['ID'];
   content: Scalars['String'];
   links?: Maybe<Array<Link>>;
-};
+}
 
-export type User = {
+export interface User {
   __typename?: 'User';
   id: Scalars['ID'];
   email: Scalars['String'];
   name?: Maybe<Scalars['String']>;
   messages?: Maybe<Array<Message>>;
-};
+}
 
-export type Key = {
+export interface Key {
   __typename?: 'Key';
   id: Scalars['ID'];
   key: Scalars['String'];
   messageId: Scalars['ID'];
-};
+}
 
-export type AuthPayload = {
+export interface AuthPayload {
   __typename?: 'AuthPayload';
   token: Scalars['String'];
-};
+}
 
-export type UserCreateInput = {
+export interface UserCreateInput {
   email: Scalars['String'];
   password: Scalars['String'];
   name: Scalars['String'];
-};
+}
 
-export type UserLoginInput = {
+export interface UserLoginInput {
   email: Scalars['String'];
   password: Scalars['String'];
-};
+}
 
-export type KeyCreateInput = {
+export interface KeyCreateInput {
   key: Scalars['String'];
   messageId: Scalars['ID'];
-};
+}
 
-export type MessageCreateInput = {
+export interface MessageCreateInput {
   content: Scalars['String'];
   owner?: Maybe<Scalars['String']>;
-};
+}
 
-export type LinkCreateInput = {
+export interface LinkCreateInput {
   messageId: Scalars['ID'];
   expiry?: Maybe<Scalars['String']>;
-};
+}
 
-export type MessageWhereUniqueInput = {
+export interface MessageWhereUniqueInput {
   id: Scalars['ID'];
-};
+}
 
-export type LinkWhereUniqueInput = {
+export interface LinkWhereUniqueInput {
   id: Scalars['ID'];
-};
+}
 
-export type UserWhereUniqueInput = {
+export interface UserWhereUniqueInput {
   id: Scalars['ID'];
-};
+}
 
 export type createMessageLinkMutationVariables = Exact<{
   messageId: Scalars['ID'];
@@ -246,8 +248,10 @@ export function usecreateMessageLinkMutation(
   baseOptions?: Apollo.MutationHookOptions<createMessageLinkMutation, createMessageLinkMutationVariables>,
 ) {
   const options = { ...defaultOptions, ...baseOptions };
+
   return Apollo.useMutation<createMessageLinkMutation, createMessageLinkMutationVariables>(createMessageLinkDocument, options);
 }
+
 export type createMessageLinkMutationHookResult = ReturnType<typeof usecreateMessageLinkMutation>;
 export type createMessageLinkMutationResult = Apollo.MutationResult<createMessageLinkMutation>;
 export type createMessageLinkMutationOptions = Apollo.BaseMutationOptions<createMessageLinkMutation, createMessageLinkMutationVariables>;
@@ -279,8 +283,10 @@ export type DeleteLinkMutationFn = Apollo.MutationFunction<DeleteLinkMutation, D
  */
 export function useDeleteLinkMutation(baseOptions?: Apollo.MutationHookOptions<DeleteLinkMutation, DeleteLinkMutationVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
+
   return Apollo.useMutation<DeleteLinkMutation, DeleteLinkMutationVariables>(DeleteLinkDocument, options);
 }
+
 export type DeleteLinkMutationHookResult = ReturnType<typeof useDeleteLinkMutation>;
 export type DeleteLinkMutationResult = Apollo.MutationResult<DeleteLinkMutation>;
 export type DeleteLinkMutationOptions = Apollo.BaseMutationOptions<DeleteLinkMutation, DeleteLinkMutationVariables>;
@@ -313,8 +319,10 @@ export type CreateMessageMutationFn = Apollo.MutationFunction<CreateMessageMutat
  */
 export function useCreateMessageMutation(baseOptions?: Apollo.MutationHookOptions<CreateMessageMutation, CreateMessageMutationVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
+
   return Apollo.useMutation<CreateMessageMutation, CreateMessageMutationVariables>(CreateMessageDocument, options);
 }
+
 export type CreateMessageMutationHookResult = ReturnType<typeof useCreateMessageMutation>;
 export type CreateMessageMutationResult = Apollo.MutationResult<CreateMessageMutation>;
 export type CreateMessageMutationOptions = Apollo.BaseMutationOptions<CreateMessageMutation, CreateMessageMutationVariables>;
@@ -346,8 +354,10 @@ export type DeleteMessageMutationFn = Apollo.MutationFunction<DeleteMessageMutat
  */
 export function useDeleteMessageMutation(baseOptions?: Apollo.MutationHookOptions<DeleteMessageMutation, DeleteMessageMutationVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
+
   return Apollo.useMutation<DeleteMessageMutation, DeleteMessageMutationVariables>(DeleteMessageDocument, options);
 }
+
 export type DeleteMessageMutationHookResult = ReturnType<typeof useDeleteMessageMutation>;
 export type DeleteMessageMutationResult = Apollo.MutationResult<DeleteMessageMutation>;
 export type DeleteMessageMutationOptions = Apollo.BaseMutationOptions<DeleteMessageMutation, DeleteMessageMutationVariables>;
@@ -381,8 +391,10 @@ export type SignupUserMutationFn = Apollo.MutationFunction<SignupUserMutation, S
  */
 export function useSignupUserMutation(baseOptions?: Apollo.MutationHookOptions<SignupUserMutation, SignupUserMutationVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
+
   return Apollo.useMutation<SignupUserMutation, SignupUserMutationVariables>(SignupUserDocument, options);
 }
+
 export type SignupUserMutationHookResult = ReturnType<typeof useSignupUserMutation>;
 export type SignupUserMutationResult = Apollo.MutationResult<SignupUserMutation>;
 export type SignupUserMutationOptions = Apollo.BaseMutationOptions<SignupUserMutation, SignupUserMutationVariables>;
@@ -412,15 +424,20 @@ export const GetMessageByIdDocument = gql`
  */
 export function useGetMessageByIdQuery(baseOptions: Apollo.QueryHookOptions<GetMessageByIdQuery, GetMessageByIdQueryVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
+
   return Apollo.useQuery<GetMessageByIdQuery, GetMessageByIdQueryVariables>(GetMessageByIdDocument, options);
 }
+
 export function useGetMessageByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMessageByIdQuery, GetMessageByIdQueryVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
+
   return Apollo.useLazyQuery<GetMessageByIdQuery, GetMessageByIdQueryVariables>(GetMessageByIdDocument, options);
 }
+
 export type GetMessageByIdQueryHookResult = ReturnType<typeof useGetMessageByIdQuery>;
 export type GetMessageByIdLazyQueryHookResult = ReturnType<typeof useGetMessageByIdLazyQuery>;
 export type GetMessageByIdQueryResult = Apollo.QueryResult<GetMessageByIdQuery, GetMessageByIdQueryVariables>;
+
 export const GetMessageByUserDocument = gql`
   query GetMessageByUser {
     messagesByUser {
@@ -450,14 +467,18 @@ export const GetMessageByUserDocument = gql`
  */
 export function useGetMessageByUserQuery(baseOptions?: Apollo.QueryHookOptions<GetMessageByUserQuery, GetMessageByUserQueryVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
+
   return Apollo.useQuery<GetMessageByUserQuery, GetMessageByUserQueryVariables>(GetMessageByUserDocument, options);
 }
+
 export function useGetMessageByUserLazyQuery(
   baseOptions?: Apollo.LazyQueryHookOptions<GetMessageByUserQuery, GetMessageByUserQueryVariables>,
 ) {
   const options = { ...defaultOptions, ...baseOptions };
+
   return Apollo.useLazyQuery<GetMessageByUserQuery, GetMessageByUserQueryVariables>(GetMessageByUserDocument, options);
 }
+
 export type GetMessageByUserQueryHookResult = ReturnType<typeof useGetMessageByUserQuery>;
 export type GetMessageByUserLazyQueryHookResult = ReturnType<typeof useGetMessageByUserLazyQuery>;
 export type GetMessageByUserQueryResult = Apollo.QueryResult<GetMessageByUserQuery, GetMessageByUserQueryVariables>;
@@ -494,12 +515,16 @@ export const CurrentUserDocument = gql`
  */
 export function useCurrentUserQuery(baseOptions?: Apollo.QueryHookOptions<CurrentUserQuery, CurrentUserQueryVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
+
   return Apollo.useQuery<CurrentUserQuery, CurrentUserQueryVariables>(CurrentUserDocument, options);
 }
+
 export function useCurrentUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CurrentUserQuery, CurrentUserQueryVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
+
   return Apollo.useLazyQuery<CurrentUserQuery, CurrentUserQueryVariables>(CurrentUserDocument, options);
 }
+
 export type CurrentUserQueryHookResult = ReturnType<typeof useCurrentUserQuery>;
 export type CurrentUserLazyQueryHookResult = ReturnType<typeof useCurrentUserLazyQuery>;
 export type CurrentUserQueryResult = Apollo.QueryResult<CurrentUserQuery, CurrentUserQueryVariables>;

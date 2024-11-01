@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
-import { PropsChildren } from '~/types/types.components';
+import { PropsChildren } from '~/types/types-components';
 
 const Section = ({ children }: PropsChildren) => {
   return <Wrapper>{children}</Wrapper>;
 };
-
 
 // --- Styled components ---
 

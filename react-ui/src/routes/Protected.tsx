@@ -1,9 +1,7 @@
-// protected route
-
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { PropsChildren } from '../types/types.components';
+import { PropsChildren } from '~/types/types-components';
 
 const ProtectedRoute = (props: PropsChildren) => {
   const navigate = useNavigate();

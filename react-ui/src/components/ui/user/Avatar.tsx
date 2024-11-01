@@ -2,13 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 import config from '../../../config';
-import { AvatarType } from '~/types/types-components';
 import Logo from '../styled/image/Logo';
+
+import { AvatarType } from '~/types/types-components';
 
 const Avatar = ({ src, alt }: AvatarType) => {
   // in production mode, we currently use the default avatar
   if (config.environment.MODE !== 'development') {
-    return <Logo width='3rem' />;
+    return <Logo width="3rem" />;
   }
 
   return (
@@ -19,6 +20,7 @@ const Avatar = ({ src, alt }: AvatarType) => {
 };
 
 //  --- Styled components ---
+
 const Wrapper = styled.div`
   width: 4rem;
   height: 4rem;
