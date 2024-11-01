@@ -12,9 +12,11 @@ const Avatar = ({ src, alt }: AvatarType) => {
     return <Logo width="3rem" />;
   }
 
+  console.log(src);
+
   return (
     <Wrapper>
-      <Image src={src} alt={alt} />
+      <Image src={src || 'https://www.thispersondoesnotexist.com/'} alt={alt} />
     </Wrapper>
   );
 };

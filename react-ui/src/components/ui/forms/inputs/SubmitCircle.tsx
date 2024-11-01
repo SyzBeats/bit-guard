@@ -11,8 +11,8 @@ const SubmitCircle = () => {
 };
 
 const ButtonWrapper = styled.button`
+  margin-top: 2rem;
   display: flex;
-
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -23,7 +23,7 @@ const ButtonWrapper = styled.button`
   width: 5rem;
   height: 5rem;
 
-  background: ${({ theme }) => theme.gradients.login};
+  background: ${({ theme }) => theme.gradients.bluepurp};
   color: #fff;
   box-shadow: ${({ theme }) => theme.shadows.card_1};
   transition: all 0.1s ease-in-out;

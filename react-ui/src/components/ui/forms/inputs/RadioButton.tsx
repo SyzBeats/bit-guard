@@ -11,14 +11,14 @@ interface WrapperProps {
   checked: boolean;
 }
 
-interface OuterCirlceProps {
+interface OuterCircleProps {
   checked: boolean;
 }
 
 const RadioButton = ({ onClick, checked = false, label = '' }: Props) => {
   return (
     <Wrapper checked={checked} onClick={() => onClick()}>
-      <OuterCirlce checked={checked}>{checked && <InnerCircle />}</OuterCirlce>
+      <OuterCircle checked={checked}>{checked && <InnerCircle />}</OuterCircle>
       <span>{label}</span>
     </Wrapper>
   );
@@ -44,7 +44,7 @@ const Wrapper = styled.span<WrapperProps>`
   }
 `;
 
-const OuterCirlce = styled.div<OuterCirlceProps>`
+const OuterCircle = styled.div<OuterCircleProps>`
   width: 2rem;
   height: 2rem;
   border-radius: 50%;

@@ -3,6 +3,7 @@ import { Copy, Check } from 'react-feather';
 import styled from 'styled-components';
 
 import services from '../../services';
+
 import { useSignalState } from '~/store/store';
 
 interface Props {
@@ -17,7 +18,7 @@ const DisplayLink = ({ link }: Props) => {
   const signalState = useSignalState((state) => ({ linkCopied: state.linkCopied, setLinkCopied: state.setLinkCopied }));
 
   const handleClick = () => {
-    services.ui.copyLinkToClipboard(link);
+    services.ui.copyLinkToClipboard(link).catch((e) => console.error(e));
     signalState.setLinkCopied(true);
   };
 

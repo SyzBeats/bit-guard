@@ -3,8 +3,12 @@ import styled from 'styled-components';
 
 import { PropsChildren } from '~/types/types-components';
 
-const NavigationButton = ({ children }: PropsChildren) => {
-  return <Button>{children}</Button>;
+interface Props extends PropsChildren {
+  action?: Function;
+}
+
+const NavigationButton = ({ children, action }: Props) => {
+  return <Button onClick={() => action?.()}>{children}</Button>;
 };
 
 // --- Styled components ---

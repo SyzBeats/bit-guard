@@ -10,9 +10,9 @@ const scrollToElement = (element: string) => {
 };
 
 // copy a text to the users clipboard
-const copyLinkToClipboard = (link: string) => {
+const copyLinkToClipboard = async (link: string) => {
   if (navigator?.clipboard) {
-    navigator.clipboard.writeText(link);
+    await navigator.clipboard.writeText(link);
   }
 };
 

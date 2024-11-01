@@ -1,36 +1,48 @@
 import styled from 'styled-components';
-import { Activity, Home, Lock as LockIcon, Sliders } from 'react-feather';
+import { Activity, Home, Lock as LockIcon, Sliders, LogOut } from 'react-feather';
 
 import NavigationButton from '../buttons/NavigationButton';
 import Avatar from '../user/Avatar';
 import UiNotification from './UiNotification';
 
-const Sidebar = () => (
-  <Wrapper>
-    <Avatar src="https://source.unsplash.com/random" alt="avatar" />
-    <UpperSection>
-      <NavigationButton>
-        <Home />
-      </NavigationButton>
+const Sidebar = () => {
+  const handleLogOut = () => {
+    localStorage.removeItem('token');
 
-      <NavigationButton>
-        <Activity />
-      </NavigationButton>
+    window.location.href = '/';
+  };
 
-      <NavigationButton>
-        <LockIcon />
-      </NavigationButton>
+  return (
+    <Wrapper>
+      <Avatar src="" alt="avatar" />
+      <UpperSection>
+        <NavigationButton>
+          <Home />
+        </NavigationButton>
 
-      <NavigationButton>
-        <Sliders />
-      </NavigationButton>
-    </UpperSection>
+        <NavigationButton>
+          <Activity />
+        </NavigationButton>
 
-    <LowerSection>
-      <UiNotification />
-    </LowerSection>
-  </Wrapper>
-);
+        <NavigationButton>
+          <LockIcon />
+        </NavigationButton>
+
+        <NavigationButton>
+          <Sliders />
+        </NavigationButton>
+      </UpperSection>
+
+      <LowerSection>
+        <NavigationButton action={handleLogOut}>
+          <LogOut />
+        </NavigationButton>
+
+        <UiNotification />
+      </LowerSection>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.header`
   padding: 2rem 0.25rem;
@@ -42,7 +54,7 @@ const Wrapper = styled.header`
 
   background: ${({ theme }) => theme.colors.background};
   color: ${({ theme }) => theme.colors.highlight_iceblue};
-  box-shadow: 3px 0px 9px #1115;
+  box-shadow: 3px 0 9px #1115;
 
   font-weight: 300;
   font-size: 1.8rem;

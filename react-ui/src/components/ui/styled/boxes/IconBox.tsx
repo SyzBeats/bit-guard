@@ -52,13 +52,11 @@ const IconBox = ({ type, title, content, textColor }: IconBoxType) => {
 };
 
 const Box = styled.div`
-  background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-
   flex-direction: column;
-
+  background: #fff;
   box-shadow: ${({ theme }) => theme.shadows.card_1};
   border-radius: 1rem;
   padding: 0.75rem;

@@ -34,7 +34,6 @@ const SignUp = () => {
     });
   };
 
-
   // change handler for form fields
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -73,7 +72,6 @@ const SignUp = () => {
     });
   };
 
-
   // Mutation Hooks
   const [signup] = useMutation(SIGNUP_USER, {
     onCompleted: ({ signupUser }) => {
@@ -96,54 +94,54 @@ const SignUp = () => {
     <Wrapper>
       <SignUpBox>
         <Logo />
-        <form method='POST' onSubmit={(e) => handleSubmit(e)}>
-          <SecondaryTitle color='dark'>Create your account</SecondaryTitle>
+        <form method="POST" onSubmit={(e) => handleSubmit(e)}>
+          <SecondaryTitle color="dark">Create your account</SecondaryTitle>
 
           <label>
             Name
             <Input
-              name='name'
-              type='text'
+              name="name"
+              type="text"
               changeHandler={(e) => handleInputChange(e)}
               value={data.name}
               required={true}
-              autocomplete='name'
+              autocomplete="name"
             />
           </label>
 
           <label>
             Email
             <Input
-              name='email'
-              type='email'
+              name="email"
+              type="email"
               changeHandler={(e) => handleInputChange(e)}
               value={data.email}
               required={true}
-              autocomplete='email'
+              autocomplete="email"
             />
           </label>
 
           <label>
             Password
             <Input
-              name='password'
+              name="password"
               changeHandler={(e) => handleInputChange(e)}
               value={data.password}
-              type='password'
+              type="password"
               required={true}
-              autocomplete='new-password'
+              autocomplete="new-password"
             />
           </label>
 
           <label>
             Confirm Password
             <Input
-              name='confirmPassword'
+              name="confirmPassword"
               changeHandler={(e) => handleInputChange(e)}
               value={data.confirmPassword}
-              type='password'
+              type="password"
               required={true}
-              autocomplete='new-password'
+              autocomplete="new-password"
             />
           </label>
 
@@ -155,7 +153,6 @@ const SignUp = () => {
     </Wrapper>
   );
 };
-
 
 // --- Styled components ---
 const Wrapper = styled.div`
@@ -173,7 +170,8 @@ const Wrapper = styled.div`
 const SignUpBox = styled.div`
   width: 40rem;
   min-height: 50rem;
-  background: ${({ theme }) => theme.colors.white};
+  height: auto;
+  background: ${({ theme }) => theme.colors.blue_dark};
   border-radius: 0.5rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
   padding: 2rem;
@@ -189,7 +187,12 @@ const SignUpBox = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 3rem;
+    gap: 1.75rem;
+  }
+
+  label {
+    font-size: 1.45rem;
+    color: ${({ theme }) => theme.colors.white_50};
   }
 `;
 

@@ -5,6 +5,7 @@ import { Trash } from 'react-feather';
 import { shallow } from 'zustand/shallow';
 
 import services from '../../services';
+
 import { useSignalState } from '~/store/store';
 import { DELETE_SIGNAL } from '~/graphql/mutations/signal/mutation-delete-signal';
 
@@ -19,12 +20,14 @@ interface IProps {
 const Signal = ({ signal }: IProps) => {
   const { id, title, createdAt } = signal;
 
+  // State
   const signalState = useSignalState((state) => ({ removeSignal: state.removeSignal }), shallow);
 
+  // Hooks
   const [deleteSignal] = useMutation(DELETE_SIGNAL, {
     onCompleted: (data) => {
       if (!data?.deleteSignal?.id) {
-        console.error('[ERROR] Couldn\'t delete signal');
+        console.error("[ERROR] Couldn't delete signal");
       }
 
       signalState.removeSignal(data?.deleteSignal?.id);
@@ -34,8 +37,15 @@ const Signal = ({ signal }: IProps) => {
     },
   });
 
+  // Handler
   const handleDelete = (): void => {
     if (!id) {
+      return;
+    }
+
+    const confirm = window.confirm('Are you sure?');
+
+    if (!confirm) {
       return;
     }
 
@@ -61,7 +71,7 @@ const Signal = ({ signal }: IProps) => {
       </MessageContent>
 
       <MessageActions>
-        <Trash size={20} color='#01141F' onClick={() => handleDelete()} />
+        <Trash size={20} color="#01141F" onClick={() => handleDelete()} />
       </MessageActions>
     </Wrapper>
   );

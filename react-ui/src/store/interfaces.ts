@@ -1,10 +1,18 @@
+type SignalMimeType = 'text' | 'image' | 'video' | 'audio' | 'file';
+
+interface Signal {
+  id: string;
+  title: string;
+  message: string;
+}
+
 interface SignalState {
-  signals: any[];
+  signals: Signal[];
   linkCopied: boolean;
   setLinkCopied: (linkCopied: boolean) => void;
-  setSignals: (signals: any[]) => void;
-  addSignal: (signal: any) => void;
-  removeSignal: (signal: any) => void;
+  setSignals: (signals: Signal[]) => void;
+  addSignal: (signal: Signal) => void;
+  removeSignal: (signal: string) => void;
 }
 
 interface AuthState {
@@ -12,9 +20,6 @@ interface AuthState {
   login: () => void;
   logout: () => void;
 }
-
-// TODO: move to a separate file for types
-type SignalMimeType = 'text' | 'image' | 'video' | 'audio' | 'file';
 
 interface CreateSecretFormState {
   selection: 'signal' | 'message';

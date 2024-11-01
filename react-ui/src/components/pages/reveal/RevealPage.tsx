@@ -3,17 +3,17 @@ import { useParams } from 'react-router-dom';
 import { Copy, CheckCircle } from 'react-feather';
 import styled from 'styled-components';
 
+import { RevealBox } from './RevealBox';
+
 import Logo from '~/components/ui/styled/image/Logo';
 import Footer from '~/components/layout/generic/footer/Footer';
 import CallToAction from '~/components/pages/home/CallToAction';
 import { SectionBackground, SectionBase } from '~/components/ui/styled/sections';
-import { RevealBox } from './RevealBox';
 import { BaseContainer } from '~/components/ui/containers/BaseContainer';
 import { SkeletonArticle } from '~/components/ui/skeletons/SkeletonArticle';
 import { ButtonWrapper } from '~/components/ui/buttons/ButtonWrapper';
 import Button from '~/components/ui/buttons/Button';
 import { SignalMimeType } from '~/store/interfaces';
-
 import services from '~/services';
 import config from '~/config/environment';
 
@@ -32,10 +32,8 @@ const RevealPage = ({ isPublic }: Props) => {
     loading: true,
   });
 
-
   // Refs
   const mounted = useRef(false);
-
 
   // Constants
   const params = useParams();
@@ -43,7 +41,6 @@ const RevealPage = ({ isPublic }: Props) => {
   const queryPath = isPublic ? 'api/public/publicSignal' : 'api/public/signal';
 
   const endpoint = `${config.API_URL}/${queryPath}/${params.secret}?key=${params.key}`;
-
 
   // Data fetching
   const fetchData = useCallback(async () => {
@@ -69,7 +66,6 @@ const RevealPage = ({ isPublic }: Props) => {
     }
   }, []);
 
-
   // Effects
   useEffect(() => {
     if (!params.secret || !params.key) {
@@ -86,7 +82,6 @@ const RevealPage = ({ isPublic }: Props) => {
       mounted.current = true;
     }
   }, [fetchData]);
-
 
   // render the content above the reveal box
   const getInfoContent = (): React.ReactNode => {
@@ -121,8 +116,7 @@ const RevealPage = ({ isPublic }: Props) => {
     return (
       <>
         <RevealTitle>{revealed.title}</RevealTitle>
-        <RevealBox type={revealed.type} message={revealed.message || 'No message found...'}
-                   extension={revealed.extension} />
+        <RevealBox type={revealed.type} message={revealed.message || 'No message found...'} extension={revealed.extension} />
       </>
     );
   };
@@ -140,12 +134,12 @@ const RevealPage = ({ isPublic }: Props) => {
       <ButtonWrapper>
         <Button
           onClick={() => {
-            services.ui.copyLinkToClipboard(revealed?.message ?? '');
+            services.ui.copyLinkToClipboard(revealed?.message ?? '').catch((e) => console.error(e));
             setCopied(true);
           }}
           content={
             <>
-              {copied ? <CheckCircle color='#6cdf8f' size={20} /> : <Copy size={20} />}
+              {copied ? <CheckCircle color="#6cdf8f" size={20} /> : <Copy size={20} />}
               <span>{copied ? 'Copied!' : 'Copy secret'}</span>
             </>
           }
@@ -154,13 +148,12 @@ const RevealPage = ({ isPublic }: Props) => {
     );
   };
 
-
   return (
     <>
       <SectionBackground>
-        <BaseContainer padding='5rem 2rem'>
+        <BaseContainer padding="5rem 2rem">
           <FlexWrapper>
-            <Logo width='5rem' />
+            <Logo width="5rem" />
           </FlexWrapper>
           {getInfoContent()}
           {getRevealContent()}

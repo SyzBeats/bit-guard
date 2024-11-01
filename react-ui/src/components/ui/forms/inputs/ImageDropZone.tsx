@@ -15,22 +15,23 @@ const ImageDropZone = (props: IProps) => {
   // File selection handler
   const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      const file = e.target.files[0];
+      const selectedFile = e.target.files[0];
       // max 1024Kbit
-      if (file.size > 512 * 1024) {
+      if (selectedFile.size > 512 * 1024) {
         alert('File is too big! Max 512 Kb');
+
         return;
       }
 
-      setFile(file);
+      setFile(selectedFile);
 
       // create Buffer from file
       const reader = new FileReader();
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(selectedFile);
 
       reader.onload = () => {
         props.handleContent(reader.result as string);
-        props.handleExtension(file.type.split('/')[1]);
+        props.handleExtension(selectedFile.type.split('/')[1]);
       };
     }
   };

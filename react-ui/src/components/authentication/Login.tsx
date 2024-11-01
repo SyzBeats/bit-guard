@@ -17,7 +17,6 @@ const Login = () => {
     password: '',
   });
 
-
   // Handlers
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -25,14 +24,12 @@ const Login = () => {
     setLoginData((prev) => ({ ...prev, [name]: value }));
   };
 
-
   const handleFormReset = () => {
     setLoginData({
       email: '',
       password: '',
     });
   };
-
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     try {
@@ -49,7 +46,6 @@ const Login = () => {
     }
   };
 
-
   const [loginQuery, { loading, data, error }] = useLazyQuery(LOGIN_USER, {
     onCompleted: (res) => {
       if (res?.loginUser?.token) {
@@ -64,25 +60,23 @@ const Login = () => {
     onError: (err: any) => {
       console.error(err.message);
     },
-
   });
-
 
   // Content
   return (
     <Wrapper>
       <LoginBox>
         <Logo />
-        <form method='POST' onSubmit={(e) => handleSubmit(e)}>
-          <SecondaryTitle color='dark'>Enter your credentials</SecondaryTitle>
+        <form method="POST" onSubmit={(e) => handleSubmit(e)}>
+          <SecondaryTitle color="dark">Enter your credentials</SecondaryTitle>
 
           <label>
             Email
             <Input
-              name='email'
-              autocomplete='email'
+              name="email"
+              autocomplete="email"
               required={true}
-              type='text'
+              type="text"
               changeHandler={(e) => handleChange(e)}
               value={loginData.email}
             />
@@ -91,12 +85,12 @@ const Login = () => {
           <label>
             Password
             <Input
-              name='password'
+              name="password"
               required={true}
               changeHandler={(e) => handleChange(e)}
               value={loginData.password}
-              type='password'
-              autocomplete='current-password'
+              type="password"
+              autocomplete="current-password"
             />
           </label>
 
@@ -107,7 +101,7 @@ const Login = () => {
 
         {error && <Alert message={error.message} type={MessageTypes.ERROR} />}
 
-        {data && <Alert message='Success' type={MessageTypes.SUCCESS} />}
+        {data && <Alert message="Success" type={MessageTypes.SUCCESS} />}
       </LoginBox>
     </Wrapper>
   );
@@ -131,7 +125,7 @@ const LoginBox = styled.div`
   width: 40rem;
   min-height: 50rem;
   height: auto;
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.blue_dark};
   border-radius: 0.5rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
   padding: 2rem;
@@ -147,7 +141,12 @@ const LoginBox = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 3rem;
+    gap: 1.75rem;
+  }
+
+  label {
+    font-size: 1.45rem;
+    color: ${({ theme }) => theme.colors.white_50};
   }
 `;
 

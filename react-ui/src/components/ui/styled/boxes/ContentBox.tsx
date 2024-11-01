@@ -23,6 +23,7 @@ const ContentBox = ({ title = '', children, bordered = false, borderColor = 'lig
   );
 };
 
+// --- Styled components ---
 const Wrapper = styled.div<WrapperProps>`
   display: flex;
   justify-items: center;
