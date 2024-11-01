@@ -3,7 +3,6 @@ import { prisma } from '../../../lib/prisma';
 import { LinkMutation } from '../../../resolvers/link';
 
 const createLink = async (req, res) => {
-  // This is called to authentify the App
   const { challenge } = req.body;
 
   if (challenge) {
@@ -20,9 +19,9 @@ const createLink = async (req, res) => {
       return;
     }
 
-    await prisma.$connect();
-
     try {
+      await prisma.$connect();
+
       // encrypt the signal with a random key that is not known by anyone
       const { encrypted, IV, key } = utility.encryption.encryptAes256cbc(text, true);
 
@@ -35,7 +34,7 @@ const createLink = async (req, res) => {
       });
 
       if (!signal) {
-        throw new Error('Signal could not be created');
+        return res.send(utility.slack.messageToIssuer('Signal could not be created'));
       }
 
       const linkPayload = {
@@ -50,7 +49,7 @@ const createLink = async (req, res) => {
       const link = await LinkMutation.createSignalLink(linkPayload, true);
 
       if (!link) {
-        throw new Error('Link could not be created');
+        return res.send(utility.slack.messageToIssuer('Link for signal could not be created'));
       }
 
       res.json(utility.slack.messageToChannel(`Secret: ${link}. This link can be opened only once!`));

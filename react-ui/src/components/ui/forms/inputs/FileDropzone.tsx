@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { File } from 'react-feather';
+import React, { useState } from 'react';
+import { File as FileIcon } from 'react-feather';
 
 import styles from './FileDropzone.module.scss';
 
@@ -15,22 +15,22 @@ const FileDropzone = (props: IProps) => {
   // File selection handler
   const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      const file = e.target.files[0];
-      // max 1024Kbit
-      if (file.size > 512 * 1024) {
+      const currentFile = e.target.files[0];
+      // max 1024KBit
+      if (currentFile.size > 512 * 1024) {
         alert('File is too big! Max 512 Kb');
         return;
       }
 
-      setFile(file);
+      setFile(currentFile);
 
       // create Buffer from file
       const reader = new FileReader();
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(currentFile);
 
       reader.onload = () => {
         props.handleContent(reader.result as string);
-        props.handleExtension(file.type.split('/')[1]);
+        props.handleExtension(currentFile.type.split('/')[1]);
       };
     }
   };
@@ -47,10 +47,11 @@ const FileDropzone = (props: IProps) => {
     <div className={classes.join(' ')}>
       <label>
         <div className={styles.labelText}>
-          <File size="30" />
+          <FileIcon size='30' />
           {file ? <p>{file.name}</p> : <p>Select a document (Max 512 Kb)</p>}
         </div>
-        <input type="file" onChange={handleFile} accept="application/pdf" />
+
+        <input type='file' onChange={handleFile} accept='application/pdf' />
       </label>
     </div>
   );

@@ -5,11 +5,9 @@ const Message = {
     const { prisma } = context;
 
     // return only links that belong to the parent
-    const links = await prisma.link.findMany({
+    return prisma.link.findMany({
       where: { messageId: parent.id },
     });
-
-    return links;
   },
 };
 export { Message };

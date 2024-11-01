@@ -14,48 +14,41 @@ const SecretMutation = {
    * and connects it to the owner of the message
    */
   async createMessage(parent, args, ctx: Context): Promise<Message> {
-    try {
-      const { data } = args;
-      const { prisma, req } = ctx;
-      const token = authenticate(req);
+    const { data } = args;
+    const { prisma, req } = ctx;
 
-      // encrypt the message
-      const { encrypted, IV } = utility.encryption.encryptAes256cbc(data.content);
+    const user = authenticate(req);
 
-      // create message with connection to owner in database
-      const message = await prisma.message.create({
-        data: {
-          title: data.title,
-          content: `${encrypted}_IV_${IV}`,
-          owner: { connect: { id: (token as any).id } },
-        },
-      });
+    // Encrypt the message
+    const { encrypted, IV } = utility.encryption.encryptAes256cbc(data.content);
 
-      return message;
-    } catch (error) {
-      return error;
-    }
+    // create message with connection to owner in database
+    return prisma.message.create({
+      data: {
+        title: data.title,
+        content: `${encrypted}_IV_${IV}`,
+        owner: { connect: { id: user.id } },
+      },
+    });
   },
 
   /**
    * @protected
    * @description: creates a new message and link that can be used to store
    * a message that is encrypted with a key that is known by the recipient.
-   *
-   * @todo password protection
    */
   async deleteMessage(parent, args, ctx: Context): Promise<Message> {
-    try {
-      const { data } = args;
-      const { prisma, req } = ctx;
+    const { data } = args;
+    const { prisma, req } = ctx;
 
-      authenticate(req);
+    authenticate(req);
 
-      /**
-       * delete all Links related to the message
-       * and delete the message itself
-       */
-      const [, deleted] = await Promise.all([
+    /**
+     * delete all Links related to the message
+     * and delete the message itself
+     */
+      // Todo: should be transactional
+    const [, deleted] = await Promise.all([
         prisma.link.deleteMany({
           where: {
             messageId: data.id,
@@ -67,11 +60,8 @@ const SecretMutation = {
           },
         }),
       ]);
-
-      return deleted;
-    } catch (error) {
-      throw new UserInputError('[Error]: Something went wrong deleting this message');
-    }
+    
+    return deleted;
   },
 
   /**
@@ -80,57 +70,57 @@ const SecretMutation = {
    * to any recipient.
    */
   async createSignal(parent, args, ctx: Context): Promise<ICreateSignalOutput> {
-    try {
-      const { data } = args;
-      const { prisma, req } = ctx;
+    const { data } = args;
+    const { prisma, req } = ctx;
 
-      const token = authenticate(req);
-
-      // encrypt the signal with a random key that is not known by anyone
-      const { encrypted, IV, key } = utility.encryption.encryptAes256cbc(data.content, true);
-
-      const type = data.type || 'text';
-      const extension = data.extension || 'txt';
-
-      // create signal with connection to owner in database
-      const signal = await prisma.signal.create({
-        data: {
-          content: `${encrypted}_IV_${IV}`,
-          title: data.title,
-          owner: { connect: { id: (token as any).id } },
-          type,
-          extension,
-        },
-      });
-
-      if (!signal) {
-        throw new ApolloError('Signal creation failed');
-      }
-
-      const linkPayload = {
-        data: {
-          signalId: signal.id,
-          key,
-          IV,
-        },
-      };
-
-      // create a new link with the message
-      const link = await LinkMutation.createSignalLink(linkPayload);
-
-      if (!link) {
-        throw new ApolloError('Link creation failed');
-      }
-
-      return {
-        id: signal.id,
-        title: signal.title,
-        createdAt: signal.createdAt,
-        link,
-      };
-    } catch (error) {
-      return error;
+    if (!data) {
+      throw new UserInputError('Cannot create signal without input information');
     }
+
+    const user = authenticate(req);
+
+    // encrypt the signal with a random key that is not known by anyone
+    const { encrypted, IV, key } = utility.encryption.encryptAes256cbc(data.content, true);
+
+    const type = data.type || 'text';
+    const extension = data.extension || 'txt';
+
+    // create signal with connection to owner in database
+    const signal = await prisma.signal.create({
+      data: {
+        content: `${encrypted}_IV_${IV}`,
+        title: data.title,
+        owner: { connect: { id: user.id } },
+        type,
+        extension,
+      },
+    });
+
+    if (!signal) {
+      throw new ApolloError('Signal creation failed');
+    }
+
+    const linkPayload = {
+      data: {
+        signalId: signal.id,
+        key,
+        IV,
+      },
+    };
+
+    // create a new link with the message
+    const link = await LinkMutation.createSignalLink(linkPayload);
+
+    if (!link) {
+      throw new ApolloError('Link creation failed');
+    }
+
+    return {
+      id: signal.id,
+      title: signal.title,
+      createdAt: signal.createdAt,
+      link,
+    };
   },
 
   /**
@@ -140,22 +130,20 @@ const SecretMutation = {
    * user should be able to delete it.
    */
   async deleteSignal(parent, args, ctx: Context): Promise<Signal | null> {
-    try {
-      const { data } = args;
-      const { prisma, req } = ctx;
+    const { data } = args;
+    const { prisma, req } = ctx;
 
-      authenticate(req);
-
-      const deleted = await prisma.signal.delete({
-        where: {
-          id: data.id,
-        },
-      });
-
-      return deleted;
-    } catch (error) {
-      throw new UserInputError('[Error]: Something went wrong deleting this signal');
+    if (!data.id) {
+      throw new UserInputError('No ID was provided to delete signal');
     }
+
+    authenticate(req);
+
+    return prisma.signal.delete({
+      where: {
+        id: data.id,
+      },
+    });
   },
 
   /**
@@ -163,54 +151,50 @@ const SecretMutation = {
    * to be authenticated.
    */
   async createPublicSignal(parent, args, ctx: Context): Promise<ICreateSignalOutput> {
-    try {
-      const { data } = args;
-      const { prisma } = ctx;
+    const { data } = args;
+    const { prisma } = ctx;
 
-      // encrypt the signal with a random key that is not known by anyone
-      const { encrypted, IV, key } = utility.encryption.encryptAes256cbc(data.content, true);
+    // encrypt the signal with a random key that is not known by anyone
+    const { encrypted, IV, key } = utility.encryption.encryptAes256cbc(data.content, true);
 
-      const type = data.type || 'text';
-      const extension = data.extension || 'txt';
+    const type = data.type || 'text';
+    const extension = data.extension || 'txt';
 
-      // create signal with connection to owner in database
-      const signal = await prisma.publicSignal.create({
-        data: {
-          content: `${encrypted}_IV_${IV}`,
-          title: data.title,
-          type,
-          extension,
-        },
-      });
+    // create signal with connection to owner in database
+    const signal = await prisma.publicSignal.create({
+      data: {
+        content: `${encrypted}_IV_${IV}`,
+        title: data.title,
+        type,
+        extension,
+      },
+    });
 
-      if (!signal) {
-        throw new ApolloError('Signal could not be created');
-      }
-
-      const linkPayload = {
-        data: {
-          signalId: signal.id,
-          key,
-          IV,
-        },
-      };
-
-      // create a new link with the message
-      const link = await LinkMutation.createSignalLink(linkPayload, true);
-
-      if (!link) {
-        throw new ApolloError('Link could not be created');
-      }
-
-      return {
-        id: signal.id,
-        title: signal.title,
-        createdAt: signal.createdAt,
-        link,
-      };
-    } catch (error) {
-      return error;
+    if (!signal) {
+      throw new ApolloError('Signal could not be created');
     }
+
+    const linkPayload = {
+      data: {
+        signalId: signal.id,
+        key,
+        IV,
+      },
+    };
+
+    // create a new link with the message
+    const link = await LinkMutation.createSignalLink(linkPayload, true);
+
+    if (!link) {
+      throw new ApolloError('Link could not be created');
+    }
+
+    return {
+      id: signal.id,
+      title: signal.title,
+      createdAt: signal.createdAt,
+      link,
+    };
   },
 };
 

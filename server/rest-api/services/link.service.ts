@@ -18,13 +18,11 @@ const findAndDecrypt = async (data: MessageToken) => {
     });
 
     if (!message) {
-      throw new Error('The message does not exist');
+      return null;
     }
 
     // get the Message content
-    const decryptedMessage = utility.encryption.decryptAes256cbc(message.content);
-
-    return decryptedMessage;
+    return utility.encryption.decryptAes256cbc(message.content);
   } catch (error) {
     throw error;
   } finally {

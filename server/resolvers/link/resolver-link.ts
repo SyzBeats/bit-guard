@@ -1,3 +1,0 @@
-const Link = {};
-
-export { Link };

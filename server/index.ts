@@ -6,30 +6,31 @@ import cors from 'cors';
 
 import options from './config/options';
 import { createContext } from './context';
-import { Query, Mutation, Message, Link, User } from './resolvers';
+import { Query, Mutation, Message, User } from './resolvers';
 
-// routes
+// Route definitions
 import _api from './rest-api/controllers';
 
-// constants
+// Constants
 const app = express();
 
-// middleware
+// Middleware
 app.use(express.json({ limit: options.server.limit }));
 app.use(cors(options.cors));
+
+// Routes
 app.use('/api/public', _api.publicRoutes);
 
 const resolvers = {
   Query,
   Mutation,
   Message,
-  Link,
   User,
 };
 
 const server = new ApolloServer({
   typeDefs: gql`
-    ${fs.readFileSync(__dirname.concat('/schema.graphql'), 'utf-8')}
+      ${fs.readFileSync(__dirname.concat('/schema.graphql'), 'utf-8')}
   `,
   resolvers,
   context: ({ req }) => createContext(req),

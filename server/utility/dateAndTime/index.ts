@@ -11,9 +11,7 @@ function getHoursUntil(dateTime: number): number {
     return 0;
   }
 
-  const differenceInHours = Math.floor((future - now) / 1000 / 60 / 60);
-
-  return differenceInHours;
+  return Math.floor((future - now) / 1000 / 60 / 60);
 }
 
 export { getHoursUntil };

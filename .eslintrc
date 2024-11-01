@@ -1,0 +1,43 @@
+{
+  "extends": ["airbnb-typescript/base"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "import"],
+  "rules": {
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/no-use-before-define": 0,
+    "linebreak-style": 0,
+    "object-curly-newline": 0,
+    "object-property-newline": 0,
+    "no-console": 0,
+    "implicit-arrow-linebreak": 0,
+    "function-paren-newline": 0,
+    "import/prefer-default-export": "off",
+    "indent": "off",
+    "no-use-before-define": "off",
+    "arrow-body-style": "off",
+    "no-unused-vars": "error",
+    "import/extensions": ["error", "never", { "js": "never", "ts": "never", "tsx": "never", "jsx": "never" }]
+  },
+  "overrides": [
+    {
+      // Override for the "react-ui" project
+      "files": ["react-ui/**/*.{ts,tsx}"],
+      "parserOptions": {
+        "project": ["./react-ui/tsconfig.json"]
+      },
+      "rules": {
+        // React-specific ESLint rules or TypeScript rules can go here
+      }
+    },
+    {
+      // Override for the "server" project
+      "files": ["server/**/*.{ts,js}"],
+      "parserOptions": {
+        "project": ["./server/tsconfig.json"]
+      },
+      "rules": {
+        // Server-specific ESLint or TypeScript rules can go here
+      }
+    }
+  ]
+}

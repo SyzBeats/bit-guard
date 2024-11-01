@@ -23,7 +23,7 @@ router.get('/signal/:id', signal.decryptAndDestroy);
  * @GET /public/publicSignal/:id
  * @description This route is used for signals which have been created via the
  * public feature on the home page. This route is used to decrypt the signal and
- * destroy it afterwards.
+ * destroy it afterward.
  */
 router.get('/publicSignal/:id', signal.decryptAndDestroyPublic);
 

@@ -34,18 +34,16 @@ function encryptAes256cbc(plainText: string, randomKey: boolean = false): Iencry
   // set the buffer to hex for easy transfer
   const buffer = IV.toString('hex');
 
-  const result = {
+  return {
     encrypted,
     IV: buffer,
     key,
   };
-
-  return result;
 }
 
 /**
  * @description uses the AES-256-CCM Algorithm to decrypt plaintext data
- * @param plainText token that needs to be decrypted
+ * @param cipher The cipher used for decryption
  * @param key in case of one time use, the key is transferred
  * @returns {string} decrypted data
  */
@@ -67,9 +65,7 @@ function decryptAes256cbc(cipher: string, key: string | undefined = undefined): 
 
   // Once the decipher.final() method has been called,
   // the Decipher object can no longer be used to decrypt data.
-  const result = decrypt + decipher.final('utf8');
-
-  return result;
+  return decrypt + decipher.final('utf8');
 }
 
 export { decryptAes256cbc, encryptAes256cbc };

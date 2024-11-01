@@ -10,9 +10,7 @@ const decryptAndDestroy = async (req, res) => {
   try {
     // get the secret from the database
     const signal = await prisma.signal.findUnique({
-      where: {
-        id,
-      },
+      where: { id },
       select: {
         content: true,
         id: true,
@@ -23,7 +21,10 @@ const decryptAndDestroy = async (req, res) => {
     });
 
     if (!signal) {
-      throw new Error('The signal does not exist');
+      return res.status(500).json({
+        message: 'Something went horribly wrong here. We are sorry!',
+        error: 'The signal does not exist',
+      });
     }
 
     if (typeof key !== 'string') {
@@ -55,9 +56,7 @@ const decryptAndDestroyPublic = async (req, res) => {
   try {
     // get the secret from the database
     const signal = await prisma.publicSignal.findUnique({
-      where: {
-        id,
-      },
+      where: { id },
       select: {
         id: true,
         title: true,
@@ -68,14 +67,17 @@ const decryptAndDestroyPublic = async (req, res) => {
     });
 
     if (!signal) {
-      throw new Error('The signal does not exist');
+      return res.status(500).json({
+        message: 'Something went horribly wrong here. We are sorry!',
+        error: 'The signal does not exist',
+      });
     }
 
     if (typeof key !== 'string') {
       return res.status(409).json({ message: 'The provided key needs to be a string' });
     }
 
-    const message = utility.encryption.decryptAes256cbc(signal.content, key?.toString());
+    const message = utility.encryption.decryptAes256cbc(signal.content, key);
 
     // delete the signal
     await prisma.publicSignal.delete({ where: { id } });

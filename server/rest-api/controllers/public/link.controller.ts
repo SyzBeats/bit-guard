@@ -3,6 +3,7 @@ import * as jwt from 'jsonwebtoken';
 import * as keys from '../../../config/keys';
 import * as apiService from '../../services';
 import utility from '../../../utility';
+
 import { MessageToken, isMessageToken } from '../../../typings';
 
 const decipher = async (req, res) => {
@@ -18,6 +19,10 @@ const decipher = async (req, res) => {
     }
 
     const message = await apiService.link.findAndDecrypt(data);
+
+    if (!message) {
+      return res.status(500).json({ message: 'We could not find the message content' });
+    }
 
     return res.status(200).send(message);
   } catch (error) {

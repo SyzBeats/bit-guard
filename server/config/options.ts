@@ -15,7 +15,7 @@ const options = {
     limit: '800kb',
   },
   app: {
-    domain: process.env.APP_DOMAIN || 'http://127.0.0.1:5173',
+    domain: process.env.APP_DOMAIN || 'http://localhost:5173',
   },
 };
 

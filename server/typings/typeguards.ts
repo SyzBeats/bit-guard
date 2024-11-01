@@ -6,11 +6,7 @@ import { MessageToken } from './interfaces';
  * @returns true if the data is a token
  */
 function isMessageToken(data: any): data is MessageToken {
-  if (data.messageId && data.iat && data.exp) {
-    return true;
-  }
-
-  return false;
+  return !!(data.messageId && data.iat && data.exp);
 }
 
 export { isMessageToken };

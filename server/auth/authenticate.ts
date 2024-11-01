@@ -1,13 +1,15 @@
+import { Request } from 'express';
 import * as jwt from 'jsonwebtoken';
+
 import * as keys from '../config/keys';
+import { User } from '../../react-ui/src/types/types-gql';
 
 /**
  * @description to protect certain routes there is an authentication against
  * an existing user. If the decoded token is verified the token is returned
  * @param {Request} req
- * @param {boolean} requireAuth
  */
-const authenticate = (req, requireAuth = true) => {
+const authenticate = (req: Request): User => {
   const authHeader = req.headers.authorization;
 
   /**
@@ -19,18 +21,10 @@ const authenticate = (req, requireAuth = true) => {
 
     const decoded = jwt.verify(token, keys.JWT_TOKEN_SIGNATURE);
 
-    return decoded;
+    return decoded as User;
   }
 
-  /**
-   * if no Authentication header is in the request object and authentication is required
-   * an Error is thrown that indicates the reason.
-   */
-  if (requireAuth) {
-    throw new Error('Login in to access resource');
-  }
-
-  return null;
+  throw new Error('Authentication failed. Please log in to access the resource');
 };
 
 export { authenticate };

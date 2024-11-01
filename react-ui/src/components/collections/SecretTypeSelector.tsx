@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FileText, Image, File } from 'react-feather';
+import { FileText, Image, File as FileIcon } from 'react-feather';
 import { shallow } from 'zustand/shallow';
 
 import { useCreateSecretFormState } from '~/store/store';
@@ -25,7 +25,12 @@ const SecretTypeSelector = () => {
 
   const { modalOpen, secretType } = state;
 
-  // Handlers
+
+  /**
+   * Handles the user action intent if a specific card was clicked
+   * and ensures that the modal with the correct secret type is opened
+   * @param type
+   */
   const handleClick = (type: SecretType) => {
     if (modalOpen) {
       clear();
@@ -34,24 +39,33 @@ const SecretTypeSelector = () => {
     setState({ modalOpen: !state.modalOpen, secretType: type });
   };
 
+  
   return (
     <div>
       <CardContainer>
         <IconCard
-          title="Text message"
-          content="Send an encrypted text"
+          title='Text message'
+          content='Send an encrypted text'
           icon={<FileText />}
-          color="blue"
+          color='blue'
           clickHandler={() => handleClick('text')}
         />
+
         <IconCard
-          title="Image"
-          content="Send an encrypted image"
+          title='Image'
+          content='Send an encrypted image'
           icon={<Image />}
-          color="purple"
+          color='purple'
           clickHandler={() => handleClick('image')}
         />
-        <IconCard title="PDF" content="Send an encrypted document" icon={<File />} color="green" clickHandler={() => handleClick('pdf')} />
+
+        <IconCard
+          title='PDF'
+          content='Send an encrypted document'
+          icon={<FileIcon />}
+          color='green'
+          clickHandler={() => handleClick('pdf')}
+        />
       </CardContainer>
 
       <PublicSecretModal isOpen={modalOpen} close={handleClick} type={secretType} />
