@@ -6,7 +6,6 @@ import config from '../../../config';
 
 import { LogIn, GitHub } from '~/components/icons/Icons';
 
-
 const Navigation = () => {
 	const isProduction = config.environment.MODE !== 'development';
 

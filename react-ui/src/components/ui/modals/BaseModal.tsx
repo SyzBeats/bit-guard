@@ -12,10 +12,15 @@ interface ModalProps {
 }
 
 const BaseModal = ({ handler, children, title = 'Action', preventClickAway = false }: ModalProps) => {
+	// refs
 	const ref = useRef(null);
 
+
+	// Hooks
 	const [callback] = useClickaway(ref, handler, preventClickAway);
 
+
+	// Determine content
 	return (
 		<>
 			<BackDrop />
@@ -38,6 +43,7 @@ const BaseModal = ({ handler, children, title = 'Action', preventClickAway = fal
 };
 
 // --- Styled components ---
+
 const Modal = styled.div`
   animation: fadeInUp 0.3s ease-in-out forwards;
   background: #fff;

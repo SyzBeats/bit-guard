@@ -5,36 +5,37 @@ import Logo from '~/components/ui/styled/image/Logo';
 import { MainTitle, SecondaryTitle } from '~/components/ui/styled/typography';
 
 const HeroLanding = () => {
-  return (
-    <Hero>
-      <Container>
-        <FlexBox>
-          <Grid>
-            <GridLeft>
-              <Logo />
-            </GridLeft>
+	return (
+		<Hero>
+			<Container>
+				<FlexBox>
+					<Grid>
+						<GridLeft>
+							<Logo />
+						</GridLeft>
 
-            <GridRight>
-              <MainTitle color='light'>.envite</MainTitle>
+						<GridRight>
+							<MainTitle color='light'>.envite</MainTitle>
 
-              <SecondaryTitle color='light' textAlign='left'>
-                The safe way to share your secrets
-              </SecondaryTitle>
-            </GridRight>
-          </Grid>
-        </FlexBox>
+							<SecondaryTitle color='light' textAlign='left'>
+								The safe way to share your secrets
+							</SecondaryTitle>
+						</GridRight>
+					</Grid>
+				</FlexBox>
 
-        <HideMobile>
-          <FlexBox>
-            <Queue />
-          </FlexBox>
-        </HideMobile>
-      </Container>
-    </Hero>
-  );
+				<HideMobile>
+					<FlexBox>
+						<Queue />
+					</FlexBox>
+				</HideMobile>
+			</Container>
+		</Hero>
+	);
 };
 
 // --- Styled components ---
+
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);

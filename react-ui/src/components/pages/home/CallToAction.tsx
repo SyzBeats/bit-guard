@@ -3,23 +3,25 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import config from '~/config';
+// eslint-disable-next-line import/extensions
 import waves from '~/images/waves.svg';
 import Button from '~/components/ui/buttons/Button';
 import { SecondaryTitle } from '~/components/ui/styled/typography';
 
+
 const CallToAction = () => {
-  return (
-    <Wrapper>
-      <SecondaryTitle color="light">Create your account!</SecondaryTitle>
-      {config.environment.MODE === 'development' ? (
-        <Link to="/signup">
-          <Button content="Start for free!" />
-        </Link>
-      ) : (
-        <p>coming soon</p>
-      )}
-    </Wrapper>
-  );
+	return (
+		<Wrapper>
+			<SecondaryTitle color='light'>Create your account!</SecondaryTitle>
+			{config.environment.MODE === 'development' ? (
+				<Link to='/signup'>
+					<Button content='Start for free!' />
+				</Link>
+			) : (
+				<p>coming soon</p>
+			)}
+		</Wrapper>
+	);
 };
 
 const Wrapper = styled.div`
@@ -53,7 +55,7 @@ const Wrapper = styled.div`
     background-position: unset;
     height: 20rem;
     padding: 2rem;
-    gap: 0rem;
+    gap: 0;
   }
 `;
 

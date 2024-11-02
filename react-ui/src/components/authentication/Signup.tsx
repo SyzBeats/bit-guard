@@ -11,6 +11,7 @@ import { SIGNUP_USER } from '~/graphql/mutations/user/mutation-signup-user';
 import { MessageTypes } from '~/types/enums';
 
 const SignUp = () => {
+	// State
 	const [data, setData] = useState({
 		name: '',
 		email: '',
@@ -18,7 +19,6 @@ const SignUp = () => {
 		confirmPassword: '',
 	});
 
-	// alert to be displayed when there is a notification
 	const [alert, setAlert] = useState<{ type: MessageTypes; message: string }>({
 		type: MessageTypes.INFO,
 		message: '',
@@ -93,6 +93,7 @@ const SignUp = () => {
 	};
 
 
+	// Determine content
 	return (
 		<Wrapper>
 			<SignUpBox>

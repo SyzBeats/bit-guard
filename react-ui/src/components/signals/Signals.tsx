@@ -27,6 +27,7 @@ const Signals = () => {
 	}));
 
 
+	// Refs
 	// Reference to access methods in the List component
 	const listRef = useRef<{
 		deselectAll: () => void;
@@ -42,6 +43,7 @@ const Signals = () => {
 			}
 		},
 	});
+
 
 	const [deleteSignal] = useMutation(DELETE_SIGNAL, {
 		onCompleted: (data) => {

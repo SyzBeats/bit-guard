@@ -56,6 +56,8 @@ const Signal = ({ signal }: IProps) => {
 		});
 	};
 
+
+	// Determine content
 	return (
 		<Wrapper>
 			<MessageContent>

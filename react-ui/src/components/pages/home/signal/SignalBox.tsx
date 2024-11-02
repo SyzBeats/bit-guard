@@ -4,17 +4,18 @@ import { SecretTypeSelector } from '~/components/collections/SecretTypeSelector'
 import { SecondaryTitleBlue } from '~/components/ui/styled/typography';
 
 const SignalBox = () => {
-  return (
-    <Wrapper>
-      <SecondaryTitleBlue color="light" textAlign="center">
-        Select a message type:
-      </SecondaryTitleBlue>
+	return (
+		<Wrapper>
+			<SecondaryTitleBlue color='light' textAlign='center'>
+				Select a message type:
+			</SecondaryTitleBlue>
 
-      <SecretTypeSelector />
-    </Wrapper>
-  );
+			<SecretTypeSelector />
+		</Wrapper>
+	);
 };
 
+// --- Styled components ---
 const Wrapper = styled.div`
   box-sizing: border-box;
   max-width: 100rem;

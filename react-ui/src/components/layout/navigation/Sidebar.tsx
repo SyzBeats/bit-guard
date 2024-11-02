@@ -8,7 +8,6 @@ import UiNotification from './UiNotification';
 import { Activity, Home, LockIcon, Sliders, LogOut } from '~/components/icons/Icons';
 
 const Sidebar = () => {
-
 	// Handlers
 	const handleLogOut = () => {
 		localStorage.removeItem('token');

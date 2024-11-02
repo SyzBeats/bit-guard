@@ -7,18 +7,16 @@ import Logo from '../styled/image/Logo';
 import { AvatarType } from '~/types/types-components';
 
 const Avatar = ({ src, alt }: AvatarType) => {
-  // in production mode, we currently use the default avatar
-  if (config.environment.MODE !== 'development') {
-    return <Logo width="3rem" />;
-  }
+	// in production mode, we currently use the default avatar
+	if (config.environment.MODE !== 'development') {
+		return <Logo width='3rem' />;
+	}
 
-  console.log(src);
-
-  return (
-    <Wrapper>
-      <Image src={src || 'https://www.thispersondoesnotexist.com/'} alt={alt} />
-    </Wrapper>
-  );
+	return (
+		<Wrapper>
+			<Image src={src || 'https://www.thispersondoesnotexist.com/'} alt={alt} />
+		</Wrapper>
+	);
 };
 
 //  --- Styled components ---

@@ -16,90 +16,102 @@ import { FileDropzone } from '~/components/ui/forms/inputs/FileDropzone';
 import { MessageTypes } from '~/types/enums';
 
 const FormCreatePublicDocument = () => {
-  const formState = useCreateSecretFormState(
-    (state) => ({
-      content: state.content,
-      title: state.title,
-      link: state.link,
-      type: state.type,
-      extension: state.extension,
-      setLink: state.setLink,
-      setContent: state.setContent,
-      setTitle: state.setTitle,
-      setType: state.setType,
-      setExtension: state.setExtension,
-    }),
-    shallow,
-  );
+	// State
+	const formState = useCreateSecretFormState(
+		(state) => ({
+			content: state.content,
+			title: state.title,
+			link: state.link,
+			type: state.type,
+			extension: state.extension,
+			setLink: state.setLink,
+			setContent: state.setContent,
+			setTitle: state.setTitle,
+			setType: state.setType,
+			setExtension: state.setExtension,
+		}),
+		shallow,
+	);
 
-  const signalState = useSignalState((state) => ({ setLinkCopied: state.setLinkCopied }), shallow);
+	const signalState = useSignalState((state) => ({ setLinkCopied: state.setLinkCopied }), shallow);
 
-  const [alert, setAlert] = useState({
-    type: MessageTypes.INFO,
-    message: '',
-  });
+	const [alert, setAlert] = useState({
+		type: MessageTypes.INFO,
+		message: '',
+	});
 
-  const [createSignalMutation, { loading = false }] = useMutation(CREATE_PUBLIC_SIGNAL, {
-    onCompleted: ({ createPublicSignal }) => {
-      formState.setLink(createPublicSignal?.link?.content);
-      formState.setContent('');
-      formState.setTitle('');
-      signalState.setLinkCopied(false);
-      setAlert({ type: MessageTypes.INFO, message: '' });
-    },
-    onError: (error) => {
-      setAlert({ type: MessageTypes.ERROR, message: error.message });
-      signalState.setLinkCopied(false);
-    },
-  });
+	// Hooks
+	const [createSignalMutation, { loading = false }] = useMutation(CREATE_PUBLIC_SIGNAL, {
+		onCompleted: ({ createPublicSignal }) => {
+			formState.setLink(createPublicSignal?.link?.content);
+			formState.setContent('');
+			formState.setTitle('');
+			signalState.setLinkCopied(false);
+			setAlert({ type: MessageTypes.INFO, message: '' });
+		},
+		onError: (error) => {
+			setAlert({ type: MessageTypes.ERROR, message: error.message });
+			signalState.setLinkCopied(false);
+		},
+	});
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
 
-    if (!formState.title || !formState.content) {
-      setAlert({ type: MessageTypes.ERROR, message: 'Please fill in all fields' });
+	const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+		e.preventDefault();
 
-      return;
-    }
+		if (!formState.title || !formState.content) {
+			setAlert({ type: MessageTypes.ERROR, message: 'Please fill in all fields' });
 
-    createSignalMutation({
-      variables: {
-        title: formState.title,
-        content: formState.content,
-        extension: formState.extension,
-        type: 'file',
-      },
-    });
-  };
+			return;
+		}
 
-  return (
-    <Wrapper>
-      <FlexGridEqual gap="1.5rem" justifyContent="stretch">
-        <FlexGridItem alignSelf="stretch" flex="1">
-          <TextInput label="Enter a title" name="title" value={formState.title} onChange={(e) => formState.setTitle(e.target.value)} />
-        </FlexGridItem>
-      </FlexGridEqual>
+		createSignalMutation({
+			variables: {
+				title: formState.title,
+				content: formState.content,
+				extension: formState.extension,
+				type: 'file',
+			},
+		});
+	};
 
-      <FileDropzone
-        handleContent={(content: string) => formState.setContent(content)}
-        handleExtension={(extension: string) => formState.setExtension(extension)}
-      />
 
-      <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">
-        {!!formState.link && <DisplayLink link={formState.link} />}
-      </FlexGridEqual>
+	// Determine content
+	return (
+		<Wrapper>
+			<FlexGridEqual gap='1.5rem' justifyContent='stretch'>
+				<FlexGridItem alignSelf='stretch' flex='1'>
+					<TextInput
+						label='Enter a title for the document'
+						name='title'
+						value={formState.title}
+						onChange={(e) => formState.setTitle(e.target.value)}
+					/>
+				</FlexGridItem>
+			</FlexGridEqual>
 
-      <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">
-        <ButtonWrapper>
-          <button onClick={(e) => handleSubmit(e)}>Encrypt</button>
-        </ButtonWrapper>
-      </FlexGridEqual>
+			<FileDropzone
+				handleContent={(content: string) => formState.setContent(content)}
+				handleExtension={(extension: string) => formState.setExtension(extension)}
+			/>
 
-      <Loader loading={loading} />
-      {alert.message && <Alert message={alert.message} type={alert.type} />}
-    </Wrapper>
-  );
+			<FlexGridEqual gap='1.5rem' alignItems='center' justifyContent='flex-end'>
+				{!!formState.link && <DisplayLink link={formState.link} />}
+			</FlexGridEqual>
+
+			<FlexGridEqual gap='1.5rem' alignItems='center' justifyContent='flex-end'>
+				<ButtonWrapper>
+					<button onClick={(e) => handleSubmit(e)}>Encrypt</button>
+				</ButtonWrapper>
+			</FlexGridEqual>
+
+			<Loader loading={loading} />
+			{alert.message && <Alert message={alert.message} type={alert.type} />}
+		</Wrapper>
+	);
 };
+
+// --- Styled components ---
 
 const Wrapper = styled.form`
   display: flex;

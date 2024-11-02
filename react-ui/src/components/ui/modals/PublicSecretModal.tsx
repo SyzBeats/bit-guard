@@ -15,7 +15,7 @@ interface ModalProps {
 }
 
 const PublicSecretModal = (props: ModalProps) => {
-	// Spring styles
+	// Hooks
 	const [style] = useSpring(
 		() => ({
 			from: { opacity: 0, bottom: '-20%' },
@@ -54,14 +54,18 @@ const PublicSecretModal = (props: ModalProps) => {
 	// Determine content
 	const Content = () => {
 		switch (props.type) {
-			case 'text':
+			case 'text': {
 				return <FormCreatePublicSignal />;
-			case 'image':
+			}
+			case 'image': {
 				return <FormCreatePublicImage />;
-			case 'pdf':
+			}
+			case 'pdf': {
 				return <FormCreatePublicDocument />;
-			default:
+			}
+			default: {
 				return <FormCreatePublicSignal />;
+			}
 		}
 	};
 
@@ -71,9 +75,9 @@ const PublicSecretModal = (props: ModalProps) => {
 			<animated.div style={{ ...style, zIndex: 100, position: 'absolute' }}>
 				<div className={styles.modal}>
 					<div className={styles.modalHeader}>
-            <span className={styles.icon}>
-              <X onClick={() => props.close()} />
-            </span>
+						<span className={styles.icon}>
+						  <X onClick={() => props.close()} />
+						</span>
 					</div>
 
 					<div className={styles.modalBody}>

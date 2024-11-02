@@ -70,7 +70,8 @@ const RevealPage = ({ isPublic }: Props) => {
 		}
 	}, []);
 
-	// Effects
+
+	// Controls component mount and fetches the secret
 	useEffect(() => {
 		if (!params.secret || !params.key) {
 			return;

@@ -14,10 +14,12 @@ interface ListProps {
 }
 
 const List = forwardRef(({ headers, rows, selectable, onRowClick, pageSize = 5 }: ListProps, ref) => {
+	// State
 	const [selectedRows, setSelectedRows] = useState<Record<number, boolean>>({});
 	const [currentPage, setCurrentPage] = useState(1);
 
 
+	// Hooks
 	useImperativeHandle(ref, () => ({
 		getSelected: () => rows.filter((_, index) => selectedRows[index]),
 	}));
@@ -112,6 +114,8 @@ const List = forwardRef(({ headers, rows, selectable, onRowClick, pageSize = 5 }
 		</Container>
 	);
 });
+
+// --- Styled components ---
 
 const Container = styled.div`
   display: flex;

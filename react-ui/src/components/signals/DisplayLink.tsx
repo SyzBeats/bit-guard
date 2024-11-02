@@ -15,16 +15,21 @@ interface ContainerState {
 }
 
 const DisplayLink = ({ link }: Props) => {
+	// State
 	const signalState = useSignalState((state) => ({
 		linkCopied: state.linkCopied,
 		setLinkCopied: state.setLinkCopied,
 	}));
 
+
+	// Handlers
 	const handleClick = () => {
 		services.ui.copyLinkToClipboard(link).catch((e) => console.error(e));
 		signalState.setLinkCopied(true);
 	};
 
+
+	// Determine content
 	const DisplayIcon = () => {
 		if (signalState.linkCopied) {
 			return <Check />;
