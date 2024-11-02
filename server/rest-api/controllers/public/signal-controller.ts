@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { decryptAndDestroyPublicSignal, decryptAndDestroySignal } from '../../services/signal-service';
+import * as services from '../../services';
 
 const decryptAndDestroy = async (req: Request, res: Response): Promise<Response> => {
 	const { id } = req.params;
@@ -11,7 +11,7 @@ const decryptAndDestroy = async (req: Request, res: Response): Promise<Response>
 	}
 
 	try {
-		const result = await decryptAndDestroySignal(id, key);
+		const result = await services.signal.decryptAndDestroySignal(id, key);
 
 		return res.status(200).json(result);
 	} catch (error) {
@@ -34,7 +34,7 @@ const decryptAndDestroyPublic = async (req: Request, res: Response): Promise<Res
 	}
 
 	try {
-		const result = await decryptAndDestroyPublicSignal(id, key);
+		const result = await services.signal.decryptAndDestroyPublicSignal(id, key);
 
 		return res.status(200).json(result);
 	} catch (error) {

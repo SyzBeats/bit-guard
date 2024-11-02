@@ -1,30 +1,13 @@
-// service-signal.ts
 import utility from '../../utility';
-import {
-	deletePublicSignalById,
-	deleteSignalById,
-	getPublicSignalById,
-	getSignalById,
-} from '../repositories/signal-repository';
+import { signalRepository } from '../repositories';
+import { IDecryptAndDestroyPublicResult, IDecryptAndDestroyResult } from '../../types';
 
-interface DecryptAndDestroyResult {
-	message: string;
-	type: string;
-	extension: string | null;
-}
-
-interface DecryptAndDestroyPublicResult {
-	message: string;
-	title: string;
-	type: string;
-	extension: string | null;
-}
 
 /**
  * Decrypts the content of a signal and deletes it from the database.
  */
-const decryptAndDestroySignal = async (id: string, key: string): Promise<DecryptAndDestroyResult> => {
-	const signal = await getSignalById(id);
+const decryptAndDestroySignal = async (id: string, key: string): Promise<IDecryptAndDestroyResult> => {
+	const signal = await signalRepository.getSignalById(id);
 
 	if (!signal) {
 		throw new Error('We could not find the Secret you were looking for.');
@@ -32,7 +15,7 @@ const decryptAndDestroySignal = async (id: string, key: string): Promise<Decrypt
 
 	const message = utility.encryption.decryptAes256cbc(signal.content, key);
 
-	await deleteSignalById(id);
+	await signalRepository.deleteSignalById(id);
 
 	return {
 		message,
@@ -42,8 +25,8 @@ const decryptAndDestroySignal = async (id: string, key: string): Promise<Decrypt
 };
 
 /** Decrypts the content of a public signal and deletes it from the database */
-const decryptAndDestroyPublicSignal = async (id: string, key: string): Promise<DecryptAndDestroyPublicResult> => {
-	const signal = await getPublicSignalById(id);
+const decryptAndDestroyPublicSignal = async (id: string, key: string): Promise<IDecryptAndDestroyPublicResult> => {
+	const signal = await signalRepository.getPublicSignalById(id);
 
 	if (!signal) {
 		throw new Error('We could not find the Secret you were looking for.');
@@ -51,7 +34,7 @@ const decryptAndDestroyPublicSignal = async (id: string, key: string): Promise<D
 
 	const message = utility.encryption.decryptAes256cbc(signal.content, key);
 
-	await deletePublicSignalById(id);
+	await signalRepository.deletePublicSignalById(id);
 
 	return {
 		message,

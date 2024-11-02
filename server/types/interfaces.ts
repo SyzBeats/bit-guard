@@ -31,6 +31,19 @@ interface IEncryptAes256cbcOutput {
 	key: string;
 }
 
+interface IDecryptAndDestroyResult {
+	message: string;
+	type: string;
+	extension: string | null;
+}
+
+interface IDecryptAndDestroyPublicResult {
+	message: string;
+	title: string;
+	type: string;
+	extension: string | null;
+}
+
 export {
 	IMessageToken,
 	ICreateMessageLinkOutput,
@@ -38,4 +51,6 @@ export {
 	ICreateSignalOutput,
 	IDeleteLinkOutput,
 	IEncryptAes256cbcOutput,
+	IDecryptAndDestroyResult,
+	IDecryptAndDestroyPublicResult,
 };
