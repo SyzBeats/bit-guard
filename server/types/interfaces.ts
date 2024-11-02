@@ -1,34 +1,41 @@
-interface MessageToken {
-  messageId: string;
-  iat: number;
-  exp: number;
+interface IMessageToken {
+	messageId: string;
+	iat: number;
+	exp: number;
 }
 
-interface IcreateMessageLinkOutput {
-  content: string;
-  expiry?: Date | null;
+interface ICreateMessageLinkOutput {
+	content: string;
+	expiry?: Date | null;
 }
 
 interface IDeleteLinkOutput {
-  data: string;
-  expiry: Date | null;
+	data: string;
+	expiry: Date | null;
 }
 
-interface IcreateSignalLinkOutput {
-  content: string;
+interface ICreateSignalLinkOutput {
+	content: string;
 }
 
 interface ICreateSignalOutput {
-  title: string;
-  id: string;
-  createdAt: Date;
-  link: IcreateSignalLinkOutput;
+	title: string;
+	id: string;
+	createdAt: Date;
+	link: ICreateSignalLinkOutput;
 }
 
-interface IencryptAes256cbcOutput {
-  encrypted: string;
-  IV: string;
-  key: string;
+interface IEncryptAes256cbcOutput {
+	encrypted: string;
+	IV: string;
+	key: string;
 }
 
-export { MessageToken, IcreateMessageLinkOutput, IcreateSignalLinkOutput, ICreateSignalOutput, IDeleteLinkOutput, IencryptAes256cbcOutput };
+export {
+	IMessageToken,
+	ICreateMessageLinkOutput,
+	ICreateSignalLinkOutput,
+	ICreateSignalOutput,
+	IDeleteLinkOutput,
+	IEncryptAes256cbcOutput,
+};

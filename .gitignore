@@ -6,7 +6,6 @@ node_modules
 .env.*
 
 # frontend
-frontend/node_modules
 react-ui/node_modules
 
 # builds
@@ -17,5 +16,4 @@ server/build
 .vscode
 
 # gcp
-
 gcp/cloud-functions/node_modules

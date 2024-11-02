@@ -1,26 +1,52 @@
-# .envite - a simple, secure, and easy to use encryption tool
+# .envite - Simple, Secure Encryption for Sharing Sensitive Data
 
-Ever felt the odd feeling, when you had to send a secret message to someone, and you had to use a channel that you don't trust? Well, .envite is here to help you with that.
+.envite.dev is a streamlined encryption tool developed to help users securely share sensitive information over untrusted
+communication channels. Built on the Advanced Encryption Standard (AES), .envite transforms messages and other
+text-based data into encrypted content that can be accessed solely by the intended recipient.
 
-## Motivation
+## Introduction
 
-Realizing the lack of sensibility that many internet users have regarding their vulnerable secrets, I decided to create a tool that would help them encrypt their messages, and send them securely.
-It is conventient and easy to put a password or key into an email and send or receive it, but it is not secure. The password or key can be intercepted, and the message can be read.
-Additionally to that, the message can be read by the server that is hosting the email, and the email provider can read it as well. It really is a disaster waiting to happen.
+With the increasing prevalence of online communication, the risk of data exposure is a critical concern. Emails, chat
+applications, and other common communication methods are often vulnerable to interception or unauthorized access.
+.envite addresses this risk by providing a secure encryption solution, designed specifically to protect sensitive
+information such as passwords, private messages, or confidential files when shared online.
 
-## How .envite works
+.envite operates on a foundational principle of text-based AES encryption. All data—whether plain text or binary data
+like images—is converted to text format, then encrypted before it is shared. This ensures that the message content
+remains confidential throughout its lifecycle.
 
-Every process we have has a simple underlying principle. Text based encryption with AES.
-Everything that we do with .envite is text based encryption. If you simply have to share a message, we take your text input, encrypt it with AES and store the encrypted value. If you want to share an image, we transform the buffer to base64
-and encrypt this character based information, proceeding the same way as with the text based message.
+When a user inputs a message on the .envite frontend, the data is sent to the server over a TLS-encrypted connection.
+The server then encrypts the message using AES, securely storing the encrypted content. A single-use link is generated,
+which includes the encryption key and initialization vector (IV) required for decryption. This link is then returned to
+the frontend, where it can be shared with the intended recipient.
 
-When entering your secret in the frontend, we send it to the server via an TLS encrypted connection. The server then encrypts the message with AES, stores the decrypted value and attaches the key and IV to the link which is send back to the frontend. The frontend then displays the link to the user, who can then send it to the recipient. The recipient can then open the link, and the server will decrypt the message with the key and IV that is stored in the link. The message is then displayed to the user.
-Opening the link is the only way to decrypt the message, and the link is only valid a single time. After that, the encrypted message is deleted from the database server.
+The recipient can use the link to access the encrypted content, which is decrypted using the key and IV embedded in the
+link itself. Importantly, each link is valid for a single use only, ensuring that once the recipient accesses the
+message, it is permanently deleted from the server. This approach minimizes data persistence and ensures secure,
+one-time access to sensitive information.
 
-## Initialization vectors
+## Key Features
 
-An IV or initialization vector is, in the widest sense, just the initial value used to start an iterated process. The term is used in various contexts and implies different security requirements in each of them. For example, cryptographic hash functions will typically have a fixed IV, which is just an arbitrary constant included in the hash function specification and used as the initial hash value before any data is entered:
+- **AES Encryption**: All data, including text and images (encoded as base64), is encrypted using AES, providing a high
+  level of data security.
+- **One-Time Access Links**: Each link is designed for single use, automatically expiring after it is accessed to
+  prevent unauthorized viewing.
+- **Ephemeral Storage**: Encrypted data is stored temporarily on the server and is automatically deleted after it is
+  accessed, ensuring no residual data remains.
+- **End-to-End TLS Protection**: Data transmission is secured using TLS encryption, preventing interception during the
+  transfer between client and server.
 
-Conversely, the majority of block cipher operating modes require an IV that is random and unpredictable, or at least unique for each message encrypted with a particular key. (Of course, if each key is only ever used to encrypt a single message, one can get away with a fixed IV). This random IV ensures that each message is encrypted differently, so viewing multiple messages encrypted with the same key won't work. ' Don't give the attacker more information than just seeing one long message. In particular, ensure that encrypting the same message twice gives two completely different ciphertexts, which is necessary for the encryption scheme to be semantically secure.
+## Use Cases
 
-In any case, the IV need never be kept secret - if it were, it would be a key, not an IV. In fact, in most cases it would be impractical to keep the IV secret even if you wanted to, since the recipient needs to know this in order to decrypt the data (or check the hash, etc.).
+.envite is designed for situations where users need to share sensitive information securely but lack access to a
+trusted, private channel. Common scenarios include:
+
+- **Secure Password Sharing**: Sharing login credentials without storing them in plain text on email servers or chat
+  platforms.
+- **One-Time Secret Transfers**: Sending sensitive information that should only be accessed once, such as confidential
+  documents or personal details.
+- **Temporary Data Sharing**: Sharing information that does not need to persist, such as short-term project details or
+  single-use access keys.
+
+This document will continue with detailed sections on setup, usage, API structure, and integration strategies for
+developers seeking to implement .envite’s encryption capabilities within their own applications.

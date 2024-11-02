@@ -3,9 +3,9 @@ import { LinkMutation } from '../link';
 import { SecretMutation } from '../secret';
 
 const Mutation = {
-  ...UserMutation,
-  ...LinkMutation,
-  ...SecretMutation,
+	...UserMutation,
+	...LinkMutation,
+	...SecretMutation,
 };
 
 export { Mutation };

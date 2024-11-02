@@ -2,13 +2,13 @@ import * as crypto from 'crypto';
 import * as argon2 from 'argon2';
 
 import * as keys from '../../config/keys';
-import { IencryptAes256cbcOutput } from '../../types';
+import { IEncryptAes256cbcOutput } from '../../types';
 
 // generate a random encryption key with 16 bytes
 // as it is encoded to hexadecimal, it is 32 characters long
 // and can be used as a key for the encryption
 function generateEncryptionKey(): string {
-  return crypto.randomBytes(16).toString('hex');
+	return crypto.randomBytes(16).toString('hex');
 }
 
 /**
@@ -17,30 +17,30 @@ function generateEncryptionKey(): string {
  * @param randomKey in case of one time use
  * @returns encrypted data
  */
-function encryptAes256cbc(plainText: string, randomKey: boolean = false): IencryptAes256cbcOutput {
-  // create a random Initialization vector
-  const IV = crypto.randomBytes(16);
+function encryptAes256cbc(plainText: string, randomKey: boolean = false): IEncryptAes256cbcOutput {
+	// create a random Initialization vector
+	const IV = crypto.randomBytes(16);
 
-  const key = randomKey ? generateEncryptionKey() : keys.ENCRYPTION_KEY_256BIT;
+	const key = randomKey ? generateEncryptionKey() : keys.ENCRYPTION_KEY_256BIT;
 
-  // create a cipher
-  const cipher = crypto.createCipheriv('aes-256-cbc', key, IV);
+	// create a cipher
+	const cipher = crypto.createCipheriv('aes-256-cbc', key, IV);
 
-  // encrypt data
-  let encrypted = cipher.update(plainText, 'utf8', 'hex');
+	// encrypt data
+	let encrypted = cipher.update(plainText, 'utf8', 'hex');
 
-  // Once the cipher.final() method has been called,
-  // the Cipher object can no longer be used to encrypt data.
-  encrypted += cipher.final('hex');
+	// Once the cipher.final() method has been called,
+	// the Cipher object can no longer be used to encrypt data.
+	encrypted += cipher.final('hex');
 
-  // set the buffer to hex for easy transfer
-  const buffer = IV.toString('hex');
+	// set the buffer to hex for easy transfer
+	const buffer = IV.toString('hex');
 
-  return {
-    encrypted,
-    IV: buffer,
-    key,
-  };
+	return {
+		encrypted,
+		IV: buffer,
+		key,
+	};
 }
 
 /**
@@ -50,24 +50,24 @@ function encryptAes256cbc(plainText: string, randomKey: boolean = false): Iencry
  * @returns {string} decrypted data
  */
 function decryptAes256cbc(cipher: string, key: string | undefined = undefined): string {
-  // split the two hex encoded strings
-  const [data, ivHex] = cipher.split('_IV_');
+	// split the two hex encoded strings
+	const [data, ivHex] = cipher.split('_IV_');
 
-  const encryptionKey = key || keys.ENCRYPTION_KEY_256BIT;
+	const encryptionKey = key || keys.ENCRYPTION_KEY_256BIT;
 
-  // create a buffer as the current IV is encoded
-  const IV = Buffer.from(ivHex, 'hex');
+	// create a buffer as the current IV is encoded
+	const IV = Buffer.from(ivHex, 'hex');
 
-  // decipher the data
-  const decipher = crypto.createDecipheriv('aes-256-cbc', encryptionKey, IV);
+	// decipher the data
+	const decipher = crypto.createDecipheriv('aes-256-cbc', encryptionKey, IV);
 
-  // Updates the cipher with data. If the inputEncoding argument is given,
-  // the data argument is a string using the specified encoding.
-  const decrypt = decipher.update(data, 'hex', 'utf8');
+	// Updates the cipher with data. If the inputEncoding argument is given,
+	// the data argument is a string using the specified encoding.
+	const decrypt = decipher.update(data, 'hex', 'utf8');
 
-  // Once the decipher.final() method has been called,
-  // the Decipher object can no longer be used to decrypt data.
-  return decrypt + decipher.final('utf8');
+	// Once the decipher.final() method has been called,
+	// the Decipher object can no longer be used to decrypt data.
+	return decrypt + decipher.final('utf8');
 }
 
 /**
@@ -75,11 +75,11 @@ function decryptAes256cbc(cipher: string, key: string | undefined = undefined): 
  * @param password the password
  */
 async function hashPassword(password: string): Promise<string | false> {
-  try {
-    return await argon2.hash(password);
-  } catch (e) {
-    return false;
-  }
+	try {
+		return await argon2.hash(password);
+	} catch (e) {
+		return false;
+	}
 }
 
 /**
@@ -88,11 +88,11 @@ async function hashPassword(password: string): Promise<string | false> {
  * @param hash the stored password hash
  */
 async function verifyPassword(password: string, hash: string): Promise<boolean> {
-  try {
-    return await argon2.verify(hash, password);
-  } catch (e) {
-    return false;
-  }
+	try {
+		return await argon2.verify(hash, password);
+	} catch (e) {
+		return false;
+	}
 }
 
 export { decryptAes256cbc, encryptAes256cbc, hashPassword, verifyPassword };

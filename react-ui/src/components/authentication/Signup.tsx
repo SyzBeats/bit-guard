@@ -24,7 +24,27 @@ const SignUp = () => {
 		message: '',
 	});
 
-	// resets the form fields
+
+	// Hooks
+	const [signup] = useMutation(SIGNUP_USER, {
+		onCompleted: ({ signupUser }) => {
+			if (signupUser?.token) {
+				localStorage.setItem('token', signupUser.token);
+				window.location.href = '/dashboard';
+			}
+
+			handleResetFields();
+		},
+		onError: (error) => {
+			setAlert({
+				type: MessageTypes.ERROR,
+				message: error.message,
+			});
+		},
+	});
+
+
+	// Resets the form fields
 	const handleResetFields = () => {
 		setData({
 			name: '',
@@ -34,14 +54,14 @@ const SignUp = () => {
 		});
 	};
 
-	// change handler for form fields
+	// Change handler for form fields
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
 
 		setData((prev) => ({ ...prev, [name]: value }));
 	};
 
-	// submit handler for form
+	// Submit handler for form
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
@@ -72,23 +92,6 @@ const SignUp = () => {
 		});
 	};
 
-	// Mutation Hooks
-	const [signup] = useMutation(SIGNUP_USER, {
-		onCompleted: ({ signupUser }) => {
-			if (signupUser?.token) {
-				localStorage.setItem('token', signupUser.token);
-				window.location.href = '/dashboard';
-			}
-
-			handleResetFields();
-		},
-		onError: (error) => {
-			setAlert({
-				type: MessageTypes.ERROR,
-				message: error.message,
-			});
-		},
-	});
 
 	return (
 		<Wrapper>
@@ -155,6 +158,7 @@ const SignUp = () => {
 };
 
 // --- Styled components ---
+
 const Wrapper = styled.div`
   height: 100vh;
   width: 100vw;

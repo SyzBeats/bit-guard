@@ -4,8 +4,8 @@ import { ApolloServer, gql } from 'apollo-server-express';
 import cors from 'cors';
 
 import options from './config/options';
-import { createContext } from './context';
-import resolvers from './resolvers';
+import { createContext } from './graphql/context';
+import resolvers from './graphql/resolvers';
 import _api from './rest-api/controllers';
 
 // Constants
@@ -19,19 +19,19 @@ app.use(cors(options.cors));
 app.use('/api/public', _api.publicRoutes);
 
 const server = new ApolloServer({
-  typeDefs: gql`
-    ${fs.readFileSync(__dirname.concat('/schema.graphql'), 'utf-8')}
-  `,
-  resolvers,
-  context: ({ req }) => createContext(req),
+	typeDefs: gql`
+        ${fs.readFileSync(__dirname.concat('/schema.graphql'), 'utf-8')}
+	`,
+	resolvers,
+	context: ({ req }) => createContext(req),
 });
 
 (async function start() {
-  await server.start();
+	await server.start();
 
-  server.applyMiddleware({ app, path: '/graphql' });
+	server.applyMiddleware({ app, path: '/graphql' });
 
-  app.listen({ port: options.server.port }, () => {
-    console.log('🚀 Server ready');
-  });
+	app.listen({ port: options.server.port }, () => {
+		console.log('🚀 Server ready');
+	});
 })();
