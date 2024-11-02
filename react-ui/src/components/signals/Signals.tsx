@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 
 import { FilePlus, Trash } from '~/components/icons/Icons';
@@ -13,6 +13,8 @@ import { DashboardSectionTitle } from '~/components/ui/styled/typography';
 import ListComponent from '~/components/ui/list/List';
 import services from '~/services';
 import { DELETE_SIGNAL } from '~/graphql/mutations/signal/mutation-delete-signal';
+import { TableRow } from '~/types/types-components';
+import { ButtonWrapper } from '~/components/ui/buttons/ButtonWrapper';
 
 const Signals = () => {
 	// State
@@ -25,6 +27,13 @@ const Signals = () => {
 	}));
 
 
+	// Reference to access methods in the List component
+	const listRef = useRef<{
+		deselectAll: () => void;
+		getSelected: () => TableRow[];
+	}>(null);
+
+
 	// Hooks
 	useQuery(GET_SIGNALS_BY_USER, {
 		onCompleted: ({ signalsByUser }) => {
@@ -33,7 +42,6 @@ const Signals = () => {
 			}
 		},
 	});
-
 
 	const [deleteSignal] = useMutation(DELETE_SIGNAL, {
 		onCompleted: (data) => {
@@ -49,7 +57,6 @@ const Signals = () => {
 	});
 
 
-	// Handlers
 	/**
 	 * Handles the open action for the signal creation modal
 	 */
@@ -67,8 +74,7 @@ const Signals = () => {
 	/**
 	 * Handles the deletion of a signal. The user
 	 * needs to confirm this action by confirming a prompt.
-	 * The action is passed into the rows renderen in the List component
-	 * @param id
+	 * The action is passed into the rows rendered in the List component
 	 */
 	const handleDelete = (id: string): void => {
 		if (!id) {
@@ -89,12 +95,47 @@ const Signals = () => {
 	};
 
 
-	// Sample headers and rows data
+	/**
+	 * Handle deletion of all selected secrets
+	 */
+	const handleDeleteAll = () => {
+		const selected = listRef.current?.getSelected();
+
+		if (!selected?.length) {
+			return;
+		}
+
+		const confirmed = window.confirm('Are you sure? The secret will be destroyed and generated Links will not work afterwards');
+
+		if (!confirmed) {
+			return;
+		}
+
+		for (const secret of selected) {
+			const variables = {
+				id: secret.meta.id,
+			};
+
+			deleteSignal({
+				variables,
+			});
+		}
+	};
+
+
+	// Determine List headers
 	const headers = ['Title', 'Created at', 'Delete'];
 
+	// Each item in the row array is rendered as List item
 	const rows = signalState.signals.map((signal) => {
-		return [signal.title, services.dates.parseStringToLocaleDate(signal.createdAt),
-			<Trash size={20} color='#01141F' onClick={() => handleDelete(signal.id)} />];
+		return {
+			content: [
+				signal.title,
+				services.dates.parseStringToLocaleDate(signal.createdAt),
+				<Trash size={20} color='#01141F' onClick={() => handleDelete(signal.id)} />,
+			],
+			meta: { id: signal.id },
+		};
 	});
 
 	const pageSize = rows.length % 20;
@@ -122,14 +163,21 @@ const Signals = () => {
 				</ButtonRound>
 			</FlexGridEqual>
 
-			<ContentBox borderColor='dark' bordered={true} title='Overview'>
+			<ContentBox borderColor='dark' bordered={true} title='Your Secrets'>
 				<ListComponent
+					ref={listRef}
 					headers={headers}
 					rows={rows}
 					selectable={true}
 					pageSize={pageSize}
 				/>
 			</ContentBox>
+
+			<ButtonWrapper>
+				<button onClick={handleDeleteAll}>
+					Delete all selected
+				</button>
+			</ButtonWrapper>
 		</>
 	);
 };

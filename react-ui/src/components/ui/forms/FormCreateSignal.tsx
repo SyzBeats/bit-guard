@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import { DisplayLink } from '../../signals/DisplayLink';
@@ -15,10 +15,13 @@ import { CREATE_SIGNAL } from '~/graphql/mutations/signal/mutation-create-signal
 import { Signal } from '~/store/interfaces';
 
 const CreateSignal = () => {
+	// State
 	const addSignal = useSignalState((state) => state.addSignal);
 
-	const { setContent, setTitle, title, content, link, setLink } = useCreateSecretFormState();
+	const { setContent, setTitle, title, content, link, setLink, clear } = useCreateSecretFormState();
 
+
+	// Hooks
 	const [createSignalMutation] = useMutation(CREATE_SIGNAL, {
 		onCompleted: ({ createSignal: created }) => {
 			addSignal({
@@ -34,6 +37,10 @@ const CreateSignal = () => {
 		},
 	});
 
+
+	/**
+	 * Handles form submission after secret details have been entered
+	 */
 	const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		e.preventDefault();
 
@@ -45,6 +52,14 @@ const CreateSignal = () => {
 		});
 	};
 
+
+	// Clear the form on mount
+	useEffect(() => {
+		clear();
+	}, []);
+
+
+	// Determine content
 	return (
 		<Wrapper>
 			<HorizontalToggle />
@@ -71,6 +86,7 @@ const CreateSignal = () => {
 	);
 };
 
+// --- Styled components ---
 const Wrapper = styled.form`
   display: flex;
   flex-direction: column;

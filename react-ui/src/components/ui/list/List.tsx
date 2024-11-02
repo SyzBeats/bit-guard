@@ -1,24 +1,29 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useImperativeHandle, forwardRef } from 'react';
 import styled from 'styled-components';
 
 import Checkbox from '~/components/ui/checkbox/Checkbox';
+import { TableRow } from '~/types/types-components';
 
 
 interface ListProps {
 	headers: string[];
-	rows: (string | number | React.ReactNode)[][];
+	rows: TableRow[];
 	selectable?: boolean;
-	onRowClick?: (row: (string | number | React.ReactNode)[]) => void;
+	onRowClick?: (row: TableRow) => void;
 	pageSize?: number;
 }
 
-
-// Todo: Implement mass action
-const List = ({ headers, rows, selectable, onRowClick, pageSize = 5 }: ListProps) => {
+const List = forwardRef(({ headers, rows, selectable, onRowClick, pageSize = 5 }: ListProps, ref) => {
 	const [selectedRows, setSelectedRows] = useState<Record<number, boolean>>({});
 	const [currentPage, setCurrentPage] = useState(1);
 
 
+	useImperativeHandle(ref, () => ({
+		getSelected: () => rows.filter((_, index) => selectedRows[index]),
+	}));
+
+
+	// Handlers
 	const handleRowClick = (rowIndex: number) => {
 		if (selectable) {
 			setSelectedRows((prev) => ({ ...prev, [rowIndex]: !prev[rowIndex] }));
@@ -38,7 +43,7 @@ const List = ({ headers, rows, selectable, onRowClick, pageSize = 5 }: ListProps
 	};
 
 
-	// Determine Rows
+	// Determine pagination
 	const paginatedRows = useMemo(() => {
 		const start = (currentPage - 1) * pageSize;
 
@@ -46,6 +51,7 @@ const List = ({ headers, rows, selectable, onRowClick, pageSize = 5 }: ListProps
 	}, [rows, currentPage, pageSize]);
 
 
+	// Determine content
 	return (
 		<Container>
 			<TableWrapper>
@@ -54,8 +60,10 @@ const List = ({ headers, rows, selectable, onRowClick, pageSize = 5 }: ListProps
 					<tr>
 						{selectable && (
 							<Th>
-								<Checkbox checked={Object.keys(selectedRows).length > 0}
-										  onChange={handleToggleSelectAll} />
+								<Checkbox
+									checked={Object.keys(selectedRows).length > 0}
+									onChange={handleToggleSelectAll}
+								/>
 							</Th>
 						)}
 
@@ -75,13 +83,13 @@ const List = ({ headers, rows, selectable, onRowClick, pageSize = 5 }: ListProps
 							{selectable && (
 								<Td>
 									<Checkbox
-										onChange={() => handleRowClick(rowIndex)}
 										checked={selectedRows[rowIndex]}
+										onChange={() => handleRowClick(rowIndex)}
 									/>
 								</Td>
 							)}
 
-							{row.map((cell, i) => (
+							{row.content.map((cell, i) => (
 								<Td key={i}>{cell}</Td>
 							))}
 						</Row>
@@ -103,8 +111,7 @@ const List = ({ headers, rows, selectable, onRowClick, pageSize = 5 }: ListProps
 			</Pagination>
 		</Container>
 	);
-};
-
+});
 
 const Container = styled.div`
   display: flex;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLazyQuery } from '@apollo/client';
+import { ApolloError, useLazyQuery } from '@apollo/client';
 import styled from 'styled-components';
 
 import Logo from '~/components/ui/styled/image/Logo';
@@ -16,6 +16,25 @@ const Login = () => {
 		email: '',
 		password: '',
 	});
+
+
+	// Hooks
+	const [loginQuery, { loading, data, error }] = useLazyQuery(LOGIN_USER, {
+		onCompleted: (res) => {
+			if (res?.loginUser?.token) {
+				localStorage.setItem('token', res.loginUser.token);
+
+				window.location.href = '/dashboard';
+			}
+
+			handleFormReset();
+		},
+
+		onError: (err) => {
+			console.error(`[ERROR] ${err.message}`);
+		},
+	});
+
 
 	// Handlers
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,28 +60,15 @@ const Login = () => {
 					password: loginData.password,
 				},
 			});
-		} catch (err: any) {
-			console.error(`[ERROR] ${err.message}`);
+		} catch (err: unknown) {
+			if (err instanceof ApolloError) {
+				console.error(`[ERROR] ${err.message}`);
+			}
 		}
 	};
 
-	const [loginQuery, { loading, data, error }] = useLazyQuery(LOGIN_USER, {
-		onCompleted: (res) => {
-			if (res?.loginUser?.token) {
-				localStorage.setItem('token', res.loginUser.token);
 
-				window.location.href = '/dashboard';
-			}
-
-			handleFormReset();
-		},
-
-		onError: (err: any) => {
-			console.error(err.message);
-		},
-	});
-
-	// Content
+	// Determine Content
 	return (
 		<Wrapper>
 			<LoginBox>
@@ -125,7 +131,7 @@ const LoginBox = styled.div`
   width: 40rem;
   min-height: 50rem;
   height: auto;
-  background: ${({ theme }) => theme.colors.white_purple};
+  background: ${({ theme }) => theme.colors.white_dimmed};
   border-radius: 0.5rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
   padding: 2rem;
