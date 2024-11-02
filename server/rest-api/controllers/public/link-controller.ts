@@ -2,7 +2,7 @@ import * as jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
 
 import * as keys from '../../../config/keys';
-import * as apiService from '../../services';
+import * as services from '../../services';
 import utility from '../../../utility';
 import { IMessageToken, isMessageToken } from '../../../types';
 
@@ -18,7 +18,7 @@ const decipher = async (req: Request, res: Response): Promise<Response> => {
 			return res.status(500).json({ message: 'something went wrong' });
 		}
 
-		const message = await apiService.link.findAndDecrypt(data);
+		const message = await services.link.findAndDecrypt(data);
 
 		if (!message) {
 			return res.status(404).json({ message: 'We could not find the message content' });

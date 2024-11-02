@@ -8,7 +8,7 @@ import { hashPassword } from '../../../utility/encryption';
 const UserMutation = {
 	/**
 	 * @description sign up a user with the passed data
-	 * and hash the password with bcrypt
+	 * and hash the password with Argon2
 	 */
 	async signupUser(_, args, ctx: Context) {
 		const { prisma } = ctx;
@@ -19,8 +19,6 @@ const UserMutation = {
 			throw new UserInputError('The password is too short');
 		}
 
-		// hashing to prevent cleartext save
-		// pre save adjustments to the data
 		data.password = await hashPassword(data.password);
 		data.email = data.email.toLowerCase();
 
@@ -32,7 +30,7 @@ const UserMutation = {
 			name: user.name,
 		};
 
-		// sign token - after RFC7515
+		// Sign token - after RFC7515
 		const token = jwt.sign(userCopy, keys.JWT_TOKEN_SIGNATURE, {
 			expiresIn: '8h',
 		});
@@ -41,7 +39,7 @@ const UserMutation = {
 	},
 
 	/**
-	 * @description deletes and existing User from the Database
+	 * @description deletes and existing user from the database
 	 */
 	async deleteUser(_, args, ctx: Context) {
 		const { prisma } = ctx;

@@ -8,7 +8,11 @@ import { verifyPassword } from '../../../utility/encryption';
 
 const UserQuery = {
 	/**
-	 * @description
+	 * Fetches the currently authenticated user and their associated messages.
+	 *
+	 * This function uses the authentication details in the request (`req`) to identify
+	 * the currently logged-in user, verifies their authentication status, and retrieves
+	 * their information from the database.
 	 */
 	async currentUser(_, args, ctx: Context) {
 		const { prisma, req } = ctx;

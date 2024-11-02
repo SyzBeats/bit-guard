@@ -108,7 +108,7 @@ const SecretMutation = {
 			},
 		};
 
-		// create a new link with the message
+		// Create a new link with the message
 		const link = await LinkMutation.createSignalLink(linkPayload);
 
 		if (!link) {
@@ -147,6 +147,7 @@ const SecretMutation = {
 	},
 
 	/**
+	 * @public
 	 * @description: creates a public signal. Public signals do not require the user
 	 * to be authenticated.
 	 */

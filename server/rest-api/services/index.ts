@@ -1,3 +1,3 @@
-import * as link from './link.service';
+import * as link from './link-service';
 
 export { link };
