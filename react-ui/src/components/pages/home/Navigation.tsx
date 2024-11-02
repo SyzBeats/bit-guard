@@ -1,33 +1,36 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { LogIn, GitHub } from 'react-feather';
 
 import config from '../../../config';
 
+import { LogIn, GitHub } from '~/components/icons/Icons';
+
+
 const Navigation = () => {
-  const isProduction = config.environment.MODE !== 'development';
+	const isProduction = config.environment.MODE !== 'development';
 
-  return (
-    <HeaderNavigation>
-      {!isProduction && (
-        <>
-          <LoginLink to='/login'>
-            login <LogIn />
-          </LoginLink>
+	return (
+		<HeaderNavigation>
+			{!isProduction && (
+				<>
+					<LoginLink to='/login'>
+						login <LogIn />
+					</LoginLink>
 
-          <SignupLink to='/signup'>
-            signup <LogIn />
-          </SignupLink>
-        </>
-      )}
+					<SignupLink to='/signup'>
+						signup <LogIn />
+					</SignupLink>
+				</>
+			)}
 
-      <GithubLink href='https://github.com/SyzBeats/envite' target='_blank' rel='noopener noreferrer'>
-        GitHub <GitHub />
-      </GithubLink>
-    </HeaderNavigation>
-  );
+			<GithubLink href='https://github.com/SyzBeats/envite' target='_blank' rel='noopener noreferrer'>
+				GitHub <GitHub />
+			</GithubLink>
+		</HeaderNavigation>
+	);
 };
+
 
 // --- Styled components ---
 

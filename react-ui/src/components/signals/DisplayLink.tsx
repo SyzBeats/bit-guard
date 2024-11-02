@@ -1,41 +1,44 @@
 import React from 'react';
-import { Copy, Check } from 'react-feather';
 import styled from 'styled-components';
 
 import services from '../../services';
 
+import { Copy, Check } from '~/components/icons/Icons';
 import { useSignalState } from '~/store/store';
 
 interface Props {
-  link: string;
+	link: string;
 }
 
 interface ContainerState {
-  copied: boolean;
+	copied: boolean;
 }
 
 const DisplayLink = ({ link }: Props) => {
-  const signalState = useSignalState((state) => ({ linkCopied: state.linkCopied, setLinkCopied: state.setLinkCopied }));
+	const signalState = useSignalState((state) => ({
+		linkCopied: state.linkCopied,
+		setLinkCopied: state.setLinkCopied,
+	}));
 
-  const handleClick = () => {
-    services.ui.copyLinkToClipboard(link).catch((e) => console.error(e));
-    signalState.setLinkCopied(true);
-  };
+	const handleClick = () => {
+		services.ui.copyLinkToClipboard(link).catch((e) => console.error(e));
+		signalState.setLinkCopied(true);
+	};
 
-  const displayIcon = () => {
-    if (signalState.linkCopied) {
-      return <Check />;
-    }
+	const DisplayIcon = () => {
+		if (signalState.linkCopied) {
+			return <Check />;
+		}
 
-    return <Copy onClick={() => handleClick()} />;
-  };
+		return <Copy onClick={() => handleClick()} />;
+	};
 
-  return (
-    <Container copied={signalState.linkCopied}>
-      <CopySection>Secret Link (please copy): {displayIcon()}</CopySection>
-      <Wrapper>{link}</Wrapper>
-    </Container>
-  );
+	return (
+		<Container copied={signalState.linkCopied}>
+			<CopySection>Secret Link (please copy): {<DisplayIcon />}</CopySection>
+			<Wrapper>{link}</Wrapper>
+		</Container>
+	);
 };
 
 // --- Styled components ---

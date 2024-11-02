@@ -1,80 +1,80 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useMutation } from '@apollo/client';
-import { Trash } from 'react-feather';
 import { shallow } from 'zustand/shallow';
 
 import services from '../../services';
 
+import { Trash } from '~/components/icons/Icons';
 import { useSignalState } from '~/store/store';
 import { DELETE_SIGNAL } from '~/graphql/mutations/signal/mutation-delete-signal';
 
 interface IProps {
-  signal: {
-    id: string;
-    title: string;
-    createdAt: string;
-  };
+	signal: {
+		id: string;
+		title: string;
+		createdAt: string;
+	};
 }
 
 const Signal = ({ signal }: IProps) => {
-  const { id, title, createdAt } = signal;
+	const { id, title, createdAt } = signal;
 
-  // State
-  const signalState = useSignalState((state) => ({ removeSignal: state.removeSignal }), shallow);
+	// State
+	const signalState = useSignalState((state) => ({ removeSignal: state.removeSignal }), shallow);
 
-  // Hooks
-  const [deleteSignal] = useMutation(DELETE_SIGNAL, {
-    onCompleted: (data) => {
-      if (!data?.deleteSignal?.id) {
-        console.error("[ERROR] Couldn't delete signal");
-      }
+	// Hooks
+	const [deleteSignal] = useMutation(DELETE_SIGNAL, {
+		onCompleted: (data) => {
+			if (!data?.deleteSignal?.id) {
+				console.error('[ERROR] Couldn\'t delete signal');
+			}
 
-      signalState.removeSignal(data?.deleteSignal?.id);
-    },
-    onError: (error) => {
-      console.error(error.message);
-    },
-  });
+			signalState.removeSignal(data?.deleteSignal?.id);
+		},
+		onError: (error) => {
+			console.error(error.message);
+		},
+	});
 
-  // Handler
-  const handleDelete = (): void => {
-    if (!id) {
-      return;
-    }
+	// Handler
+	const handleDelete = (): void => {
+		if (!id) {
+			return;
+		}
 
-    const confirm = window.confirm('Are you sure?');
+		const confirmed = window.confirm('Are you sure? The secret will be destroyed and generated Links will not work afterwards');
 
-    if (!confirm) {
-      return;
-    }
+		if (!confirmed) {
+			return;
+		}
 
-    const variables = { id };
+		const variables = { id };
 
-    deleteSignal({
-      variables,
-    });
-  };
+		deleteSignal({
+			variables,
+		});
+	};
 
-  return (
-    <Wrapper>
-      <MessageContent>
-        <div>
-          <MessageTitle>Title: </MessageTitle>
-          <MessageContentText>{title}</MessageContentText>
-        </div>
+	return (
+		<Wrapper>
+			<MessageContent>
+				<div>
+					<MessageTitle>Title: </MessageTitle>
+					<MessageContentText>{title}</MessageContentText>
+				</div>
 
-        <div>
-          <MessageTitle>Created at: </MessageTitle>
-          <MessageContentText>{services.dates.parseStringToLocaleDate(createdAt)}</MessageContentText>
-        </div>
-      </MessageContent>
+				<div>
+					<MessageTitle>Created at: </MessageTitle>
+					<MessageContentText>{services.dates.parseStringToLocaleDate(createdAt)}</MessageContentText>
+				</div>
+			</MessageContent>
 
-      <MessageActions>
-        <Trash size={20} color="#01141F" onClick={() => handleDelete()} />
-      </MessageActions>
-    </Wrapper>
-  );
+			<MessageActions>
+				<Trash size={20} color='#01141F' onClick={() => handleDelete()} />
+			</MessageActions>
+		</Wrapper>
+	);
 };
 
 // --- Styled components ---

@@ -1,45 +1,46 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Code, Layers, Clock, Shield, Database, Share2 } from 'react-feather';
+
+import { Code, Layers, Clock, Shield, Database, Share2 } from '~/components/icons/Icons';
 
 interface Props {
-  content: string;
-  index: number;
+	content: string;
+	index: number;
 }
 
 const QueueItem = ({ content, index }: Props) => {
-  const getIcon = (text: string) => {
-    switch (text) {
-      case 'Military grade encryption': {
-        return <Database color="white" />;
-      }
-      case 'Simple user interface': {
-        return <Code color="white" />;
-      }
-      case 'Protected secrets': {
-        return <Shield color="white" />;
-      }
-      case 'Simplified sharing function': {
-        return <Share2 color="white" />;
-      }
-      case 'Smart deletion': {
-        return <Layers color="white" />;
-      }
-      case 'Expiry management': {
-        return <Clock color="white" />;
-      }
-      default: {
-        return null;
-      }
-    }
-  };
+	const getIcon = (text: string) => {
+		switch (text) {
+			case 'Military grade encryption': {
+				return <Database color='white' />;
+			}
+			case 'Simple user interface': {
+				return <Code color='white' />;
+			}
+			case 'Protected secrets': {
+				return <Shield color='white' />;
+			}
+			case 'Simplified sharing function': {
+				return <Share2 color='white' />;
+			}
+			case 'Smart deletion': {
+				return <Layers color='white' />;
+			}
+			case 'Expiry management': {
+				return <Clock color='white' />;
+			}
+			default: {
+				return null;
+			}
+		}
+	};
 
-  return (
-    <Wrapper index={index}>
-      <ListIcon>{getIcon(content)}</ListIcon>
-      <ListText>{content}</ListText>
-    </Wrapper>
-  );
+	return (
+		<Wrapper index={index}>
+			<ListIcon>{getIcon(content)}</ListIcon>
+			<ListText>{content}</ListText>
+		</Wrapper>
+	);
 };
 
 const rotate = keyframes`
@@ -53,7 +54,7 @@ const rotate = keyframes`
 `;
 
 interface WrapperType {
-  index: number;
+	index: number;
 }
 
 const ListIcon = styled.div`

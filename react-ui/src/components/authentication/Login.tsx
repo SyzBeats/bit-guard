@@ -11,100 +11,100 @@ import { LOGIN_USER } from '~/graphql/queries/user/query-login';
 import { MessageTypes } from '~/types/enums';
 
 const Login = () => {
-  // State
-  const [loginData, setLoginData] = useState({
-    email: '',
-    password: '',
-  });
+	// State
+	const [loginData, setLoginData] = useState({
+		email: '',
+		password: '',
+	});
 
-  // Handlers
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+	// Handlers
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { name, value } = e.target;
 
-    setLoginData((prev) => ({ ...prev, [name]: value }));
-  };
+		setLoginData((prev) => ({ ...prev, [name]: value }));
+	};
 
-  const handleFormReset = () => {
-    setLoginData({
-      email: '',
-      password: '',
-    });
-  };
+	const handleFormReset = () => {
+		setLoginData({
+			email: '',
+			password: '',
+		});
+	};
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    try {
-      e.preventDefault();
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		try {
+			e.preventDefault();
 
-      loginQuery({
-        variables: {
-          email: loginData.email,
-          password: loginData.password,
-        },
-      });
-    } catch (err: any) {
-      console.error(`[ERROR] ${err.message}`);
-    }
-  };
+			loginQuery({
+				variables: {
+					email: loginData.email,
+					password: loginData.password,
+				},
+			});
+		} catch (err: any) {
+			console.error(`[ERROR] ${err.message}`);
+		}
+	};
 
-  const [loginQuery, { loading, data, error }] = useLazyQuery(LOGIN_USER, {
-    onCompleted: (res) => {
-      if (res?.loginUser?.token) {
-        localStorage.setItem('token', res.loginUser.token);
+	const [loginQuery, { loading, data, error }] = useLazyQuery(LOGIN_USER, {
+		onCompleted: (res) => {
+			if (res?.loginUser?.token) {
+				localStorage.setItem('token', res.loginUser.token);
 
-        window.location.href = '/dashboard';
-      }
+				window.location.href = '/dashboard';
+			}
 
-      handleFormReset();
-    },
+			handleFormReset();
+		},
 
-    onError: (err: any) => {
-      console.error(err.message);
-    },
-  });
+		onError: (err: any) => {
+			console.error(err.message);
+		},
+	});
 
-  // Content
-  return (
-    <Wrapper>
-      <LoginBox>
-        <Logo />
-        <form method="POST" onSubmit={(e) => handleSubmit(e)}>
-          <SecondaryTitle color="dark">Enter your credentials</SecondaryTitle>
+	// Content
+	return (
+		<Wrapper>
+			<LoginBox>
+				<Logo />
+				<form method='POST' onSubmit={(e) => handleSubmit(e)}>
+					<SecondaryTitle color='dark'>Enter your credentials</SecondaryTitle>
 
-          <label>
-            Email
-            <Input
-              name="email"
-              autocomplete="email"
-              required={true}
-              type="text"
-              changeHandler={(e) => handleChange(e)}
-              value={loginData.email}
-            />
-          </label>
+					<label>
+						Email
+						<Input
+							name='email'
+							autocomplete='email'
+							required={true}
+							type='text'
+							changeHandler={(e) => handleChange(e)}
+							value={loginData.email}
+						/>
+					</label>
 
-          <label>
-            Password
-            <Input
-              name="password"
-              required={true}
-              changeHandler={(e) => handleChange(e)}
-              value={loginData.password}
-              type="password"
-              autocomplete="current-password"
-            />
-          </label>
+					<label>
+						Password
+						<Input
+							name='password'
+							required={true}
+							changeHandler={(e) => handleChange(e)}
+							value={loginData.password}
+							type='password'
+							autocomplete='current-password'
+						/>
+					</label>
 
-          <SubmitCircle />
-        </form>
+					<SubmitCircle />
+				</form>
 
-        {loading && <p>loading...</p>}
+				{loading && <p>loading...</p>}
 
-        {error && <Alert message={error.message} type={MessageTypes.ERROR} />}
+				{error && <Alert message={error.message} type={MessageTypes.ERROR} />}
 
-        {data && <Alert message="Success" type={MessageTypes.SUCCESS} />}
-      </LoginBox>
-    </Wrapper>
-  );
+				{data && <Alert message='Success' type={MessageTypes.SUCCESS} />}
+			</LoginBox>
+		</Wrapper>
+	);
 };
 
 // --- Styled components ---
@@ -125,7 +125,7 @@ const LoginBox = styled.div`
   width: 40rem;
   min-height: 50rem;
   height: auto;
-  background: ${({ theme }) => theme.colors.blue_dark};
+  background: ${({ theme }) => theme.colors.white_purple};
   border-radius: 0.5rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
   padding: 2rem;
@@ -146,7 +146,7 @@ const LoginBox = styled.div`
 
   label {
     font-size: 1.45rem;
-    color: ${({ theme }) => theme.colors.white_50};
+    color: ${({ theme }) => theme.colors.gray};
   }
 `;
 

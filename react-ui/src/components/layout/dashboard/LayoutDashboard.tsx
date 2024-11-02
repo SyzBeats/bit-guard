@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 import { PropsChildren } from '~/types/types-components';
-import { Sidebar } from '~/components/ui/navigation/Sidebar';
+import { Sidebar } from '~/components/layout/navigation/Sidebar';
 
 const LayoutDashboard = ({ children }: PropsChildren) => (
-  <Container>
-    <Sidebar />
-    <Content>{children}</Content>
-  </Container>
+	<Container>
+		<Sidebar />
+		<Content>{children}</Content>
+	</Container>
 );
 
 // --- Styled components ---

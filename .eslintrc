@@ -5,7 +5,6 @@
   "parser": "@typescript-eslint/parser",
   "plugins": [
     "@typescript-eslint",
-    "eslint-plugin-prettier",
     "import"
   ],
   "rules": {
@@ -89,12 +88,6 @@
     "no-unused-vars": "error",
     "no-debugger": "warn",
     "prefer-const": "error",
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto"
-      }
-    ],
     "complexity": [
       "warn",
       {
@@ -120,12 +113,6 @@
     "max-depth": [
       "warn",
       4
-    ],
-    "no-multiple-empty-lines": [
-      "error",
-      {
-        "max": 1
-      }
     ],
     "no-trailing-spaces": "error",
     "newline-before-return": "error",

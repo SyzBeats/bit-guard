@@ -1,40 +1,40 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import { X } from 'react-feather';
 
+import { X } from '~/components/icons/Icons';
 import { useClickaway } from '~/hooks/useClickaway';
 
 interface ModalProps {
-  children: React.ReactNode;
-  handler: Function;
-  title?: string;
-  preventClickAway: boolean;
+	children: React.ReactNode;
+	handler: Function;
+	title?: string;
+	preventClickAway: boolean;
 }
 
 const BaseModal = ({ handler, children, title = 'Action', preventClickAway = false }: ModalProps) => {
-  const ref = useRef(null);
+	const ref = useRef(null);
 
-  const [callback] = useClickaway(ref, handler, preventClickAway);
+	const [callback] = useClickaway(ref, handler, preventClickAway);
 
-  return (
-    <>
-      <Curtain />
-      <div ref={ref}>
-        <Modal>
-          <Container>
-            <ModalHeader>
-              <h3>{title}</h3>
+	return (
+		<>
+			<BackDrop />
+			<div ref={ref}>
+				<Modal>
+					<Container>
+						<ModalHeader>
+							<h3>{title}</h3>
 
-              <CloseButton onClick={callback}>
-                <X size={30} />
-              </CloseButton>
-            </ModalHeader>
-            <ModalContent>{children}</ModalContent>
-          </Container>
-        </Modal>
-      </div>
-    </>
-  );
+							<CloseButton onClick={callback}>
+								<X size={30} />
+							</CloseButton>
+						</ModalHeader>
+						<ModalContent>{children}</ModalContent>
+					</Container>
+				</Modal>
+			</div>
+		</>
+	);
 };
 
 // --- Styled components ---
@@ -101,7 +101,7 @@ const CloseButton = styled.button`
   }
 `;
 
-const Curtain = styled.div`
+const BackDrop = styled.div`
   animation: fadeIn 0.3s ease-in-out forwards;
   position: absolute;
   z-index: 100;
