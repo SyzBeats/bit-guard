@@ -1,6 +1,6 @@
 type SignalMimeType = 'text' | 'image' | 'video' | 'audio' | 'file';
 
-interface Signal {
+export interface Signal {
 	id: string;
 	title: string;
 	message: string;

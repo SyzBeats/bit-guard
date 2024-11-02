@@ -12,57 +12,63 @@ import { FlexGridItem } from '~/components/layout/grids/FlexGridItem';
 import { FlexGridEqual } from '~/components/layout/grids/FlexGrid';
 import { useCreateSecretFormState, useSignalState } from '~/store/store';
 import { CREATE_SIGNAL } from '~/graphql/mutations/signal/mutation-create-signal';
+import { Signal } from '~/store/interfaces';
 
 const CreateSignal = () => {
-  const addSignal = useSignalState((state) => state.addSignal);
+	const addSignal = useSignalState((state) => state.addSignal);
 
-  const { setContent, setTitle, title, content, link, setLink } = useCreateSecretFormState();
+	const { setContent, setTitle, title, content, link, setLink } = useCreateSecretFormState();
 
-  const [createSignalMutation] = useMutation(CREATE_SIGNAL, {
-    onCompleted: ({ createSignal: created }) => {
-      addSignal({ id: created.id, title: created.title, createdAt: created.createdAt, link: created.link.content });
-      setLink(created.link.content);
-    },
-    onError: (error) => {
-      console.error(error.message);
-    },
-  });
+	const [createSignalMutation] = useMutation(CREATE_SIGNAL, {
+		onCompleted: ({ createSignal: created }) => {
+			addSignal({
+				id: created.id,
+				title: created.title,
+				createdAt: created.createdAt,
+				link: created.link.content,
+			} as unknown as Signal);
+			setLink(created.link.content);
+		},
+		onError: (error) => {
+			console.error(error.message);
+		},
+	});
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
+	const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+		e.preventDefault();
 
-    createSignalMutation({
-      variables: {
-        title,
-        content,
-      },
-    });
-  };
+		createSignalMutation({
+			variables: {
+				title,
+				content,
+			},
+		});
+	};
 
-  return (
-    <Wrapper>
-      <HorizontalToggle />
-      <FlexGridEqual gap="1.5rem" justifyContent="stretch">
-        <FlexGridItem alignSelf="stretch" flex="1">
-          <TextInput label="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} />
-        </FlexGridItem>
-      </FlexGridEqual>
+	return (
+		<Wrapper>
+			<HorizontalToggle />
+			<FlexGridEqual gap='1.5rem' justifyContent='stretch'>
+				<FlexGridItem alignSelf='stretch' flex='1'>
+					<TextInput label='title' name='title' value={title} onChange={(e) => setTitle(e.target.value)} />
+				</FlexGridItem>
+			</FlexGridEqual>
 
-      <FlexGridEqual gap="1.5rem" justifyContent="stretch">
-        <TextArea label="content" name="content" value={content} onChange={(e) => setContent(e.target.value)} />
-      </FlexGridEqual>
+			<FlexGridEqual gap='1.5rem' justifyContent='stretch'>
+				<TextArea label='content' name='content' value={content} onChange={(e) => setContent(e.target.value)} />
+			</FlexGridEqual>
 
-      <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">
-        {!!link && <DisplayLink link={link} />}
-      </FlexGridEqual>
+			<FlexGridEqual gap='1.5rem' alignItems='center' justifyContent='flex-end'>
+				{!!link && <DisplayLink link={link} />}
+			</FlexGridEqual>
 
-      <FlexGridEqual gap="1.5rem" alignItems="center" justifyContent="flex-end">
-        <ButtonWrapper>
-          <button onClick={(e) => handleSubmit(e)}>Add Signal</button>
-        </ButtonWrapper>
-      </FlexGridEqual>
-    </Wrapper>
-  );
+			<FlexGridEqual gap='1.5rem' alignItems='center' justifyContent='flex-end'>
+				<ButtonWrapper>
+					<button onClick={(e) => handleSubmit(e)}>Add Signal</button>
+				</ButtonWrapper>
+			</FlexGridEqual>
+		</Wrapper>
+	);
 };
 
 const Wrapper = styled.form`
