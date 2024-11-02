@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 interface Props {
-  justifyContent?: string;
-  alignItems?: string;
-  flexDirection?: string;
-  padded?: boolean;
-  equal?: boolean;
-  gap?: string;
+	justifyContent?: string;
+	alignItems?: string;
+	flexDirection?: string;
+	padded?: boolean;
+	equal?: boolean;
+	gap?: string;
 }
 
 const FlexGridEqual = styled.div<Props>`
@@ -24,7 +24,7 @@ const FlexGridEqual = styled.div<Props>`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
     flex-direction: column;
-    gap: 0rem;
+    gap: 0;
   }
 `;
 

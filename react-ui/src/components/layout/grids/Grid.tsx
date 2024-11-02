@@ -1,19 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
-type GridType = {
-  rows: number;
-  rowHeight?: string;
-  gap?: string;
-  children?: React.ReactNode;
-};
+interface GridType {
+	rows: number;
+	rowHeight?: string;
+	gap?: string;
+	children?: React.ReactNode;
+}
 
 const Grid = ({ rows, gap = '3rem', rowHeight = '25rem', children }: GridType) => {
-  return (
-    <Wrapper rows={rows} gap={gap} rowHeight={rowHeight}>
-      {children}
-    </Wrapper>
-  );
+	return (
+		<Wrapper rows={rows} gap={gap} rowHeight={rowHeight}>
+			{children}
+		</Wrapper>
+	);
 };
 
 // --- Styled components ---
