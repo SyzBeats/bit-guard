@@ -82,7 +82,7 @@ const FormCreatePublicDocument = () => {
 			<FlexGridEqual gap='1.5rem' justifyContent='stretch'>
 				<FlexGridItem alignSelf='stretch' flex='1'>
 					<TextInput
-						label='Enter a title for the document'
+						label='Enter a title for the document...'
 						name='title'
 						value={formState.title}
 						onChange={(e) => formState.setTitle(e.target.value)}
@@ -95,9 +95,11 @@ const FormCreatePublicDocument = () => {
 				handleExtension={(extension: string) => formState.setExtension(extension)}
 			/>
 
-			<FlexGridEqual gap='1.5rem' alignItems='center' justifyContent='flex-end'>
-				{!!formState.link && <DisplayLink link={formState.link} />}
-			</FlexGridEqual>
+			{!!formState.link && (
+				<FlexGridEqual gap='1.5rem' alignItems='center' justifyContent='flex-end'>
+					<DisplayLink link={formState.link} />
+				</FlexGridEqual>
+			)}
 
 			<FlexGridEqual gap='1.5rem' alignItems='center' justifyContent='flex-end'>
 				<ButtonWrapper>

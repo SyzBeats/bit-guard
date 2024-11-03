@@ -1,23 +1,26 @@
 const theme = {
 	colors: {
-		highlight: '#4e0480',
-		highlight_50: '#4e048099',
-		highlight_20: '#4e048030',
-		highlight_blue: '#006eb5',
-		highlight_blue_50: '#006eb599',
-		highlight_iceblue: '#399ede',
-		highlight_iceblue_50: '#399ede99',
-		highlight_iceblue_10: '#399ede29',
-		background: '#01141F',
-		blue_dark: '#000406',
+		purple: '#4e0480',
+		purple_600: '#4e048099',
+		purple_300: '#4e048030',
+
+		lightblue: '#006eb5',
+		lightblue_800: '#006eb599',
+
+		iceblue: '#399ede',
+		iceblue_800: '#399ede99',
+		iceblue_500: '#399ede29',
+
 		white: '#F8F8F8',
-		white_dimmed: '#efefef',
-		white_purple: '#ead9fd',
-		white_50: '#F8F8F899',
-		white_30: '#F8F8F844',
+		white_800: '#EFEFEF',
+		white_500: '#E2E2E2',
+		white_300: '#DDD',
+
 		red: '#fd1b45',
 		gray: '#454545',
 		gray_light: '#888',
+		background: '#01141F',
+		blue_dark: '#000406',
 	},
 	fonts: {},
 	gradients: {

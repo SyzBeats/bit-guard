@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 interface TitleType {
-  color: string;
-  textAlign?: string;
+	color: string;
+	textAlign?: string;
 }
 
 const MainTitle = styled.h1<TitleType>`
-  color: ${(props) => (props.color === 'light' ? '#fff' : props.theme.colors.highlight_blue)};
+  color: ${(props) => (props.color === 'light' ? '#fff' : props.theme.colors.lightblue)};
   font-size: clamp(3rem, 4vw, 4rem);
   letter-spacing: 1px;
   margin: 0 0 1.85rem 0;
@@ -14,7 +14,7 @@ const MainTitle = styled.h1<TitleType>`
 `;
 
 const SecondaryTitle = styled.h2<TitleType>`
-  color: ${(props) => (props.color === 'light' ? '#fff' : props.theme.colors.highlight)};
+  color: ${(props) => (props.color === 'light' ? '#fff' : props.theme.colors.purple)};
   font-size: clamp(1.8rem, 3vw, 2.45rem);
   line-height: 1.25;
   letter-spacing: 1px;
@@ -23,7 +23,7 @@ const SecondaryTitle = styled.h2<TitleType>`
 `;
 
 const SecondaryTitleBlue = styled.h2<TitleType>`
-  color: ${({ theme }) => theme.colors.highlight_blue};
+  color: ${({ theme }) => theme.colors.lightblue};
   font-size: 2.45rem;
   line-height: 1.25;
   letter-spacing: 1px;

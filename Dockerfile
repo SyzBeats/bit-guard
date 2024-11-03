@@ -1,4 +1,4 @@
-FROM node:16-alpine 
+FROM node:20-alpine
 ENV WDR=/app
 WORKDIR ${WDR}
 
@@ -7,7 +7,7 @@ COPY package.json ${WDR}
 COPY package-lock.json ${WDR}
 COPY . ${WDR}
 
-# build server 
+# build server
 RUN npm ci
 RUN npm run build:server
 CMD ["npm", "run", "start:server"]

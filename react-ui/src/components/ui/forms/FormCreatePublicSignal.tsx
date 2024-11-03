@@ -96,9 +96,11 @@ const CreatePublicSignal = () => {
 				/>
 			</FlexGridEqual>
 
-			<FlexGridEqual gap='1.5rem' alignItems='center' justifyContent='flex-end'>
-				{!!formState.link && <DisplayLink link={formState.link} />}
-			</FlexGridEqual>
+			{!!formState.link && (
+				<FlexGridEqual gap='1.5rem' alignItems='center' justifyContent='flex-end'>
+					<DisplayLink link={formState.link} />
+				</FlexGridEqual>
+			)}
 
 			<FlexGridEqual gap='1.5rem' alignItems='center' justifyContent='flex-end'>
 				<ButtonWrapper>

@@ -3,28 +3,28 @@ import styled from 'styled-components';
 import { MessageTypes } from '~/types/enums';
 
 interface AlertProps {
-  type: MessageTypes;
-  message: string;
+	type: MessageTypes;
+	message: string;
 }
 
 const Alert = ({ type, message }: AlertProps) => {
-  if (!message) {
-    return null;
-  }
+	if (!message) {
+		return null;
+	}
 
-  switch (type) {
-    case MessageTypes.SUCCESS: {
-      return <AlertSuccess>{message}</AlertSuccess>;
-    }
+	switch (type) {
+		case MessageTypes.SUCCESS: {
+			return <AlertSuccess>{message}</AlertSuccess>;
+		}
 
-    case MessageTypes.ERROR: {
-      return <AlertError>{message}</AlertError>;
-    }
+		case MessageTypes.ERROR: {
+			return <AlertError>{message}</AlertError>;
+		}
 
-    default: {
-      return <AlertInfo>{message}</AlertInfo>;
-    }
-  }
+		default: {
+			return <AlertInfo>{message}</AlertInfo>;
+		}
+	}
 };
 
 // --- Styled components ---
@@ -44,7 +44,7 @@ const AlertBase = styled.div`
 `;
 
 const AlertSuccess = styled(AlertBase)`
-  background-color: var(--color-green--light);
+  background-color: var(--color-green-1200);
 `;
 
 const AlertError = styled(AlertBase)`
@@ -52,7 +52,7 @@ const AlertError = styled(AlertBase)`
 `;
 
 const AlertInfo = styled(AlertBase)`
-  background-color: var(--color-blue--light);
+  background-color: var(--color-lightblue);
 `;
 
 export { Alert };

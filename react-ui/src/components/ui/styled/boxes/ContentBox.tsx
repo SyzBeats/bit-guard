@@ -2,25 +2,25 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface ContextBoxInterface {
-  children: React.ReactNode;
-  title?: string;
-  bordered?: boolean;
-  borderColor?: string;
+	children: React.ReactNode;
+	title?: string;
+	bordered?: boolean;
+	borderColor?: string;
 }
 
 interface WrapperProps {
-  bordered?: boolean;
-  borderColor: string;
-  backgroundColor?: string;
+	bordered?: boolean;
+	borderColor: string;
+	backgroundColor?: string;
 }
 
 const ContentBox = ({ title = '', children, bordered = false, borderColor = 'light' }: ContextBoxInterface) => {
-  return (
-    <Wrapper borderColor={borderColor} bordered={bordered}>
-      {title && <Title>{title}</Title>}
-      {children}
-    </Wrapper>
-  );
+	return (
+		<Wrapper borderColor={borderColor} bordered={bordered}>
+			{title && <Title>{title}</Title>}
+			{children}
+		</Wrapper>
+	);
 };
 
 // --- Styled components ---
@@ -38,12 +38,12 @@ const Wrapper = styled.div<WrapperProps>`
   max-height: 50vh;
 
   background: ${({ theme }) => theme.colors.white};
-  color: var(--color-grey--dark);
+  color: var(--color-grey--500);
 
   border-radius: 0.55rem;
   border-top: ${({ bordered }) => (bordered ? '.6rem solid' : 'none')};
   border-color: ${({ theme, borderColor }) =>
-    borderColor === 'light' ? `${theme.colors.highlight_iceblue}` : `${theme.colors.highlight_blue}`};
+          borderColor === 'light' ? `${theme.colors.iceblue}` : `${theme.colors.lightblue}`};
 
   // make box scrollable
   overflow-y: auto;

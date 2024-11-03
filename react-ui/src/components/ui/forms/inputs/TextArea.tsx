@@ -2,19 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface Props {
-  name: string;
-  value: string;
-  label: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  type?: string;
+	name: string;
+	value: string;
+	label: string;
+	onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+	type?: string;
 }
 
 const TextArea = ({ name = '', value = '', label = '', onChange = () => null }: Props) => {
-  return (
-    <Wrapper>
-      <Area rows={5} name={name} value={value} placeholder={label} onChange={onChange} />
-    </Wrapper>
-  );
+	return (
+		<Wrapper>
+			<Area rows={5} name={name} value={value} placeholder={label} onChange={onChange} />
+		</Wrapper>
+	);
 };
 
 const Wrapper = styled.span`
@@ -44,9 +44,15 @@ const Area = styled.textarea`
   font-size: 1.4rem;
 
   // change outline on focus
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.gray_light};
+  }
+
   &:focus {
     outline: none;
-    border: 1px solid ${({ theme }) => theme.colors.highlight_blue};
+    border-color: ${({ theme }) => theme.colors.iceblue};
+    box-shadow: 0 0 0 4px ${({ theme }) => theme.colors.iceblue_500};
   }
 `;
 

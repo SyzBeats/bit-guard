@@ -45,8 +45,8 @@ const InputField = styled.input`
   &:focus,
   input:hover {
     outline: none;
-    border-color: ${({ theme }) => theme.colors.highlight_iceblue};
-    box-shadow: 0 0 0 4px ${({ theme }) => theme.colors.highlight_iceblue_10};
+    border-color: ${({ theme }) => theme.colors.iceblue};
+    box-shadow: 0 0 0 4px ${({ theme }) => theme.colors.iceblue_500};
   }
 `;
 

@@ -83,7 +83,7 @@ const Wrapper = styled.div<WrapperType>`
   justify-content: center;
   align-items: center;
 
-  background-image: ${({ theme }) => `linear-gradient(110deg, ${theme.colors.highlight} 21.5%, white 21.5%) `};
+  background-image: ${({ theme }) => `linear-gradient(110deg, ${theme.colors.purple} 21.5%, white 21.5%) `};
   padding: 0 20px;
   border-radius: 4px;
   box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);

@@ -4,11 +4,11 @@ import styled from 'styled-components';
 import { PropsChildren } from '~/types/types-components';
 
 interface Props extends PropsChildren {
-  action?: Function;
+	action?: Function;
 }
 
 const NavigationButton = ({ children, action }: Props) => {
-  return <Button onClick={() => action?.()}>{children}</Button>;
+	return <Button onClick={() => action?.()}>{children}</Button>;
 };
 
 // --- Styled components ---
@@ -21,7 +21,7 @@ const Button = styled.div`
   &:hover {
     cursor: pointer;
     transform: scale3d(1.1, 1.1, 1.1);
-    filter: ${({ theme }) => `grayscale(0) drop-shadow(1px 2px 9px ${theme.colors.highlight_iceblue_50})`};
+    filter: ${({ theme }) => `grayscale(0) drop-shadow(1px 2px 9px ${theme.colors.iceblue_800})`};
   }
 `;
 

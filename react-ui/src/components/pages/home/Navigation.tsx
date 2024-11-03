@@ -62,7 +62,7 @@ const LoginLink = styled(NavLink)`
 
 const SignupLink = styled(NavLink)`
   background: ${({ theme }) => theme.colors.blue_dark};
-  color: ${({ theme }) => theme.colors.highlight_iceblue};
+  color: ${({ theme }) => theme.colors.iceblue};
 `;
 
 const GithubLink = styled.a`
@@ -77,7 +77,7 @@ const GithubLink = styled.a`
   line-height: 1em;
 
   background: ${({ theme }) => theme.colors.blue_dark};
-  color: ${({ theme }) => theme.colors.highlight_iceblue};
+  color: ${({ theme }) => theme.colors.iceblue};
 `;
 
 export default Navigation;

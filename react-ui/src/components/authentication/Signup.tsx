@@ -176,7 +176,7 @@ const SignUpBox = styled.div`
   width: 40rem;
   min-height: 50rem;
   height: auto;
-  background: ${({ theme }) => theme.colors.white_dimmed};
+  background: ${({ theme }) => theme.colors.white_800};
   border-radius: 0.5rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
   padding: 2rem;

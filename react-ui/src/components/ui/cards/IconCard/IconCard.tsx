@@ -3,32 +3,36 @@ import React, { MouseEventHandler } from 'react';
 import styles from './IconCard.module.scss';
 
 interface CardProps {
-  color: string;
-  clickHandler: MouseEventHandler<HTMLDivElement>;
-  icon: React.ReactNode;
-  title: string;
-  content: string;
+	color: string;
+	clickHandler: MouseEventHandler<HTMLDivElement>;
+	icon: React.ReactNode;
+	title: string;
+	content: string;
 }
 
 const IconCard = (props: CardProps) => {
-  const shadowClass = [styles.shadow];
+	const shadowClass = [styles.shadow];
 
-  shadowClass.push(styles[props.color]);
+	shadowClass.push(styles[props.color]);
 
-  return (
-    <div className={styles.container} onClick={props.clickHandler}>
-      <div className={styles.card}>
-        <div className={styles.icon}>{props.icon}</div>
+	const cardClasses = [styles.card];
 
-        <div className={styles.content}>
-          <h2>{props.title}</h2>
-          <p>{props.content}</p>
-        </div>
-      </div>
+	cardClasses.push(styles[props.color]);
 
-      <div className={shadowClass.join(' ')} />
-    </div>
-  );
+	return (
+		<div className={styles.container} onClick={props.clickHandler}>
+			<div className={cardClasses.join(' ')}>
+				<div className={styles.icon}>{props.icon}</div>
+
+				<div className={styles.content}>
+					<h2>{props.title}</h2>
+					<p>{props.content}</p>
+				</div>
+			</div>
+
+			<div className={shadowClass.join(' ')} />
+		</div>
+	);
 };
 
 export { IconCard };

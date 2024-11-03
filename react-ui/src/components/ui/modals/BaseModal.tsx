@@ -48,7 +48,7 @@ const Modal = styled.div`
   animation: fadeInUp 0.3s ease-in-out forwards;
   background: #fff;
   border-radius: 1rem;
-  border-top: 0.5rem solid ${({ theme }) => theme.colors.highlight_iceblue};
+  border-top: 0.5rem solid ${({ theme }) => theme.colors.iceblue};
   box-shadow: ${({ theme }) => theme.shadows.depth_1};
   height: auto;
   left: 50%;
@@ -87,7 +87,7 @@ const CloseButton = styled.button`
   height: 2.5rem;
   border: none;
   background: transparent;
-  color: ${({ theme }) => theme.colors.highlight_iceblue};
+  color: ${({ theme }) => theme.colors.iceblue};
 
   display: flex;
   justify-content: center;
@@ -119,7 +119,7 @@ const BackDrop = styled.div`
 `;
 
 const ModalContent = styled.div`
-  border-top: 1px solid ${({ theme }) => theme.colors.highlight_blue};
+  border-top: 1px solid ${({ theme }) => theme.colors.lightblue};
 `;
 
 export default BaseModal;

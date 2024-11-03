@@ -7,7 +7,7 @@ const ButtonWrapper = styled.span`
     border: none;
     border-radius: 0.4rem;
     box-shadow: ${({ theme }) => theme.shadows.depth_1};
-    background: ${({ theme }) => theme.colors.highlight_blue};
+    background: ${({ theme }) => theme.colors.lightblue};
     color: #fff;
     font-size: 1.5rem;
     letter-spacing: 1.5px;

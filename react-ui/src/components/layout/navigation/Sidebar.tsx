@@ -59,7 +59,7 @@ const Wrapper = styled.header`
   left: 0;
 
   background: ${({ theme }) => theme.colors.background};
-  color: ${({ theme }) => theme.colors.highlight_iceblue};
+  color: ${({ theme }) => theme.colors.iceblue};
   box-shadow: 3px 0 9px #1115;
 
   font-weight: 300;

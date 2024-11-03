@@ -2,26 +2,26 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface Props {
-  onClick: () => void;
-  label: string;
-  checked: boolean;
+	onClick: () => void;
+	label: string;
+	checked: boolean;
 }
 
 interface WrapperProps {
-  checked: boolean;
+	checked: boolean;
 }
 
 interface OuterCircleProps {
-  checked: boolean;
+	checked: boolean;
 }
 
 const RadioButton = ({ onClick, checked = false, label = '' }: Props) => {
-  return (
-    <Wrapper checked={checked} onClick={() => onClick()}>
-      <OuterCircle checked={checked}>{checked && <InnerCircle />}</OuterCircle>
-      <span>{label}</span>
-    </Wrapper>
-  );
+	return (
+		<Wrapper checked={checked} onClick={() => onClick()}>
+			<OuterCircle checked={checked}>{checked && <InnerCircle />}</OuterCircle>
+			<span>{label}</span>
+		</Wrapper>
+	);
 };
 
 const Wrapper = styled.span<WrapperProps>`
@@ -29,9 +29,9 @@ const Wrapper = styled.span<WrapperProps>`
   align-items: center;
   gap: 0.5rem;
   padding: 2rem 1rem;
-  background: ${({ checked }) => (checked ? 'var(--color-light)' : 'var(--color-light--dimmed)')};
-  color: ${({ checked }) => (checked ? 'var(--color-bg)' : 'var(--color-grey--light)')};
-  border: ${({ checked, theme }) => (checked ? `2px solid ${theme.colors.highlight_blue}` : '2px solid transparent')};
+  background: ${({ checked }) => (checked ? 'var(--color-light-1000)' : 'var(--color-light-800)')};
+  color: ${({ checked }) => (checked ? 'var(--color-bg)' : 'var(--color-grey--1000)')};
+  border: ${({ checked, theme }) => (checked ? `2px solid ${theme.colors.lightblue}` : '2px solid transparent')};
   border-radius: 0.5rem;
 
   span {

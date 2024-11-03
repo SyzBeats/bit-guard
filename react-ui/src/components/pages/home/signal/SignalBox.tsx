@@ -7,7 +7,7 @@ const SignalBox = () => {
 	return (
 		<Wrapper>
 			<SecondaryTitleBlue color='light' textAlign='center'>
-				Select a message type:
+				What do you want to encrypt today?
 			</SecondaryTitleBlue>
 
 			<SecretTypeSelector />

@@ -1,21 +1,21 @@
 import styled from 'styled-components';
 
 interface IProps {
-  loading: boolean;
+	loading: boolean;
 }
 
 const Loader = (props: IProps) => {
-  if (!props.loading) {
-    return null;
-  }
+	if (!props.loading) {
+		return null;
+	}
 
-  return (
-    <Wrapper>
-      <Dot1 />
-      <Dot2 />
-      <Dot3 />
-    </Wrapper>
-  );
+	return (
+		<Wrapper>
+			<Dot1 />
+			<Dot2 />
+			<Dot3 />
+		</Wrapper>
+	);
 };
 
 // --- Styled components ---
@@ -32,7 +32,7 @@ const Dot = styled.div`
   width: 1rem;
   height: 1rem;
   border-radius: 50%;
-  background-color: ${({ theme }) => theme.colors.highlight_blue};
+  background-color: ${({ theme }) => theme.colors.lightblue};
   animation: pulse 0.9s infinite;
 `;
 

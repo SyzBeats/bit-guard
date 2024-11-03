@@ -76,7 +76,7 @@ const PublicSecretModal = (props: ModalProps) => {
 				<div className={styles.modal}>
 					<div className={styles.modalHeader}>
 						<span className={styles.icon}>
-						  <X onClick={() => props.close()} />
+						  <X size={'2rem'} onClick={() => props.close()} />
 						</span>
 					</div>
 

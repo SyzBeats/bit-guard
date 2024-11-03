@@ -134,7 +134,7 @@ const Table = styled.table`
   border-collapse: collapse;
 
   thead {
-    background-color: ${({ theme }) => theme.colors.white_dimmed};
+    background-color: ${({ theme }) => theme.colors.white_800};
     color: ${({ theme }) => theme.colors.blue_dark};
   }
 `;
@@ -155,7 +155,7 @@ const Td = styled.td`
 `;
 
 const Row = styled.tr<{ selected: boolean }>`
-  color: ${({ selected, theme }) => (selected ? theme.colors.highlight_iceblue : 'inherit')};
+  color: ${({ selected, theme }) => (selected ? theme.colors.iceblue : 'inherit')};
   cursor: pointer;
   transition: color 0.2s;
 
@@ -172,8 +172,8 @@ const Pagination = styled.div`
 
 
 const PageButton = styled.button<{ active: boolean }>`
-  background-color: ${({ theme, active }) => (active ? theme.colors.blue_dark : theme.colors.highlight_iceblue_10)};
-  color: ${({ theme, active }) => (active ? theme.colors.highlight_iceblue : theme.colors.blue_dark)};
+  background-color: ${({ theme, active }) => (active ? theme.colors.blue_dark : theme.colors.iceblue_500)};
+  color: ${({ theme, active }) => (active ? theme.colors.iceblue : theme.colors.blue_dark)};
   border: 1px solid ${({ theme }) => theme.colors.blue_dark};
   border-radius: 4px;
   padding: 0.5rem 0.75rem;
@@ -183,7 +183,7 @@ const PageButton = styled.button<{ active: boolean }>`
 
   &:hover {
     background-color: ${({ theme, active }) => (active ? theme.colors.blue_dark : theme.colors.blue_dark)};
-    color: ${({ theme }) => (theme.colors.highlight_iceblue)};
+    color: ${({ theme }) => (theme.colors.iceblue)};
   }
 `;
 

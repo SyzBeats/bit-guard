@@ -1,17 +1,26 @@
 /*=========== BASE STYLES =============*/
 :root {
     --color-bg: #021a21;
+
     --color-green: #2cda00;
-    --color-green--light: #dff0df;
+    --color-green-1000: #0FC49D66;
+    --color-green-1200: #dff0df;
+
     --color-red--light: #f2dede;
-    --color-blue--light: #c5f0f3;
-    --color-blue--light-200: #c5f0f320;
 
-    --color-grey--dark: #494949;
-    --color-grey--light: #999;
+    --color-lightblue: #c5f0f3;
+    --color-lightblue-800: rgba(57, 158, 222, 0.42);
+    --color-lightblue-200: #c5f0f320;
 
-    --color-light: #f8f8f8;
-    --color-light--dimmed: #f2f2f2;
+    --color-purple: #4e0480;
+    --color-purple-1000: #8926cc;
+    --color-purple-1200: #a94aea;
+
+    --color-grey--500: #494949;
+    --color-grey--1000: #999;
+
+    --color-light-1000: #f8f8f8;
+    --color-light-800: #f2f2f2;
 }
 
 /*import fonts from public folder which is mounted in snowpack config*/
@@ -22,9 +31,29 @@
     url('/fonts/JosefinSans-SemiBold.ttf') format('truetype');
 }
 
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 90deg;
+    inherits: true;
+}
+
+@property --gradX {
+    syntax: '<percentage>';
+    initial-value: 50%;
+    inherits: true;
+}
+
+@property --gradY {
+    syntax: '<percentage>';
+    initial-value: 0%;
+    inherits: true;
+}
+
 *,
 *::after,
 *::before {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
