@@ -70,26 +70,25 @@ const ListText = styled.div`
 `;
 
 const Wrapper = styled.div<WrapperType>`
-  transform-origin: top;
-  transition: all 0.3s;
-  animation: ${rotate} 1s ease-out;
-  height: 5.35rem;
-  width: 100%;
-  margin-top: ${(props) => (props.index === 0 ? '0rem' : '0.5rem')};
-
-  background: #f2f2f2;
-
   display: flex;
   justify-content: center;
   align-items: center;
 
-  background-image: ${({ theme }) => `linear-gradient(110deg, ${theme.colors.purple} 21.5%, white 21.5%) `};
+  height: 5.35rem;
+  width: 100%;
+  margin-top: ${(props) => (props.index === 0 ? '0rem' : '0.5rem')};
   padding: 0 20px;
+
+  background: #f2f2f2;
+  background-image: ${({ theme }) => `linear-gradient(110deg, ${theme.colors.purple} 21.5%, white 21.5%) `};
   border-radius: 4px;
   box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.3);
-
   font-size: 20px;
   font-weight: 600;
+
+  transform-origin: top;
+  transition: all 0.3s;
+  animation: ${rotate} 1s ease-out;
   overflow: hidden;
 `;
 export { QueueItem };

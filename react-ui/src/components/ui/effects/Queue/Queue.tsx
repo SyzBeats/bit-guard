@@ -6,41 +6,42 @@ import { QueueItem } from './QueueItem';
 const TIMEOUT = 2000;
 
 const Queue = () => {
-  const staticItems = [
-    'Military grade encryption',
-    'Expiry management',
-    'Simple user interface',
-    'Protected secrets',
-    'Simplified sharing function',
-    'Smart deletion',
-  ];
+	const staticItems = [
+		'Military grade encryption',
+		'Expiry management',
+		'Simple user interface',
+		'Protected secrets',
+		'Simplified sharing function',
+		'Smart deletion',
+	];
 
-  const [items, setItems] = useState(staticItems.slice(0, 6));
+	const [items, setItems] = useState(staticItems.slice(0, 6));
 
-  useLayoutEffect(() => {
-    const interval = setInterval(() => {
-      setItems((prev) => {
-        const nextTop = prev[prev.length - 1];
-        const newShown = prev.slice(0, prev.length - 1);
+	useLayoutEffect(() => {
+		const interval = setInterval(() => {
+			setItems((prev) => {
+				const nextTop = prev[prev.length - 1];
+				const newShown = prev.slice(0, prev.length - 1);
 
-        return [nextTop, ...newShown];
-      });
-    }, TIMEOUT);
+				return [nextTop, ...newShown];
+			});
+		}, TIMEOUT);
 
-    return () => clearInterval(interval);
-  }, []);
+		return () => clearInterval(interval);
+	}, []);
 
-  return (
-    <SkewContainer>
-      <Wrapper>
-        <ShadowTop />
-        <TransitionContainer>
-          {items.map((item, i) => i !== items.length - 1 && <QueueItem key={Math.random()} index={i} content={item} />)}
-        </TransitionContainer>
-        <ShadowBottom />
-      </Wrapper>
-    </SkewContainer>
-  );
+	return (
+		<SkewContainer>
+			<Wrapper>
+				<ShadowTop />
+				<TransitionContainer>
+					{items.map((item, i) => i !== items.length - 1 &&
+						<QueueItem key={Math.random()} index={i} content={item} />)}
+				</TransitionContainer>
+				<ShadowBottom />
+			</Wrapper>
+		</SkewContainer>
+	);
 };
 
 const SkewContainer = styled.div`
@@ -51,13 +52,11 @@ const SkewContainer = styled.div`
 const Wrapper = styled.div`
   flex-direction: column;
   height: 22rem;
-
   width: 45rem;
   margin: auto;
-  z-index: 10;
-
   transform: rotate3d(2, -2, 0, 20deg);
   overflow: hidden;
+  z-index: 10;
 `;
 
 const TransitionContainer = styled.div`
@@ -65,21 +64,21 @@ const TransitionContainer = styled.div`
 `;
 
 const Shadow = styled.div`
+  position: absolute;
   height: 1rem;
-  z-index: 100;
   width: 100%;
   background: #222;
-  position: absolute;
+  z-index: 100;
 `;
 
 const ShadowTop = styled(Shadow)`
-  background: linear-gradient(to bottom, #0a0a0a 30%, transparent 70%);
   top: 0;
+  background: linear-gradient(to bottom, #0a0a0a 30%, transparent 70%);
 `;
 
 const ShadowBottom = styled(Shadow)`
-  background: linear-gradient(to top, #0a0a0a 30%, transparent 70%);
   bottom: 0;
+  background: linear-gradient(to top, #0a0a0a 30%, transparent 70%);
 `;
 
 export { Queue };
